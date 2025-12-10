@@ -1,33 +1,33 @@
 ---
 // HeroHeader.astro
-// Componente principal de HEADER + HERO en Astro
+// Componente principal de HEADER + HERO en Astro con Tailwind CSS
 ---
 
 <!-- Sección de header -->
-<header class="site-header">
-  <div class="container header-inner">
+<header class="fixed top-0 left-0 right-0 h-20 bg-bg-dark flex items-center z-20">
+  <div class="container mx-auto px-6 flex items-center justify-between h-full max-w-6xl">
     <!-- LOGO: reemplazar src y alt por el logo real de la sinfónica -->
-    <a href="#" class="logo">
+    <a href="#" class="flex items-center no-underline text-white">
       <img
-        src="/public/logo.png"
+        src="/logo.png"
         alt="Logo de la sinfónica"
-        class="logo-image"
+        class="h-16 w-auto object-contain block"
       />
     </a>
 
     <!-- Navegación principal -->
-    <nav class="main-nav">
-      <button class="nav-toggle" aria-label="Abrir menú de navegación">
-        <span></span>
-        <span></span>
-        <span></span>
+    <nav class="flex items-center relative">
+      <button class="hidden md:hidden flex-col justify-center gap-1 w-8 h-8 bg-transparent border-0 p-0 cursor-pointer" aria-label="Abrir menú de navegación">
+        <span class="block h-0.5 w-full bg-white rounded-full"></span>
+        <span class="block h-0.5 w-full bg-white rounded-full"></span>
+        <span class="block h-0.5 w-full bg-white rounded-full"></span>
       </button>
-      <ul class="nav-list">
-        <li><a href="#" class="nav-link nav-link-active">Inicio</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#programas" class="nav-link">Programas</a></li>
-        <li><a href="#apoyanos" class="nav-link">Apóyanos</a></li>
-        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+      <ul class="list-none flex m-0 p-0 gap-6">
+        <li><a href="#" class="no-underline text-white text-sm py-2 transition-colors duration-200 font-serif font-normal bg-black text-black px-5 rounded font-semibold inline-block">Inicio</a></li>
+        <li><a href="#nosotros" class="no-underline text-white text-sm py-2 transition-colors duration-200 hover:text-black font-serif font-normal">Nosotros</a></li>
+        <li><a href="#programas" class="no-underline text-white text-sm py-2 transition-colors duration-200 hover:text-black font-serif font-normal">Programas</a></li>
+        <li><a href="#apoyanos" class="no-underline text-white text-sm py-2 transition-colors duration-200 hover:text-black font-serif font-normal">Apóyanos</a></li>
+        <li><a href="#contacto" class="no-underline text-white text-sm py-2 transition-colors duration-200 hover:text-black font-serif font-normal">Contacto</a></li>
       </ul>
     </nav>
   </div>
@@ -35,419 +35,79 @@
 
 <main>
   <!-- Sección de hero -->
-  <section class="hero">
-    <div class="hero-overlay"></div>
+  <section class="relative min-h-[calc(100vh-5rem)] mt-20 flex flex-col justify-center text-white overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('/sinfonica.jpg');">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/85 z-[1]"></div>
 
-    <div class="container hero-content">
-      <h1 class="hero-title">
+    <div class="container mx-auto px-6 relative z-[2] text-center max-w-3xl py-24 pb-20">
+      <h1 class="m-0 mb-4 font-display text-5xl leading-tight text-white font-bold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);">
         Fundación Orquesta Sinfónica de Carabobo
       </h1>
 
-      <h2 class="hero-subtitle">
-        ¡Somos el Alma Musical de Carabobo!
-      </h2>
+      
 
-      <p class="hero-description">
-        Desde 1993, cultivando, desarrollando y divulgando la música sinfónica en
-        Venezuela.
-      </p>
-
-      <div class="hero-actions">
-        <a href="#apoyanos" class="btn btn-primary">
-          <span class="btn-icon">♥</span>
+      
+      <div class="inline-flex gap-4 flex-wrap justify-center">
+        <a href="#apoyanos" class="inline-flex items-center justify-center py-2.5 px-7 rounded bg-primary text-black border border-primary text-sm cursor-pointer no-underline transition-all duration-200 font-serif font-semibold hover:bg-[#B07F1F] hover:border-[#B07F1F] hover:shadow-[0_0_0_1px_rgba(0,0,0,0.2)]">
+          <span class="mr-2 text-sm">♥</span>
           Apóyanos
         </a>
 
-        <a href="#historia" class="btn btn-secondary">
+        <a href="#historia" class="inline-flex items-center justify-center py-2.5 px-7 rounded bg-transparent text-white border border-white/70 text-sm cursor-pointer no-underline transition-all duration-200 font-serif font-normal hover:bg-white/10 hover:border-white hover:shadow-[0_0_0_1px_rgba(255,255,255,0.2)]">
           Conoce Nuestra Historia
         </a>
       </div>
     </div>
 
-    <div class="scroll-indicator" aria-hidden="true">
-      <div class="mouse">
-        <div class="wheel"></div>
-      </div>
-    </div>
   </section>
 </main>
 
 <style>
-  :root {
-    /* Paleta aplicada */
-    --color-white: #ffffff;
-    --color-black: #000000;
-    --color-red: #82181a;
-    --color-yellow: #2196F3;
-
-    --bg-header: var(--color-black);
-    --bg-hero-overlay-top: rgba(0, 0, 0, 0.7);
-    --bg-hero-overlay-mid: rgba(0, 0, 0, 0.4);
-    --bg-hero-overlay-bottom: rgba(0, 0, 0, 0.85);
-    --accent-yellow: var(--color-yellow);
-    --accent-yellow-dark: #11100dff;
-    --text-light: var(--color-white);
-    --text-muted: #e0e0e0;
-    --text-hero-title: #ffffff;
-    --header-height: 80px;
-    --max-width: 1200px;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    font-family: "Merriweather", serif;
-    background-color: var(--color-black);
-    color: var(--text-light);
-  }
-
-  .container {
-    width: 100%;
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  /* HEADER */
-  .site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: var(--header-height);
-    background-color: var(--bg-header);
-    display: flex;
-    align-items: center;
-    z-index: 20;
-  }
-
-  .header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: var(--text-light);
-  }
-
-  .logo-image {
-    height: calc(var(--header-height) - 16px);
-    width: auto;
-    object-fit: contain;
-    display: block;
-  }
-
-  .main-nav {
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
-
-  .nav-list {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    gap: 24px;
-  }
-
-  .nav-link {
-    text-decoration: none;
-    color: var(--text-light);
-    font-size: 0.95rem;
-    padding: 8px 0;
-    transition: color 0.2s ease;
-    font-family: "Merriweather", serif;
-    font-weight: 400;
-  }
-
-  .nav-link:hover {
-    color: var(--accent-yellow);
-  }
-
-  /* Botón activo: rectangular y sobrio */
-  .nav-link-active {
-    background-color: var(--accent-yellow);
-    color: #000;
-    padding: 8px 20px;
-    border-radius: 4px;
-    font-weight: 600;
-  }
-
-  .nav-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    gap: 4px;
-    width: 32px;
-    height: 32px;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-  }
-
-  .nav-toggle span {
-    display: block;
-    height: 2px;
-    width: 100%;
-    background-color: #ffffff;
-    border-radius: 999px;
-  }
-
-  /* HERO */
-  .hero {
-    position: relative;
-    min-height: calc(100vh - var(--header-height));
-    margin-top: var(--header-height);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: var(--text-light);
-    overflow: hidden;
-    background-image: url("/public/sinfonica.jpg");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-  }
-
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to bottom,
-      var(--bg-hero-overlay-top) 0%,
-      var(--bg-hero-overlay-mid) 40%,
-      var(--bg-hero-overlay-bottom) 100%
-    );
-    z-index: 1;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 96px 24px 80px;
-  }
-
-  .hero-icon {
-    width: 72px;
-    height: 72px;
-    margin: 0 auto 28px;
-    border-radius: 50%;
-    background-color: var(--accent-yellow);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .hero-icon-note {
-    font-size: 1.8rem;
-    color: #000;
-  }
-
-  .hero-title {
-    margin: 0 0 16px;
-    font-family: "Merriweather", serif;
-    font-size: 3rem;
-    line-height: 1.1;
-    color: var(--text-hero-title);
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-    font-weight: 700;
-  }
-
-  .hero-subtitle {
-    margin: 0 0 18px;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--accent-yellow);
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
-    font-family: "Merriweather", serif;
-  }
-
-  .hero-description {
-    margin: 0 0 32px;
-    font-size: 1rem;
-    color: var(--text-muted);
-    max-width: 640px;
-    margin-left: auto;
-    margin-right: auto;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
-    font-family: "Merriweather", serif;
-    font-weight: 300;
-  }
-
-  .hero-actions {
-    display: inline-flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  /* Botones rectangulares, serios y profesionales */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 28px;
-    border-radius: 4px;
-    font-size: 0.95rem;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.2s ease, color 0.2s ease,
-      border-color 0.2s ease, box-shadow 0.2s ease;
-    border: 1px solid transparent;
-    font-family: "Merriweather", serif;
-    letter-spacing: 0.01em;
-  }
-
-  .btn-primary {
-  background-color: #C28F24;  /* Tu color aquí */
-  color: #000;
-  border-color: #C28F24;      /* Tu color aquí */
-  font-weight: 600;
-}
-
-  .btn-primary:hover {
-    background-color: #C28F24;
-    border-color: var(--accent-yellow-dark);
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
-  }
-
-  .btn-secondary {
-    background-color: transparent;
-    color: var(--text-light);
-    border-color: rgba(255, 255, 255, 0.7);
-    font-weight: 400;
-  }
-
-  .btn-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.06);
-    border-color: #ffffff;
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
-  }
-
-  .btn-icon {
-    margin-right: 8px;
-    font-size: 0.95rem;
-  }
-
-  .scroll-indicator {
-    position: absolute;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-  }
-
-  .mouse {
-    width: 28px;
-    height: 44px;
-    border-radius: 18px;
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 8px;
-  }
-
-  .wheel {
-    width: 4px;
-    height: 8px;
-    border-radius: 999px;
-    background-color: rgba(255, 255, 255, 0.9);
-    animation: scroll 1.4s infinite;
-  }
-
-  @keyframes scroll {
-    0% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    80% {
-      transform: translateY(8px);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 0;
-    }
-  }
 
   @media (max-width: 768px) {
-    .site-header {
-      height: 64px;
+    header {
+      height: 4rem;
     }
 
-    .hero {
-      margin-top: 64px;
-      min-height: calc(100vh - 64px);
-    }
-
-    .header-inner {
-      gap: 12px;
+    section {
+      margin-top: 4rem;
+      min-height: calc(100vh - 4rem);
     }
 
     .logo-image {
-      height: 44px;
+      height: 2.75rem;
     }
 
-    .nav-list {
+    nav ul {
       position: absolute;
-      top: 64px;
+      top: 4rem;
       right: 0;
       left: 0;
       flex-direction: column;
       background-color: rgba(0, 0, 0, 0.96);
-      padding: 12px 24px 16px;
-      display: none;
-    }
-
-    .nav-toggle {
+      padding: 0.75rem 1.5rem 1rem;
       display: flex;
     }
 
-    .nav-list {
+    nav button {
       display: flex;
     }
 
-    .nav-link,
-    .nav-link-active {
-      padding: 10px 0;
+    nav a {
+      padding: 0.625rem 0;
       border-radius: 0;
       background: none;
-      color: var(--text-light);
+      color: white;
     }
 
-    .hero-content {
-      padding: 72px 20px 72px;
-    }
-
-    .hero-icon {
-      width: 60px;
-      height: 60px;
-      margin-bottom: 20px;
-    }
-
-    .hero-title {
+    h1 {
       font-size: 2.1rem;
     }
 
-    .hero-subtitle {
+    h2 {
       font-size: 1.1rem;
     }
 
-    .hero-description {
+    p {
       font-size: 0.95rem;
     }
 
@@ -456,18 +116,18 @@
       width: 100%;
     }
 
-    .btn {
+    .hero-actions a {
       width: 100%;
       justify-content: center;
     }
   }
 
   @media (min-width: 769px) and (max-width: 1024px) {
-    .hero-title {
+    h1 {
       font-size: 2.6rem;
     }
 
-    .hero-subtitle {
+    h2 {
       font-size: 1.25rem;
     }
   }
