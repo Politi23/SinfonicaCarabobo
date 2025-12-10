@@ -1,0 +1,62 @@
+---
+import HeroHeader from "../components/HeroHeader.astro";
+import ConciertosSection from "../components/ConciertosSection.astro";
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nombre de la Sinfónica - Inicio</title>
+
+    <!-- Tipografía Merriweather desde Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        /* Paleta global */
+        --color-white: #ffffff;
+        --color-black: #000000ff;
+        --color-bg: #111111;      /* fondo general */
+        --color-header-bg: #1a1a1a;
+        --color-accent-yellow: #DDB850;
+        --color-accent-red: #82181a;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Merriweather", serif;
+        background-color: var(--color-bg);
+        color: var(--color-white);
+      }
+
+      main {
+        width: 100%;
+        overflow: hidden;
+      }
+
+      /* Forzamos botones y enlace activo a verse rectangulares y sobrios */
+      .btn,
+      .nav-link-active {
+        border-radius: 4px !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER + HERO -->
+    <HeroHeader />
+
+    <!-- Sección de Conciertos (agenda próxima) -->
+    <ConciertosSection />
+  </body>
+</html>
