@@ -1,0 +1,82 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import HeroHeader from '../../components/blog/HeroHeader.astro';
+import BlogCard from '../../components/blog/BlogCard.astro';
+
+const posts = [
+  {
+    title: 'La Mágica Noche de Beethoven',
+    excerpt: 'Un recorrido inolvidable por las noveles interpretaciones de la Novena Sinfonía en nuestro último concierto de gala.',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAXlZZ4wFUW8kAXKoPEnVPhA6Atr0-SW2YW108BH0DrK2T9d4DB-cMaty2HePpw7YXUtI88t5bc9A9cOw_6y22iyH7Ky1ya89s556bkxcJ0PiXrI5d3n2mWFrfTMugkdwe32Z7GsvajPpPt_Yj5HTu86HyO9YlYFqnUWip8RCbqfnoG3TUFRCdVITrCliPK2QtTxiovcSQOYk56IlI2kjXhaM4lyzhrj-bp1cBIekK9kjxQ-w5LHbaOoBysSVYBA5-rg_s6scKbxs8',
+    date: 'Marzo 15, 2024',
+    category: 'Conciertos',
+  },
+  {
+    title: 'Educando Jóvenes Talentos',
+    excerpt: 'Nuestro programa de educación musical ha impactado a más de 500 niños este año, fomentando el arte desde temprana edad.',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDQqlbSe76Xh3Zid20qknV7U52HuFviEfk_0V_WbsCRKwfO84dfI2zaHqV2VOhqRvZ6G7IieQ9ShNdt3dRpxtX7lmvuVKjb2SQpM6OdX2h928xDEWXJEXS0bldWwxJzSZrdjqVGVsaYJ6nKh-YNP6hSpAzb87NH0Rm6VeWJoffk5AsK7pvfEY03hrerNhQgGSb92441XyuOTvSSAA5-Z4AoTnGewoqXdqRQuoGRCnOuz9B4NjEjAyH43tr65olpS4vZWjTgVGW6i7k',
+    date: 'Febrero 28, 2024',
+    category: 'Educación',
+  },
+  {
+    title: 'Nuestra Historia',
+    excerpt: 'Cómo nació la Orquesta Sinfónica de Carabobo y su increíble evolución cultural a lo largo de los años.',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBBSe1pG-Ma9io-6WYbk-W9vanp_4IvufzxuwLSJ-jf0CUsDot5CcUNguLay1U64CeZdHMY3a367Fm2otDBqXsLKRZhpbXnOvHWhdapv7NUsE5MLMlcpht4n46J7yM7YmkJtrcFFeJRWRtS6dt6ke5AXQBh4s4aqAJY_WyXP8wB4ZfoPEYnz2ZQcy4VB30t3ecEWfqDpcLmuhf2Ic8LrwnfMuzqc8pTybhxPYVJOAWQHIYid8__jTDQ-7oNVs4LE5m8rWZsVv6TK0E',
+    date: 'Febrero 10, 2024',
+    category: 'Historia',
+  },
+  {
+    title: 'Gala de Fin de Año',
+    excerpt: 'Revive los mejores momentos de nuestra aclamada gala de fin de año con invitados especiales internacionales.',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB0JRaxtmliTUfmHXZZ54gy_0b5wdM-13PyZQCGeY-gKM6GjAOy8JQtjkppk0yD0jP2RcOLreIrFExZe3tqtCkAffjOyETMCrVAE-stoVEiw6pQ-SMYztTdc4zhtwBKuTMQeXQtt6rR3vExxL1TOW3usk22xmhL8-F6XuhE1udZII2xTXxXKVbiQYs9IWFkY0jIAEPvq6N2dJvXmwqxwK8L_tutFVsWCPXCZrW_OmDEovxCEq0LEC-6mIBwpwax7JFgxTtRuBn4Dp8',
+    date: 'Enero 22, 2024',
+    category: 'Eventos',
+  },
+  {
+    title: 'Nueva Temporada 2024',
+    excerpt: 'Anunciamos con orgullo el calendario completo para la temporada de música clásica de este año.',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCxyjUk1j3S0mTy_fi1IYkL5kZKHCnUjP0zY-WGujhILhnzK0rCqbmba8acjtc9udwI55hqmJynmz96x0-foeXlRerzVfM-ce7Hz2j_dAVuBfFgq36w11jqQ91osKnCnePiVeudoPMftN2b1YrqpSxKLj2IofAV9x88w-HT0uyafvXfaOjjWrXzrNGCYSjwmPiQ9op98B2uIkaSKo2jU_REJLjbRd6gyU-h0I8qevJCRc5stf4oDbRh58RSZilR22VQ5MlhVHEcsGs',
+    date: 'Enero 05, 2024',
+    category: 'Temporada',
+  },
+  {
+    title: 'Música en tu Barrio',
+    excerpt: 'Llevando la magia de la orquesta a los espacios públicos y parques de nuestra ciudad.',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuALXxaCG1fFAmLYZdEBf-mFO4vLAq6lSRqFVVazoY18Es2JZnd0vdi-AvXrY3sJwvefEzp5vcU1Y3_KRPlO-J7WEh61YVO8-ee3ryMvk-mAWe2h6F43D5BJV3o5OkcrNOuUGeORJsYa-IrFO4DQye8tMk9PN-u8V3OOx2mW742DBzZuQ8qlaIXwlG15nOihxqNjENXcSr6biOkdS56b_XvMq5mLF0e9Ro2yApuBhH0QL_jiG3ClMTnVOryymozzWQYnGSmG_1EOTE4',
+    date: 'Diciembre 15, 2023',
+    category: 'Comunidad',
+  },
+];
+---
+
+<BlogLayout>
+  <HeroHeader slot="" />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+      {posts.map((p) => (
+        <BlogCard title={p.title} excerpt={p.excerpt} image={p.image} date={p.date} category={p.category} />
+      ))}
+    </div>
+
+    <!-- Pagination area created but commented out per request -->
+    <!--
+    <div class="mt-16 flex justify-center">
+      <nav aria-label="Pagination" class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
+        <a class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-card-dark text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800" href="#">
+          <span class="sr-only">Previous</span>
+          <span class="material-icons">chevron_left</span>
+        </a>
+        <a aria-current="page" class="z-10 bg-primary/10 border-primary text-primary relative inline-flex items-center px-4 py-2 border text-sm font-bold" href="#">1</a>
+        <a class="bg-white dark:bg-card-dark border-gray-300 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">2</a>
+        <a class="bg-white dark:bg-card-dark border-gray-300 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium" href="#">3</a>
+        <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-card-dark text-sm font-medium text-gray-700 dark:text-gray-500">...</span>
+        <a class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-card-dark text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800" href="#">
+          <span class="sr-only">Next</span>
+          <span class="material-icons">chevron_right</span>
+        </a>
+      </nav>
+    </div>
+    -->
+  </section>
+</BlogLayout>
