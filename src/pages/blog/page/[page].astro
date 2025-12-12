@@ -5,16 +5,6 @@ import HeroHeader from '../../../components/blog/HeroHeader.astro';
 import BlogCard from '../../../components/blog/BlogCard.astro';
 import Pagination from '../../../components/blog/Pagination.astro';
 
-export async function getStaticPaths() {
-  const { totalPages } = await getPostsInfo();
-  const pages = Array.from({ length: totalPages }, (_, i) => {
-    return {
-      params: { page: (i + 1).toString() },
-    };
-  });
-  return pages;
-}
-
 const { page } = Astro.params;
 const currentPage = page ? parseInt(page, 10) : 1;
 
