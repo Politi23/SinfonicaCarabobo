@@ -10,16 +10,17 @@ export const getPage = async (slug: string) => {
   return data[0]
 }
 
-export const getPosts = async ({ perPage = 2} : {perPage?: number} = {}) => {
+export const getPosts = async ({ perPage = 1, page = 1 } : {perPage?: number, page?: number} = {}) => {
   if (!domain) throw new Error('WP_DOMAIN environment variable is not set')
   // Request embedded resources so we can access featured media and terms
-  const response = await fetch(`${apiBase}/posts?per_page=${perPage}&_embed=1`)
+  const response = await fetch(`${apiBase}/posts?per_page=${perPage}&page=${page}&_embed=1`)
   if (!response.ok) {
     throw new Error(`Failed to fetch posts`)
   }
   const data = await response.json()
   if (!data.length) {
-    throw new Error(`No posts found`)
+    console.log(`No posts found for page ${page}`)
+    return []
   }
   const posts = data.map((post: any) => {
     const date: string = post.date
@@ -53,6 +54,21 @@ export const getPosts = async ({ perPage = 2} : {perPage?: number} = {}) => {
     return { date, title, excerpt, slug, image, category }
   })
   return posts
+}
+
+export const getPostsInfo = async ({ perPage = 1 }: { perPage?: number } = {}) => {
+  if (!domain) throw new Error('WP_DOMAIN environment variable is not set')
+
+  // Make a HEAD request to get headers without the body
+  const response = await fetch(`${apiBase}/posts?per_page=${perPage}`, { method: 'HEAD' });
+  if (!response.ok) {
+    throw new Error('Failed to fetch post info');
+  }
+
+  const totalPosts = Number(response.headers.get('X-WP-Total') || 0);
+  const totalPages = Number(response.headers.get('X-WP-TotalPages') || 0);
+
+  return { totalPosts, totalPages };
 }
 
 export const getPost = async (slug: string) => {
