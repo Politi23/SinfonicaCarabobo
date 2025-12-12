@@ -2,8 +2,9 @@
 import BlogLayout from '../../layouts/BlogLayout.astro';
 import HeroHeader from '../../components/blog/HeroHeader.astro';
 import BlogCard from '../../components/blog/BlogCard.astro';
+import { getPosts } from '../../config/wp';
 
-const posts = [
+const posts2 = [
   {
     title: 'La Mágica Noche de Beethoven',
     excerpt: 'Un recorrido inolvidable por las noveles interpretaciones de la Novena Sinfonía en nuestro último concierto de gala.',
@@ -47,20 +48,21 @@ const posts = [
     category: 'Comunidad',
   },
 ];
+const posts = await getPosts({ perPage: 6 })
 ---
 
 <BlogLayout>
   <HeroHeader />
 
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-      {posts.map((p) => (
-        <BlogCard title={p.title} excerpt={p.excerpt} image={p.image} date={p.date} category={p.category} />
+      {posts.map((p: { title: string; excerpt: string; image: string; date: string; category: string; slug?: string }) => (
+        <BlogCard title={p.title} excerpt={p.excerpt} image={p.image} date={p.date} category={p.category} slug={p.slug} />
       ))}
     </div>
 
     <!-- Pagination area created but commented out per request -->
-    <!--
+    
     <div class="mt-16 flex justify-center">
       <nav aria-label="Pagination" class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
         <a class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-card-dark text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800" href="#">
@@ -77,6 +79,6 @@ const posts = [
         </a>
       </nav>
     </div>
-    -->
+   
   </section>
 </BlogLayout>
