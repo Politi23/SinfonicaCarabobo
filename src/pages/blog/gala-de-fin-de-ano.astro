@@ -1,0 +1,66 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro'
+const meta = {
+  title: 'Gala de Fin de Año',
+  date: '2024-01-22',
+  category: 'Eventos',
+  image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB0JRaxtmliTUfmHXZZ54gy_0b5wdM-13PyZQCGeY-gKM6GjAOy8JQtjkppk0yD0jP2RcOLreIrFExZe3tqtCkAffjOyETMCrVAE-stoVEiw6pQ-SMYztTdc4zhtwBKuTMQeXQtt6rR3vExxL1TOW3usk22xmhL8-F6XuhE1udZII2xTXxXKVbiQYs9IWFkY0jIAEPvq6N2dJvXmwqxwK8L_tutFVsWCPXCZrW_OmDEovxCEq0LEC-6mIBwpwax7JFgxTtRuBn4Dp8'
+}
+---
+
+<ArticleLayout title={meta.title} description="Memorias de la gala de fin de año">
+  <article class="layout-content-container flex flex-col max-w-[960px] w-full flex-1 px-4 lg:px-20 py-10 lg:py-16">
+    <div class="flex gap-3 mb-6">
+      <div class="flex h-7 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary/20 pl-3 pr-3">
+        <p class="text-black text-xs font-bold uppercase tracking-wide leading-normal">{meta.category}</p>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-4 mb-8">
+      <h1 class="text-4xl lg:text-5xl font-bold leading-[1.1] tracking-[-0.02em]">{meta.title}</h1>
+      <p class="text-[#898361] text-xl lg:text-2xl font-normal leading-relaxed italic">Revive lo más destacado de nuestra gala anual.</p>
+    </div>
+
+    <div class="flex items-center justify-between border-t border-b border-[#e5e5e0] py-6 mb-10">
+      <div class="flex gap-4 items-center">
+        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border border-[#e5e5e0]" style={`background-image: url('${meta.image}')`}></div>
+        <div class="flex flex-col justify-center">
+          <p class="text-sm font-bold">Crónica de Eventos</p>
+          <div class="flex items-center gap-2 text-[#898361] text-xs">
+            <span>{new Date(meta.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            <span>•</span>
+            <span>5 min de lectura</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <button class="text-[#898361] hover:text-primary transition-colors">Compartir</button>
+        <button class="text-[#898361] hover:text-primary transition-colors">Guardar</button>
+      </div>
+    </div>
+
+    <div class="w-full mb-12">
+      <div class="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden rounded-lg min-h-[360px] shadow-sm relative" style={`background-image: url('${meta.image}')`}>
+        <div class="absolute inset-0 bg-black/10"></div>
+      </div>
+      <figcaption class="mt-3 text-xs text-[#898361] text-center">Momentos destacados de la gala.</figcaption>
+    </div>
+
+    <div class="prose prose-lg prose-neutral dark:prose-invert max-w-none font-display">
+      <p>
+        La gala reunió a artistas invitados y a la comunidad en una noche de celebración. Hubo presentaciones especiales, homenajes y momentos que quedarán en la memoria.
+      </p>
+      <h3 class="text-2xl font-bold mt-10 mb-4">Invitados y repertorio</h3>
+      <p>
+        Invitados internacionales acompañaron a la orquesta en piezas emblemáticas, y los arreglos especiales dieron un carácter único a la velada.
+      </p>
+      <div class="mt-16 pt-8 border-t border-[#e5e5e0]">
+        <h4 class="text-sm font-bold uppercase tracking-wide text-[#898361] mb-4">Etiquetas</h4>
+        <div class="flex gap-3 flex-wrap">
+          <a class="px-4 py-2 bg-[#f4f4f0] rounded-lg text-[#181711] text-sm hover:bg-primary/20 transition-colors" href="#">Gala</a>
+          <a class="px-4 py-2 bg-[#f4f4f0] rounded-lg text-[#181711] text-sm hover:bg-primary/20 transition-colors" href="#">Eventos</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</ArticleLayout>

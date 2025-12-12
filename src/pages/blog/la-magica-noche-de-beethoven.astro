@@ -1,0 +1,78 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro'
+const meta = {
+  title: 'La Mágica Noche de Beethoven',
+  date: '2024-03-15',
+  category: 'Conciertos',
+  image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAXlZZ4wFUW8kAXKoPEnVPhA6Atr0-SW2YW108BH0DrK2T9d4DB-cMaty2HePpw7YXUtI88t5bc9A9cOw_6y22iyH7Ky1ya89s556bkxcJ0PiXrI5d3n2mWFrfTMugkdwe32Z7GsvajPpPt_Yj5HTu86HyO9YlYFqnUWip8RCbqfnoG3TUFRCdVITrCliPK2QtTxiovcSQOYk56IlI2kjXhaM4lyzhrj-bp1cBIekK9kjxQ-w5LHbaOoBysSVYBA5-rg_s6scKbxs8'
+}
+---
+
+<ArticleLayout title={meta.title} description="Crónica del concierto de gala">
+  <article class="layout-content-container flex flex-col max-w-[960px] w-full flex-1 px-4 lg:px-20 py-10 lg:py-16">
+    <div class="flex gap-3 mb-6">
+      <div class="flex h-7 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary/20 pl-3 pr-3">
+        <p class="text-black text-xs font-bold uppercase tracking-wide leading-normal">{meta.category}</p>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-4 mb-8">
+      <h1 class="text-4xl lg:text-5xl font-bold leading-[1.1] tracking-[-0.02em]">{meta.title}</h1>
+      <p class="text-[#898361] text-xl lg:text-2xl font-normal leading-relaxed italic">Un recorrido inolvidable por las interpretaciones que encendieron la noche.</p>
+    </div>
+
+    <div class="flex items-center justify-between border-t border-b border-[#e5e5e0] py-6 mb-10">
+      <div class="flex gap-4 items-center">
+        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border border-[#e5e5e0]" style={`background-image: url('${meta.image}')`}></div>
+        <div class="flex flex-col justify-center">
+          <p class="text-sm font-bold">Equipo Sinfónica</p>
+          <div class="flex items-center gap-2 text-[#898361] text-xs">
+            <span>{new Date(meta.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            <span>•</span>
+            <span>4 min de lectura</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <button class="text-[#898361] hover:text-primary transition-colors">Compartir</button>
+        <button class="text-[#898361] hover:text-primary transition-colors">Guardar</button>
+      </div>
+    </div>
+
+    <div class="w-full mb-12">
+      <div class="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden rounded-lg min-h-[400px] lg:min-h-[500px] shadow-sm relative" style={`background-image: url('${meta.image}')`}>
+        <div class="absolute inset-0 bg-black/10"></div>
+      </div>
+      <figcaption class="mt-3 text-xs text-[#898361] text-center">Foto del concierto de gala.</figcaption>
+    </div>
+
+    <div class="prose prose-lg prose-neutral dark:prose-invert max-w-none font-display">
+      <p>
+        La velada comenzó con una ovación contenida que poco a poco se transformó en un aplauso atronador. La orquesta salió al escenario con una energía formidable y el público respondió con entusiasmo. Cada movimiento estuvo lleno de matices y una expresividad impecable.
+      </p>
+
+      <h3 class="text-2xl font-bold mt-10 mb-4">Un programa memorable</h3>
+      <p>
+        El concierto incluyó piezas que mostraron la versatilidad del conjunto: desde pasajes íntimos hasta crescendos que resonaron en toda la sala. Los solistas recibieron numerosas ovaciones y la dirección musical condujo la noche con sensibilidad y firmeza.
+      </p>
+
+      <blockquote class="my-12 relative py-4 lg:-mx-12">
+        <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-full hidden lg:block"></div>
+        <p class="italic text-2xl lg:text-3xl font-medium leading-relaxed">“La música llenó cada rincón y dejó una huella imborrable en los asistentes.”</p>
+      </blockquote>
+
+      <p>
+        Al final de la noche, la audiencia se puso de pie durante varios minutos. Fue una celebración del talento local y de la pasión por la música clásica. Invitamos a todos a seguir la programación y acompañarnos en próximas funciones.
+      </p>
+
+      <div class="mt-16 pt-8 border-t border-[#e5e5e0]">
+        <h4 class="text-sm font-bold uppercase tracking-wide text-[#898361] mb-4">Etiquetas</h4>
+        <div class="flex gap-3 flex-wrap">
+          <a class="px-4 py-2 bg-[#f4f4f0] rounded-lg text-[#181711] text-sm hover:bg-primary/20 transition-colors" href="#">Conciertos</a>
+          <a class="px-4 py-2 bg-[#f4f4f0] rounded-lg text-[#181711] text-sm hover:bg-primary/20 transition-colors" href="#">Gala</a>
+          <a class="px-4 py-2 bg-[#f4f4f0] rounded-lg text-[#181711] text-sm hover:bg-primary/20 transition-colors" href="#">Reseñas</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</ArticleLayout>
