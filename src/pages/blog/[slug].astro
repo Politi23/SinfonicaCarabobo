@@ -32,26 +32,44 @@ if (!post) {
     </div>
 
     <div class="flex flex-col gap-4 mb-8">
+      {/* 
+        ================================================================
+        == TÍTULO PRINCIPAL DEL ARTÍCULO (H1)
+        ================================================================
+        - Elemento: <h1>
+        - Estilos: Clases de Tailwind aplicadas directamente aquí.
+        - Fuente: 'font-display' viene de `tailwind.config.mjs`.
+      */}
       <h1 class="text-4xl lg:text-5xl font-bold leading-[1.1] tracking-[-0.02em]" set:html={post.title}></h1>
+
+      {/* 
+        ================================================================
+        == EXCERPT / SUBTÍTULO (TEXTO DORADO)
+        ================================================================
+        - Elemento: <div>
+        - Estilos: Clases de Tailwind aplicadas directamente aquí. 
+                   El color dorado es `text-[#898361]`.
+      */}
       {post.excerpt && <div class="text-[#898361] text-xl lg:text-2xl font-normal leading-relaxed italic" set:html={post.excerpt}></div>}
     </div>
 
+    {/* 
+      ================================================================
+      == METADATOS (AUTOR Y FECHA)
+      ================================================================
+      - Elementos: <p> para el autor, <span> para la fecha.
+      - Estilos: Clases de Tailwind aplicadas directamente aquí.
+    */}
     <div class="flex items-center justify-between border-t border-b border-[#e5e5e0] py-6 mb-10">
       <div class="flex gap-4 items-center">
-        <!-- <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border border-[#e5e5e0]" style={`background-image: url('')`}></div> -->
         <div class="flex flex-col justify-center">
-          <p class="text-sm font-bold">{post.author || 'Equipo Sinfónica'}</p>
-          <div class="flex items-center gap-2 text-[#898361] text-xs">
+          <p class="text-lg font-bold">{post.author || 'Equipo Sinfónica'}</p>
+          <div class="flex items-center gap-2 text-[#898361] text-lg">
             <span>{new Date(post.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
             <span>•</span>
-            <!-- Reading time can be calculated or be a fixed value -->
             <span>4 min de lectura</span>
           </div>
         </div>
-      </div>
-      <div class="flex gap-2">
-        <button class="text-[#898361] hover:text-primary transition-colors">Compartir</button>
-        <button class="text-[#898361] hover:text-primary transition-colors">Guardar</button>
       </div>
     </div>
 
@@ -60,7 +78,9 @@ if (!post) {
         <div class="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden rounded-lg min-h-[400px] lg:min-h-[500px] shadow-sm relative" style={`background-image: url('${post.image}')`}>
           <div class="absolute inset-0 bg-black/10"></div>
         </div>
-        <figcaption class="mt-3 text-xs text-[#898361] text-center">Imagen destacada de la publicación.</figcaption>
+        {post.imageCaption && (
+          <figcaption class="mt-3 text-xs text-[#898361] text-center" set:html={post.imageCaption}></figcaption>
+        )}
       </div>
     )}
 

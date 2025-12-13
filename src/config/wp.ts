@@ -47,11 +47,14 @@ export const getPosts = async ({ perPage = 100, page = 1 } : {perPage?: number, 
 
     // Featured image (using _embedded)
     let image = ''
+    let imageCaption = ''
     try {
       const fm = post._embedded?.['wp:featuredmedia']?.[0]
       image = fm?.source_url || ''
+      imageCaption = fm?.caption?.rendered || ''
     } catch (e) {
       image = ''
+      imageCaption = ''
     }
 
     // Category: take first term in taxonomy if present
@@ -70,7 +73,7 @@ export const getPosts = async ({ perPage = 100, page = 1 } : {perPage?: number, 
       author = ''
     }
 
-    return { date, title, excerpt, slug, image, category, author }
+    return { date, title, excerpt, slug, image, imageCaption, category, author }
   })
   return posts
 }
@@ -104,10 +107,14 @@ export const getPost = async (slug: string) => {
   const slugOut = post.slug
 
   let image = ''
+  let imageCaption = ''
   try {
-    image = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || ''
+    const fm = post._embedded?.['wp:featuredmedia']?.[0]
+    image = fm?.source_url || ''
+    imageCaption = fm?.caption?.rendered || ''
   } catch (e) {
     image = ''
+    imageCaption = ''
   }
 
   let category = ''
@@ -124,5 +131,5 @@ export const getPost = async (slug: string) => {
     author = ''
   }
 
-  return { title, excerpt, date, slug: slugOut, image, category, author, content: post.content?.rendered || '' }
+  return { title, excerpt, date, slug: slugOut, image, imageCaption, category, author, content: post.content?.rendered || '' }
 }
