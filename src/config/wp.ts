@@ -1,6 +1,18 @@
 const domain = import.meta.env.WP_DOMAIN
 const apiBase = `${domain}/wp-json/wp/v2`
 
+function decodeHtmlEntities(text: string): string {
+    if (!text) return "";
+    return text.replace(/&#(\d+);/g, (match, dec) => {
+        return String.fromCharCode(dec);
+    }).replace(/&quot;/g, '"')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&apos;/g, "'")
+    .replace(/&nbsp;/g, ' ');
+}
+
 export const getPage = async (slug: string) => {
   const response = await fetch(`${apiBase}/pages?slug=${slug}`)
   if (!response.ok) {
@@ -10,7 +22,7 @@ export const getPage = async (slug: string) => {
   return data[0]
 }
 
-export const getPosts = async ({ perPage = 1, page = 1 } : {perPage?: number, page?: number} = {}) => {
+export const getPosts = async ({ perPage = 100, page = 1 } : {perPage?: number, page?: number} = {}) => {
   if (!domain) throw new Error('WP_DOMAIN environment variable is not set')
   // Request embedded resources so we can access featured media and terms
   const response = await fetch(`${apiBase}/posts?per_page=${perPage}&page=${page}&_embed=1`)
@@ -30,8 +42,8 @@ export const getPosts = async ({ perPage = 1, page = 1 } : {perPage?: number, pa
     const titleRaw = post.title?.rendered || ''
     const excerptRaw = post.excerpt?.rendered || ''
     const stripHtml = (s: string) => s.replace(/<[^>]*>/g, '').trim()
-    const title = stripHtml(titleRaw)
-    const excerpt = stripHtml(excerptRaw)
+    const title = decodeHtmlEntities(stripHtml(titleRaw))
+    const excerpt = decodeHtmlEntities(stripHtml(excerptRaw))
 
     // Featured image (using _embedded)
     let image = ''
@@ -51,7 +63,14 @@ export const getPosts = async ({ perPage = 1, page = 1 } : {perPage?: number, pa
       category = ''
     }
 
-    return { date, title, excerpt, slug, image, category }
+    let author = ''
+    try {
+      author = post._embedded?.['author']?.[0]?.name || ''
+    } catch (e) {
+      author = ''
+    }
+
+    return { date, title, excerpt, slug, image, category, author }
   })
   return posts
 }
@@ -79,9 +98,8 @@ export const getPost = async (slug: string) => {
   const post = data?.[0]
   if (!post) return null
 
-  const stripHtml = (s: string) => (s || '').replace(/<[^>]*>/g, '').trim()
-  const title = stripHtml(post.title?.rendered || '')
-  const excerpt = stripHtml(post.excerpt?.rendered || '')
+  const title = post.title?.rendered || ''
+  const excerpt = post.excerpt?.rendered || ''
   const date = post.date
   const slugOut = post.slug
 

@@ -1,0 +1,57 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro'
+import { getPost } from '../../config/wp'
+
+const { slug } = Astro.params
+const post = await getPost(slug)
+
+if (!post) {
+  // return a 404 by throwing
+  throw new Error(`Post not found: ${slug}`)
+}
+---
+
+<ArticleLayout title={post.title} description={post.excerpt}>
+  <article class="layout-content-container flex flex-col max-w-[960px] w-full flex-1 px-4 lg:px-20 py-10 lg:py-16">
+    <div class="flex gap-3 mb-6">
+      <div class="flex h-7 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary/20 pl-3 pr-3">
+        <p class="text-black text-xs font-bold uppercase tracking-wide leading-normal">{post.category}</p>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-4 mb-8">
+      <h1 class="text-4xl lg:text-5xl font-bold leading-[1.1] tracking-[-0.02em]">{post.title}</h1>
+      <p class="text-[#898361] text-xl lg:text-2xl font-normal leading-relaxed italic">{post.excerpt}</p>
+    </div>
+
+    <div class="flex items-center justify-between border-t border-b border-[#e5e5e0] py-6 mb-10">
+      <div class="flex gap-4 items-center">
+        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border border-[#e5e5e0]" style={`background-image: url('${post.image}')`}></div>
+        <div class="flex flex-col justify-center">
+          <p class="text-sm font-bold">Equipo Sinfónica</p>
+          <div class="flex items-center gap-2 text-[#898361] text-xs">
+            <span>{new Date(post.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            <span>•</span>
+            <span>Lectura: —</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <button class="text-[#898361] hover:text-primary transition-colors">Compartir</button>
+        <button class="text-[#898361] hover:text-primary transition-colors">Guardar</button>
+      </div>
+    </div>
+
+    <div class="w-full mb-12">
+      <div class="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden rounded-lg min-h-[360px] shadow-sm relative" style={`background-image: url('${post.image}')`}>
+        <div class="absolute inset-0 bg-black/10"></div>
+      </div>
+      <figcaption class="mt-3 text-xs text-[#898361] text-center">Imagen del artículo.</figcaption>
+    </div>
+
+    <div class="prose prose-lg prose-neutral dark:prose-invert max-w-none font-display">
+      <!-- post.content is HTML from WP; render it as raw HTML -->
+      <div innerHTML={post.content} />
+    </div>
+  </article>
+</ArticleLayout>

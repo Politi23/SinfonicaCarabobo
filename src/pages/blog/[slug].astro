@@ -1,4 +1,4 @@
----
+--- 
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import { getPosts, getPost } from '../../config/wp';
 
@@ -33,7 +33,7 @@ if (!post) {
 
     <div class="flex flex-col gap-4 mb-8">
       <h1 class="text-4xl lg:text-5xl font-bold leading-[1.1] tracking-[-0.02em]" set:html={post.title}></h1>
-      {post.excerpt && <p class="text-[#898361] text-xl lg:text-2xl font-normal leading-relaxed italic">{post.excerpt}</p>}
+      {post.excerpt && <div class="text-[#898361] text-xl lg:text-2xl font-normal leading-relaxed italic" set:html={post.excerpt}></div>}
     </div>
 
     <div class="flex items-center justify-between border-t border-b border-[#e5e5e0] py-6 mb-10">
@@ -64,7 +64,7 @@ if (!post) {
       </div>
     )}
 
-    <div class="prose prose-lg prose-neutral dark:prose-invert max-w-none font-display" set:html={post.content}>
+    <div class="article-content" set:html={post.content}>
     </div>
 
     <!-- Tags can be implemented if available in the API -->

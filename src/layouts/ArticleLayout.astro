@@ -1,7 +1,7 @@
 ---
 import Header from '../components/global/Header.astro'
 import Footer from '../components/global/Footer.astro'
-const { title = 'Artículo', description = '' } = Astro.props;
+const { title, description } = Astro.props;
 ---
 <!doctype html>
 <html lang="es">
@@ -25,3 +25,23 @@ const { title = 'Artículo', description = '' } = Astro.props;
     <Footer />
   </body>
 </html>
+
+<style is:global>
+  .article-content h2 {
+    @apply text-2xl font-bold mt-10 mb-4;
+  }
+  .article-content h3 {
+    @apply text-xl font-bold mt-8 mb-4;
+  }
+  .article-content p {
+    @apply text-lg leading-relaxed my-4;
+  }
+  .article-content blockquote {
+    @apply my-12 relative py-4 lg:-mx-12;
+    border-left: 2px solid theme('colors.primary');
+    padding-left: 1.5rem;
+  }
+  .article-content blockquote p {
+    @apply italic text-2xl lg:text-3xl font-medium leading-relaxed;
+  }
+</style>
