@@ -99,5 +99,12 @@ export const getPost = async (slug: string) => {
     category = ''
   }
 
-  return { title, excerpt, date, slug: slugOut, image, category, content: post.content?.rendered || '' }
+  let author = ''
+  try {
+    author = post._embedded?.['author']?.[0]?.name || ''
+  } catch (e) {
+    author = ''
+  }
+
+  return { title, excerpt, date, slug: slugOut, image, category, author, content: post.content?.rendered || '' }
 }

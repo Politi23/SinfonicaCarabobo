@@ -6,8 +6,8 @@ import node from '@astrojs/node';
 // https://astro.build/config
 export default defineConfig({
     output: 'server',
-    integrations: [tailwind(), node({
+    adapter: node({
         mode: 'standalone'
-    })],
+    }),
+    integrations: [tailwind()],
 });
-
