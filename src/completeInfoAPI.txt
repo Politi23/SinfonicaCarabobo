@@ -1,0 +1,351 @@
+{
+  "id": 25,
+  "date": "2005-01-17T07:30:00",
+  "date_gmt": "2005-01-17T07:30:00",
+  "guid": {
+    "rendered": "http://localhost:10004/?p=25"
+  },
+  "modified": "2025-12-13T01:22:38",
+  "modified_gmt": "2025-12-13T01:22:38",
+  "slug": "evangelion-3-01-0-thrice-upon-a-time",
+  "status": "publish",
+  "type": "post",
+  "link": "http://localhost:10004/evangelion-3-01-0-thrice-upon-a-time/",
+  "title": {
+    "rendered": "Evangelion: 3.0+1.0 Thrice Upon A Time"
+  },
+  "content": {
+    "rendered": "\n\u003Cp class=\"is-style-text-subtitle has-large-font-size is-style-text-subtitle--1\"\u003E\u003Cstrong\u003EReseña: EVANGELION: 3.0+1.11 THRICE UPON A TIME\u003C/strong\u003E\u003C/p\u003E\n\n\n\n\u003Cp\u003ELa \u003Cstrong\u003Eculminación épica\u003C/strong\u003E de la saga Rebuild of Evangelion dirigida por Hideaki Anno nos entrega una experiencia visualmente asombrosa que combina magistralmente animación tradicional y CGI. Esta cuarta y última entrega enfrenta las consecuencias devastadoras del \u003Cstrong\u003ECuarto Impacto\u003C/strong\u003E mientras Shinji Ikari lucha con su crisis existencial más intensa que nunca.\u003C/p\u003E\n\n\n\n\u003Cp\u003ELa película trasciende lo esperado, ofreciendo un cierre \u003Cstrong\u003Eemotivo\u003C/strong\u003E que recompensa décadas de espera para los fans. Sus secuencias de \u003Cstrong\u003Eacción\u003C/strong\u003E son impactantes, pero son los momentos \u003Cstrong\u003Eíntimos\u003C/strong\u003E entre personajes -Shinji, Asuka y Rei navegando por un Japón transformado- los que realmente \u003Cstrong\u003Econmueven\u003C/strong\u003E al espectador.\u003C/p\u003E\n\n\n\n\u003Cfigure class=\"wp-block-image aligncenter size-large\"\u003E\u003Cimg loading=\"lazy\" decoding=\"async\" width=\"724\" height=\"1024\" src=\"http://localhost:10004/wp-content/uploads/2025/12/Evangelion_3.0__1.0_New_Poster_8_March_Japan-724x1024.webp\" alt=\"\" class=\"wp-image-27\" srcset=\"http://localhost:10004/wp-content/uploads/2025/12/Evangelion_3.0__1.0_New_Poster_8_March_Japan-724x1024.webp 724w, http://localhost:10004/wp-content/uploads/2025/12/Evangelion_3.0__1.0_New_Poster_8_March_Japan-212x300.webp 212w, http://localhost:10004/wp-content/uploads/2025/12/Evangelion_3.0__1.0_New_Poster_8_March_Japan-768x1086.webp 768w, http://localhost:10004/wp-content/uploads/2025/12/Evangelion_3.0__1.0_New_Poster_8_March_Japan-1086x1536.webp 1086w, http://localhost:10004/wp-content/uploads/2025/12/Evangelion_3.0__1.0_New_Poster_8_March_Japan-1448x2048.webp 1448w, http://localhost:10004/wp-content/uploads/2025/12/Evangelion_3.0__1.0_New_Poster_8_March_Japan-scaled.webp 1810w\" sizes=\"auto, (max-width: 724px) 100vw, 724px\" /\u003E\u003C/figure\u003E\n\n\n\n\u003Cblockquote class=\"wp-block-quote is-layout-flow wp-block-quote-is-layout-flow\"\u003E\n\u003Cp\u003EEvangelion: 3.0+1.0 Thrice Upon a Time focus on Shinji&#8217;s desire for a world without EVAs, finding happiness in life, ending the cycle of pain, and moving on from the franchise, reflecting his personal journey from running away to creating something new, stating, &#8220;I tried to include everything of myself in Neon Genesis Evangelion&#8221; and wanting a &#8220;world where new people can live,&#8221; ending with hope and a farewell to the series&#8217; complex themes.\u003C/p\u003E\n\u003C/blockquote\u003E\n\n\n\n\u003Cfigure class=\"wp-block-image aligncenter size-full\"\u003E\u003Cimg loading=\"lazy\" decoding=\"async\" width=\"420\" height=\"462\" src=\"http://localhost:10004/wp-content/uploads/2025/12/NTE_Full_Complete_Blu-ray_BOX.webp\" alt=\"\" class=\"wp-image-28\" srcset=\"http://localhost:10004/wp-content/uploads/2025/12/NTE_Full_Complete_Blu-ray_BOX.webp 420w, http://localhost:10004/wp-content/uploads/2025/12/NTE_Full_Complete_Blu-ray_BOX-273x300.webp 273w\" sizes=\"auto, (max-width: 420px) 100vw, 420px\" /\u003E\u003C/figure\u003E\n\n\n\n\u003Cp class=\"is-style-text-annotation is-style-text-annotation--2\"\u003EFué una película con la que lloré mucho, pues fue el final de toda la saga Evangelion, una película muy esperada durante años. Ver a Shinji finalmente encontrar paz después de tanto sufrimiento me rompió el corazón. La forma en que Anno cerró todos los hilos, las animaciones espectaculares, y ese mensaje de que el dolor no define nuestro futuro&#8230; me dejó sin palabras. Después de décadas siguiendo esta historia, sentir que cada lágrima y cada trauma de los personajes valió la pena para llegar a un final tan esperanzador. Acompañado de una banda sonora preciosa gracias a Hikaru Utada.\u003C/p\u003E\n\n\n\n\u003Cp\u003E\u003C/p\u003E\n\n\n\n\u003Cp\u003E\u003C/p\u003E\n",
+    "protected": false
+  },
+  "excerpt": {
+    "rendered": "\u003Cp\u003EEvangelion: 3.0+1.0 Thrice Upon A TimeWP (シン・エヴァンゲリオン劇場版𝄇, Shin Evangerion Gekijōban𝄇?) is the fourth and final film in the Rebuild of Evangelion film series. The musical symbol title could either mean &#8220;End Repeat&#8221;, or simply &#8220;End&#8221; if the colon is part of the title. The film was written by Hideaki Anno and directed by Hideaki Anno, Katsuichi Nakayama, Kazuya Tsurumaki, and Mahiro Maeda. The film was theatrically released in Japan on 08 March 2021.\u003C/p\u003E\n",
+    "protected": false
+  },
+  "author": 1,
+  "featured_media": 26,
+  "comment_status": "closed",
+  "ping_status": "open",
+  "sticky": false,
+  "template": "",
+  "format": "standard",
+  "meta": {
+    "footnotes": ""
+  },
+  "categories": [8],
+  "tags": [],
+  "class_list": [
+    "post-25",
+    "post",
+    "type-post",
+    "status-publish",
+    "format-standard",
+    "has-post-thumbnail",
+    "hentry",
+    "category-jasa"
+  ],
+  "_links": {
+    "self": [
+      {
+        "href": "http://localhost:10004/wp-json/wp/v2/posts/25",
+        "targetHints": {
+          "allow": [
+            "GET"
+          ]
+        }
+      }
+    ],
+    "collection": [
+      {
+        "href": "http://localhost:10004/wp-json/wp/v2/posts"
+      }
+    ],
+    "about": [
+      {
+        "href": "http://localhost:10004/wp-json/wp/v2/types/post"
+      }
+    ],
+    "author": [
+      {
+        "embeddable": true,
+        "href": "http://localhost:10004/wp-json/wp/v2/users/1"
+      }
+    ],
+    "replies": [
+      {
+        "embeddable": true,
+        "href": "http://localhost:10004/wp-json/wp/v2/comments?post=25"
+      }
+    ],
+    "version-history": [
+      {
+        "count": 4,
+        "href": "http://localhost:10004/wp-json/wp/v2/posts/25/revisions"
+      }
+    ],
+    "predecessor-version": [
+      {
+        "id": 70,
+        "href": "http://localhost:10004/wp-json/wp/v2/posts/25/revisions/70"
+      }
+    ],
+    "wp:featuredmedia": [
+      {
+        "embeddable": true,
+        "href": "http://localhost:10004/wp-json/wp/v2/media/26"
+      }
+    ],
+    "wp:attachment": [
+      {
+        "href": "http://localhost:10004/wp-json/wp/v2/media?parent=25"
+      }
+    ],
+    "wp:term": [
+      {
+        "taxonomy": "category",
+        "embeddable": true,
+        "href": "http://localhost:10004/wp-json/wp/v2/categories?post=25"
+      },
+      {
+        "taxonomy": "post_tag",
+        "embeddable": true,
+        "href": "http://localhost:10004/wp-json/wp/v2/tags?post=25"
+      }
+    ],
+    "curies": [
+      {
+        "name": "wp",
+        "href": "https://api.w.org/{rel}",
+        "templated": true
+      }
+    ]
+  },
+  "_embedded": {
+    "author": [
+      {
+        "id": 1,
+        "name": "JISV7",
+        "url": "http://localhost:10004",
+        "description": "",
+        "link": "http://localhost:10004/author/jisv7/",
+        "slug": "jisv7",
+        "avatar_urls": {
+          "24": "https://secure.gravatar.com/avatar/33e54dec0cd79fc4b5e911c15f836c46ec8d0e452ecd3ca5f707bce0a3540a3b?s=24&d=mm&r=g",
+          "48": "https://secure.gravatar.com/avatar/33e54dec0cd79fc4b5e911c15f836c46ec8d0e452ecd3ca5f707bce0a3540a3b?s=48&d=mm&r=g",
+          "96": "https://secure.gravatar.com/avatar/33e54dec0cd79fc4b5e911c15f836c46ec8d0e452ecd3ca5f707bce0a3540a3b?s=96&d=mm&r=g"
+        },
+        "_links": {
+          "self": [
+            {
+              "href": "http://localhost:10004/wp-json/wp/v2/users/1",
+              "targetHints": {
+                "allow": [
+                  "GET"
+                ]
+              }
+            }
+          ],
+          "collection": [
+            {
+              "href": "http://localhost:10004/wp-json/wp/v2/users"
+            }
+          ]
+        }
+      }
+    ],
+    "wp:featuredmedia": [
+      {
+        "id": 26,
+        "date": "2025-12-12T16:37:02",
+        "slug": "1353199",
+        "type": "attachment",
+        "link": "http://localhost:10004/evangelion-3-01-0-thrice-upon-a-time/attachment/1353199/",
+        "title": {
+          "rendered": "1353199"
+        },
+        "author": 1,
+        "featured_media": 0,
+        "caption": {
+          "rendered": ""
+        },
+        "alt_text": "",
+        "media_type": "image",
+        "mime_type": "image/png",
+        "media_details": {
+          "width": 2560,
+          "height": 1435,
+          "file": "2025/12/1353199-scaled.png",
+          "filesize": 3294496,
+          "sizes": {
+            "medium": {
+              "file": "1353199-300x168.png",
+              "width": 300,
+              "height": 168,
+              "filesize": 64932,
+              "mime_type": "image/png",
+              "source_url": "http://localhost:10004/wp-content/uploads/2025/12/1353199-300x168.png"
+            },
+            "large": {
+              "file": "1353199-1024x574.png",
+              "width": 1024,
+              "height": 574,
+              "filesize": 543204,
+              "mime_type": "image/png",
+              "source_url": "http://localhost:10004/wp-content/uploads/2025/12/1353199-1024x574.png"
+            },
+            "thumbnail": {
+              "file": "1353199-150x150.png",
+              "width": 150,
+              "height": 150,
+              "filesize": 32499,
+              "mime_type": "image/png",
+              "source_url": "http://localhost:10004/wp-content/uploads/2025/12/1353199-150x150.png"
+            },
+            "medium_large": {
+              "file": "1353199-768x430.png",
+              "width": 768,
+              "height": 430,
+              "filesize": 322105,
+              "mime_type": "image/png",
+              "source_url": "http://localhost:10004/wp-content/uploads/2025/12/1353199-768x430.png"
+            },
+            "1536x1536": {
+              "file": "1353199-1536x861.png",
+              "width": 1536,
+              "height": 861,
+              "filesize": 1211026,
+              "mime_type": "image/png",
+              "source_url": "http://localhost:10004/wp-content/uploads/2025/12/1353199-1536x861.png"
+            },
+            "2048x2048": {
+              "file": "1353199-2048x1148.png",
+              "width": 2048,
+              "height": 1148,
+              "filesize": 2148938,
+              "mime_type": "image/png",
+              "source_url": "http://localhost:10004/wp-content/uploads/2025/12/1353199-2048x1148.png"
+            },
+            "full": {
+              "file": "1353199-scaled.png",
+              "width": 2560,
+              "height": 1435,
+              "mime_type": "image/png",
+              "source_url": "http://localhost:10004/wp-content/uploads/2025/12/1353199-scaled.png"
+            }
+          },
+          "image_meta": {
+            "aperture": "0",
+            "credit": "",
+            "camera": "",
+            "caption": "",
+            "created_timestamp": "0",
+            "copyright": "",
+            "focal_length": "0",
+            "iso": "0",
+            "shutter_speed": "0",
+            "title": "",
+            "orientation": "0",
+            "keywords": []
+          },
+          "original_image": "1353199.png"
+        },
+        "source_url": "http://localhost:10004/wp-content/uploads/2025/12/1353199-scaled.png",
+        "_links": {
+          "self": [
+            {
+              "href": "http://localhost:10004/wp-json/wp/v2/media/26",
+              "targetHints": {
+                "allow": [
+                  "GET"
+                ]
+              }
+            }
+          ],
+          "collection": [
+            {
+              "href": "http://localhost:10004/wp-json/wp/v2/media"
+            }
+          ],
+          "about": [
+            {
+              "href": "http://localhost:10004/wp-json/wp/v2/types/attachment"
+            }
+          ],
+          "author": [
+            {
+              "embeddable": true,
+              "href": "http://localhost:10004/wp-json/wp/v2/users/1"
+            }
+          ],
+          "replies": [
+            {
+              "embeddable": true,
+              "href": "http://localhost:10004/wp-json/wp/v2/comments?post=26"
+            }
+          ],
+          "wp:attached-to": [
+            {
+              "embeddable": true,
+              "post_type": "post",
+              "id": 25,
+              "href": "http://localhost:10004/wp-json/wp/v2/posts/25"
+            }
+          ],
+          "curies": [
+            {
+              "name": "wp",
+              "href": "https://api.w.org/{rel}",
+              "templated": true
+            }
+          ]
+        }
+      }
+    ],
+    "wp:term": [
+      [
+        {
+          "id": 8,
+          "link": "http://localhost:10004/category/jasa/",
+          "name": "Jasa",
+          "slug": "jasa",
+          "taxonomy": "category",
+          "_links": {
+            "self": [
+              {
+                "href": "http://localhost:10004/wp-json/wp/v2/categories/8",
+                "targetHints": {
+                  "allow": [
+                    "GET"
+                  ]
+                }
+              }
+            ],
+            "collection": [
+              {
+                "href": "http://localhost:10004/wp-json/wp/v2/categories"
+              }
+            ],
+            "about": [
+              {
+                "href": "http://localhost:10004/wp-json/wp/v2/taxonomies/category"
+              }
+            ],
+            "wp:post_type": [
+              {
+                "href": "http://localhost:10004/wp-json/wp/v2/posts?categories=8"
+              }
+            ],
+            "curies": [
+              {
+                "name": "wp",
+                "href": "https://api.w.org/{rel}",
+                "templated": true
+              }
+            ]
+          }
+        }
+      ],
+      []
+    ]
+  }
+}

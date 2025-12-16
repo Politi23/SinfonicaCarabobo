@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Symphony Orchestra - Article</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,200..800&amp;family=Noto+Sans:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries,typography"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ecc813",
+                        "background-light": "#f8f8f6",
+                        "background-dark": "#221f10",
+                    },
+                    fontFamily: {
+                        "display": ["Newsreader", "serif"],
+                        "sans": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Newsreader', serif;
+        }
+        /* Custom drop cap */
+        .drop-cap::first-letter {
+            float: left;
+            font-size: 3.5rem;
+            line-height: 0.85;
+            padding-right: 0.5rem;
+            padding-top: 0.1rem;
+            font-weight: 700;
+            color: #ecc813;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#181711] dark:text-[#e4e2dd] transition-colors duration-200">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e5e5e0] dark:border-[#3a382e] bg-white/95 dark:bg-[#1a180e]/95 backdrop-blur px-6 lg:px-20 py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.263 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M10.4485 13.8519C10.4749 13.9271 10.6203 14.246 11.379 14.7361C12.298 15.3298 13.7492 15.9145 15.6717 16.3735C18.0007 16.9296 20.8712 17.2655 24 17.2655C27.1288 17.2655 29.9993 16.9296 32.3283 16.3735C34.2508 15.9145 35.702 15.3298 36.621 14.7361C37.3796 14.246 37.5251 13.9271 37.5515 13.8519C37.5287 13.7876 37.4333 13.5973 37.0635 13.2931C36.5266 12.8516 35.6288 12.3647 34.343 11.9175C31.79 11.0295 28.1333 10.4437 24 10.4437C19.8667 10.4437 16.2099 11.0295 13.657 11.9175C12.3712 12.3647 11.4734 12.8516 10.9365 13.2931C10.5667 13.5973 10.4713 13.7876 10.4485 13.8519ZM37.5563 18.7877C36.3176 19.3925 34.8502 19.8839 33.2571 20.2642C30.5836 20.9025 27.3973 21.2655 24 21.2655C20.6027 21.2655 17.4164 20.9025 14.7429 20.2642C13.1498 19.8839 11.6824 19.3925 10.4436 18.7877V34.1275C10.4515 34.1545 10.5427 34.4867 11.379 35.027C12.298 35.6207 13.7492 36.2054 15.6717 36.6644C18.0007 37.2205 20.8712 37.5564 24 37.5564C27.1288 37.5564 29.9993 37.2205 32.3283 36.6644C34.2508 36.2054 35.702 35.6207 36.621 35.027C37.4573 34.4867 37.5485 34.1546 37.5563 34.1275V18.7877ZM41.5563 13.8546V34.1455C41.5563 36.1078 40.158 37.5042 38.7915 38.3869C37.3498 39.3182 35.4192 40.0389 33.2571 40.5551C30.5836 41.1934 27.3973 41.5564 24 41.5564C20.6027 41.5564 17.4164 41.1934 14.7429 40.5551C12.5808 40.0389 10.6502 39.3182 9.20848 38.3869C7.84205 37.5042 6.44365 36.1078 6.44365 34.1455L6.44365 13.8546C6.44365 12.2684 7.37223 11.0454 8.39581 10.2036C9.43325 9.3505 10.8137 8.67141 12.343 8.13948C15.4203 7.06909 19.5418 6.44366 24 6.44366C28.4582 6.44366 32.5797 7.06909 35.657 8.13948C37.1863 8.67141 38.5667 9.3505 39.6042 10.2036C40.6278 11.0454 41.5563 12.2684 41.5563 13.8546Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-[#181711] dark:text-[#f8f8f6] text-xl font-bold leading-tight tracking-[-0.015em] font-display">Symphony Orchestra</h2>
+</div>
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-[#181711] dark:text-[#f8f8f6] text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Concerts</a>
+<a class="text-[#181711] dark:text-[#f8f8f6] text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">About</a>
+<a class="text-[#181711] dark:text-[#f8f8f6] text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">News</a>
+<a class="text-[#181711] dark:text-[#f8f8f6] text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Donate</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="hidden lg:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-[#898361] flex border-none bg-[#f4f4f0] dark:bg-[#322f22] items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#181711] dark:text-white focus:outline-0 focus:ring-0 border-none bg-[#f4f4f0] dark:bg-[#322f22] focus:border-none h-full placeholder:text-[#898361] px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal font-sans" placeholder="Search" value=""/>
+</div>
+</label>
+<button class="md:hidden flex items-center justify-center">
+<span class="material-symbols-outlined text-[#181711] dark:text-white">menu</span>
+</button>
+</div>
+</header>
+<main class="layout-container flex h-full grow flex-col items-center">
+<!-- Article Container -->
+<article class="layout-content-container flex flex-col max-w-[960px] w-full flex-1 px-4 lg:px-20 py-10 lg:py-16">
+<!-- Breadcrumb / Category -->
+<div class="flex gap-3 mb-6">
+<div class="flex h-7 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary/20 dark:bg-primary/30 pl-3 pr-3">
+<p class="text-black dark:text-white text-xs font-bold uppercase tracking-wide leading-normal font-sans">Behind the Scenes</p>
+</div>
+</div>
+<!-- Page Heading -->
+<div class="flex flex-col gap-4 mb-8">
+<h1 class="text-[#181711] dark:text-[#f8f8f6] text-4xl lg:text-5xl font-bold leading-[1.1] tracking-[-0.02em] font-display">
+                        Interview: The First Violinist on Preparing for Mahler's 5th
+                    </h1>
+<p class="text-[#898361] dark:text-[#a39f88] text-xl lg:text-2xl font-normal leading-relaxed font-display italic">
+                        An intimate conversation about the emotional weight and technical demands of leading the string section through one of the most complex symphonies ever written.
+                    </p>
+</div>
+<!-- Author Profile -->
+<div class="flex items-center justify-between border-t border-b border-[#e5e5e0] dark:border-[#3a382e] py-6 mb-10">
+<div class="flex gap-4 items-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border border-[#e5e5e0] dark:border-[#3a382e]" data-alt="Portrait of Sarah Jenkins, music journalist" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuArCK7ycSxeEHV6CWKyH33acSel3s8BsXxPXhoRB08PsAV38AC83ArnPBVoaHY4i-wu2HIT2qoB4IKRMrufmhMXNMU0YoXBaGMAVLGyM6ykBiGa3A4sfPUpfle-enxm30jI2TOTKuypqHi6Xu5-uAz_sRBemrFidrKy9bj8ndfeuqaQcC7Jod1pQtRtwVhDmlqtUhs0jTTMHQglbsg7et6VG8OpEgHtGP7zPYS2amWAw_8hkPfs68qjIWkxmaN6eVh1x3K-d9DU-rE");'></div>
+<div class="flex flex-col justify-center">
+<p class="text-[#181711] dark:text-[#f8f8f6] text-sm font-bold leading-tight tracking-[-0.015em] font-sans">Sarah Jenkins</p>
+<div class="flex items-center gap-2 text-[#898361] dark:text-[#a39f88] text-xs font-normal leading-normal font-sans">
+<span>October 24, 2023</span>
+<span>•</span>
+<span>5 min read</span>
+</div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="text-[#898361] hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+<button class="text-[#898361] hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">bookmark_border</span>
+</button>
+</div>
+</div>
+<!-- Hero Image -->
+<div class="w-full mb-12">
+<div class="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden rounded-lg min-h-[400px] lg:min-h-[500px] shadow-sm relative group" data-alt="Orchestra performing in a grand concert hall with warm lighting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAlo7zRiwA4BPf3WxZcoD9IWJSwtqLlkaZJ3kbicqojUntkyU_LzwE1tgvZJx6xJsUB13UPdzPXGGPPaOTKLs1g9tAEj-guBoh_jZDCfiKnOIvoZkvICLtd5wiu44HLDRER6kUcvXzXsIEqsPgtLQZbr7XdLECYoOx-12RMOzltilSmxLsP3B9q-ReaGfe-_JcyYPeLh25KWsZNjB2JAslLZqVz9vqsciBMEy8ivPmRvsVK8bO0oE1ntW9t1Wi_Zp2R-AH4JNl_CrM");'>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-500"></div>
+</div>
+<figcaption class="mt-3 text-xs text-[#898361] dark:text-[#a39f88] font-sans text-center">
+                        The Symphony Orchestra rehearsing at the Grand Hall, October 2023. Photo by Michael Chen.
+                    </figcaption>
+</div>
+<!-- Article Content -->
+<div class="prose prose-lg prose-neutral dark:prose-invert max-w-none font-display">
+<div class="drop-cap">
+<p>
+                            There is a moment of absolute silence before the baton drops. It is heavier than any note we play. For Elias Thorne, the First Violinist of our Symphony Orchestra, that silence is the culmination of months of preparation. "Mahler doesn't just ask you to play," Thorne explains, sitting in the quiet of the green room, his violin case resting shut on the table beside him. "He asks you to live through the music. Every bar is a confession."
+                        </p>
+</div>
+<p>
+                        We are discussing Gustav Mahler’s Symphony No. 5, a piece notorious for its emotional range—from the funeral march of the opening trumpet solo to the ecstatic chaos of the finale. For a concertmaster, the role is dual: he must be a soloist in his own right, yet a unifying force for the fifty string players behind him.
+                    </p>
+<h3 class="text-2xl font-bold mt-10 mb-4 text-[#181711] dark:text-[#f8f8f6]">The Architecture of Sound</h3>
+<p>
+                        "The Fifth is architectural," Thorne says, gesturing with his hands as if shaping clay. "You have to understand the structure before you can worry about the emotion. If you get lost in the feeling too early, the building collapses." He describes his mornings: four hours of scales and études before he even opens the score. It is a regimen that would exhaust an athlete.
+                    </p>
+<!-- Pull Quote -->
+<div class="my-12 relative py-4 lg:-mx-12">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-full hidden lg:block"></div>
+<blockquote class="p-0 lg:pl-10 border-l-4 border-primary lg:border-none italic text-2xl lg:text-3xl font-medium leading-relaxed text-[#181711] dark:text-[#f8f8f6]">
+                            "You have to understand the structure before you can worry about the emotion. If you get lost in the feeling too early, the building collapses."
+                        </blockquote>
+</div>
+<p>
+                        The famous Adagietto, often played as a standalone piece of mourning, is for Thorne a love letter. "It was written for Alma Mahler," he reminds me. "It shouldn't be a dirge. It should be intimate, like a whisper. Getting fifty people to whisper together? That is the challenge."
+                    </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-12">
+<div class="flex flex-col gap-2">
+<div class="bg-center bg-no-repeat bg-cover rounded-lg aspect-[4/3]" data-alt="Close up of a violin scroll and tuning pegs" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuADWB-4f7Mabrr2cf1Kk-Adm2lYlmFn0ozVa1STKu3dsWP_j4V23eoIt2EyMMQ9GNBiMhyDPKNW3W0tQ3udV2DNXHT3y6WqDgjr9zv3t46iRAdBPZBcBALtcC1Ikp2MmtOqiQ3Rx2IL5mY7yQpuxvrWczvyA0e-MUpPmqJUCjGJSYlhTYB4oXsJDJi61_O8CMoU0wbK5kBwmp5Mz32fEFm8CQbNlt6C8Xt_qkH1HJf8svBr8o-GdFr8b1rs5VqU1axmfWgLQpo4WNQ");'></div>
+<span class="text-xs text-[#898361] dark:text-[#a39f88] font-sans">Thorne's 18th-century violin.</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="bg-center bg-no-repeat bg-cover rounded-lg aspect-[4/3]" data-alt="Sheet music with handwritten annotations and a pencil" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuByhJ_ZXzVKnrKjvjGQF5urOKUCVqun18aaIIUCyekRFiHseSp8FYJOeyMhujhK2A_uL865tKUG6aRYw8ksUiWUVTFE7wBDFEHoF8lGf0ZHYn4oXEteiPk88axL_AWQ8DrdqcUYumKsbmi2VR7LrZJkV_5I_LRhljxM-IMHnf9NcPCyZ72JnTmxYv7rKcKFu3vtXeDbbUv9mVs8Ce1uHqPIO86n93_u0Fcj2ZPhDlBlguXix-7R4Bwhg_xVpjWgGFFKAWFtuZwlIFw");'></div>
+<span class="text-xs text-[#898361] dark:text-[#a39f88] font-sans">Annotated scores for the upcoming season.</span>
+</div>
+</div>
+<h3 class="text-2xl font-bold mt-10 mb-4 text-[#181711] dark:text-[#f8f8f6]">Leading from the Front</h3>
+<p>
+                        The relationship between the conductor and the first violinist is akin to a pilot and co-pilot. While the conductor sets the destination, the first violinist steers the plane. Thorne laughs when I suggest this. "Maybe," he says. "Or maybe the conductor is the architect, and I am the foreman. I have to make sure the bricks are laid straight."
+                    </p>
+<p>
+                        As the interview winds down, Thorne picks up his instrument. The wood glows under the warm lights of the dressing room. He doesn't play Mahler. Instead, he plays a simple open string, tuning it with obsessive precision. It is a reminder that before the symphony can soar, the foundation must be perfect.
+                    </p>
+</div>
+<!-- Tags -->
+<div class="mt-16 pt-8 border-t border-[#e5e5e0] dark:border-[#3a382e]">
+<h4 class="text-sm font-bold uppercase tracking-wide text-[#898361] dark:text-[#a39f88] mb-4 font-sans">Filed Under</h4>
+<div class="flex gap-3 flex-wrap">
+<a class="px-4 py-2 bg-[#f4f4f0] dark:bg-[#322f22] rounded-lg text-[#181711] dark:text-[#f8f8f6] text-sm hover:bg-primary/20 transition-colors" href="#">Interviews</a>
+<a class="px-4 py-2 bg-[#f4f4f0] dark:bg-[#322f22] rounded-lg text-[#181711] dark:text-[#f8f8f6] text-sm hover:bg-primary/20 transition-colors" href="#">Musician Profiles</a>
+<a class="px-4 py-2 bg-[#f4f4f0] dark:bg-[#322f22] rounded-lg text-[#181711] dark:text-[#f8f8f6] text-sm hover:bg-primary/20 transition-colors" href="#">Classical Music</a>
+</div>
+</div>
+</article>
+<!-- Related Articles -->
+<section class="w-full bg-[#f4f4f0] dark:bg-[#1a180e] py-16 px-4 lg:px-20 mt-10">
+<div class="max-w-[1200px] mx-auto">
+<div class="flex justify-between items-end mb-8">
+<h2 class="text-3xl font-bold text-[#181711] dark:text-[#f8f8f6] font-display">More from the Journal</h2>
+<a class="text-sm font-bold text-primary hover:text-primary/80 uppercase tracking-wide flex items-center gap-1 font-sans" href="#">
+                            View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="group cursor-pointer">
+<div class="overflow-hidden rounded-lg mb-4 aspect-[3/2] relative">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Conductor raising baton in front of orchestra" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDbxx5sgGwsYk7DydlVCvk_wmyGwFk4XMP_970zidl7qdRLT-FgadWrQtUQI4Blds_f1wtSQImW-So2LHqATBdKIJsydg16CkWLkkJRkv1Ds9oz4ia6d9pqlv3Fa781-5S-lHBBLxFyY0tu2hmyau75GNtZs4h9zdMR8-OjUXetC60zYTTG7ykcBwIyOPhZQouWBTFvKRi4IdBHABvuA1IREv2jj3g-JbYLsJobB8TyitGZhYrLDZgfBgMQatRkVGL_YH1vWKBdwnM");'></div>
+</div>
+<span class="text-xs font-bold text-primary uppercase tracking-wide mb-2 block font-sans">Season Highlights</span>
+<h3 class="text-xl font-bold leading-tight mb-2 text-[#181711] dark:text-[#f8f8f6] group-hover:text-primary transition-colors font-display">A Look Ahead: The 2024 Winter Season</h3>
+<p class="text-sm text-[#898361] dark:text-[#a39f88] line-clamp-2 font-display">Exploring the masterpieces we have prepared for the upcoming winter concerts, featuring guest soloists.</p>
+</div>
+<!-- Card 2 -->
+<div class="group cursor-pointer">
+<div class="overflow-hidden rounded-lg mb-4 aspect-[3/2] relative">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Close up of cello strings and bow" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCNCuUjJCUEOJ7coqpbZVfwJWwn2OPAXf6SDbq4oJhCWzRAw31JoJJXPRAfpyne1-y2b-UqnI5UxxIwgHKKGa-K9rnG8hgUzuWtqHZ-WMBj4QakQLaL2iTHrJkhfG8ihntZdk3hXIc64Lz5NAtM3mFcWoGqB4EuU3niN5E2LWI0X4MqvDaNMtkYJ9DCtKo28lRMkSVprE-1TN15rJMNaLF4DVViESgkSxEH2OosSSQxDDi3U3GSDlpJt2-8gvvUnKsvRog4ULBtpv4");'></div>
+</div>
+<span class="text-xs font-bold text-primary uppercase tracking-wide mb-2 block font-sans">Education</span>
+<h3 class="text-xl font-bold leading-tight mb-2 text-[#181711] dark:text-[#f8f8f6] group-hover:text-primary transition-colors font-display">The Anatomy of a Cello</h3>
+<p class="text-sm text-[#898361] dark:text-[#a39f88] line-clamp-2 font-display">Understanding the craftsmanship and acoustic properties that give the cello its deep, resonant voice.</p>
+</div>
+<!-- Card 3 -->
+<div class="group cursor-pointer">
+<div class="overflow-hidden rounded-lg mb-4 aspect-[3/2] relative">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Empty concert hall seats with stage in background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD-bWf4EqepdC_vbx8z3v34cTBiJKQhPFTI_wKDar-ZJz8zv5YCdYJPhBM5MLy0hLagxPll1NTioUlHoCdnOV2lEFw1itZDWBHjY-UgXnc0Fw3WTyj4r-nK77Dn5e5bzAmJ1FYyVC1UQPp7-LkqVp7tCAHWmhvzdIMNG8Qi1-UMwsasfaToJiFDkmECg9RTa66w3A8mOm-ve1K4H-gcaYiCMDwP_8v0rOcZBatpWN7662oQ-hrmolOdIn0aWEf-uatZ9hwINpYK0Cw");'></div>
+</div>
+<span class="text-xs font-bold text-primary uppercase tracking-wide mb-2 block font-sans">History</span>
+<h3 class="text-xl font-bold leading-tight mb-2 text-[#181711] dark:text-[#f8f8f6] group-hover:text-primary transition-colors font-display">100 Years of Music at the Hall</h3>
+<p class="text-sm text-[#898361] dark:text-[#a39f88] line-clamp-2 font-display">A retrospective journey through the century-long history of our beloved performance venue.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter CTA -->
+<section class="w-full py-16 px-4 flex justify-center bg-white dark:bg-background-dark border-t border-[#e5e5e0] dark:border-[#3a382e]">
+<div class="max-w-[600px] w-full text-center">
+<div class="size-10 mx-auto mb-4 text-primary">
+<span class="material-symbols-outlined text-[40px]">mail</span>
+</div>
+<h2 class="text-3xl font-bold text-[#181711] dark:text-[#f8f8f6] mb-3 font-display">Subscribe to our Newsletter</h2>
+<p class="text-[#898361] dark:text-[#a39f88] mb-8 font-display text-lg">Get the latest news, concert announcements, and behind-the-scenes stories delivered to your inbox.</p>
+<form class="flex flex-col sm:flex-row gap-3">
+<input class="flex-1 bg-[#f4f4f0] dark:bg-[#322f22] border-none rounded-lg px-4 py-3 text-[#181711] dark:text-white placeholder-[#898361] focus:ring-2 focus:ring-primary focus:outline-none font-sans" placeholder="Your email address" required="" type="email"/>
+<button class="bg-primary hover:bg-primary/90 text-[#181711] font-bold py-3 px-8 rounded-lg transition-colors font-sans" type="submit">
+                            Subscribe
+                        </button>
+</form>
+<p class="text-xs text-[#898361] dark:text-[#6b664d] mt-4 font-sans">We respect your privacy. Unsubscribe at any time.</p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#181711] text-white pt-16 pb-8 px-6 lg:px-20 font-sans">
+<div class="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<div class="size-5 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.263 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="font-display font-bold text-lg">Symphony Orchestra</span>
+</div>
+<p class="text-[#898361] text-sm leading-relaxed mb-4">
+                        Bringing world-class classical music to the heart of the city since 1924.
+                    </p>
+<div class="flex gap-4">
+<a class="text-[#898361] hover:text-primary" href="#"><span class="material-symbols-outlined text-[20px]">public</span></a>
+<a class="text-[#898361] hover:text-primary" href="#"><span class="material-symbols-outlined text-[20px]">alternate_email</span></a>
+<a class="text-[#898361] hover:text-primary" href="#"><span class="material-symbols-outlined text-[20px]">call</span></a>
+</div>
+</div>
+<div>
+<h4 class="font-bold mb-4 text-white">Performances</h4>
+<ul class="flex flex-col gap-2 text-sm text-[#898361]">
+<li><a class="hover:text-primary" href="#">Calendar</a></li>
+<li><a class="hover:text-primary" href="#">Season Tickets</a></li>
+<li><a class="hover:text-primary" href="#">Seating Charts</a></li>
+<li><a class="hover:text-primary" href="#">Group Sales</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-4 text-white">Support</h4>
+<ul class="flex flex-col gap-2 text-sm text-[#898361]">
+<li><a class="hover:text-primary" href="#">Donate</a></li>
+<li><a class="hover:text-primary" href="#">Membership</a></li>
+<li><a class="hover:text-primary" href="#">Corporate Sponsors</a></li>
+<li><a class="hover:text-primary" href="#">Volunteer</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-4 text-white">Contact</h4>
+<ul class="flex flex-col gap-2 text-sm text-[#898361]">
+<li>Box Office: (555) 123-4567</li>
+<li>123 Symphony Lane</li>
+<li>Music City, MC 90210</li>
+<li>info@symphony.org</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-[#3a382e] pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#5c5844]">
+<p>© 2024 Symphony Orchestra. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-white" href="#">Privacy Policy</a>
+<a class="hover:text-white" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

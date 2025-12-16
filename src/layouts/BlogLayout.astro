@@ -1,0 +1,26 @@
+---
+import Footer from '../components/global/Footer.astro'
+import Header from '../components/global/Header.astro'
+---
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <slot name="head" />
+  </head>
+  <body class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 font-display transition-colors duration-300 min-h-screen">
+    <Header active="blog" />
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

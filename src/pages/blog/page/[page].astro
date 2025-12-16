@@ -1,0 +1,35 @@
+---
+import { getPosts, getPostsInfo } from '../../../config/wp';
+import BlogLayout from '../../../layouts/BlogLayout.astro';
+import HeroHeader from '../../../components/blog/HeroHeader.astro';
+import BlogCard from '../../../components/blog/BlogCard.astro';
+import Pagination from '../../../components/blog/Pagination.astro';
+
+const { page } = Astro.params;
+const currentPage = page ? parseInt(page, 10) : 1;
+
+const { totalPages } = await getPostsInfo();
+const posts = await getPosts({ page: currentPage });
+---
+
+<BlogLayout>
+  <HeroHeader />
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+      {posts.map((p) => (
+        <BlogCard
+          title={p.title}
+          excerpt={p.excerpt}
+          image={p.image}
+          date={p.date}
+          category={p.category}
+          slug={p.slug}
+        />
+      ))}
+    </div>
+
+    <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl="/blog/page" />
+
+  </section>
+</BlogLayout>
