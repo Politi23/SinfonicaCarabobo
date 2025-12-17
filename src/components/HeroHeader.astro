@@ -9,43 +9,62 @@ import Header from "./Header.astro";
 
 <main>
   <!-- Sección de hero -->
-  <section
-    class="relative min-h-[calc(100vh-5rem)] mt-20 flex flex-col justify-center text-white overflow-hidden bg-cover bg-center bg-no-repeat"
-    style="background-image: url('/sinfonica.jpg');"
-  >
-    <div
-      class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/85 z-[1]"
-    >
-    </div>
-
-    <div
-      class="container mx-auto px-6 relative z-[2] text-center max-w-3xl py-24 pb-20"
-    >
-      <h1
-        class="m-0 mb-4 font-display text-5xl leading-tight text-white font-bold"
-        style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);"
-      >
-        Fundación Orquesta Sinfónica de Carabobo
-      </h1>
-
-      <div class="inline-flex gap-4 flex-wrap justify-center">
-        <a
-          href="#apoyanos"
-          class="inline-flex items-center justify-center py-2.5 px-7 rounded bg-primary text-black border border-primary text-sm cursor-pointer no-underline transition-all duration-200 font-serif font-semibold hover:bg-[#B07F1F] hover:border-[#B07F1F] hover:shadow-[0_0_0_1px_rgba(0,0,0,0.2)]"
+        <section
+            class="relative h-screen flex flex-col justify-center items-center text-center overflow-hidden"
         >
-          <span class="mr-2 text-sm">♥</span>
-          Apóyanos
-        </a>
+            <video
+                autoplay
+                loop
+                muted
+                playsinline
+                class="absolute inset-0 w-full h-full object-cover z-0"
+                poster="/sinfonica.jpg"
+            >
+                <source src="/video-fondo.mp4" type="video/mp4" />
+            </video>
 
-        <a
-          href="#historia"
-          class="inline-flex items-center justify-center py-2.5 px-7 rounded bg-transparent text-white border border-white/70 text-sm cursor-pointer no-underline transition-all duration-200 font-serif font-normal hover:bg-white/10 hover:border-white hover:shadow-[0_0_0_1px_rgba(255,255,255,0.2)]"
-        >
-          Conoce Nuestra Historia
-        </a>
-      </div>
-    </div>
-  </section>
+            <!-- Overlay con gradiente suave hacia el color crema -->
+            <div
+                class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[#FDFBF7] z-0"
+            >
+            </div>
+
+            <div
+                class="relative z-10 container mx-auto px-6 animate-fade-in-up"
+            >
+                <h1
+                    class="font-display text-6xl md:text-8xl font-bold mb-6 text-white tracking-tight drop-shadow-md"
+                >
+                    Nosotros
+                </h1>
+                <p
+                    class="text-xl md:text-3xl font-serif text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow-sm"
+                >
+                    Fundación Orquesta Sinfónica de Carabobo
+                </p>
+                <div
+                    class="w-24 h-1 bg-accent-yellow mx-auto mt-8 rounded-full"
+                >
+                </div>
+            </div>
+
+            <div
+                class="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 animate-bounce"
+            >
+                <svg
+                    class="w-8 h-8 text-white/80"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                        d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+        </section>
 </main>
 
 <style>

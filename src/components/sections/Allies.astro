@@ -1,0 +1,127 @@
+---
+
+---
+
+<!-- ALIADOS / CARRUSEL -->
+<section class="py-24 bg-[#FDFBF7] overflow-hidden">
+  <div class="container mx-auto px-6 mb-12 text-center">
+    <span class="text-gray-400 text-sm font-bold tracking-[0.2em] uppercase"
+      >Confían en Nosotros</span
+    >
+  </div>
+
+  <!-- Carousel Wrapper -->
+  <div class="relative w-full overflow-hidden">
+    <div
+      class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#FDFBF7] to-transparent z-10"
+    >
+    </div>
+    <div
+      class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#FDFBF7] to-transparent z-10"
+    >
+    </div>
+
+    <div class="flex items-center gap-16 animate-infinite-scroll w-max">
+      <!-- Original Logos -->
+      <img
+        src="/logoujap-removebg-preview.png"
+        alt="UJAP"
+        class="h-20 md:h-24 w-auto object-contain grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100"
+      />
+      <img
+        src="/images-removebg-preview.png"
+        alt="Aliado"
+        class="h-20 md:h-24 w-auto object-contain grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100"
+      />
+      <img
+        src="/logo.png"
+        alt="OSC"
+        class="h-20 md:h-24 w-auto object-contain grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100"
+      />
+
+      <!-- Text Placeholders fashioned as logos for demo if images run out -->
+      <span class="text-2xl font-display font-bold text-gray-400">HESPERIA</span
+      >
+      <span class="text-2xl font-display font-bold text-gray-400">MULTIMAX</span
+      >
+      <span class="text-2xl font-display font-bold text-gray-400"
+        >CLX GROUP</span
+      >
+      <span class="text-2xl font-display font-bold text-gray-400"
+        >ALCALDÍA SAN DIEGO</span
+      >
+
+      <!-- Duplicate for infinite loop -->
+      <img
+        src="/logoujap-removebg-preview.png"
+        alt="UJAP"
+        class="h-20 md:h-24 w-auto object-contain grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100"
+      />
+      <img
+        src="/images-removebg-preview.png"
+        alt="Aliado"
+        class="h-20 md:h-24 w-auto object-contain grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100"
+      />
+      <img
+        src="/logo.png"
+        alt="OSC"
+        class="h-20 md:h-24 w-auto object-contain grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100"
+      />
+      <span class="text-2xl font-display font-bold text-gray-400">HESPERIA</span
+      >
+      <span class="text-2xl font-display font-bold text-gray-400">MULTIMAX</span
+      >
+      <span class="text-2xl font-display font-bold text-gray-400"
+        >CLX GROUP</span
+      >
+      <span class="text-2xl font-display font-bold text-gray-400"
+        >ALCALDÍA SAN DIEGO</span
+      >
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Animations */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+
+  @keyframes infinite-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-infinite-scroll {
+    animation: infinite-scroll 25s linear infinite;
+  }
+
+  .animate-bounce {
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0) translateX(-50%);
+    }
+    50% {
+      transform: translateY(-10px) translateX(-50%);
+    }
+  }
+</style>

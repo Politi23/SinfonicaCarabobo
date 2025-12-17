@@ -2,6 +2,7 @@
 import HeroHeader from "../components/HeroHeader.astro";
 import ConciertosSection from "../components/ConciertosSection.astro";
 import Layout from "../layouts/Layout.astro";
+import Allies from "../components/sections/Allies.astro";
 ---
 
 <Layout>
@@ -10,4 +11,78 @@ import Layout from "../layouts/Layout.astro";
 
   <!-- Sección de Conciertos (agenda próxima) -->
   <ConciertosSection />
+
+  <div class="relative py-24 bg-gray-900 text-white overflow-hidden">
+    <div
+        class="absolute inset-0 z-0 opacity-20 bg-[url('/sinfonica.jpg')] bg-fixed bg-cover bg-center"
+    >
+    </div>
+    <div class="absolute inset-0 bg-black/60 z-0"></div>
+
+    <div class="container mx-auto px-6 max-w-6xl relative z-10">
+        <div class="text-center mb-16">
+            <span
+                class="text-accent-yellow text-sm font-bold tracking-[0.2em] uppercase mb-4 block"
+                >Impacto Social</span
+            >
+            <h2 class="text-4xl md:text-5xl font-display font-bold">
+                Nuestros Programas
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h3 class="text-3xl font-bold mb-6 text-accent-yellow">
+                    Academia "Maestro José Calabrese"
+                </h3>
+                <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+                    Desde 2019, formamos a más de 500 estudiantes,
+                    incluyendo niños con Síndrome de Down, con el aval
+                    de la UNESCO. Una verdadera escuela de vida.
+                </p>
+                <a
+                    href="http://www.academiajosecalabrese.com"
+                    target="_blank"
+                    class="inline-flex items-center gap-2 text-white border-b border-accent-yellow pb-1 hover:text-accent-yellow transition-colors"
+                >
+                    Visitar sitio oficial
+                    <svg
+                        class="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
+                    >
+                </a>
+            </div>
+              <div
+                  class="bg-white/10 p-8 rounded-2xl backdrop-blur-sm border border-white/10"
+              >
+                  <div class="flex items-center gap-6 mb-6">
+                      <span class="text-5xl font-bold text-white"
+                          >1.500+</span
+                      >
+                      <span class="text-gray-300 leading-tight"
+                          >Personas impactadas<br />por concierto</span
+                      >
+                  </div>
+                  <div class="h-px w-full bg-white/20 mb-6"></div>
+                  <div class="flex items-center gap-6">
+                      <span class="text-5xl font-bold text-white"
+                          >80+</span
+                      >
+                      <span class="text-gray-300 leading-tight"
+                          >Becas otorgadas<br />anualmente</span
+                      >
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <Allies />
 </Layout>
