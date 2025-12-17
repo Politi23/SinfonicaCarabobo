@@ -36,39 +36,39 @@ const conciertos = [
   <div class="container">
     <header class="concerts-header">
       <p class="concerts-kicker">Próximos conciertos</p>
-      
     </header>
 
     <div class="concerts-grid">
-      {conciertos.map((concierto) => (
-        <article class="concert-card">
-          <div class="concert-date">
-            <span class="concert-date-main">{concierto.fechaCorta}</span>
-            <span class="concert-date-sub">{concierto.dia}</span>
-          </div>
-
-          <div class="concert-info">
-            <h3 class="concert-title">{concierto.titulo}</h3>
-            <p class="concert-meta">
-              <span>{concierto.tipo}</span>
-              <span>·</span>
-              <span>{concierto.hora}</span>
-            </p>
-            <p class="concert-venue">{concierto.lugar}</p>
-            <p class="concert-description">{concierto.descripcion}</p>
-
-            <div class="concert-actions">
-              
-              <a
-                href="#detalle-concierto"
-                class="concert-btn concert-btn-secondary"
-              >
-                Ver detalles
-              </a>
+      {
+        conciertos.map((concierto) => (
+          <article class="concert-card">
+            <div class="concert-date">
+              <span class="concert-date-main">{concierto.fechaCorta}</span>
+              <span class="concert-date-sub">{concierto.dia}</span>
             </div>
-          </div>
-        </article>
-      ))}
+
+            <div class="concert-info">
+              <h3 class="concert-title">{concierto.titulo}</h3>
+              <p class="concert-meta">
+                <span>{concierto.tipo}</span>
+                <span>·</span>
+                <span>{concierto.hora}</span>
+              </p>
+              <p class="concert-venue">{concierto.lugar}</p>
+              <p class="concert-description">{concierto.descripcion}</p>
+
+              <div class="concert-actions">
+                <a
+                  href="#detalle-concierto"
+                  class="concert-btn concert-btn-secondary"
+                >
+                  Ver detalles
+                </a>
+              </div>
+            </div>
+          </article>
+        ))
+      }
     </div>
   </div>
 </section>
@@ -99,7 +99,6 @@ const conciertos = [
 
   .concerts-section {
     padding: 80px 0 96px;
-    border-top: 1px solid #e0e0e0;
   }
 
   .concerts-header {
@@ -112,7 +111,7 @@ const conciertos = [
     font-size: 1.5rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #C28F24;
+    color: #c28f24;
     margin-bottom: 8px;
   }
 
@@ -156,7 +155,7 @@ const conciertos = [
     font-family: "Merriweather", serif;
     font-size: 1.3rem;
     font-weight: 700;
-    color: #C28F24;
+    color: #c28f24;
   }
 
   .concert-date-sub {
@@ -218,8 +217,11 @@ const conciertos = [
     border-radius: 4px;
     border: 1px solid transparent;
     cursor: pointer;
-    transition: background-color 0.18s ease, color 0.18s ease,
-      border-color 0.18s ease, transform 0.08s ease;
+    transition:
+      background-color 0.18s ease,
+      color 0.18s ease,
+      border-color 0.18s ease,
+      transform 0.08s ease;
     letter-spacing: 0.01em;
   }
 

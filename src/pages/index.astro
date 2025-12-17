@@ -1,9 +1,11 @@
 ---
 import HeroHeader from "../components/HeroHeader.astro";
+import SectionDivider from "../components/SectionDivider.astro";
 import ConciertosSection from "../components/ConciertosSection.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -21,9 +23,9 @@ import ConciertosSection from "../components/ConciertosSection.astro";
         /* Paleta global */
         --color-white: #ffffff;
         --color-black: #000000ff;
-        --color-bg: #111111;      /* fondo general */
+        --color-bg: #111111; /* fondo general */
         --color-header-bg: #1a1a1a;
-        --color-accent-yellow: #DDB850;
+        --color-accent-yellow: #ddb850;
         --color-accent-red: #82181a;
       }
 
@@ -56,7 +58,13 @@ import ConciertosSection from "../components/ConciertosSection.astro";
     <!-- HEADER + HERO -->
     <HeroHeader />
 
+    <!-- Separador elegante -->
+    <SectionDivider />
+
     <!-- Sección de Conciertos (agenda próxima) -->
     <ConciertosSection />
+
+    <!-- Footer profesional -->
+    <Footer />
   </body>
 </html>
