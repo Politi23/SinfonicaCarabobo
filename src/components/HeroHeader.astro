@@ -1,104 +1,55 @@
 ---
 // HeroHeader.astro
 // Componente principal de HEADER + HERO en Astro con Tailwind CSS
+import Header from "./Header.astro";
 ---
 
-<!-- Sección de header -->
-<header class="fixed top-0 left-0 right-0 h-20 bg-bg-dark flex items-center z-20">
-  <div class="container mx-auto px-6 flex items-center justify-between h-full max-w-6xl">
-    <!-- LOGO: reemplazar src y alt por el logo real de la sinfónica -->
-    <a href="#" class="flex items-center no-underline text-white">
-      <img
-        src="/logo.png"
-        alt="Logo de la sinfónica"
-        class="h-16 w-auto object-contain block"
-      />
-    </a>
-
-    <!-- Navegación principal -->
-    <nav class="flex items-center relative">
-      <button class="hidden md:hidden flex-col justify-center gap-1 w-8 h-8 bg-transparent border-0 p-0 cursor-pointer" aria-label="Abrir menú de navegación">
-        <span class="block h-0.5 w-full bg-white rounded-full"></span>
-        <span class="block h-0.5 w-full bg-white rounded-full"></span>
-        <span class="block h-0.5 w-full bg-white rounded-full"></span>
-      </button>
-      <ul class="list-none flex m-0 p-0 gap-6">
-        <li><a href="#" class="no-underline text-white text-sm py-2 transition-colors duration-200 font-serif font-normal bg-black text-black px-5 rounded font-semibold inline-block">Inicio</a></li>
-        <li><a href="#nosotros" class="no-underline text-white text-sm py-2 transition-colors duration-200 hover:text-black font-serif font-normal">Nosotros</a></li>
-        <li><a href="#programas" class="no-underline text-white text-sm py-2 transition-colors duration-200 hover:text-black font-serif font-normal">Programas</a></li>
-        <li><a href="#apoyanos" class="no-underline text-white text-sm py-2 transition-colors duration-200 hover:text-black font-serif font-normal">Apóyanos</a></li>
-        <li><a href="#contacto" class="no-underline text-white text-sm py-2 transition-colors duration-200 hover:text-black font-serif font-normal">Contacto</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+<!-- Sección de header --><!-- Sección de header -->
+<Header />
 
 <main>
   <!-- Sección de hero -->
-  <section class="relative min-h-[calc(100vh-5rem)] mt-20 flex flex-col justify-center text-white overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('/sinfonica.jpg');">
-    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/85 z-[1]"></div>
+  <section
+    class="relative min-h-[calc(100vh-5rem)] mt-20 flex flex-col justify-center text-white overflow-hidden bg-cover bg-center bg-no-repeat"
+    style="background-image: url('/sinfonica.jpg');"
+  >
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/85 z-[1]"
+    >
+    </div>
 
-    <div class="container mx-auto px-6 relative z-[2] text-center max-w-3xl py-24 pb-20">
-      <h1 class="m-0 mb-4 font-display text-5xl leading-tight text-white font-bold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);">
+    <div
+      class="container mx-auto px-6 relative z-[2] text-center max-w-3xl py-24 pb-20"
+    >
+      <h1
+        class="m-0 mb-4 font-display text-5xl leading-tight text-white font-bold"
+        style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);"
+      >
         Fundación Orquesta Sinfónica de Carabobo
       </h1>
 
-      
-
-      
       <div class="inline-flex gap-4 flex-wrap justify-center">
-        <a href="#apoyanos" class="inline-flex items-center justify-center py-2.5 px-7 rounded bg-primary text-black border border-primary text-sm cursor-pointer no-underline transition-all duration-200 font-serif font-semibold hover:bg-[#B07F1F] hover:border-[#B07F1F] hover:shadow-[0_0_0_1px_rgba(0,0,0,0.2)]">
+        <a
+          href="#apoyanos"
+          class="inline-flex items-center justify-center py-2.5 px-7 rounded bg-primary text-black border border-primary text-sm cursor-pointer no-underline transition-all duration-200 font-serif font-semibold hover:bg-[#B07F1F] hover:border-[#B07F1F] hover:shadow-[0_0_0_1px_rgba(0,0,0,0.2)]"
+        >
           <span class="mr-2 text-sm">♥</span>
           Apóyanos
         </a>
 
-        <a href="#historia" class="inline-flex items-center justify-center py-2.5 px-7 rounded bg-transparent text-white border border-white/70 text-sm cursor-pointer no-underline transition-all duration-200 font-serif font-normal hover:bg-white/10 hover:border-white hover:shadow-[0_0_0_1px_rgba(255,255,255,0.2)]">
+        <a
+          href="#historia"
+          class="inline-flex items-center justify-center py-2.5 px-7 rounded bg-transparent text-white border border-white/70 text-sm cursor-pointer no-underline transition-all duration-200 font-serif font-normal hover:bg-white/10 hover:border-white hover:shadow-[0_0_0_1px_rgba(255,255,255,0.2)]"
+        >
           Conoce Nuestra Historia
         </a>
       </div>
     </div>
-
   </section>
 </main>
 
 <style>
-
   @media (max-width: 768px) {
-    header {
-      height: 4rem;
-    }
-
-    section {
-      margin-top: 4rem;
-      min-height: calc(100vh - 4rem);
-    }
-
-    .logo-image {
-      height: 2.75rem;
-    }
-
-    nav ul {
-      position: absolute;
-      top: 4rem;
-      right: 0;
-      left: 0;
-      flex-direction: column;
-      background-color: rgba(0, 0, 0, 0.96);
-      padding: 0.75rem 1.5rem 1rem;
-      display: flex;
-    }
-
-    nav button {
-      display: flex;
-    }
-
-    nav a {
-      padding: 0.625rem 0;
-      border-radius: 0;
-      background: none;
-      color: white;
-    }
-
     h1 {
       font-size: 2.1rem;
     }
