@@ -1,12 +1,16 @@
 ---
-const { active = '' } = Astro.props;
+const { active = "" } = Astro.props;
 ---
 
 <nav class="bg-bg-dark sticky top-0 z-50">
   <div class="container mx-auto px-6 max-w-6xl">
     <div class="flex items-center justify-between h-20">
       <a href="/" class="flex items-center no-underline text-white">
-        <img src="/logo.png" alt="Logo de la sinfónica" class="h-12 w-auto object-contain block mr-3" />
+        <img
+          src="/logo.png"
+          alt="Logo de la sinfónica"
+          class="h-12 w-auto object-contain block mr-3"
+        />
         <div class="flex items-baseline">
           <span class="text-white text-2xl font-bold">FOSC</span>
           <span class="text-2xl font-bold text-primary ml-1">.</span>
@@ -15,22 +19,34 @@ const { active = '' } = Astro.props;
 
       <ul class="hidden md:flex list-none m-0 p-0 gap-6 items-center">
         <li>
-          <a href="/" class={`no-underline text-white text-sm py-2 transition-colors duration-200 font-serif font-normal ${active === 'home' ? 'text-primary font-semibold border-b-2 border-primary' : ''}`}>
+          <a
+            href="/"
+            class={`no-underline text-white text-sm py-2 transition-colors duration-200 font-serif font-normal ${active === "home" ? "text-primary font-semibold" : ""}`}
+          >
             Inicio
           </a>
         </li>
         <li>
-          <a href="/events" class={`no-underline text-white text-sm py-2 transition-colors duration-200 font-serif font-normal ${active === 'events' ? 'text-primary font-semibold border-b-2 border-primary' : ''}`}>
+          <a
+            href="/events"
+            class={`no-underline text-white text-sm py-2 transition-colors duration-200 font-serif font-normal ${active === "events" ? "text-primary font-semibold" : ""}`}
+          >
             Eventos
           </a>
         </li>
         <li>
-          <a href="/blog" class={`no-underline text-sm py-2 transition-colors duration-200 font-serif ${active === 'blog' ? 'text-primary font-semibold border-b-2 border-primary' : 'text-white font-normal'}`}>
+          <a
+            href="/blog"
+            class={`no-underline text-sm py-2 transition-colors duration-200 font-serif ${active === "blog" ? "text-primary font-semibold" : "text-white font-normal"}`}
+          >
             Blog
           </a>
         </li>
         <li>
-          <a href="/contact" class={`no-underline text-white text-sm py-2 transition-colors duration-200 font-serif font-normal ${active === 'contact' ? 'text-primary font-semibold border-b-2 border-primary' : ''}`}>
+          <a
+            href="/contact"
+            class={`no-underline text-white text-sm py-2 transition-colors duration-200 font-serif font-normal ${active === "contact" ? "text-primary font-semibold" : ""}`}
+          >
             Contacto
           </a>
         </li>

@@ -55,32 +55,29 @@ const navLinks = [
       </ul>
     </nav>
   </div>
-
-  <!-- Línea decorativa dorada -->
-  <div class="header-accent-line"></div>
 </header>
 
 <main>
   <!-- Sección de hero -->
-        <section
-            class="relative h-screen flex flex-col justify-center items-center text-center overflow-hidden"
-        >
-            <video
-                autoplay
-                loop
-                muted
-                playsinline
-                class="absolute inset-0 w-full h-full object-cover z-0"
-                poster="/sinfonica.jpg"
-            >
-                <source src="/video-fondo.mp4" type="video/mp4" />
-            </video>
+  <section
+    class="relative h-screen flex flex-col justify-center items-center text-center overflow-hidden"
+  >
+    <video
+      autoplay
+      loop
+      muted
+      playsinline
+      class="absolute inset-0 w-full h-full object-cover z-0"
+      poster="/sinfonica.jpg"
+    >
+      <source src="/video-fondo.mp4" type="video/mp4" />
+    </video>
 
-            <!-- Overlay con gradiente suave hacia el color crema -->
-            <div
-                class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[#FDFBF7] z-0"
-            >
-            </div>
+    <!-- Overlay con gradiente suave hacia el color crema -->
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[#FDFBF7] z-0"
+    >
+    </div>
 
     <div class="hero-content">
       <h1 class="hero-title">Fundación Orquesta Sinfónica de Carabobo</h1>
@@ -139,7 +136,6 @@ const navLinks = [
     );
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(194, 143, 36, 0.15);
     transition: all 0.4s ease;
   }
 
@@ -152,35 +148,6 @@ const navLinks = [
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-
-  /* Línea decorativa dorada animada */
-  .header-accent-line {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      var(--gold) 20%,
-      var(--gold-light) 50%,
-      var(--gold) 80%,
-      transparent 100%
-    );
-    opacity: 0.6;
-    animation: shimmer 3s ease-in-out infinite;
-  }
-
-  @keyframes shimmer {
-    0%,
-    100% {
-      opacity: 0.4;
-    }
-    50% {
-      opacity: 0.8;
-    }
   }
 
   /* Logo styles */
@@ -304,13 +271,10 @@ const navLinks = [
 
   .nav-link-active {
     color: var(--gold);
-    background: rgba(194, 143, 36, 0.1);
-    border-radius: 6px;
   }
 
   .nav-link-active .nav-link-underline {
-    transform: translateX(-50%) scaleX(1);
-    background: var(--gold);
+    transform: translateX(-50%) scaleX(0);
   }
 
   /* CTA Button in nav */
