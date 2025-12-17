@@ -1,13 +1,17 @@
 ---
 import HeroHeader from "../components/HeroHeader.astro";
+import SectionDivider from "../components/SectionDivider.astro";
 import ConciertosSection from "../components/ConciertosSection.astro";
 import Layout from "../layouts/Layout.astro";
+import Footer from "../components/global/Footer.astro";
 import Allies from "../components/sections/Allies.astro";
 ---
 
 <Layout>
   <!-- HEADER + HERO (Nota: HeroHeader internamente ahora usará <Header />) -->
   <HeroHeader />
+
+  <SectionDivider />
 
   <!-- Sección de Conciertos (agenda próxima) -->
   <ConciertosSection />
@@ -85,4 +89,6 @@ import Allies from "../components/sections/Allies.astro";
   </div>
 
   <Allies />
+
+  <Footer />
 </Layout>

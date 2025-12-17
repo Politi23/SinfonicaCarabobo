@@ -1,64 +1,682 @@
 ---
+// Footer.astro
+// Footer elegante y profesional para la Orquesta Sinfónica de Carabobo
+const currentYear = new Date().getFullYear();
+
+const navLinks = [
+    { href: "#", label: "Inicio" },
+    { href: "#nosotros", label: "Nosotros" },
+    { href: "#programas", label: "Programas" },
+    { href: "#apoyanos", label: "Apóyanos" },
+    { href: "#contacto", label: "Contacto" },
+];
+
+const socialLinks = [
+    {
+        href: "https://facebook.com",
+        label: "Facebook",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>`,
+    },
+    {
+        href: "https://instagram.com",
+        label: "Instagram",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>`,
+    },
+    {
+        href: "https://twitter.com",
+        label: "X (Twitter)",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`,
+    },
+    {
+        href: "https://youtube.com",
+        label: "YouTube",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`,
+    },
+];
 ---
-<footer class="bg-[#181711] text-white pt-16 pb-8 px-6 lg:px-20 font-sans">
-  <div class="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-    <div class="col-span-1 md:col-span-1">
-      <div class="flex items-center gap-2 mb-6">
-        <div class="size-5 text-primary">
-          <!-- Logo SVG (small) -->
-          <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.263 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z" fill="currentColor"></path></svg>
+
+<footer class="footer">
+    <!-- Decoración superior: línea dorada con notas musicales -->
+    <div class="footer-decoration">
+        <div class="decoration-line"></div>
+        <div class="decoration-notes">
+            <span class="note">♪</span>
+            <span class="note">♫</span>
+            <span class="note">♩</span>
+            <span class="note">♬</span>
+            <span class="note">♪</span>
         </div>
-        <span class="font-display font-bold text-lg">Sinfónica</span>
-      </div>
-      <p class="text-[#898361] text-sm leading-relaxed mb-4">
-        Llevar música clásica de clase mundial al corazón de la ciudad desde 1924.
-      </p>
-      <div class="flex gap-4">
-        <a class="text-[#898361] hover:text-primary" href="#" aria-label="Sitio web"><span class="material-symbols-outlined text-[20px]">public</span></a>
-        <a class="text-[#898361] hover:text-primary" href="#" aria-label="Correo"><span class="material-symbols-outlined text-[20px]">alternate_email</span></a>
-        <a class="text-[#898361] hover:text-primary" href="#" aria-label="Teléfono"><span class="material-symbols-outlined text-[20px]">call</span></a>
-      </div>
+        <div class="decoration-line"></div>
     </div>
 
-    <div>
-      <h4 class="font-bold mb-4 text-white">Presentaciones</h4>
-      <ul class="flex flex-col gap-2 text-sm text-[#898361]">
-        <li><a class="hover:text-primary" href="#">Calendario</a></li>
-        <li><a class="hover:text-primary" href="#">Abonos de temporada</a></li>
-        <li><a class="hover:text-primary" href="#">Planos de asientos</a></li>
-        <li><a class="hover:text-primary" href="#">Ventas para grupos</a></li>
-      </ul>
-    </div>
+    <div class="footer-container">
+        <!-- Sección principal del footer -->
+        <div class="footer-main">
+            <!-- Logo y descripción -->
+            <div class="footer-brand">
+                <a href="#" class="footer-logo">
+                    <img
+                        src="/logo.png"
+                        alt="Logo Orquesta Sinfónica de Carabobo"
+                    />
+                </a>
+                <p class="footer-tagline">
+                    Más de 40 años llevando la música clásica a los corazones de
+                    Venezuela.
+                </p>
 
-    <div>
-      <h4 class="font-bold mb-4 text-white">Apoyo</h4>
-      <ul class="flex flex-col gap-2 text-sm text-[#898361]">
-        <li><a class="hover:text-primary" href="#">Donar</a></li>
-        <li><a class="hover:text-primary" href="#">Membresía</a></li>
-        <li><a class="hover:text-primary" href="#">Patrocinadores</a></li>
-        <li><a class="hover:text-primary" href="#">Voluntariado</a></li>
-      </ul>
-    </div>
+                <!-- Redes sociales -->
+                <div class="footer-social">
+                    {
+                        socialLinks.map((social) => (
+                            <a
+                                href={social.href}
+                                aria-label={social.label}
+                                class="social-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <Fragment set:html={social.icon} />
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
 
-    <div>
-      <h4 class="font-bold mb-4 text-white">Contacto</h4>
-      <ul class="flex flex-col gap-2 text-sm text-[#898361]">
-        <li>Taquilla: (555) 123-4567</li>
-        <li>Calle Sinfonía 123</li>
-        <li>Ciudad Musical, CM 90210</li>
-        <li>info@sinfónica.org</li>
-      </ul>
-    </div>
-  </div>
-  <div class="border-t border-[#3a382e] pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#5c5844] max-w-[1280px] mx-auto px-6 lg:px-20">
-    <p>© 2024 Orquesta Sinfónica. Todos los derechos reservados.</p>
-    <div class="flex space-x-6">
-          <a class="text-gray-400 hover:text-primary transition-colors" href="#" aria-label="Facebook">
-            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path></svg>
-          </a>
-          <a class="text-gray-400 hover:text-primary transition-colors" href="https://www.instagram.com/sinfocarabobo" aria-label="Instagram">
-            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772 4.902 4.902 0 011.772-1.153c.636-.247 1.363-.416 2.427-.465 1.067-.047 1.409-.06 3.809-.06h.63zm1.525 2.096c-2.636.002-2.973.013-4.015.06-1.025.047-1.58.212-1.95.355-.478.185-.818.406-1.176.763-.357.358-.578.698-.763 1.176-.143.37-.308.925-.355 1.95-.047 1.042-.058 1.38-.058 4.015v.631c0 2.635.011 2.973.058 4.015.047 1.025.212 1.58.355 1.95.185.478.406.818.763 1.176.358.357.698.578 1.176.763.37.143.925.308 1.95.355 1.042.047 1.38.058 4.015.058h.631c2.635 0 2.973-.011 4.015-.058 1.025-.047 1.58-.212 1.95-.355.478-.185.818-.406 1.176-.763.357-.358.578-.698.763-1.176.143-.37.308-.925.355-1.95.047-1.042.058-1.38.058-4.015v-.631c0-2.635-.011-2.973-.058-4.015-.047-1.025-.212-1.58-.355-1.95-.185-.478-.406-.818-.763-1.176-.358-.357-.698-.578-1.176-.763-.37-.143-.925-.308-1.95-.355-1.042-.047-1.38-.058-4.015-.058h-.631zm-.32 4.31a4.39 4.39 0 110 8.78 4.39 4.39 0 010-8.78zm0 2.13a2.26 2.26 0 100 4.52 2.26 2.26 0 000-4.52zm5.72-5.5a1.44 1.44 0 110 2.88 1.44 1.44 0 010-2.88z" fill-rule="evenodd"></path></svg>
-          </a>
+            <!-- Navegación rápida -->
+            <div class="footer-nav-section">
+                <h4 class="footer-heading">Navegación</h4>
+                <nav class="footer-nav">
+                    {
+                        navLinks.map((link) => (
+                            <a href={link.href} class="footer-link">
+                                {link.label}
+                            </a>
+                        ))
+                    }
+                </nav>
+            </div>
+
+            <!-- Información de contacto -->
+            <div class="footer-contact-section">
+                <h4 class="footer-heading">Contacto</h4>
+                <div class="footer-contact">
+                    <div class="contact-item">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path
+                                d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                            ></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span>Valencia, Estado Carabobo, Venezuela</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                            ></path>
+                        </svg>
+                        <span>+58 (241) 123-4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path
+                                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                            ></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <span>info@orquestasinfonicacarabobo.org</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsletter / Suscripción -->
+            <div class="footer-newsletter-section">
+                <h4 class="footer-heading">Mantente Informado</h4>
+                <p class="newsletter-text">
+                    Suscríbete para recibir noticias sobre próximos conciertos y
+                    eventos especiales.
+                </p>
+                <form class="newsletter-form" onsubmit="return false;">
+                    <input
+                        type="email"
+                        placeholder="Tu correo electrónico"
+                        class="newsletter-input"
+                        aria-label="Correo electrónico"
+                    />
+                    <button type="submit" class="newsletter-btn">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"
+                            ></polygon>
+                        </svg>
+                    </button>
+                </form>
+            </div>
         </div>
-  </div>
+
+        <!-- Línea divisoria elegante -->
+        <div class="footer-divider">
+            <div class="divider-line"></div>
+            <div class="divider-ornament">
+                <span class="ornament-treble">𝄞</span>
+            </div>
+            <div class="divider-line"></div>
+        </div>
+
+        <!-- Copyright y enlaces legales -->
+        <div class="footer-bottom">
+            <p class="footer-copyright">
+                © {currentYear} Fundación Orquesta Sinfónica de Carabobo. Todos los
+                derechos reservados.
+            </p>
+            <div class="footer-legal">
+                <a href="#privacidad" class="legal-link"
+                    >Política de Privacidad</a
+                >
+                <span class="legal-separator">|</span>
+                <a href="#terminos" class="legal-link">Términos de Uso</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Decoración inferior: onda musical animada -->
+    <div class="footer-wave">
+        <svg
+            viewBox="0 0 1200 60"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M0,30 Q150,0 300,30 T600,30 T900,30 T1200,30 L1200,60 L0,60 Z"
+                fill="rgba(194, 143, 36, 0.15)"></path>
+            <path
+                d="M0,35 Q150,10 300,35 T600,35 T900,35 T1200,35 L1200,60 L0,60 Z"
+                fill="rgba(194, 143, 36, 0.08)"></path>
+        </svg>
+    </div>
 </footer>
+
+<style>
+    .footer {
+        background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+        color: #ffffff;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Decoración superior */
+    .footer-decoration {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px 24px 0;
+        gap: 16px;
+    }
+
+    .decoration-line {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #c28f24, transparent);
+        max-width: 200px;
+    }
+
+    .decoration-notes {
+        display: flex;
+        gap: 12px;
+        color: #c28f24;
+        font-size: 1.2rem;
+    }
+
+    .note {
+        animation: float 3s ease-in-out infinite;
+        opacity: 0.8;
+    }
+
+    .note:nth-child(1) {
+        animation-delay: 0s;
+    }
+    .note:nth-child(2) {
+        animation-delay: 0.5s;
+    }
+    .note:nth-child(3) {
+        animation-delay: 1s;
+    }
+    .note:nth-child(4) {
+        animation-delay: 1.5s;
+    }
+    .note:nth-child(5) {
+        animation-delay: 2s;
+    }
+
+    @keyframes float {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-6px);
+        }
+    }
+
+    /* Contenedor principal */
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 48px 24px 32px;
+    }
+
+    .footer-main {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+        gap: 48px;
+    }
+
+    /* Sección de marca */
+    .footer-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .footer-logo {
+        display: inline-block;
+        text-decoration: none;
+    }
+
+    .footer-logo img {
+        height: 60px;
+        width: auto;
+        filter: brightness(1.1);
+        transition: filter 0.3s ease;
+    }
+
+    .footer-logo:hover img {
+        filter: brightness(1.3);
+    }
+
+    .footer-tagline {
+        font-family: "Merriweather", serif;
+        font-size: 0.95rem;
+        color: #a0a0a0;
+        line-height: 1.6;
+        margin: 0;
+        max-width: 280px;
+    }
+
+    /* Redes sociales */
+    .footer-social {
+        display: flex;
+        gap: 12px;
+        margin-top: 8px;
+    }
+
+    .social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(194, 143, 36, 0.3);
+        border-radius: 50%;
+        color: #c28f24;
+        transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+        background: #c28f24;
+        color: #000000;
+        border-color: #c28f24;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(194, 143, 36, 0.3);
+    }
+
+    /* Encabezados de secciones */
+    .footer-heading {
+        font-family: "Merriweather", serif;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #c28f24;
+        margin: 0 0 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        position: relative;
+        padding-bottom: 12px;
+    }
+
+    .footer-heading::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background: linear-gradient(90deg, #c28f24, transparent);
+    }
+
+    /* Navegación */
+    .footer-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .footer-link {
+        font-family: "Merriweather", serif;
+        font-size: 0.9rem;
+        color: #b0b0b0;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+        padding-left: 0;
+    }
+
+    .footer-link::before {
+        content: "→";
+        position: absolute;
+        left: -20px;
+        opacity: 0;
+        color: #c28f24;
+        transition: all 0.3s ease;
+    }
+
+    .footer-link:hover {
+        color: #c28f24;
+        padding-left: 20px;
+    }
+
+    .footer-link:hover::before {
+        opacity: 1;
+        left: 0;
+    }
+
+    /* Contacto */
+    .footer-contact {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        font-family: "Merriweather", serif;
+        font-size: 0.88rem;
+        color: #b0b0b0;
+    }
+
+    .contact-item svg {
+        color: #c28f24;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+
+    .contact-item span {
+        line-height: 1.5;
+    }
+
+    /* Newsletter */
+    .newsletter-text {
+        font-family: "Merriweather", serif;
+        font-size: 0.88rem;
+        color: #a0a0a0;
+        margin: 0 0 16px;
+        line-height: 1.5;
+    }
+
+    .newsletter-form {
+        display: flex;
+        gap: 0;
+        border-radius: 4px;
+        overflow: hidden;
+        border: 1px solid rgba(194, 143, 36, 0.3);
+        background: rgba(255, 255, 255, 0.03);
+        transition: border-color 0.3s ease;
+    }
+
+    .newsletter-form:focus-within {
+        border-color: #c28f24;
+    }
+
+    .newsletter-input {
+        flex: 1;
+        padding: 12px 16px;
+        background: transparent;
+        border: none;
+        color: #ffffff;
+        font-family: "Merriweather", serif;
+        font-size: 0.88rem;
+        outline: none;
+    }
+
+    .newsletter-input::placeholder {
+        color: #666666;
+    }
+
+    .newsletter-btn {
+        padding: 12px 18px;
+        background: #c28f24;
+        border: none;
+        color: #000000;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .newsletter-btn:hover {
+        background: #d9a52e;
+    }
+
+    /* Divisor */
+    .footer-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 40px 0 24px;
+        gap: 24px;
+    }
+
+    .divider-line {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(194, 143, 36, 0.4),
+            transparent
+        );
+    }
+
+    .divider-ornament {
+        color: #c28f24;
+        font-size: 2rem;
+        opacity: 0.8;
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+        0%,
+        100% {
+            opacity: 0.8;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+    }
+
+    .ornament-treble {
+        font-family: serif;
+    }
+
+    /* Bottom */
+    .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .footer-copyright {
+        font-family: "Merriweather", serif;
+        font-size: 0.85rem;
+        color: #666666;
+        margin: 0;
+    }
+
+    .footer-legal {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .legal-link {
+        font-family: "Merriweather", serif;
+        font-size: 0.85rem;
+        color: #666666;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .legal-link:hover {
+        color: #c28f24;
+    }
+
+    .legal-separator {
+        color: #444444;
+    }
+
+    /* Wave decoration */
+    .footer-wave {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        pointer-events: none;
+        opacity: 0.6;
+    }
+
+    .footer-wave svg {
+        width: 100%;
+        height: 60px;
+        display: block;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+        .footer-main {
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-brand {
+            grid-column: span 2;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-tagline {
+            max-width: 400px;
+        }
+
+        .footer-heading::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .footer-nav-section,
+        .footer-contact-section,
+        .footer-newsletter-section {
+            text-align: center;
+        }
+
+        .footer-nav {
+            align-items: center;
+        }
+
+        .footer-link::before {
+            display: none;
+        }
+
+        .footer-link:hover {
+            padding-left: 0;
+        }
+
+        .contact-item {
+            justify-content: center;
+        }
+
+        .newsletter-form {
+            max-width: 320px;
+            margin: 0 auto;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .footer-main {
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        .footer-brand {
+            grid-column: span 1;
+        }
+
+        .footer-bottom {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .decoration-notes {
+            font-size: 1rem;
+            gap: 8px;
+        }
+
+        .footer-container {
+            padding: 32px 20px 24px;
+        }
+    }
+</style>
