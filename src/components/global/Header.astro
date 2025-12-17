@@ -56,9 +56,6 @@ const navLinks = [
       </ul>
     </nav>
   </div>
-
-  <!-- Línea decorativa dorada -->
-  <div class="header-accent-line"></div>
 </header>
 
 <style>
@@ -68,8 +65,13 @@ const navLinks = [
     --header-height-mobile: 64px;
     --gold: #c28f24;
     --gold-light: #ddb850;
+    --gold-dark: #9a7219;
+    --red-accent: #82181a;
+    --black: #000000;
+    --black-soft: #0a0a0a;
     --white: #ffffff;
     --gray-light: #e0e0e0;
+    --gray: #888888;
   }
 
   /* ============================================
@@ -96,7 +98,6 @@ const navLinks = [
     );
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(194, 143, 36, 0.15);
     transition: all 0.4s ease;
   }
 
@@ -109,35 +110,6 @@ const navLinks = [
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-
-  /* Línea decorativa dorada animada */
-  .header-accent-line {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      var(--gold) 20%,
-      var(--gold-light) 50%,
-      var(--gold) 80%,
-      transparent 100%
-    );
-    opacity: 0.6;
-    animation: shimmer 3s ease-in-out infinite;
-  }
-
-  @keyframes shimmer {
-    0%,
-    100% {
-      opacity: 0.4;
-    }
-    50% {
-      opacity: 0.8;
-    }
   }
 
   /* Logo styles */
@@ -213,6 +185,10 @@ const navLinks = [
     gap: 8px;
   }
 
+  .nav-item {
+    position: relative;
+  }
+
   .nav-link {
     position: relative;
     display: flex;
@@ -257,13 +233,10 @@ const navLinks = [
 
   .nav-link-active {
     color: var(--gold);
-    background: rgba(194, 143, 36, 0.1);
-    border-radius: 6px;
   }
 
   .nav-link-active .nav-link-underline {
-    transform: translateX(-50%) scaleX(1);
-    background: var(--gold);
+    transform: translateX(-50%) scaleX(0);
   }
 
   /* ============================================
@@ -325,7 +298,6 @@ const navLinks = [
       font-size: 1.1rem;
       padding: 16px 24px;
     }
-
   }
 </style>
 
@@ -343,7 +315,7 @@ const navLinks = [
     });
 
     // Close menu when clicking a link
-    const navLinks = navList.querySelectorAll(".nav-link, .nav-cta");
+    const navLinks = navList.querySelectorAll(".nav-link");
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
         navToggle.classList.remove("active");
