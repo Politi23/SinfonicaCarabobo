@@ -1,11 +1,56 @@
 <!doctype html>
-<html lang="en">
+<html lang="es" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<!-- Tipografía Merriweather y Playfair Display desde Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+			rel="stylesheet"
+		/>
+		<title>Orquesta Sinfónica de Carabobo</title>
+		<style is:global>
+			:root {
+				/* Paleta global */
+				--color-white: #ffffff;
+				--color-black: #000000;
+				--color-bg: #111111; /* fondo general */
+				--color-header-bg: #1a1a1a;
+				--color-accent-yellow: #ddb850;
+				--color-accent-red: #82181a;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: "Merriweather", serif;
+				background-color: var(--color-bg);
+				color: var(--color-white);
+			}
+
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				font-family: "Playfair Display", serif;
+			}
+
+			/* Forzamos botones y enlace activo a verse rectangulares y sobrios */
+			.btn,
+			.nav-link-active {
+				border-radius: 4px !important;
+			}
+		</style>
 	</head>
 	<body>
 		<slot />

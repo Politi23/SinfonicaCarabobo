@@ -1,0 +1,112 @@
+---
+// Header.astro
+---
+
+<header
+    class="fixed top-0 left-0 right-0 h-20 bg-bg-dark flex items-center z-50 bg-[#1a1a1a]/95 backdrop-blur-sm"
+>
+    <div
+        class="container mx-auto px-6 flex items-center justify-between h-full max-w-6xl"
+    >
+        <!-- LOGO -->
+        <a href="/" class="flex items-center no-underline text-white">
+            <img
+                src="/logo.png"
+                alt="Logo de la sinfónica"
+                class="h-16 w-auto object-contain block"
+            />
+        </a>
+
+        <!-- Navegación principal -->
+        <nav class="flex items-center relative">
+            <button
+                id="menu-toggle"
+                class="hidden md:hidden flex-col justify-center gap-1 w-8 h-8 bg-transparent border-0 p-0 cursor-pointer"
+                aria-label="Abrir menú de navegación"
+            >
+                <span class="block h-0.5 w-full bg-white rounded-full"></span>
+                <span class="block h-0.5 w-full bg-white rounded-full"></span>
+                <span class="block h-0.5 w-full bg-white rounded-full"></span>
+            </button>
+
+            <!-- Added id for mobile menu toggling if needed later, but keeping simple CSS hover/breakpoints for now -->
+            <ul
+                id="nav-menu"
+                class="list-none flex m-0 p-0 gap-6 transition-all duration-300"
+            >
+                <li>
+                    <a
+                        href="/"
+                        class="no-underline text-white text-sm py-2 transition-colors duration-200 font-serif font-normal hover:text-accent-yellow"
+                        >Inicio</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="/nosotros"
+                        class="no-underline text-white text-sm py-2 transition-colors duration-200 font-serif font-normal hover:text-accent-yellow"
+                        >Nosotros</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="/#programas"
+                        class="no-underline text-white text-sm py-2 transition-colors duration-200 font-serif font-normal hover:text-accent-yellow"
+                        >Programas</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="/#apoyanos"
+                        class="no-underline text-white text-sm py-2 transition-colors duration-200 font-serif font-normal hover:text-accent-yellow"
+                        >Apóyanos</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="/#contacto"
+                        class="no-underline text-white text-sm py-2 transition-colors duration-200 font-serif font-normal hover:text-accent-yellow"
+                        >Contacto</a
+                    >
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<script>
+    // Simple mobile menu toggle logic
+    const menuToggle = document.getElementById("menu-toggle");
+    const navMenu = document.getElementById("nav-menu");
+
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener("click", () => {
+            navMenu.classList.toggle("active");
+        });
+    }
+</script>
+
+<style>
+    /* Mobile styles handled via media queries in standard CSS or Tailwind classes */
+    @media (max-width: 768px) {
+        #nav-menu {
+            position: absolute;
+            top: 5rem; /* header height */
+            right: 0;
+            left: 0;
+            flex-direction: column;
+            background-color: #1a1a1a;
+            padding: 1rem;
+            display: none; /* hidden by default on mobile */
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #nav-menu.active {
+            display: flex;
+        }
+
+        #menu-toggle {
+            display: flex;
+        }
+    }
+</style>
