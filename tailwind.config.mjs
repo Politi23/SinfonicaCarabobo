@@ -4,23 +4,35 @@ export default {
     theme: {
         extend: {
             // ============================================
-            // 🎨 PALETA DE COLORES DEL SITIO
-            // Edita aquí para cambiar los colores fácilmente
+            // 🎨 PALETA DE COLORES OFICIAL DEL SITIO
+            // Colores principales y consistentes para todo el sitio
             // ============================================
             colors: {
                 // Colores principales
-                primary: '#C28F24',        // Dorado - Botón "Apóyanos" y acentos principales
+                primary: '#C28F24',        // Dorado principal - Acentos principales
+                'primary-dark': '#B07F1F', // Dorado oscuro - Hover y variantes
+                'primary-light': '#DDB850', // Dorado claro - Variantes suaves
+
                 secondary: '#82181a',      // Rojo oscuro - Acentos secundarios
+                'secondary-light': '#9C1F21', // Rojo claro - Variantes suaves
+                'secondary-dark': '#6A1315',  // Rojo más oscuro - Variantes oscuras
 
                 // Colores de fondo
-                'bg-dark': '#000000ff',      // Negro - Fondo del header
-                'bg-body': '#b91616ff',      // Gris muy oscuro - Fondo del body
-                'bg-section': '#1a1a1a',   // Gris oscuro - Fondo de secciones
+                'background-dark': '#000000',    // Negro puro - Fondo principal
+                'surface-dark': '#1a1a1a',       // Gris oscuro - Superficies secundarias
+                'background-light': '#FDFBF7',   // Crema claro - Fondo secciones claras
+                'surface-light': '#FFFFFF',      // Blanco - Superficies claras
 
                 // Colores de texto
-                'text-white': '#ffffff',   // Blanco - Texto principal
-                'text-muted': '#e0e0e0',   // Gris claro - Texto secundario/descripción
-                'text-title': '#f6e3b5',   // Beige claro - Títulos alternativos
+                'text-dark': '#181711',      // Marrón oscuro - Texto en fondos claros
+                'text-light': '#FFFFFF',     // Blanco - Texto en fondos oscuros
+                'text-muted': '#E0E0E0',     // Gris claro - Texto secundario
+                'text-secondary': '#E4E2DD', // Gris claro para dark mode
+
+                // Colores de borde y divisores
+                'border-dark': '#4A4A4A',    // Gris oscuro para bordes
+                'border-light': '#E5E5E0',   // Gris claro para bordes
+                'divider': '#C28F24',        // Línea divisoria dorada
 
                 // Colores de overlay/gradientes
                 'overlay-dark': 'rgba(0, 0, 0, 0.85)',  // Negro semi-transparente
@@ -32,7 +44,20 @@ export default {
                     yellow: '#DDB850',       // Amarillo/Dorado alternativo
                     gold: '#C28F24',         // Dorado principal
                     'gold-dark': '#B07F1F',  // Dorado oscuro (hover)
+                    'gold-light': '#F5E7C1', // Dorado claro
+                    red: '#82181a',          // Rojo principal
+                    'red-dark': '#6A1315',   // Rojo oscuro
                 },
+
+                // Colores para estados
+                success: '#10B981',          // Verde para éxitos
+                warning: '#F59E0B',          // Naranja para advertencias
+                error: '#EF4444',            // Rojo para errores
+
+                // Colores específicos para componentes
+                card: {
+                    dark: '#1a1a1a',         // Tarjetas en modo oscuro
+                }
             },
 
             // ============================================

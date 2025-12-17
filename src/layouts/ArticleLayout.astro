@@ -15,7 +15,7 @@ const { title, description } = Astro.props;
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <slot name="head" />
   </head>
-  <body class="bg-background-light dark:bg-background-dark text-[#181711] dark:text-[#e4e2dd] transition-colors duration-200 font-display antialiased">
+  <body class="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-secondary transition-colors duration-200 font-display antialiased">
     <Header active="blog" />
 
     <main class="layout-container flex h-full grow flex-col items-center">
@@ -36,7 +36,7 @@ const { title, description } = Astro.props;
 
 
 
-  /* 
+  /*
 
     ================================================================
 
@@ -80,7 +80,7 @@ const { title, description } = Astro.props;
 
 
 
-  /* 
+  /*
 
     ================================================================
 
@@ -104,7 +104,7 @@ const { title, description } = Astro.props;
 
 
 
-  /* 
+  /*
 
     ================================================================
 
@@ -142,7 +142,7 @@ const { title, description } = Astro.props;
 
 
 
-  /* 
+  /*
 
     ================================================================
 
@@ -272,7 +272,7 @@ const { title, description } = Astro.props;
 
   .article-content .wp-calendar-table td {
 
-    @apply border border-[#e5e5e0] p-3;
+    @apply border border-border-light p-3;
 
   }
 
@@ -280,7 +280,7 @@ const { title, description } = Astro.props;
 
   .article-content .wp-calendar-table thead th {
 
-    @apply font-bold bg-[#f4f4f0];
+    @apply font-bold bg-background-light;
 
   }
 
@@ -290,7 +290,7 @@ const { title, description } = Astro.props;
 
   .article-content pre {
 
-    @apply bg-[#f4f4f0] p-4 rounded-lg my-8 overflow-x-auto text-sm;
+    @apply bg-background-light p-4 rounded-lg my-8 overflow-x-auto text-sm;
 
   }
 

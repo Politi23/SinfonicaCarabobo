@@ -1,11 +1,10 @@
 ---
-// HeroHeader.astro
-// Header elegante y profesional con Hero Section para la Orquesta Sinfónica
 const navLinks = [
-  { href: "/", label: "Inicio", active: true },
+  { href: "/", label: "Inicio", active: false },
   { href: "/nosotros", label: "Nosotros", active: false },
   { href: "/programas", label: "Programas", active: false },
   { href: "/blog", label: "Blog", active: false },
+  { href: "/libro", label: "Libro", active: false },
   { href: "/apoyanos", label: "Apóyanos", active: false },
   { href: "/contacto", label: "Contacto", active: false },
 ];
@@ -16,7 +15,7 @@ const navLinks = [
   <div class="header-backdrop"></div>
   <div class="header-container">
     <!-- Logo -->
-    <a href="#" class="logo-link">
+    <a href="/" class="logo-link">
       <img
         src="/logo.png"
         alt="Logo de la Orquesta Sinfónica de Carabobo"
