@@ -1,39 +1,6 @@
----
-import Header from "../components/global/Header.astro";
-import Footer from "../components/global/Footer.astro";
-const { title, description } = Astro.props;
----
-
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title} · Sinfónica</title>
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <slot name="head" />
-  </head>
-  <body
-    class="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-secondary transition-colors duration-200 font-display antialiased"
-  >
-    <Header />
-
-    <main class="layout-container flex h-full grow flex-col items-center">
-      <slot />
-    </main>
-
-    <Footer />
-  </body>
-</html>
+<div class="article-content" {...Astro.props}>
+  <slot />
+</div>
 
 <style is:global>
   .article-content {
@@ -41,19 +8,12 @@ const { title, description } = Astro.props;
   }
 
   /*
-
     ================================================================
-
     == ESTILOS PARA ENCABEZADOS (H1-H6)
-
     ================================================================
-
     - Elementos: <h1>, <h2>, <h3>, etc.
-
     - Estilos: Clases de Tailwind para tamaño, peso y márgenes.
-
   */
-
   .article-content h1,
   .article-content h2,
   .article-content h3,
@@ -61,44 +21,36 @@ const { title, description } = Astro.props;
   .article-content h5,
   .article-content h6 {
     @apply font-bold leading-tight my-6;
+    color: #000000 !important;
   }
 
   .article-content h1 {
     @apply text-4xl lg:text-5xl;
   }
-
   .article-content h2 {
     @apply text-3xl lg:text-4xl mt-12;
   }
-
   .article-content h3 {
     @apply text-2xl lg:text-3xl mt-10;
   }
-
   .article-content h4 {
     @apply text-xl lg:text-2xl mt-8;
   }
-
   .article-content h5 {
     @apply text-lg lg:text-xl mt-6;
   }
-
   .article-content h6 {
     @apply text-base lg:text-lg mt-4;
   }
 
   /*
-
     ================================================================
-
     == ESTILOS PARA PÁRRAFOS Y ENLACES
-
     ================================================================
-
   */
-
   .article-content p {
     @apply my-4;
+    color: #000000 !important;
   }
 
   .article-content a {
@@ -106,15 +58,10 @@ const { title, description } = Astro.props;
   }
 
   /*
-
     ================================================================
-
     == ESTILOS PARA LISTAS
-
     ================================================================
-
   */
-
   .article-content ul,
   .article-content ol {
     @apply my-6 pl-8;
@@ -130,42 +77,34 @@ const { title, description } = Astro.props;
 
   .article-content li {
     @apply my-2;
+    color: #000000 !important;
   }
 
   /*
-
     ================================================================
-
     == ESTILOS PARA CITAS (CON Y SIN AUTOR)
-
     ================================================================
-
     - Elemento: <blockquote> para el contenedor.
-
     - Estilos: Borde izquierdo, espaciado, etc.
-
     - `p` dentro del blockquote es el texto de la cita.
-
     - `cite` dentro del blockquote es el autor de la cita.
-
   */
-
   .article-content blockquote {
     @apply my-8 relative py-4 px-6 lg:-mx-8;
-
     border-left: 2px solid theme("colors.primary");
   }
 
   .article-content blockquote p {
     @apply text-xl font-medium leading-relaxed italic;
+    color: #000000 !important;
   }
 
   .article-content blockquote cite {
     @apply block text-right text-base not-italic font-semibold mt-4;
+    color: #000000 !important;
   }
 
   /* Images, Media, and Figures */
-
   .article-content img,
   .article-content video,
   .article-content figure,
@@ -199,7 +138,8 @@ const { title, description } = Astro.props;
   }
 
   .article-content figcaption {
-    @apply text-center text-sm text-text-muted mt-3;
+    @apply text-center text-sm mt-3;
+    color: #000000 !important;
   }
 
   .article-content audio {
@@ -207,7 +147,6 @@ const { title, description } = Astro.props;
   }
 
   /* Tables */
-
   .article-content table,
   .article-content .wp-calendar-table {
     @apply w-full border-collapse text-left;
@@ -217,17 +156,25 @@ const { title, description } = Astro.props;
   .article-content .wp-calendar-table th,
   .article-content table td,
   .article-content .wp-calendar-table td {
-    @apply border border-border-light p-3;
+    @apply border border-border-light p-3 text-center;
+    color: #000000 !important;
   }
 
   .article-content table thead th,
   .article-content .wp-calendar-table thead th {
-    @apply font-bold bg-background-light;
+    @apply font-bold text-center;
+    background-color: var(--color-accent-yellow) !important; /* Fondo dorado */
+    color: #000000 !important; /* Texto negro */
   }
 
   /* Preformatted & Code */
-
   .article-content pre {
     @apply bg-background-light p-4 rounded-lg my-8 overflow-x-auto text-sm;
+    color: #000000 !important;
+  }
+
+  /* Details/Summary elements */
+  .article-content summary {
+    color: #000000 !important;
   }
 </style>

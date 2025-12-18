@@ -26,7 +26,7 @@ export default {
                 // Colores de texto
                 'text-dark': '#181711',      // Marrón oscuro - Texto en fondos claros
                 'text-light': '#FFFFFF',     // Blanco - Texto en fondos oscuros
-                'text-muted': '#E0E0E0',     // Gris claro - Texto secundario
+                'text-muted': '#6b6b6b',     // Gris claro - Texto secundario
                 'text-secondary': '#E4E2DD', // Gris claro para dark mode
 
                 // Colores de borde y divisores

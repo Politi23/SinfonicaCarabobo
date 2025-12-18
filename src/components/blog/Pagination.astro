@@ -16,7 +16,7 @@ const {
   <nav aria-label="Pagination" class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
     <a 
       class:list={[
-        "relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-card-dark text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800",
+        "relative inline-flex items-center px-2 py-2 rounded-l-md border border-border-light dark:border-gray-700 bg-surface-light dark:bg-card-dark text-sm font-medium text-text-muted dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800",
         { "pointer-events-none opacity-50": currentPage === 1 }
       ]}
       href={currentPage > 1 ? `${baseUrl}/${currentPage - 1}` : '#'}
@@ -33,7 +33,7 @@ const {
         class:list={[
           "relative inline-flex items-center px-4 py-2 border text-sm font-medium",
           { "z-10 bg-primary/10 border-primary text-primary": currentPage === page },
-          { "bg-white dark:bg-card-dark border-gray-300 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800": currentPage !== page },
+          { "bg-surface-light dark:bg-card-dark border-border-light dark:border-gray-700 text-text-muted dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800": currentPage !== page },
           { "hidden md:inline-flex": page > 3 && page < totalPages -1 }
         ]}
         href={`${baseUrl}/${page}`}
@@ -43,14 +43,14 @@ const {
     ))}
     
     {totalPages > 5 && (
-      <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-card-dark text-sm font-medium text-gray-700 dark:text-gray-500">
+      <span class="relative inline-flex items-center px-4 py-2 border border-border-light dark:border-gray-700 bg-surface-light dark:bg-card-dark text-sm font-medium text-text-dark dark:text-gray-500">
         ...
       </span>
     )}
     
     <a 
       class:list={[
-        "relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-card-dark text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800",
+        "relative inline-flex items-center px-2 py-2 rounded-r-md border border-border-light dark:border-gray-700 bg-surface-light dark:bg-card-dark text-sm font-medium text-text-muted dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800",
         { "pointer-events-none opacity-50": currentPage === totalPages }
       ]}
       href={currentPage < totalPages ? `${baseUrl}/${currentPage + 1}` : '#'}
