@@ -1,14 +1,14 @@
 ---
-// Footer.astro
-// Footer elegante y profesional para la Orquesta Sinfónica de Carabobo
 const currentYear = new Date().getFullYear();
 
 const navLinks = [
-    { href: "#", label: "Inicio" },
-    { href: "#nosotros", label: "Nosotros" },
-    { href: "#programas", label: "Programas" },
-    { href: "#apoyanos", label: "Apóyanos" },
-    { href: "#contacto", label: "Contacto" },
+    { href: "/", label: "Inicio" },
+    { href: "/nosotros", label: "Nosotros" },
+    { href: "/programas", label: "Programas" },
+    { href: "/blog", label: "Blog" },
+    { href: "/libro", label: "Libro" },
+    { href: "/apoyanos", label: "Apóyanos" },
+    { href: "/contacto", label: "Contacto" },
 ];
 
 const socialLinks = [
@@ -105,7 +105,10 @@ const socialLinks = [
                             ></path>
                             <circle cx="12" cy="10" r="3"></circle>
                         </svg>
-                        <span>Valencia, Estado Carabobo, Venezuela</span>
+                        <span
+                            >Salón MZ-08, Hotel Hesperia WTC, Naguanagua, Estado
+                            Carabobo</span
+                        >
                     </div>
                     <div class="contact-item">
                         <svg
@@ -223,8 +226,8 @@ const socialLinks = [
 <style>
     .footer {
         /* background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%); */
-        background-color: #000000;
-        color: #ffffff;
+        background-color: var(--color-bg);
+        color: var(--color-white);
         position: relative;
         overflow: hidden;
     }
@@ -241,7 +244,12 @@ const socialLinks = [
     .decoration-line {
         flex: 1;
         height: 1px;
-        background: linear-gradient(90deg, transparent, #c28f24, transparent);
+        background: linear-gradient(
+            90deg,
+            transparent,
+            var(--color-accent-yellow),
+            transparent
+        );
         max-width: 200px;
     }
 
@@ -317,14 +325,46 @@ const socialLinks = [
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(194, 143, 36, 0.3);
         border-radius: 50%;
-        color: #c28f24;
+        color: var(--color-accent-yellow);
         transition: all 0.3s ease;
     }
 
+    .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        font-family: "Merriweather", serif;
+        font-size: 0.88rem;
+        color: var(--color-white);
+    }
+
+    .newsletter-text {
+        font-family: "Merriweather", serif;
+        font-size: 0.88rem;
+        color: var(--color-white);
+        margin: 0 0 16px;
+        line-height: 1.5;
+    }
+
+    .newsletter-input {
+        flex: 1;
+        padding: 12px 16px;
+        background: transparent;
+        border: none;
+        color: var(--color-white);
+        font-family: "Merriweather", serif;
+        font-size: 0.88rem;
+        outline: none;
+    }
+
+    .newsletter-input::placeholder {
+        color: var(--text-muted);
+    }
+
     .social-link:hover {
-        background: #c28f24;
-        color: #000000;
-        border-color: #c28f24;
+        background: var(--color-accent-yellow);
+        color: var(--color-black);
+        border-color: var(--color-accent-yellow);
         transform: translateY(-3px);
         box-shadow: 0 8px 20px rgba(194, 143, 36, 0.3);
     }
@@ -349,7 +389,11 @@ const socialLinks = [
         left: 0;
         width: 40px;
         height: 2px;
-        background: linear-gradient(90deg, #c28f24, transparent);
+        background: linear-gradient(
+            90deg,
+            var(--color-accent-yellow),
+            transparent
+        );
     }
 
     /* Navegación */
@@ -374,12 +418,12 @@ const socialLinks = [
         position: absolute;
         left: -20px;
         opacity: 0;
-        color: #c28f24;
+        color: var(--color-accent-yellow);
         transition: all 0.3s ease;
     }
 
     .footer-link:hover {
-        color: #c28f24;
+        color: var(--color-accent-yellow);
         padding-left: 20px;
     }
 
@@ -405,7 +449,7 @@ const socialLinks = [
     }
 
     .contact-item svg {
-        color: #c28f24;
+        color: var(--color-accent-yellow);
         flex-shrink: 0;
         margin-top: 2px;
     }
@@ -434,7 +478,7 @@ const socialLinks = [
     }
 
     .newsletter-form:focus-within {
-        border-color: #c28f24;
+        border-color: var(--color-accent-yellow);
     }
 
     .newsletter-input {
@@ -454,15 +498,15 @@ const socialLinks = [
 
     .newsletter-btn {
         padding: 12px 18px;
-        background: #c28f24;
+        background: var(--color-accent-yellow);
         border: none;
-        color: #000000;
+        color: var(--color-black);
         cursor: pointer;
         transition: all 0.3s ease;
     }
 
     .newsletter-btn:hover {
-        background: #d9a52e;
+        background: var(--color-accent-yellow);
     }
 
     /* Divisor */
@@ -486,7 +530,7 @@ const socialLinks = [
     }
 
     .divider-ornament {
-        color: #c28f24;
+        color: var(--color-accent-yellow);
         font-size: 2rem;
         opacity: 0.8;
     }
@@ -508,7 +552,7 @@ const socialLinks = [
     .footer-copyright {
         font-family: "Merriweather", serif;
         font-size: 0.85rem;
-        color: #666666;
+        color: var(--color-white);
         margin: 0;
     }
 
@@ -521,17 +565,17 @@ const socialLinks = [
     .legal-link {
         font-family: "Merriweather", serif;
         font-size: 0.85rem;
-        color: #666666;
+        color: var(--color-white);
         text-decoration: none;
         transition: color 0.3s ease;
     }
 
     .legal-link:hover {
-        color: #c28f24;
+        color: var(--color-accent-yellow);
     }
 
     .legal-separator {
-        color: #444444;
+        color: var(--color-white);
     }
 
     /* Wave decoration */

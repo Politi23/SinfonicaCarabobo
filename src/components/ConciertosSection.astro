@@ -32,7 +32,7 @@ const conciertos = [
 ];
 ---
 
-<section id="conciertos" class="concerts-section bg-white">
+<section id="conciertos" class="concerts-section bg-surface-light">
   <div class="container">
     <header class="concerts-header">
       <p class="concerts-kicker">Próximos conciertos</p>
@@ -75,17 +75,17 @@ const conciertos = [
 
 <style>
   :root {
-    /* Paleta aplicada */
-    --color-white: #ffffff;
-    --color-black: #000000;
-    --color-red: #82181a;
-    --color-yellow: #ffb900;
+    /* Paleta aplicada - variables consistentes con tailwind.config */
+    --color-white: #ffffff; /* text-light */
+    --color-black: #000000; /* background-dark */
+    --color-red: #82181a; /* secondary */
+    --color-yellow: #c28f24; /* primary */
 
-    --accent-yellow: var(--color-yellow);
-    --accent-yellow-dark: #d99900;
-    --text-light: var(--color-white);
-    --text-muted: #e0e0e0;
-    --text-hero-title: #f6e3b5;
+    --accent-yellow: var(--color-yellow); /* primary */
+    --accent-yellow-dark: #b07f1f; /* primary-dark */
+    --text-light: var(--color-white); /* text-light */
+    --text-muted: #e0e0e0; /* text-muted */
+    --text-hero-title: #f6e3b5; /* text-title */
     --header-height: 80px;
     --max-width: 1200px;
   }
@@ -111,20 +111,20 @@ const conciertos = [
     font-size: 1.5rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #c28f24;
+    color: var(--accent-yellow);
     margin-bottom: 8px;
   }
 
   .concerts-title {
     font-family: "Merriweather", serif;
     font-size: 2.4rem;
-    color: #1a1a1a;
+    color: var(--color-black);
     margin: 0 0 12px;
   }
 
   .concerts-subtitle {
     font-size: 0.98rem;
-    color: #666666;
+    color: var(--text-muted);
     margin: 0;
   }
 
@@ -137,15 +137,15 @@ const conciertos = [
   .concert-card {
     display: grid;
     grid-template-columns: 120px 1fr;
-    background: #f9f9f9;
-    border: 1px solid #e0e0e0;
+    background: var(--color-white);
+    border: 1px solid var(--text-muted);
     padding: 20px 22px;
     column-gap: 20px;
     align-items: start;
   }
 
   .concert-date {
-    border-right: 1px solid #e0e0e0;
+    border-right: 1px solid var(--text-muted);
     padding-right: 16px;
     text-align: left;
   }
@@ -155,14 +155,14 @@ const conciertos = [
     font-family: "Merriweather", serif;
     font-size: 1.3rem;
     font-weight: 700;
-    color: #c28f24;
+    color: var(--accent-yellow);
   }
 
   .concert-date-sub {
     display: block;
     margin-top: 4px;
     font-size: 0.9rem;
-    color: #666666;
+    color: var(--text-muted);
   }
 
   .concert-info {
@@ -175,13 +175,13 @@ const conciertos = [
     font-family: "Merriweather", serif;
     font-size: 1.2rem;
     margin: 0;
-    color: #1a1a1a;
+    color: var(--color-black);
   }
 
   .concert-meta {
     margin: 0;
     font-size: 0.9rem;
-    color: #666666;
+    color: var(--text-muted);
     display: flex;
     gap: 6px;
     flex-wrap: wrap;
@@ -196,7 +196,7 @@ const conciertos = [
   .concert-description {
     margin: 6px 0 14px;
     font-size: 0.9rem;
-    color: #666666;
+    color: var(--text-muted);
   }
 
   .concert-actions {
@@ -240,15 +240,15 @@ const conciertos = [
 
   .concert-btn-secondary {
     background-color: transparent;
-    color: #1a1a1a;
-    border-color: #1a1a1a;
+    color: var(--color-black);
+    border-color: var(--color-black);
     font-weight: 400;
   }
 
   .concert-btn-secondary:hover {
-    background-color: #1a1a1a;
-    color: #ffffff;
-    border-color: #1a1a1a;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    border-color: var(--color-black);
     transform: translateY(-1px);
   }
 
@@ -260,7 +260,7 @@ const conciertos = [
 
     .concert-date {
       border-right: none;
-      border-bottom: 1px solid #e0e0e0;
+      border-bottom: 1px solid var(--text-muted);
       padding-right: 0;
       padding-bottom: 10px;
       margin-bottom: 6px;

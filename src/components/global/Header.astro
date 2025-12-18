@@ -1,11 +1,10 @@
 ---
-// HeroHeader.astro
-// Header elegante y profesional con Hero Section para la Orquesta Sinfónica
 const navLinks = [
-  { href: "/", label: "Inicio", active: true },
+  { href: "/", label: "Inicio", active: false },
   { href: "/nosotros", label: "Nosotros", active: false },
   { href: "/programas", label: "Programas", active: false },
   { href: "/blog", label: "Blog", active: false },
+  { href: "/libro", label: "Libro", active: false },
   { href: "/apoyanos", label: "Apóyanos", active: false },
   { href: "/contacto", label: "Contacto", active: false },
 ];
@@ -16,7 +15,7 @@ const navLinks = [
   <div class="header-backdrop"></div>
   <div class="header-container">
     <!-- Logo -->
-    <a href="#" class="logo-link">
+    <a href="/" class="logo-link">
       <img
         src="/logo.png"
         alt="Logo de la Orquesta Sinfónica de Carabobo"
@@ -63,15 +62,15 @@ const navLinks = [
   :root {
     --header-height: 80px;
     --header-height-mobile: 64px;
-    --gold: #c28f24;
-    --gold-light: #ddb850;
-    --gold-dark: #9a7219;
-    --red-accent: #82181a;
-    --black: #000000;
-    --black-soft: #0a0a0a;
-    --white: #ffffff;
-    --gray-light: #e0e0e0;
-    --gray: #888888;
+    --gold: #c28f24; /* primary */
+    --gold-light: #ddb850; /* primary-light */
+    --gold-dark: #9a7219; /* tono oscuro del dorado */
+    --red-accent: #82181a; /* secondary */
+    --black: #000000; /* background-dark */
+    --black-soft: #0a0a0a; /* surface-dark más claro */
+    --white: #ffffff; /* text-light */
+    --gray-light: #e0e0e0; /* text-muted */
+    --gray: #888888; /* color de texto alternativo */
   }
 
   /* ============================================
