@@ -15,12 +15,31 @@ const navLinks = [
   <div class="header-backdrop"></div>
   <div class="header-container">
     <!-- Logo -->
-    <a href="/" class="logo-link">
-      <img
-        src="/logo.png"
-        alt="Logo de la Orquesta Sinfónica de Carabobo"
-        class="logo-image"
-      />
+    <a href="http://localhost:4321" class="logo-link group">
+      <div class="flex items-center gap-4">
+        <img
+          src="/logosimple.png"
+          alt="Logo de la Fundación Orquesta Sinfónica de Carabobo"
+          class="logo-image drop-shadow-lg transition-transform duration-300 group-hover:scale-105"
+        />
+        <div class="hidden md:flex flex-col">
+          <span
+            class="text-xs font-light tracking-widest text-gray-300 uppercase leading-tight"
+          >
+            Fundación
+          </span>
+          <span
+            class="text-sm font-bold tracking-wide text-white leading-tight font-serif"
+          >
+            Orquesta Sinfónica
+          </span>
+          <span
+            class="text-xs font-medium tracking-wider text-accent-yellow uppercase leading-tight"
+          >
+            de Carabobo
+          </span>
+        </div>
+      </div>
     </a>
 
     <!-- Navegación principal -->
