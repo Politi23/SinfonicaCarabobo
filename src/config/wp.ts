@@ -3,13 +3,6 @@ const apiBase = `${domain}/wp-json/wp/v2`;
 
 function decodeHtmlEntities(text: string): string {
   if (!text) return "";
-  return text.replace(/&#(\d+);/g, (match, dec) => {
-    return String.fromCharCode(dec);
-  }).replace(/&quot;/g, '"')
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-  if (!text) return "";
   return text
     .replace(/&#(\d+);/g, (match, dec) => {
       return String.fromCharCode(dec);
