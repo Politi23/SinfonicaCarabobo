@@ -1,6 +1,7 @@
 ---
 import Footer from "../components/global/Footer.astro";
 import Header from "../components/global/Header.astro";
+import { ViewTransitions } from "astro:transitions";
 ---
 
 <!doctype html>
@@ -18,60 +19,58 @@ import Header from "../components/global/Header.astro";
       rel="stylesheet"
     />
     <title>Orquesta Sinfónica de Carabobo</title>
-  </head>
-  <body>
+    <ViewTransitions />
+  </head><body>
     <Header />
     <slot />
     <Footer />
-  </body>
+  </body><style is:global>
+    :root {
+      /* Paleta global */
+      --color-white: #ffffff;
+      --color-black: #000000;
+      --color-bg: #111111; /* fondo general */
+      --color-header-bg: #1a1a1a;
+      --color-accent-yellow: #ddb850;
+      --color-accent-red: #82181a;
+      --color-text-light: #ffffff; /* texto claro - text-light */
+      --color-text-dark: #181711; /* texto oscuro - text-dark */
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Merriweather", serif;
+      background-color: var(--color-bg);
+      color: var(--color-white);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Playfair Display", serif;
+    }
+
+    /* Forzamos botones y enlace activo a verse rectangulares y sobrios */
+    .btn,
+    .nav-link-active {
+      border-radius: 4px !important;
+    }
+  </style>
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 </html>
-
-<style is:global>
-  :root {
-    /* Paleta global - ahora sincronizada con tailwind.config.mjs */
-    --color-white: #ffffff;
-    --color-black: #000000;
-    --color-bg: #000000; /* fondo general (negro puro - background-dark) */
-    --color-header-bg: #1a1a1a; /* superficie oscura - surface-dark */
-    --color-accent-yellow: #c28f24; /* dorado principal - primary */
-    --color-accent-red: #82181a; /* rojo oscuro - secondary */
-    --color-text-light: #ffffff; /* texto claro - text-light */
-    --color-text-dark: #181711; /* texto oscuro - text-dark */
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: "Merriweather", serif;
-    background-color: var(--color-bg);
-    color: var(--color-white);
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Playfair Display", serif;
-  }
-
-  /* Forzamos botones y enlace activo a verse rectangulares y sobrios */
-  .btn,
-  .nav-link-active {
-    border-radius: 4px !important;
-  }
-</style>
-
-<style>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
-</style>

@@ -1,0 +1,258 @@
+---
+// Sección de Agrupaciones para la página principal
+// Diseño profesional acorde al resto de la web
+---
+
+<section id="agrupaciones" class="agrupaciones-section">
+    <div class="container">
+        <header class="agrupaciones-header">
+            <p class="agrupaciones-kicker">Música para tu evento</p>
+            <h2 class="agrupaciones-title">Conozca nuestras agrupaciones</h2>
+            <p class="agrupaciones-subtitle">
+                La Fundación Orquesta Sinfónica de Carabobo ofrece diferentes
+                formatos musicales para todo tipo de eventos artísticos,
+                sociales, culturales y personales.
+            </p>
+        </header>
+
+        <!-- Imagen destacada -->
+        <div class="image-container">
+            <img
+                src="https://images.unsplash.com/photo-1551696785-927d4ac2d35b?w=800&auto=format&fit=crop&q=80"
+                alt="Orquesta Sinfónica en concierto"
+                class="featured-image"
+            />
+        </div>
+
+        <!-- CTA -->
+        <div class="agrupaciones-cta">
+            <a href="/agrupaciones" class="agrupaciones-btn">
+                Ver todas las agrupaciones
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Barra de contacto -->
+        <div class="contact-bar">
+            <span class="contact-label">Para contrataciones:</span>
+            <a
+                href="mailto:produccion.sinfocarabobo@gmail.com"
+                class="contact-email"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                >
+                    <path
+                        d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                    ></path>
+                </svg>
+                produccion.sinfocarabobo@gmail.com
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .agrupaciones-section {
+        padding: 80px 0;
+        background: #ffffff;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+
+    .agrupaciones-header {
+        text-align: center;
+        max-width: 720px;
+        margin: 0 auto 40px;
+    }
+
+    .agrupaciones-kicker {
+        font-size: 1rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #c28f24;
+        margin-bottom: 8px;
+        font-weight: 600;
+    }
+
+    .agrupaciones-title {
+        font-family: "Playfair Display", "Merriweather", serif;
+        font-size: 2.4rem;
+        color: #1a1a1a;
+        margin: 0 0 16px;
+        font-weight: 700;
+    }
+
+    .agrupaciones-subtitle {
+        font-size: 1rem;
+        color: #666666;
+        margin: 0;
+        line-height: 1.7;
+    }
+
+    .image-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 48px;
+    }
+
+    .featured-image {
+        width: 100%;
+        max-width: 700px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        object-fit: cover;
+    }
+
+    .agrupaciones-preview {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        margin-bottom: 48px;
+    }
+
+    .preview-card {
+        background: #f9f9f9;
+        border: 1px solid #e0e0e0;
+        padding: 32px 24px;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .preview-card:hover {
+        border-color: #c28f24;
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .preview-icon {
+        color: #c28f24;
+        margin-bottom: 16px;
+    }
+
+    .preview-title {
+        font-family: "Merriweather", serif;
+        font-size: 1.1rem;
+        color: #1a1a1a;
+        margin: 0 0 8px;
+        font-weight: 700;
+    }
+
+    .preview-desc {
+        font-size: 0.9rem;
+        color: #666666;
+        margin: 0;
+    }
+
+    .agrupaciones-cta {
+        text-align: center;
+        margin-bottom: 48px;
+    }
+
+    .agrupaciones-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 32px;
+        background: #c28f24;
+        color: #000000;
+        text-decoration: none;
+        font-family: "Merriweather", serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        letter-spacing: 0.01em;
+    }
+
+    .agrupaciones-btn:hover {
+        background: #a57a1f;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(194, 143, 36, 0.3);
+    }
+
+    .contact-bar {
+        background: #c28f24;
+        padding: 20px 32px;
+        border-radius: 4px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .contact-label {
+        color: #000000;
+        font-weight: 700;
+        font-size: 1rem;
+    }
+
+    .contact-email {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #000000;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: opacity 0.2s ease;
+    }
+
+    .contact-email:hover {
+        opacity: 0.8;
+        text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+        .agrupaciones-preview {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 640px) {
+        .agrupaciones-section {
+            padding: 60px 0 72px;
+        }
+
+        .agrupaciones-title {
+            font-size: 1.8rem;
+        }
+
+        .agrupaciones-preview {
+            grid-template-columns: 1fr;
+        }
+
+        .featured-image {
+            max-width: 100%;
+        }
+
+        .contact-bar {
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+        }
+    }
+</style>

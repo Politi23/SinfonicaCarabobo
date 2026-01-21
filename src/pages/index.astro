@@ -4,16 +4,24 @@ import SectionDivider from "../components/SectionDivider.astro";
 import ConciertosSection from "../components/ConciertosSection.astro";
 import Layout from "../layouts/Layout.astro";
 import Allies from "../components/sections/Allies.astro";
+import AgrupacionesSection from "../components/sections/AgrupacionesSection.astro";
+import Footer from "../components/global/Footer.astro";
 ---
 
 <Layout>
     <!-- HEADER + HERO (Nota: HeroHeader internamente ahora usará <Header />) -->
     <HeroHeader />
+    <!-- HEADER + HERO (Nota: HeroHeader internamente ahora usará <Header />) -->
+    <HeroHeader />
 
+    <SectionDivider />
     <SectionDivider />
 
     <!-- Sección de Conciertos (agenda próxima) -->
     <ConciertosSection />
+
+    <!-- Sección de Agrupaciones -->
+    <AgrupacionesSection />
 
     <div class="relative py-24 bg-surface-dark text-text-light overflow-hidden">
         <div
@@ -37,10 +45,10 @@ import Allies from "../components/sections/Allies.astro";
 
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                    <h3 class="text-3xl font-bold mb-6 text-primary">
+                    <h3 class="text-3xl font-bold mb-6 text-accent-yellow">
                         Academia "Maestro José Calabrese"
                     </h3>
-                    <p class="text-text-muted text-lg mb-8 leading-relaxed">
+                    <p class="text-gray-300 text-lg mb-8 leading-relaxed">
                         Desde 2019, formamos a más de 500 estudiantes,
                         incluyendo niños con Síndrome de Down, con el aval de la
                         UNESCO. Una verdadera escuela de vida.
@@ -48,7 +56,7 @@ import Allies from "../components/sections/Allies.astro";
                     <a
                         href="http://www.academiajosecalabrese.com"
                         target="_blank"
-                        class="inline-flex items-center gap-2 text-text-light border-b border-primary pb-1 hover:text-primary transition-colors"
+                        class="inline-flex items-center gap-2 text-white border-b border-accent-yellow pb-1 hover:text-accent-yellow transition-colors"
                     >
                         Visitar sitio oficial
                         <svg
@@ -68,19 +76,16 @@ import Allies from "../components/sections/Allies.astro";
                     class="bg-white/10 p-8 rounded-2xl backdrop-blur-sm border border-white/10"
                 >
                     <div class="flex items-center gap-6 mb-6">
-                        <span class="text-5xl font-bold text-text-light"
-                            >1.500+</span
+                        <span class="text-5xl font-bold text-white">1.500+</span
                         >
-                        <span class="text-text-muted leading-tight"
+                        <span class="text-gray-300 leading-tight"
                             >Personas impactadas<br />por concierto</span
                         >
                     </div>
                     <div class="h-px w-full bg-white/20 mb-6"></div>
                     <div class="flex items-center gap-6">
-                        <span class="text-5xl font-bold text-text-light"
-                            >80+</span
-                        >
-                        <span class="text-text-muted leading-tight"
+                        <span class="text-5xl font-bold text-white">80+</span>
+                        <span class="text-gray-300 leading-tight"
                             >Becas otorgadas<br />anualmente</span
                         >
                     </div>
@@ -90,4 +95,6 @@ import Allies from "../components/sections/Allies.astro";
     </div>
 
     <Allies />
+
+    <Footer />
 </Layout>
