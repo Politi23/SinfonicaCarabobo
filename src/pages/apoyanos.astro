@@ -1,0 +1,18 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeroHeader from "../components/HeroHeader.astro";
+import EmpresasPatrocinio from "../components/sections/EmpresasPatrocinio.astro";
+import SectionDivider from "../components/SectionDivider.astro";
+import Allies from "../components/sections/Allies.astro";
+import Footer from "../components/global/Footer.astro";
+---
+
+<Layout>
+    <HeroHeader showVideo={false} />
+    <SectionDivider />
+    <main class="bg-[#FDFBF7]">
+        <EmpresasPatrocinio />
+        <Allies />
+    </main>
+    <Footer />
+</Layout>

@@ -1,12 +1,14 @@
 ---
 // HeroHeader.astro
 // Header elegante y profesional con Hero Section para la Orquesta Sinfónica
+const { showVideo = true } = Astro.props;
+
 const navLinks = [
-  { href: "#", label: "Inicio", active: true },
-  { href: "#nosotros", label: "Nosotros", active: false },
-  { href: "#programas", label: "Programas", active: false },
-  { href: "#apoyanos", label: "Apóyanos", active: false },
-  { href: "#contacto", label: "Contacto", active: false },
+  { href: "/", label: "Inicio", active: false },
+  { href: "/nosotros", label: "Nosotros", active: false },
+  { href: "/#programas", label: "Programas", active: false },
+  { href: "/apoyanos", label: "Apóyanos", active: false },
+  { href: "/#contacto", label: "Contacto", active: false },
 ];
 ---
 
@@ -62,16 +64,28 @@ const navLinks = [
   <section
     class="relative h-screen flex flex-col justify-center items-center text-center overflow-hidden"
   >
-    <video
-      autoplay
-      loop
-      muted
-      playsinline
-      class="absolute inset-0 w-full h-full object-cover z-0"
-      poster="/sinfonica.jpg"
-    >
-      <source src="/video-fondo.mp4" type="video/mp4" />
-    </video>
+    {showVideo ? (
+      <video
+        autoplay
+        loop
+        muted
+        playsinline
+        class="absolute inset-0 w-full h-full object-cover z-0"
+        poster="/sinfonica.jpg"
+        transition:persist
+      >
+        <source src="/video-fondo.mp4" type="video/mp4" />
+      </video>
+    ) : (
+      <!-- Imagen de fondo estática para cuando no hay video -->
+      <div class="absolute inset-0 z-0">
+        <img
+          src="/sinfonica.jpg"
+          alt="Orquesta Sinfónica"
+          class="w-full h-full object-cover"
+        />
+      </div>
+    )}
 
     <!-- Overlay con gradiente suave hacia el color crema -->
     <div
@@ -79,16 +93,17 @@ const navLinks = [
     >
     </div>
 
-    <div class="hero-content">
-      <h1 class="hero-title">Fundación Orquesta Sinfónica de Carabobo</h1>
+    <div class="hero-content" transition:animate="fade">
+      <h1 class="hero-title" transition:name="hero-title">
+        Fundación Orquesta Sinfónica de Carabobo
+      </h1>
 
       <div class="hero-actions">
-        <a href="#apoyanos" class="hero-btn hero-btn-primary">
-          <span class="btn-icon">♥</span>
+        <a href="/apoyanos" class="hero-btn hero-btn-primary">
           Apóyanos
         </a>
 
-        <a href="#historia" class="hero-btn hero-btn-secondary">
+        <a href="/nosotros" class="hero-btn hero-btn-secondary">
           Conoce Nuestra Historia
         </a>
       </div>
