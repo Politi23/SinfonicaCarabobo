@@ -10,6 +10,33 @@ const conciertos = [
     descripcion: "Obras de Beethoven, Brahms y Tchaikovsky.",
   },
   {
+    fechaCorta: "24 MAR",
+    dia: "Domingo",
+    hora: "7:00 p.m.",
+    titulo: "Gran Gala Sinfónica",
+    lugar: "Teatro Municipal de Carabobo",
+    tipo: "Concierto de Temporada",
+    descripcion: "Obras de Beethoven, Brahms y Tchaikovsky.",
+  },
+  {
+    fechaCorta: "24 MAR",
+    dia: "Domingo",
+    hora: "7:00 p.m.",
+    titulo: "Gran Gala Sinfónica",
+    lugar: "Teatro Municipal de Carabobo",
+    tipo: "Concierto de Temporada",
+    descripcion: "Obras de Beethoven, Brahms y Tchaikovsky.",
+  },
+  {
+    fechaCorta: "24 MAR",
+    dia: "Domingo",
+    hora: "7:00 p.m.",
+    titulo: "Gran Gala Sinfónica",
+    lugar: "Teatro Municipal de Carabobo",
+    tipo: "Concierto de Temporada",
+    descripcion: "Obras de Beethoven, Brahms y Tchaikovsky.",
+  },
+  {
     fechaCorta: "06 ABR",
     dia: "Sábado",
     hora: "6:30 p.m.",
@@ -32,35 +59,35 @@ const conciertos = [
 ];
 ---
 
-<section id="conciertos" class="concerts-section bg-surface-light">
-  <div class="container">
-    <header class="concerts-header">
-      <p class="concerts-kicker">Próximos conciertos</p>
+<section id="conciertos" class="py-20 bg-background-light">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header class="text-center max-w-3xl mx-auto mb-12">
+      <p class="text-2xl tracking-[0.08em] uppercase text-primary mb-2">Próximos conciertos</p>
     </header>
 
-    <div class="concerts-grid">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {
         conciertos.map((concierto) => (
-          <article class="concert-card">
-            <div class="concert-date">
-              <span class="concert-date-main">{concierto.fechaCorta}</span>
-              <span class="concert-date-sub">{concierto.dia}</span>
+          <article class="bg-surface-light border border-border-light p-5 grid grid-cols-[120px_1fr] gap-x-5 items-start">
+            <div class="border-r border-border-light pr-4 text-left">
+              <span class="block font-serif text-lg font-bold text-primary mb-1">{concierto.fechaCorta}</span>
+              <span class="block mt-1 text-sm text-text-muted">{concierto.dia}</span>
             </div>
 
-            <div class="concert-info">
-              <h3 class="concert-title">{concierto.titulo}</h3>
-              <p class="concert-meta">
+            <div class="flex flex-col gap-2">
+              <h3 class="font-serif text-base md:text-lg text-text-dark m-0">{concierto.titulo}</h3>
+              <p class="m-0 text-sm text-text-muted flex flex-wrap gap-2">
                 <span>{concierto.tipo}</span>
                 <span>·</span>
                 <span>{concierto.hora}</span>
               </p>
-              <p class="concert-venue">{concierto.lugar}</p>
-              <p class="concert-description">{concierto.descripcion}</p>
+              <p class="m-0 text-sm text-secondary">{concierto.lugar}</p>
+              <p class="m-2 mb-4 text-sm text-text-muted">{concierto.descripcion}</p>
 
-              <div class="concert-actions">
+              <div class="flex gap-2.5 flex-wrap">
                 <a
                   href="#detalle-concierto"
-                  class="concert-btn concert-btn-secondary"
+                  class="inline-flex items-center justify-center py-2.5 px-5 text-sm font-serif border border-text-dark text-text-dark hover:bg-text-dark hover:text-white transition-colors duration-200 rounded-sm"
                 >
                   Ver detalles
                 </a>
@@ -72,208 +99,3 @@ const conciertos = [
     </div>
   </div>
 </section>
-
-<style>
-  :root {
-    /* Paleta aplicada - variables consistentes con tailwind.config */
-    --color-white: #ffffff; /* text-light */
-    --color-black: #000000; /* background-dark */
-    --color-red: #82181a; /* secondary */
-    --color-yellow: #c28f24; /* primary */
-
-    --accent-yellow: var(--color-yellow); /* primary */
-    --accent-yellow-dark: #b07f1f; /* primary-dark */
-    --text-light: var(--color-white); /* text-light */
-    --text-muted: #e0e0e0; /* text-muted */
-    --text-hero-title: #f6e3b5; /* text-title */
-    --header-height: 80px;
-    --max-width: 1200px;
-  }
-
-  .container {
-    width: 100%;
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  .concerts-section {
-    padding: 80px 0 96px;
-  }
-
-  .concerts-header {
-    text-align: center;
-    max-width: 720px;
-    margin: 0 auto 48px;
-  }
-
-  .concerts-kicker {
-    font-size: 1.5rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent-yellow);
-    margin-bottom: 8px;
-  }
-
-  .concerts-title {
-    font-family: "Merriweather", serif;
-    font-size: 2.4rem;
-    color: var(--color-black);
-    margin: 0 0 12px;
-  }
-
-  .concerts-subtitle {
-    font-size: 0.98rem;
-    color: var(--text-muted);
-    margin: 0;
-  }
-
-  .concerts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-  }
-
-  .concert-card {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    background: var(--color-white);
-    border: 1px solid var(--text-muted);
-    padding: 20px 22px;
-    column-gap: 20px;
-    align-items: start;
-  }
-
-  .concert-date {
-    border-right: 1px solid var(--text-muted);
-    padding-right: 16px;
-    text-align: left;
-  }
-
-  .concert-date-main {
-    display: block;
-    font-family: "Merriweather", serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--accent-yellow);
-  }
-
-  .concert-date-sub {
-    display: block;
-    margin-top: 4px;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-  }
-
-  .concert-info {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .concert-title {
-    font-family: "Merriweather", serif;
-    font-size: 1.2rem;
-    margin: 0;
-    color: var(--color-black);
-  }
-
-  .concert-meta {
-    margin: 0;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-  }
-
-  .concert-venue {
-    margin: 0;
-    font-size: 0.92rem;
-    color: var(--color-red);
-  }
-
-  .concert-description {
-    margin: 6px 0 14px;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-  }
-
-  .concert-actions {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  /* Botones rectangulares, serios y profesionales */
-  .concert-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
-    font-size: 0.9rem;
-    font-family: "Merriweather", serif;
-    text-decoration: none;
-    border-radius: 4px;
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition:
-      background-color 0.18s ease,
-      color 0.18s ease,
-      border-color 0.18s ease,
-      transform 0.08s ease;
-    letter-spacing: 0.01em;
-  }
-
-  .concert-btn-primary {
-    background-color: var(--accent-yellow);
-    color: #000;
-    border-color: var(--accent-yellow);
-    font-weight: 700;
-  }
-
-  .concert-btn-primary:hover {
-    background-color: var(--accent-yellow-dark);
-    border-color: var(--accent-yellow-dark);
-    transform: translateY(-1px);
-  }
-
-  .concert-btn-secondary {
-    background-color: transparent;
-    color: var(--color-black);
-    border-color: var(--color-black);
-    font-weight: 400;
-  }
-
-  .concert-btn-secondary:hover {
-    background-color: var(--color-black);
-    color: var(--color-white);
-    border-color: var(--color-black);
-    transform: translateY(-1px);
-  }
-
-  @media (max-width: 640px) {
-    .concert-card {
-      grid-template-columns: 1fr;
-      row-gap: 12px;
-    }
-
-    .concert-date {
-      border-right: none;
-      border-bottom: 1px solid var(--text-muted);
-      padding-right: 0;
-      padding-bottom: 10px;
-      margin-bottom: 6px;
-    }
-
-    .concert-actions {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .concert-btn {
-      width: 100%;
-      justify-content: center;
-    }
-  }
-</style>
