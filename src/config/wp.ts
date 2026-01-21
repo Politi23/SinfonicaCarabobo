@@ -28,7 +28,8 @@ export const getPosts = async ({ perPage = 6, page = 1, category = undefined }: 
   if (!domain) throw new Error('WP_DOMAIN environment variable is not set')
 
   // Build the API URL with optional category filtering
-  let apiUrl = `${apiBase}/posts?per_page=${perPage}&page=${page}&_embed=1`;
+  // Include ACF fields if the ACF to REST API plugin is enabled
+  let apiUrl = `${apiBase}/posts?per_page=${perPage}&page=${page}&_embed=1&acf=true`;
 
   // If category is specified, get the category ID first and add it to the URL
   if (category) {
@@ -105,6 +106,9 @@ export const getPosts = async ({ perPage = 6, page = 1, category = undefined }: 
       author = "";
     }
 
+    // Include ACF fields if available
+    const acf = post.acf || post.meta || {};
+
     return {
       date,
       title,
@@ -115,6 +119,7 @@ export const getPosts = async ({ perPage = 6, page = 1, category = undefined }: 
       category,
       tags,
       author,
+      acf,
     };
   });
 
@@ -123,14 +128,30 @@ export const getPosts = async ({ perPage = 6, page = 1, category = undefined }: 
 
 // New function to get only concert posts
 export const getConcertPosts = async ({ perPage = 3, page = 1 }: { perPage?: number, page?: number } = {}) => {
-  return await getPosts({ perPage, page, category: "Conciertos" });
+  return await getPosts({ perPage, page, category: "conciertos" });
 };
 
-export const getPostsInfo = async ({ perPage = 6 }: { perPage?: number } = {}) => {
+export const getPostsInfo = async ({ perPage = 6, category = undefined }: { perPage?: number, category?: string } = {}) => {
   if (!domain) throw new Error('WP_DOMAIN environment variable is not set')
 
+  // Build the API URL with optional category filtering
+  let apiUrl = `${apiBase}/posts?per_page=${perPage}`;
+
+  // If category is specified, get the category ID first and add it to the URL
+  if (category) {
+    // First get the category ID by name
+    const categoryResponse = await fetch(`${apiBase}/categories?search=${encodeURIComponent(category)}`);
+    if (categoryResponse.ok) {
+      const categoriesData = await categoryResponse.json();
+      if (categoriesData.length > 0) {
+        const categoryId = categoriesData[0].id;
+        apiUrl += `&categories=${categoryId}`;
+      }
+    }
+  }
+
   // Make a HEAD request to get headers without the body
-  const response = await fetch(`${apiBase}/posts?per_page=${perPage}`, {
+  const response = await fetch(apiUrl, {
     method: "HEAD",
   });
   if (!response.ok) {
@@ -141,6 +162,11 @@ export const getPostsInfo = async ({ perPage = 6 }: { perPage?: number } = {}) =
   const totalPages = Number(response.headers.get("X-WP-TotalPages") || 0);
 
   return { totalPosts, totalPages };
+};
+
+// New function to get concert posts info
+export const getConcertPostsInfo = async ({ perPage = 6 }: { perPage?: number } = {}) => {
+  return await getPostsInfo({ perPage, category: "conciertos" });
 };
 
 export const getPost = async (slug: string) => {
@@ -181,6 +207,9 @@ export const getPost = async (slug: string) => {
     author = "";
   }
 
+  // Include ACF fields if available
+  const acf = post.acf || post.meta || {};
+
   return {
     title,
     excerpt,
@@ -191,5 +220,6 @@ export const getPost = async (slug: string) => {
     category,
     author,
     content: post.content?.rendered || "",
+    acf,
   };
 };
