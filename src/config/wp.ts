@@ -3,6 +3,13 @@ const apiBase = `${domain}/wp-json/wp/v2`;
 
 function decodeHtmlEntities(text: string): string {
   if (!text) return "";
+  return text.replace(/&#(\d+);/g, (match, dec) => {
+    return String.fromCharCode(dec);
+  }).replace(/&quot;/g, '"')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+  if (!text) return "";
   return text
     .replace(/&#(\d+);/g, (match, dec) => {
       return String.fromCharCode(dec);
@@ -24,11 +31,8 @@ export const getPage = async (slug: string) => {
   return data[0];
 };
 
-export const getPosts = async ({
-  perPage = 100,
-  page = 1,
-}: { perPage?: number; page?: number } = {}) => {
-  if (!domain) throw new Error("WP_DOMAIN environment variable is not set");
+export const getPosts = async ({ perPage = 100, page = 1 }: { perPage?: number, page?: number } = {}) => {
+  if (!domain) throw new Error('WP_DOMAIN environment variable is not set')
   // Request embedded resources so we can access featured media and terms
   const response = await fetch(
     `${apiBase}/posts?per_page=${perPage}&page=${page}&_embed=1`,
@@ -94,10 +98,8 @@ export const getPosts = async ({
   return posts;
 };
 
-export const getPostsInfo = async ({
-  perPage = 1,
-}: { perPage?: number } = {}) => {
-  if (!domain) throw new Error("WP_DOMAIN environment variable is not set");
+export const getPostsInfo = async ({ perPage = 1 }: { perPage?: number } = {}) => {
+  if (!domain) throw new Error('WP_DOMAIN environment variable is not set')
 
   // Make a HEAD request to get headers without the body
   const response = await fetch(`${apiBase}/posts?per_page=${perPage}`, {
