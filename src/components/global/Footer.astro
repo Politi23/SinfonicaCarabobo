@@ -41,7 +41,7 @@ const socialLinks = [
         <div class="footer-main">
             <!-- Logo y descripción -->
             <div class="footer-brand">
-                <a href="#" class="footer-logo">
+                <a href="/" class="footer-logo">
                     <img
                         src="/logo.png"
                         alt="Logo Orquesta Sinfónica de Carabobo"
@@ -196,30 +196,7 @@ const socialLinks = [
                 © {currentYear} Fundación Orquesta Sinfónica de Carabobo. Todos los
                 derechos reservados.
             </p>
-            <div class="footer-legal">
-                <a href="#privacidad" class="legal-link"
-                    >Política de Privacidad</a
-                >
-                <span class="legal-separator">|</span>
-                <a href="#terminos" class="legal-link">Términos de Uso</a>
-            </div>
         </div>
-    </div>
-
-    <!-- Decoración inferior: onda musical animada -->
-    <div class="footer-wave">
-        <svg
-            viewBox="0 0 1200 60"
-            preserveAspectRatio="none"
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <path
-                d="M0,30 Q150,0 300,30 T600,30 T900,30 T1200,30 L1200,60 L0,60 Z"
-                fill="rgba(194, 143, 36, 0.15)"></path>
-            <path
-                d="M0,35 Q150,10 300,35 T600,35 T900,35 T1200,35 L1200,60 L0,60 Z"
-                fill="rgba(194, 143, 36, 0.08)"></path>
-        </svg>
     </div>
 </footer>
 
@@ -576,22 +553,6 @@ const socialLinks = [
 
     .legal-separator {
         color: var(--color-white);
-    }
-
-    /* Wave decoration */
-    .footer-wave {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        pointer-events: none;
-        opacity: 0.6;
-    }
-
-    .footer-wave svg {
-        width: 100%;
-        height: 60px;
-        display: block;
     }
 
     /* Responsive */

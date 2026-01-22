@@ -1,0 +1,302 @@
+---
+import { getConcertPosts } from '../../config/wp';
+
+// Fetch initial concert posts from WordPress (first 9 for initial display)
+// Handle the case where WordPress is down
+let initialConcertPosts = [];
+try {
+  initialConcertPosts = await getConcertPosts({ perPage: 9, page: 1 });
+} catch (error) {
+  console.warn("Failed to fetch concert posts from WordPress:", error.message);
+  initialConcertPosts = []; // Use empty array if fetch fails
+}
+
+// Transform WordPress posts to concert format using ACF fields
+const initialConciertos = initialConcertPosts.map(post => {
+  // Access ACF fields from either acf or meta properties
+  const acfFields = post.acf || post.meta || {};
+
+  // Use ACF event date and time if available, otherwise fall back to post date
+  const eventDateStr = acfFields.event_date || post.date;
+
+  // Parse the event date
+  let eventDate;
+  if (acfFields.event_date) {
+    // If ACF date is in format like "20260124", parse it as YYYYMMDD
+    const dateStr = acfFields.event_date.toString();
+    if (dateStr.length === 8) { // YYYYMMDD format
+      const year = dateStr.substring(0, 4);
+      const month = dateStr.substring(4, 6);
+      const day = dateStr.substring(6, 8);
+      // Create date object in local timezone (Venezuelan time)
+      eventDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+    } else {
+      // If it's in another format, try to parse it normally
+      eventDate = new Date(eventDateStr);
+    }
+  } else {
+    // Otherwise use the post date
+    eventDate = new Date(eventDateStr);
+  }
+
+  // Format the date parts using Venezuela timezone
+  // Split the date string to replace dash with space
+  const fullDate = eventDate.toLocaleDateString('es-VE', { day: '2-digit', month: 'short' }).toUpperCase();
+  const [day, month] = fullDate.split('-');
+  const fechaCorta = `${day} ${month}`;
+  const dia = eventDate.toLocaleDateString('es-VE', { weekday: 'long' });
+
+  // Parse the event time
+  let hora;
+  if (acfFields.event_time) {
+    // If ACF time is in format like "19:30", create a time string
+    hora = acfFields.event_time;
+  } else {
+    // Otherwise use the time from the post date
+    hora = eventDate.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+  }
+
+  return {
+    fechaCorta,
+    dia,
+    hora,
+    titulo: post.title,
+    lugar: acfFields.event_venue || 'Por definir',
+    tipo: post.category || 'Concierto',
+    descripcion: acfFields.event_description || post.excerpt.substring(0, 150) + (post.excerpt.length > 150 ? '...' : ''),
+    precio: acfFields.event_price,
+    slug: post.slug
+  };
+});
+
+// Limit to 9 concerts to have multiple sets of 3 for carousel
+const displayedConcerts = initialConciertos.slice(0, 9);
+
+---
+
+{(displayedConcerts.length > 0) ? (
+<section id="conciertos" class="py-20 bg-background-light">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header class="text-center max-w-3xl mx-auto mb-12">
+      <p class="text-2xl tracking-[0.08em] uppercase text-primary mb-2">Próximos conciertos</p>
+    </header>
+
+    <!-- Carousel Container -->
+    <div class="relative">
+      <!-- Navigation Arrows -->
+      <button
+        id="prevBtn"
+        class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors"
+        aria-label="Ver conciertos anteriores"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <button
+        id="nextBtn"
+        class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors"
+        aria-label="Ver más conciertos"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      <!-- Carousel Track -->
+      <div class="carousel-track overflow-hidden">
+        <div class="carousel-slides flex transition-transform duration-300 ease-in-out">
+          {displayedConcerts.map((concierto) => (
+            <div class="carousel-slide flex-shrink-0 px-3 flex justify-center">
+              <article class="bg-surface-light border border-border-light p-4 w-[300px] h-[280px] flex flex-col justify-between">
+                <div class="grid grid-cols-[100px_1fr] gap-x-2 items-start">
+                  <div class="border-r border-border-light pr-2 text-left">
+                    <span class="block font-serif text-sm font-bold text-primary mb-1">{concierto.fechaCorta}</span>
+                    <span class="block mt-1 text-xs text-text-muted">{concierto.dia}</span>
+                    <p class="m-0 text-xs text-text-muted flex flex-wrap gap-1 mt-1">
+                      <span>{concierto.tipo}</span>
+                      <span>·</span>
+                      <span>{concierto.hora}</span>
+                    </p>
+                  </div>
+
+                  <div class="flex flex-col gap-1 min-w-0"> <!-- min-w-0 enables text truncation in flex items -->
+                    <h3 class="font-serif text-sm text-text-dark m-0 truncate">{concierto.titulo}</h3>
+                    <p class="m-0 text-xs text-secondary truncate">{concierto.lugar}</p>
+                    {concierto.precio && (
+                      <p class="m-0 text-xs text-primary font-semibold truncate">Precio: {concierto.precio}</p>
+                    )}
+                  </div>
+                </div>
+
+                <div class="flex flex-col gap-1 mt-2 flex-grow">
+                  <p class="text-xs text-text-muted text-center overflow-hidden line-clamp-2 flex-grow">{concierto.descripcion}</p>
+
+                  <div class="flex gap-1.5 flex-wrap justify-center mt-auto">
+                    <a
+                      href={`/blog/${concierto.slug}`}
+                      class="inline-flex items-center justify-center py-1.5 px-3 text-xs font-serif border border-text-dark text-text-dark hover:bg-text-dark hover:text-white transition-colors duration-200 rounded-sm"
+                    >
+                      Ver detalles
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Carousel Indicators -->
+    <div class="flex justify-center mt-8 space-x-2 carousel-indicators">
+      <!-- Indicators will be dynamically generated by JavaScript -->
+    </div>
+
+    <!-- View All Events Button -->
+    <div class="text-center mt-10">
+      <a
+        href="/blog"
+        class="inline-block px-6 py-3 bg-transparent border border-primary text-primary font-medium rounded hover:bg-primary hover:text-white transition-colors duration-300"
+      >
+        Ver todos los eventos
+      </a>
+    </div>
+  </div>
+
+  <style>
+    .carousel-slide {
+      width: 100%; /* Mobile: 1 slide */
+      display: flex;
+      justify-content: center;
+    }
+
+    @media (min-width: 768px) {
+      .carousel-slide {
+        width: calc(100% / 2); /* Tablet: 2 slides */
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .carousel-slide {
+        width: calc(100% / 3); /* Desktop: 3 slides */
+        display: flex;
+        justify-content: center;
+      }
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const track = document.querySelector('.carousel-slides');
+      const slides = document.querySelectorAll('.carousel-slide');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const indicatorsContainer = document.querySelector('.carousel-indicators');
+
+      let currentIndex = 0;
+      let slidesToShow = window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3; // Adjust based on screen size
+      const totalSlides = slides.length;
+
+      // Calculate number of indicators needed based on slides to show
+      function calculateIndicators(slidesToShow) {
+        // Calculate how many full sets of slides we have
+        return Math.ceil(totalSlides / slidesToShow);
+      }
+
+      // Generate indicators dynamically
+      function generateIndicators() {
+        const numIndicators = calculateIndicators(slidesToShow);
+        indicatorsContainer.innerHTML = ''; // Clear existing indicators
+
+        for (let i = 0; i < numIndicators; i++) {
+          const indicator = document.createElement('button');
+          indicator.className = `indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-primary transition-colors ${i === 0 ? 'bg-primary' : ''}`;
+          indicator.setAttribute('data-index', i);
+
+          indicator.addEventListener('click', () => {
+            currentIndex = i * slidesToShow;
+            // Ensure we don't exceed the total slides
+            if (currentIndex > totalSlides - 1) {
+              currentIndex = totalSlides - 1;
+            }
+            updateSlidePosition();
+          });
+
+          indicatorsContainer.appendChild(indicator);
+        }
+      }
+
+      // Helper function to calculate the correct indicator index
+      function getIndicatorIndex(position, slidesPerSet) {
+        return Math.floor(position / slidesPerSet);
+      }
+
+      // Update slide position
+      function updateSlidePosition() {
+        const currentSlidesToShow = window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3;
+        const positionIndex = Math.floor(currentIndex / currentSlidesToShow);
+        const slideWidth = 100 / currentSlidesToShow;
+        track.style.transform = `translateX(-${positionIndex * 100}%)`;
+
+        // Update active indicator
+        const activeIndicatorIndex = getIndicatorIndex(currentIndex, currentSlidesToShow);
+        const indicators = document.querySelectorAll('.indicator');
+
+        // Make sure we don't exceed the number of indicators
+        const maxIndicatorIndex = indicators.length - 1;
+        const safeActiveIndex = Math.min(activeIndicatorIndex, maxIndicatorIndex);
+
+        indicators.forEach((indicator, index) => {
+          indicator.classList.toggle('bg-primary', index === safeActiveIndex);
+          indicator.classList.toggle('bg-gray-300', index !== safeActiveIndex);
+        });
+      }
+
+      // Handle window resize
+      window.addEventListener('resize', () => {
+        const newSlidesToShow = window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3;
+        if (newSlidesToShow !== slidesToShow) {
+          slidesToShow = newSlidesToShow;
+          generateIndicators(); // Regenerate indicators based on new screen size
+          // Adjust current index to stay within bounds
+          const maxIndex = Math.max(0, totalSlides - slidesToShow);
+          currentIndex = Math.min(currentIndex, maxIndex);
+          currentIndex = Math.floor(currentIndex / slidesToShow) * slidesToShow;
+          // Recalculate positions based on new screen size
+          updateSlidePosition();
+        }
+      });
+
+      // Next button event
+      nextBtn.addEventListener('click', () => {
+        const currentSlidesToShow = window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3;
+        if (currentIndex + currentSlidesToShow < totalSlides) {
+          currentIndex += currentSlidesToShow;
+          updateSlidePosition();
+        } else {
+          // Move to the last possible position
+          currentIndex = Math.max(0, totalSlides - 1);
+          updateSlidePosition();
+        }
+      });
+
+      // Previous button event
+      prevBtn.addEventListener('click', () => {
+        const currentSlidesToShow = window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3;
+        const currentPositionIndex = Math.floor(currentIndex / currentSlidesToShow);
+        const previousPositionIndex = Math.max(0, currentPositionIndex - 1);
+        currentIndex = previousPositionIndex * currentSlidesToShow;
+        updateSlidePosition();
+      });
+
+      // Initialize
+      generateIndicators();
+      updateSlidePosition();
+    });
+  </script>
+</section>
+) : null} {/* Close the conditional rendering */}

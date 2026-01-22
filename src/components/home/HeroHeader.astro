@@ -1,17 +1,6 @@
 ---
-// HeroHeader.astro
-// Header elegante y profesional con Hero Section para la Orquesta Sinfónica
 const { showVideo = true } = Astro.props;
-
-const navLinks = [
-  { href: "/", label: "Inicio", active: false },
-  { href: "/nosotros", label: "Nosotros", active: false },
-  { href: "#programas", label: "Programas", active: false },
-  { href: "/apoyanos", label: "Apóyanos", active: false },
-  { href: "#contacto", label: "Contacto", active: false },
-];
 ---
-
 <main>
   <!-- Sección de hero -->
   <section
@@ -24,7 +13,7 @@ const navLinks = [
         muted
         playsinline
         class="absolute inset-0 w-full h-full object-cover z-0"
-        poster="/sinfonica.jpg"
+        poster="/violin-header.png"
         transition:persist
       >
         <source src="/video-fondo.mp4" type="video/mp4" />
@@ -33,7 +22,7 @@ const navLinks = [
       <!-- Imagen de fondo estática para cuando no hay video -->
       <div class="absolute inset-0 z-0">
         <img
-          src="/sinfonica.jpg"
+          src="/violin-header.png"
           alt="Orquesta Sinfónica"
           class="w-full h-full object-cover"
         />

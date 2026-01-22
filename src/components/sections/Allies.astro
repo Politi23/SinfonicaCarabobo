@@ -23,60 +23,136 @@
 
     <div class="flex items-center gap-16 animate-infinite-scroll w-max">
       <!-- Original Logos -->
-      <img
-        src="/logoujap-removebg-preview.png"
-        alt="UJAP"
-        class="h-20 md:h-24 w-auto object-contain grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100"
-      />
-      <img
-        src="/images-removebg-preview.png"
-        alt="Aliado"
-        class="h-20 md:h-24 w-auto object-contain grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100"
-      />
-      <img
-        src="/logo.png"
-        alt="OSC"
-        class="h-20 md:h-24 w-auto object-contain grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100"
-      />
-
-      <!-- Text Placeholders fashioned as logos for demo if images run out -->
-      <span class="text-2xl font-display font-bold text-text-muted">HESPERIA</span
-      >
-      <span class="text-2xl font-display font-bold text-text-muted">MULTIMAX</span
-      >
-      <span class="text-2xl font-display font-bold text-text-muted"
-        >CLX GROUP</span
-      >
-      <span class="text-2xl font-display font-bold text-text-muted"
-        >ALCALDÍA SAN DIEGO</span
-      >
+      <div class="logo-container">
+        <img
+          src="/ally-hesperia.png"
+          alt="HesperiaWTC"
+          class="logo-image"
+        />
+      </div>
+      <div class="logo-container">
+        <img
+          src="/ally-ujap.png"
+          alt="UJAP"
+          class="logo-image"
+        />
+      </div>
+      <div class="logo-container">
+        <img
+          src="/ally-multimax.png"
+          alt="Multimax"
+          class="logo-image"
+        />
+      </div>
+      <div class="logo-container">
+        <img
+          src="/ally-clxsamsung.png"
+          alt="CLXSamsung"
+          class="logo-image"
+        />
+      </div>
+      <div class="logo-container">
+        <img
+          src="/ally-alcaldia-sandiego.webp"
+          alt="AlcaldiaSanDiego"
+          class="logo-image"
+        />
+      </div>
+      <div class="logo-container">
+        <img
+          src="/ally-fosc.png"
+          alt="FOSC"
+          class="logo-image"
+        />
+      </div>
 
       <!-- Duplicate for infinite loop -->
-      <img
-        src="/logoujap-removebg-preview.png"
-        alt="UJAP"
-        class="h-20 md:h-24 w-auto object-contain grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100"
-      />
-      <img
-        src="/images-removebg-preview.png"
-        alt="Aliado"
-        class="h-20 md:h-24 w-auto object-contain grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100"
-      />
-      <img
-        src="/logo.png"
-        alt="OSC"
-        class="h-20 md:h-24 w-auto object-contain grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100"
-      />
-      <span class="text-2xl font-display font-bold text-text-muted">HESPERIA</span
-      >
-      <span class="text-2xl font-display font-bold text-text-muted">MULTIMAX</span
-      >
-      <span class="text-2xl font-display font-bold text-text-muted"
-        >CLX GROUP</span
-      >
-      <span class="text-2xl font-display font-bold text-text-muted"
-        >ALCALDÍA SAN DIEGO</span
-      >
+      <div class="logo-container">
+        <img
+          src="/ally-hesperia.png"
+          alt="HesperiaWTC"
+          class="logo-image"
+        />
+      </div>
+      <div class="logo-container">
+        <img
+          src="/ally-ujap.png"
+          alt="UJAP"
+          class="logo-image"
+        />
+      </div>
+      <div class="logo-container">
+        <img
+          src="/ally-multimax.png"
+          alt="Multimax"
+          class="logo-image"
+        />
+      </div>
+      <div class="logo-container">
+        <img
+          src="/ally-clxsamsung.png"
+          alt="CLXSamsung"
+          class="logo-image"
+        />
+      </div>
+      <div class="logo-container">
+        <img
+          src="/ally-alcaldia-sandiego.webp"
+          alt="AlcaldiaSanDiego"
+          class="logo-image"
+        />
+      </div>
+      <div class="logo-container">
+        <img
+          src="/ally-fosc.png"
+          alt="FOSC"
+          class="logo-image"
+        />
+      </div>
+
+      <!-- Additional set to ensure seamless looping -->
+      <div class="logo-container">
+        <img
+          src="/ally-hesperia.png"
+          alt="HesperiaWTC"
+          class="logo-image"
+        />
+      </div>
+      <div class="logo-container">
+        <img
+          src="/ally-ujap.png"
+          alt="UJAP"
+          class="logo-image"
+        />
+      </div>
+      <div class="logo-container">
+        <img
+          src="/ally-multimax.png"
+          alt="Multimax"
+          class="logo-image"
+        />
+      </div>
+      <div class="logo-container">
+        <img
+          src="/ally-clxsamsung.png"
+          alt="CLXSamsung"
+          class="logo-image"
+        />
+      </div>
+      <div class="logo-container">
+        <img
+          src="/ally-alcaldia-sandiego.webp"
+          alt="AlcaldiaSanDiego"
+          class="logo-image"
+        />
+      </div>
+      <div class="logo-container">
+        <img
+          src="/ally-fosc.png"
+          alt="FOSC"
+          class="logo-image"
+        />
+      </div>
     </div>
   </div>
 </section>
@@ -107,8 +183,16 @@
     }
   }
 
+  .logo-container {
+    @apply flex-shrink-0 w-20 h-20 md:w-28 md:h-28 flex items-center justify-center;
+  }
+
+  .logo-image {
+    @apply max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100;
+  }
+
   .animate-infinite-scroll {
-    animation: infinite-scroll 25s linear infinite;
+    animation: infinite-scroll 37.5s linear infinite;
   }
 
   .animate-bounce {
