@@ -1,8 +1,15 @@
 ---
-import { getConcertPosts } from '../config/wp';
+import { getConcertPosts } from '../../config/wp';
 
 // Fetch initial concert posts from WordPress (first 9 for initial display)
-const initialConcertPosts = await getConcertPosts({ perPage: 9, page: 1 });
+// Handle the case where WordPress is down
+let initialConcertPosts = [];
+try {
+  initialConcertPosts = await getConcertPosts({ perPage: 9, page: 1 });
+} catch (error) {
+  console.warn("Failed to fetch concert posts from WordPress:", error.message);
+  initialConcertPosts = []; // Use empty array if fetch fails
+}
 
 // Transform WordPress posts to concert format using ACF fields
 const initialConciertos = initialConcertPosts.map(post => {
@@ -64,8 +71,10 @@ const initialConciertos = initialConcertPosts.map(post => {
 
 // Limit to 9 concerts to have multiple sets of 3 for carousel
 const displayedConcerts = initialConciertos.slice(0, 9);
+
 ---
 
+{(displayedConcerts.length > 0) ? (
 <section id="conciertos" class="py-20 bg-background-light">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <header class="text-center max-w-3xl mx-auto mb-12">
@@ -290,3 +299,4 @@ const displayedConcerts = initialConciertos.slice(0, 9);
     });
   </script>
 </section>
+) : null} {/* Close the conditional rendering */}

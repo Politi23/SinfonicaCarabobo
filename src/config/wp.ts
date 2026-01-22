@@ -128,7 +128,12 @@ export const getPosts = async ({ perPage = 6, page = 1, category = undefined }: 
 
 // New function to get only concert posts
 export const getConcertPosts = async ({ perPage = 3, page = 1 }: { perPage?: number, page?: number } = {}) => {
-  return await getPosts({ perPage, page, category: "conciertos" });
+  try {
+    return await getPosts({ perPage, page, category: "conciertos" });
+  } catch (error) {
+    console.warn("Failed to fetch concert posts from WordPress:", error.message);
+    return []; // Return empty array if fetch fails
+  }
 };
 
 export const getPostsInfo = async ({ perPage = 6, category = undefined }: { perPage?: number, category?: string } = {}) => {
