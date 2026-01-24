@@ -1,0 +1,95 @@
+---
+import SponsorshipCard from "./SponsorshipCard.astro";
+
+const tiers = [
+    {
+        title: "Patrocinio Bronce",
+        price: "$500",
+        features: [
+            "Publicación de un (1) flyer en el feed y una (1) historia en redes sociales (IG y FB) con mención.",
+            "Dos (2) asientos preferenciales en dos (2) conciertos al año.",
+            "Mención de la empresa en dos (2) actividades artísticas anuales.",
+        ],
+    },
+    {
+        title: "Patrocinio Plata",
+        price: "$1.000",
+        features: [
+            "Publicación de dos (2) flyers en el feed y dos (2) historias en redes sociales con mención.",
+            "Diseño y promoción de un (1) video tipo reel con vinculación de marca.",
+            "Cuatro (4) asientos preferenciales en tres (3) conciertos al año.",
+            "Mención de la empresa en tres (3) actividades artísticas anuales.",
+        ],
+    },
+    {
+        title: "Patrocinio Oro",
+        price: "$2.000",
+        features: [
+            "Publicación de dos (2) flyers en el feed y dos (2) historias en redes sociales con mención.",
+            "Diseño y promoción de un (1) video tipo reel con vinculación de marca.",
+            "Seis (6) asientos preferenciales en tres (3) conciertos al año.",
+            "Dos (2) pases preferenciales para sorteo en nombre de la empresa.",
+            "Mención de la empresa en tres (3) actividades artísticas anuales.",
+            "Área para stand en la entrada de la sala en un (1) concierto del año.",
+        ],
+    },
+    {
+        title: "Patrocinio Platino",
+        price: "$3.000",
+        isPlatinum: true,
+        features: [
+            "Publicación de tres (3) flyers en el feed y tres (3) historias en redes sociales con mención.",
+            "Diseño y promoción de un (1) video tipo reel con vinculación de marca.",
+            "Ocho (8) asientos preferenciales en tres (3) conciertos al año.",
+            "Cuatro (4) pases preferenciales para sorteo en tres (3) conciertos.",
+            "Mención de la empresa en tres (3) actividades artísticas.",
+            "Área para stand en la entrada de la sala en dos (2) conciertos.",
+            "Elaboración de pendón de vinculación (Patrocinante-OSC) para 3 conciertos.",
+            "Participación de un (1) músico de la orquesta en actividad de la empresa.",
+        ],
+    },
+];
+---
+
+<section
+    class="py-24 bg-gray-50 from-white to-gray-50 bg-gradient-to-b"
+    id="niveles"
+>
+    <div class="container mx-auto px-6 max-w-7xl">
+        <div class="text-center mb-16">
+            <h2
+                class="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-6"
+            >
+                Niveles <span class="text-primary">de Patrocinio</span>
+            </h2>
+            <p class="text-gray-500 text-lg max-w-3xl mx-auto">
+                Elija el nivel de compromiso que mejor se adapte a sus objetivos
+                corporativos y de responsabilidad social.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+            {tiers.map((tier) => <SponsorshipCard {...tier} />)}
+        </div>
+
+        <!-- Flexible Sponsorship Note -->
+        <div
+            class="mt-16 bg-white p-8 rounded-2xl shadow-sm border border-gray-100 max-w-4xl mx-auto text-center"
+        >
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                ¿Necesita una opción a medida?
+            </h3>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+                Ajustamos el valor del patrocinio según la proyección que
+                quieras hacer de tu marca. Los aportes pueden ser <span
+                    class="font-bold text-primary"
+                    >únicos, mensuales, bimensuales o trimestrales</span
+                >.
+            </p>
+            <p class="text-sm text-gray-400 italic">
+                * Cada aporte cubre gastos de músicos y artistas, asegurando el
+                funcionamiento de la OSC durante el año.
+            </p>
+        </div>
+    </div>
+</section>
