@@ -13,7 +13,7 @@ const { title, excerpt, image, date, category, slug } = Astro.props as Props;
 <article class="group flex flex-col bg-surface-light dark:bg-card-dark rounded-lg overflow-hidden shadow-md hover:shadow-xl dark:shadow-none dark:hover:shadow-2xl dark:hover:shadow-black/50 transition-all duration-300 border border-border-light dark:border-gray-800">
   <div class="relative w-full aspect-[4/3] overflow-hidden">
     <a href={`/blog/${slug}`} class="block w-full h-full">
-      <img alt={title} class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" src={image} />
+      <img alt={title} class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" src={image || '/logosimplebbg.webp'} />
       <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80"></div>
     </a>
     <span class="absolute top-4 left-4 bg-black/100 backdrop-blur-sm border border-primary/40 text-primary px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm z-10">

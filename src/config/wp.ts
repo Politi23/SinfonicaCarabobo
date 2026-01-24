@@ -68,14 +68,14 @@ export const getPosts = async ({ perPage = 6, page = 1, category = undefined }: 
     const excerpt = decodeHtmlEntities(stripHtml(excerptRaw));
 
     // Featured image (using _embedded)
-    let image = "";
+    let image = ""; // Will be set based on context
     let imageCaption = "";
     try {
       const fm = post._embedded?.["wp:featuredmedia"]?.[0];
-      image = fm?.source_url || "";
+      image = fm?.source_url || ""; // Use featured image if available
       imageCaption = fm?.caption?.rendered || "";
     } catch (e) {
-      image = "";
+      image = ""; // Set to empty if there's an error
       imageCaption = "";
     }
 
@@ -129,7 +129,12 @@ export const getPosts = async ({ perPage = 6, page = 1, category = undefined }: 
 // New function to get only concert posts
 export const getConcertPosts = async ({ perPage = 3, page = 1 }: { perPage?: number, page?: number } = {}) => {
   try {
-    return await getPosts({ perPage, page, category: "conciertos" });
+    const posts = await getPosts({ perPage, page, category: "conciertos" });
+    // Add white square as fallback for concert posts
+    return posts.map(post => ({
+      ...post,
+      image: post.image || "/white-square-64.webp"
+    }));
   } catch (error) {
     console.warn("Failed to fetch concert posts from WordPress:", error.message);
     return []; // Return empty array if fetch fails

@@ -8,8 +8,18 @@ import Pagination from "../../../components/blog/Pagination.astro";
 const { page } = Astro.params;
 const currentPage = page ? parseInt(page, 10) : 1;
 
-const { totalPages } = await getPostsInfo();
-const posts = await getPosts({ page: currentPage });
+let totalPages = 1;
+let posts = [];
+
+try {
+  const postsInfo = await getPostsInfo();
+  totalPages = postsInfo.totalPages;
+  posts = await getPosts({ page: currentPage });
+} catch (error) {
+  console.error("Failed to fetch blog posts from WordPress:", error.message);
+  totalPages = 0;
+  posts = [];
+}
 ---
 
 <Layout>
@@ -23,28 +33,37 @@ const posts = await getPosts({ page: currentPage });
     <HeroHeader />
 
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12">
-      <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
-      >
-        {
-          posts.map((p) => (
-            <BlogCard
-              title={p.title}
-              excerpt={p.excerpt}
-              image={p.image}
-              date={p.date}
-              category={p.category}
-              slug={p.slug}
-            />
-          ))
-        }
-      </div>
+      {posts.length > 0 ? (
+        <>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
+          >
+            {
+              posts.map((p) => (
+                <BlogCard
+                  title={p.title}
+                  excerpt={p.excerpt}
+                  image={p.image}
+                  date={p.date}
+                  category={p.category}
+                  slug={p.slug}
+                />
+              ))
+            }
+          </div>
 
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        baseUrl="/blog/page"
-      />
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            baseUrl="/blog/page"
+          />
+        </>
+      ) : (
+        <div class="text-center py-12">
+          <p class="text-lg text-text-dark">No se pudieron cargar las entradas del blog en este momento.</p>
+          <p class="text-text-muted">Por favor, inténtelo de nuevo más tarde.</p>
+        </div>
+      )}
     </section>
   </main>
 </Layout>

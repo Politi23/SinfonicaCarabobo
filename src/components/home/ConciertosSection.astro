@@ -65,7 +65,8 @@ const initialConciertos = initialConcertPosts.map(post => {
     tipo: post.category || 'Concierto',
     descripcion: acfFields.event_description || post.excerpt.substring(0, 150) + (post.excerpt.length > 150 ? '...' : ''),
     precio: acfFields.event_price,
-    slug: post.slug
+    slug: post.slug,
+    image: post.image
   };
 });
 
@@ -109,7 +110,7 @@ const displayedConcerts = initialConciertos.slice(0, 9);
         <div class="carousel-slides flex transition-transform duration-300 ease-in-out">
           {displayedConcerts.map((concierto) => (
             <div class="carousel-slide flex-shrink-0 px-3 flex justify-center">
-              <article class="bg-surface-light border border-border-light p-4 w-[300px] h-[280px] flex flex-col justify-between">
+              <article class="bg-surface-light border border-border-light p-4 w-[380px] h-[320px] flex flex-col justify-between rounded-lg">
                 <div class="grid grid-cols-[100px_1fr] gap-x-2 items-start">
                   <div class="border-r border-border-light pr-2 text-left">
                     <span class="block font-serif text-sm font-bold text-primary mb-1">{concierto.fechaCorta}</span>
@@ -130,7 +131,15 @@ const displayedConcerts = initialConciertos.slice(0, 9);
                   </div>
                 </div>
 
-                <div class="flex flex-col gap-1 mt-2 flex-grow">
+                <div class="flex justify-center my-2">
+                  <img
+                    src={concierto.image || "/white-square-64.webp"}
+                    alt={concierto.titulo}
+                    class="w-32 h-32 object-cover rounded-sm"
+                  />
+                </div>
+
+                <div class="flex flex-col gap-1 mt-1 flex-grow">
                   <p class="text-xs text-text-muted text-center overflow-hidden line-clamp-2 flex-grow">{concierto.descripcion}</p>
 
                   <div class="flex gap-1.5 flex-wrap justify-center mt-auto">
