@@ -76,8 +76,8 @@ const displayedConcerts = initialConciertos.slice(0, 9);
 ---
 
 {(displayedConcerts.length > 0) ? (
-<section id="conciertos" class="py-20 bg-background-light">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="conciertos" class="py-20 bg-background-light overflow-hidden">
+  <div class="max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
     <header class="text-center max-w-3xl mx-auto mb-12">
       <p class="text-2xl tracking-[0.08em] uppercase text-primary mb-2">Próximos conciertos</p>
     </header>
@@ -109,10 +109,10 @@ const displayedConcerts = initialConciertos.slice(0, 9);
       <div class="carousel-track overflow-hidden">
         <div class="carousel-slides flex transition-transform duration-300 ease-in-out">
           {displayedConcerts.map((concierto) => (
-            <div class="carousel-slide flex-shrink-0 px-3 flex justify-center">
-              <article class="bg-surface-light border border-border-light p-4 w-[380px] h-[320px] flex flex-col justify-between rounded-lg">
-                <div class="grid grid-cols-[100px_1fr] gap-x-2 items-start">
-                  <div class="border-r border-border-light pr-2 text-left">
+            <div class="carousel-slide flex-shrink-0 px-3 flex justify-center w-full">
+              <article class="bg-surface-light border border-border-light p-4 w-full max-w-[480px] min-h-[350px] flex flex-col justify-between rounded-lg">
+                <div class="grid grid-cols-[minmax(80px,28%)_1fr] gap-x-4 items-start">
+                  <div class="border-r border-border-light pr-4 text-left">
                     <span class="block font-serif text-sm font-bold text-primary mb-1">{concierto.fechaCorta}</span>
                     <span class="block mt-1 text-xs text-text-muted">{concierto.dia}</span>
                     <p class="m-0 text-xs text-text-muted flex flex-wrap gap-1 mt-1">
@@ -131,11 +131,11 @@ const displayedConcerts = initialConciertos.slice(0, 9);
                   </div>
                 </div>
 
-                <div class="flex justify-center my-2">
+                <div class="flex justify-center my-4">
                   <img
                     src={concierto.image || "/white-square-64.webp"}
                     alt={concierto.titulo}
-                    class="w-32 h-32 object-cover rounded-sm"
+                    class="w-[45%] max-w-[180px] aspect-square object-cover rounded-sm"
                   />
                 </div>
 
