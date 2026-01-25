@@ -4,7 +4,8 @@ interface Props {
     price: string;
     features: string[];
     isPlatinum?: boolean;
-    color?: string;
+    titleClass?: string;
+    buttonClass?: string;
 }
 
 const {
@@ -12,17 +13,16 @@ const {
     price,
     features,
     isPlatinum = false,
-    color = "bg-gray-100",
+    titleClass = 'text-gray-500',
+    buttonClass = 'bg-gray-500 hover:bg-primary-dark',
 } = Astro.props;
 ---
 
 <div
-    class="relative flex flex-col p-8 rounded-3xl transition-all duration-300 bg-white hover:shadow-xl border border-gray-100 h-full"
+    class={`relative flex flex-col p-8 rounded-3xl transition-all duration-300 bg-white hover:shadow-xl border border-gray-200 hover:border-gray-300 h-full`}
 >
     <div class="mb-8">
-        <h3
-            class="text-xl font-bold mb-2 uppercase tracking-wide text-gray-500"
-        >
+        <h3 class={`text-xl font-bold mb-2 uppercase tracking-wide ${titleClass}`}>
             {title}
         </h3>
         <div class="flex items-baseline gap-1">
@@ -61,7 +61,7 @@ const {
 
     <a
         href="mailto:sinfocarabobo@gmail.com"
-        class="w-full py-3 px-6 rounded-xl font-bold text-center transition-all duration-300 transform hover:-translate-y-1 bg-gray-900 text-white hover:bg-primary"
+        class={`w-full py-3 px-6 rounded-xl font-bold text-center transition-all duration-300 transform hover:-translate-y-1 ${buttonClass} text-white`}
     >
         Elegir Plan
     </a>
