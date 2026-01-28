@@ -1,10 +1,9 @@
 ---
-import SponsorshipCard from "./SponsorshipCard.astro";
-
 const tiers = [
     {
         title: "Patrocinio Bronce",
         price: "$500",
+        id: "bronze",
         features: [
             "Publicación de un (1) flyer en el feed y una (1) historia en redes sociales (IG y FB) con mención.",
             "Dos (2) asientos preferenciales en dos (2) conciertos al año.",
@@ -14,6 +13,7 @@ const tiers = [
     {
         title: "Patrocinio Plata",
         price: "$1.000",
+        id: "silver",
         features: [
             "Publicación de dos (2) flyers en el feed y dos (2) historias en redes sociales con mención.",
             "Diseño y promoción de un (1) video tipo reel con vinculación de marca.",
@@ -24,6 +24,8 @@ const tiers = [
     {
         title: "Patrocinio Oro",
         price: "$2.000",
+        id: "gold",
+        isFeatured: true,
         features: [
             "Publicación de dos (2) flyers en el feed y dos (2) historias en redes sociales con mención.",
             "Diseño y promoción de un (1) video tipo reel con vinculación de marca.",
@@ -36,6 +38,7 @@ const tiers = [
     {
         title: "Patrocinio Platino",
         price: "$3.000",
+        id: "platinum",
         isPlatinum: true,
         features: [
             "Publicación de tres (3) flyers en el feed y tres (3) historias en redes sociales con mención.",
@@ -49,47 +52,296 @@ const tiers = [
         ],
     },
 ];
+
+const tierStyles = {
+    bronze: {
+        border: "border-white/10",
+        text: "text-amber-500",
+        badge: "border-amber-500/30 text-amber-500",
+        button: "bg-white text-black hover:bg-amber-500 hover:text-white",
+        icon: "text-amber-500",
+    },
+    silver: {
+        border: "border-white/10",
+        text: "text-slate-400",
+        badge: "border-slate-400/30 text-slate-400",
+        button: "bg-white text-black hover:bg-slate-400 hover:text-white",
+        icon: "text-slate-400",
+    },
+    gold: {
+        border: "border-primary/20",
+        text: "text-primary",
+        badge: "border-primary text-primary",
+        button: "bg-primary text-black hover:bg-white",
+        icon: "text-primary",
+    },
+    platinum: {
+        border: "border-indigo-500/30",
+        text: "text-indigo-400",
+        badge: "border-indigo-500 text-indigo-400",
+        button: "bg-indigo-600 text-white hover:bg-white hover:text-black",
+        icon: "text-indigo-400",
+    },
+};
+
+type SponsorshipTier = {
+    title: string;
+    price: string;
+    id: string;
+    features: string[];
+    isFeatured?: boolean;
+    isPlatinum?: boolean;
+};
+
+const getStyles = (tier: SponsorshipTier) => {
+    if (tier.isPlatinum) return tierStyles.platinum;
+    if (tier.isFeatured) return tierStyles.gold;
+    if (tier.price === "$1.000") return tierStyles.silver;
+    return tierStyles.bronze;
+};
 ---
 
 <section
-    class="py-24 bg-gray-50 from-white to-gray-50 bg-gradient-to-b"
     id="niveles"
+    class="py-24 bg-black text-white overflow-hidden font-light"
 >
-    <div class="container mx-auto px-6 max-w-7xl">
-        <div class="text-center mb-16">
-            <h2
-                class="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-6"
-            >
-                Niveles <span class="text-primary">de Patrocinio</span>
-            </h2>
-            <p class="text-gray-500 text-lg max-w-3xl mx-auto">
-                Elija el nivel de compromiso que mejor se adapte a sus objetivos
-                corporativos y de responsabilidad social.
-            </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-            {tiers.map((tier) => <SponsorshipCard {...tier} />)}
-        </div>
-
-        <!-- Flexible Sponsorship Note -->
+    <div class="container mx-auto px-6 max-w-7xl relative z-10">
         <div
-            class="mt-16 bg-white p-8 rounded-2xl shadow-sm border border-gray-100 max-w-4xl mx-auto text-center"
+            class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8"
         >
-            <h3 class="text-2xl font-bold text-gray-900 mb-4">
-                ¿Necesita una opción a medida?
-            </h3>
-            <p class="text-gray-600 mb-6 leading-relaxed">
-                Ajustamos el valor del patrocinio según la proyección que
-                quieras hacer de tu marca. Los aportes pueden ser <span
-                    class="font-bold text-primary"
-                    >únicos, mensuales, bimensuales o trimestrales</span
-                >.
+            <div class="max-w-2xl select-none">
+                <h2
+                    class="text-4xl md:text-6xl font-display font-light leading-tight"
+                >
+                    Niveles de <br />
+                    <span class="font-bold text-primary italic">Patrocinio</span
+                    >
+                </h2>
+            </div>
+            <p
+                class="text-gray-400 text-lg max-w-sm font-light border-l border-primary/40 pl-6 leading-relaxed select-none"
+            >
+                Seleccione el alcance estratégico para su marca y forme parte de
+                nuestra historia.
             </p>
-            <p class="text-sm text-gray-400 italic">
-                * Cada aporte cubre gastos de músicos y artistas, asegurando el
-                funcionamiento de la OSC durante el año.
+        </div>
+
+        <div
+            class="hidden lg:grid grid-cols-4 gap-px bg-white/10 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-[2px] h-[680px]"
+        >
+            {
+                tiers.map((tier) => {
+                    const styles = getStyles(tier);
+                    const summary = tier.features.slice(0, 2);
+                    const details = tier.features.slice(2);
+
+                    return (
+                        <div class="group relative flex flex-col p-10 bg-black/60 hover:bg-black/40 transition-all duration-500 h-full overflow-hidden">
+                            <div class="mb-10 select-none">
+                                <span
+                                    class={`inline-block px-3 py-0.5 text-[10px] font-bold uppercase tracking-widest mb-6 border ${styles.badge}`}
+                                >
+                                    {tier.id}
+                                </span>
+                                <h3 class="text-xl font-display font-bold mb-2 text-gray-100 uppercase tracking-wide">
+                                    {tier.title.replace("Patrocinio ", "")}
+                                </h3>
+                                <div class="text-4xl font-display text-primary italic">
+                                    {tier.price}
+                                </div>
+                            </div>
+
+                            <div class="space-y-8 flex-grow">
+                                <ul class="space-y-5">
+                                    {summary.map((feature) => (
+                                        <li class="flex items-start gap-4">
+                                            <div
+                                                class={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 ${styles.icon} bg-current opacity-60 group-hover:opacity-100 transition-opacity`}
+                                            />
+                                            <span class="text-sm text-gray-400 leading-relaxed font-light group-hover:text-gray-200 transition-colors">
+                                                {feature}
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            <div class="mt-auto group-hover:opacity-0 transition-opacity text-center py-4 border-t border-white/5">
+                                <span class="text-[10px] uppercase tracking-[0.3em] text-gray-500 italic">
+                                    Ver detalles ↑
+                                </span>
+                            </div>
+
+                            <div class="absolute inset-x-0 bottom-0 bg-gray-900 p-10 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] flex flex-col h-[88%] z-20 border-t border-primary/30 shadow-2xl">
+                                <div class="overflow-y-auto pr-2 custom-scrollbar flex-grow mb-8">
+                                    <p class="font-display italic text-primary mb-6 text-sm tracking-widest select-none uppercase">
+                                        Beneficios Incluidos
+                                    </p>
+                                    <ul class="space-y-5">
+                                        {details.map((feature) => (
+                                            <li class="flex items-start gap-4">
+                                                <svg
+                                                    class={`w-4 h-4 flex-shrink-0 mt-0.5 ${styles.icon}`}
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M5 13l4 4L19 7"
+                                                    />
+                                                </svg>
+                                                <span class="text-sm text-gray-300 leading-relaxed font-light">
+                                                    {feature}
+                                                </span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <a
+                                    href="mailto:sinfocarabobo@gmail.com"
+                                    class={`block w-full py-4 rounded-xl font-bold text-[11px] uppercase tracking-[0.2em] text-center transition-all active:scale-[0.98] cursor-pointer select-none shadow-xl ${styles.button}`}
+                                >
+                                    Elegir Plan
+                                </a>
+                            </div>
+                        </div>
+                    );
+                })
+            }
+        </div>
+
+        <div class="lg:hidden space-y-4">
+            {
+                tiers.map((tier) => {
+                    const styles = getStyles(tier);
+                    return (
+                        <details class="group bg-black/60 border border-white/10 rounded-2xl overflow-hidden backdrop-blur-sm">
+                            <summary class="list-none cursor-pointer p-8 flex items-center justify-between select-none">
+                                <div>
+                                    <p
+                                        class={`text-[10px] font-bold uppercase tracking-[0.2em] mb-1 ${styles.text}`}
+                                    >
+                                        {tier.title}
+                                    </p>
+                                    <p class="text-3xl font-display italic text-gray-100">
+                                        {tier.price}
+                                    </p>
+                                </div>
+                                <div class="text-primary group-open:rotate-180 transition-transform">
+                                    <svg
+                                        class="w-6 h-6"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            d="M19 9l-7 7-7-7"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                    </svg>
+                                </div>
+                            </summary>
+                            <div class="px-8 pb-8 pt-2 border-t border-white/5 bg-white/[0.02]">
+                                <ul class="space-y-4 mb-8">
+                                    {tier.features.map((feature) => (
+                                        <li class="flex items-start gap-3">
+                                            <div class="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 bg-primary opacity-60" />
+                                            <span class="text-sm text-gray-400 font-light leading-relaxed">
+                                                {feature}
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <a
+                                    href="mailto:sinfocarabobo@gmail.com"
+                                    class={`block w-full py-4 rounded-xl text-[11px] uppercase tracking-widest font-bold text-center ${styles.button}`}
+                                >
+                                    Contactar
+                                </a>
+                            </div>
+                        </details>
+                    );
+                })
+            }
+        </div>
+
+        <div
+            class="mt-32 relative py-20 px-10 border border-white/10 rounded-[2.5rem] bg-zinc-900/50 overflow-hidden shadow-2xl"
+        >
+            <div
+                class="absolute inset-0 z-0 opacity-30 bg-[url('estudiantina.webp')] bg-cover bg-center bg-fixed grayscale"
+            >
+            </div>
+
+            <div
+                class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60 z-1"
+            >
+            </div>
+
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                <span
+                    class="text-primary text-[10px] font-bold uppercase tracking-[0.4em] mb-6 block italic"
+                    >Personalización</span
+                >
+                <h3
+                    class="text-3xl md:text-5xl font-display font-light text-white mb-8 leading-tight"
+                >
+                    ¿Busca un impacto <br />
+                    <span
+                        class="font-bold italic text-primary underline underline-offset-[12px] decoration-white/10"
+                        >empresarial a medida?</span
+                    >
+                </h3>
+                <p
+                    class="text-gray-300 max-w-2xl mx-auto mb-12 text-lg font-light leading-relaxed tracking-wide"
+                >
+                    Diseñamos colaboraciones exclusivas para sus objetivos
+                    filantrópicos. Desde patrocinios mensuales hasta galas
+                    corporativas privadas.
+                </p>
+                <div class="flex items-center justify-center">
+                    <a
+                        href="mailto:sinfocarabobo@gmail.com"
+                        class="group relative inline-block px-12 py-5 bg-primary text-black text-[11px] font-bold tracking-[0.3em] uppercase transition-all hover:bg-white active:scale-95 rounded-full"
+                    >
+                        Consultar Alianza
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 flex items-center gap-4 select-none">
+            <div
+                class="h-[1px] flex-grow bg-gradient-to-r from-primary/30 to-transparent"
+            >
+            </div>
+            <p
+                class="text-gray-600 text-[10px] tracking-[0.3em] uppercase italic font-light"
+            >
+                * Todos los beneficios están sujetos a términos de convenio
             </p>
         </div>
     </div>
 </section>
+
+<style>
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 3px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background-color: #ca8a04;
+        border-radius: 10px;
+    }
+    .select-none {
+        user-select: none;
+        -webkit-user-select: none;
+    }
+</style>
