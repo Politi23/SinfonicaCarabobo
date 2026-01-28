@@ -1,7 +1,15 @@
 ---
 const navLinks = [
   { href: "/", label: "Inicio", active: false },
-  { href: "/nosotros", label: "Nosotros", active: false },
+  {
+    href: "/nosotros",
+    label: "Nosotros",
+    active: false,
+    dropdown: [
+      { href: "/nosotros/reconocimientos", label: "Reconocimientos" },
+      { href: "/nosotros/discografia", label: "Discografia" }
+    ]
+  },
   { href: "/agrupaciones", label: "Agrupaciones", active: false },
   { href: "/programas", label: "Programas", active: false },
   { href: "/blog", label: "Blog", active: false },
@@ -59,13 +67,37 @@ const navLinks = [
         {
           navLinks.map((link) => (
             <li class="nav-item">
-              <a
-                href={link.href}
-                class={`nav-link ${link.active ? "nav-link-active" : ""}`}
-              >
-                <span class="nav-link-text">{link.label}</span>
-                <span class="nav-link-underline" />
-              </a>
+              {link.dropdown ? (
+                <div class="nav-dropdown">
+                  <a
+                    href={link.href}
+                    class={`nav-link ${link.active ? "nav-link-active" : ""}`}
+                  >
+                    <div class="nav-link-content">
+                      <span class="nav-link-text">{link.label}</span>
+                      <span class="nav-dropdown-arrow">▼</span>
+                    </div>
+                    <span class="nav-link-underline" />
+                  </a>
+                  <ul class="nav-dropdown-menu">
+                    {link.dropdown.map((subLink) => (
+                      <li class="nav-dropdown-item">
+                        <a href={subLink.href} class="nav-dropdown-link">
+                          {subLink.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <a
+                  href={link.href}
+                  class={`nav-link ${link.active ? "nav-link-active" : ""}`}
+                >
+                  <span class="nav-link-text">{link.label}</span>
+                  <span class="nav-link-underline" />
+                </a>
+              )}
             </li>
           ))
         }
@@ -255,6 +287,64 @@ const navLinks = [
     transform: translateX(-50%) scaleX(0);
   }
 
+  .nav-link-content {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* Dropdown menu styles */
+  .nav-dropdown {
+    position: relative;
+  }
+  .nav-dropdown-arrow {
+    margin-left: 4px;
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+  }
+  .nav-dropdown:hover .nav-dropdown-arrow {
+    transform: rotate(180deg);
+  }
+  .nav-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 10px;
+    min-width: 200px;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 8px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  .nav-dropdown:hover .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .nav-dropdown-item {
+    list-style: none;
+  }
+  .nav-dropdown-link {
+    display: block;
+    padding: 12px 20px;
+    color: var(--gray-light);
+    text-decoration: none;
+    font-family: "Merriweather", serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    transition: all 0.3s ease;
+  }
+  .nav-dropdown-link:hover {
+    color: var(--gold);
+    background: rgba(194, 143, 36, 0.1);
+  }
   /* ============================================
      RESPONSIVE STYLES
   ============================================ */
