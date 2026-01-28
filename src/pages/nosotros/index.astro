@@ -1,7 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/global/Header.astro";
-import HeroHeader from "../../components/HeroHeader.astro";
 ---
 
 <Layout>
@@ -88,6 +87,130 @@ import HeroHeader from "../../components/HeroHeader.astro";
                 id="quienes-somos"
             >
                 <div class="container mx-auto px-6 max-w-6xl relative z-10">
+                    <!-- Texto introductorio -->
+                    <div class="relative text-center mb-24">
+                        <!-- Decorative frame -->
+                        <div class="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 rounded-2xl"></div>
+                        <div class="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-primary/30 rounded-tl-lg"></div>
+                        <div class="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-primary/30 rounded-tr-lg"></div>
+                        <div class="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-primary/30 rounded-bl-lg"></div>
+                        <div class="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-primary/30 rounded-br-lg"></div>
+
+                        <!-- Musical notes decoration -->
+                        <div class="absolute -top-6 left-1/4 text-primary/20 text-4xl">♪</div>
+                        <div class="absolute -top-4 right-1/4 text-primary/20 text-3xl">♫</div>
+                        <div class="absolute -bottom-6 left-1/3 text-primary/20 text-2xl">♪</div>
+                        <div class="absolute -bottom-4 right-1/3 text-primary/20 text-3xl">♫</div>
+
+                        <div class="relative bg-white/50 backdrop-blur-sm p-8 md:p-12 rounded-2xl border border-primary/10 shadow-lg">
+                            <p class="text-lg md:text-xl text-text-dark leading-relaxed max-w-4xl mx-auto font-serif italic">
+                                Durante 49 años, hemos construido cultura y difundido el arte y la música en todas sus vertientes, conservando tradiciones y liderando proyectos innovadores. Nos dedicamos a crear espacios de sano esparcimiento, elevación espiritual y desarrollo social a través de la cultura, con más de 2.400 músicos formados y un impacto anual que alcanza a miles de personas.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Golden separator -->
+                    <div class="flex items-center justify-center mb-16">
+                        <div class="flex-1 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+                        <div class="mx-8 text-primary text-4xl">♪</div>
+                        <div class="flex-1 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+                    </div>
+
+                    <!-- Misión, Visión, Valores -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-24">
+                        <!-- Misión -->
+                        <div class="relative text-center group md:col-span-1">
+                            <!-- Decorative background -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent-yellow/5 rounded-3xl transform rotate-1 group-hover:rotate-0 transition-transform duration-500"></div>
+                            <div class="absolute inset-0 bg-gradient-to-tl from-primary/3 to-transparent rounded-3xl transform -rotate-1 group-hover:rotate-0 transition-transform duration-500"></div>
+
+                            <!-- Musical staff lines -->
+                            <div class="absolute top-8 left-4 right-4 h-px bg-primary/20"></div>
+                            <div class="absolute top-12 left-4 right-4 h-px bg-primary/20"></div>
+                            <div class="absolute top-16 left-4 right-4 h-px bg-primary/20"></div>
+                            <div class="absolute top-20 left-4 right-4 h-px bg-primary/20"></div>
+                            <div class="absolute top-24 left-4 right-4 h-px bg-primary/20"></div>
+
+                            <div class="relative bg-white/70 backdrop-blur-sm p-6 md:p-8 rounded-3xl border border-primary/20 shadow-xl group-hover:shadow-2xl transition-all duration-500">
+                                <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-lg">
+                                    <svg class="w-7 h-7 md:w-8 md:h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl md:text-2xl font-display font-bold text-text-dark mb-3 md:mb-4">Misión</h3>
+                                <p class="text-sm md:text-base text-text-dark leading-relaxed">
+                                    Contribuir a la transformación social a través de la formación de líderes con pensamiento crítico, mediante la ejecución de la música sinfónica.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Visión -->
+                        <div class="relative text-center group md:col-span-1 lg:col-span-1">
+                            <!-- Decorative background -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent-yellow/5 rounded-3xl transform rotate-1 group-hover:rotate-0 transition-transform duration-500"></div>
+                            <div class="absolute inset-0 bg-gradient-to-tl from-primary/3 to-transparent rounded-3xl transform -rotate-1 group-hover:rotate-0 transition-transform duration-500"></div>
+
+                            <!-- Corner decorations -->
+                            <div class="absolute top-2 left-2 w-6 h-6 border-l-2 border-t-2 border-primary/40 rounded-tl-lg"></div>
+                            <div class="absolute top-2 right-2 w-6 h-6 border-r-2 border-t-2 border-primary/40 rounded-tr-lg"></div>
+                            <div class="absolute bottom-2 left-2 w-6 h-6 border-l-2 border-b-2 border-primary/40 rounded-bl-lg"></div>
+                            <div class="absolute bottom-2 right-2 w-6 h-6 border-r-2 border-b-2 border-primary/40 rounded-br-lg"></div>
+
+                            <!-- Musical staff lines -->
+                            <div class="absolute top-8 left-4 right-4 h-px bg-primary/20"></div>
+                            <div class="absolute top-12 left-4 right-4 h-px bg-primary/20"></div>
+                            <div class="absolute top-16 left-4 right-4 h-px bg-primary/20"></div>
+                            <div class="absolute top-20 left-4 right-4 h-px bg-primary/20"></div>
+                            <div class="absolute top-24 left-4 right-4 h-px bg-primary/20"></div>
+
+                            <div class="relative bg-white/70 backdrop-blur-sm p-6 md:p-8 rounded-3xl border border-primary/20 shadow-xl group-hover:shadow-2xl transition-all duration-500">
+                                <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-lg">
+                                    <svg class="w-7 h-7 md:w-8 md:h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl md:text-2xl font-display font-bold text-text-dark mb-3 md:mb-4">Visión</h3>
+                                <p class="text-sm md:text-base text-text-dark leading-relaxed">
+                                    Ser reconocidos como una institución de vanguardia en el desarrollo, divulgación y enseñanza de la música sinfónica, consolidándonos como la máxima expresión de la cultura carabobeña en Venezuela y el mundo.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Valores -->
+                        <div class="relative text-center group md:col-span-2 lg:col-span-1">
+                            <!-- Decorative background -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent-yellow/5 rounded-3xl transform rotate-1 group-hover:rotate-0 transition-transform duration-500"></div>
+                            <div class="absolute inset-0 bg-gradient-to-tl from-primary/3 to-transparent rounded-3xl transform -rotate-1 group-hover:rotate-0 transition-transform duration-500"></div>
+
+                            <!-- Musical staff lines -->
+                            <div class="absolute top-8 left-4 right-4 h-px bg-primary/20"></div>
+                            <div class="absolute top-12 left-4 right-4 h-px bg-primary/20"></div>
+                            <div class="absolute top-16 left-4 right-4 h-px bg-primary/20"></div>
+                            <div class="absolute top-20 left-4 right-4 h-px bg-primary/20"></div>
+                            <div class="absolute top-24 left-4 right-4 h-px bg-primary/20"></div>
+
+                            <div class="relative bg-white/70 backdrop-blur-sm p-6 md:p-8 rounded-3xl border border-primary/20 shadow-lg group-hover:shadow-xl transition-all duration-500">
+                                <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-lg">
+                                    <svg class="w-7 h-7 md:w-8 md:h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl md:text-2xl font-display font-bold text-text-dark mb-3 md:mb-4">Valores</h3>
+                                <p class="text-sm md:text-base text-text-dark leading-relaxed">
+                                    Sentido de pertenencia, respeto, disciplina, empatía, corresponsabilidad y tolerancia.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Golden separator -->
+                    <div class="flex items-center justify-center mb-16">
+                        <div class="flex-1 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+                        <div class="mx-8 text-primary text-4xl">♫</div>
+                        <div class="flex-1 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+                    </div>
+
                     <div class="flex flex-col items-center text-center mb-24">
                         <span
                             class="text-primary text-sm font-bold tracking-[0.2em] uppercase mb-4 block"
