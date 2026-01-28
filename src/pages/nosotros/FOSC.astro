@@ -1,4 +1,4 @@
----
+a---
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/global/Header.astro";
 import HeroHeader from "../../components/HeroHeader.astro";
@@ -97,138 +97,38 @@ import HeroHeader from "../../components/HeroHeader.astro";
                         >
                     </h2>
 
-                    <div
-                        class="max-w-4xl space-y-8 text-lg md:text-xl leading-relaxed text-text-dark font-serif"
-                    >
-                        <p>
-                            La Fundación Orquesta Sinfónica de Carabobo (FOSC)
-                            es una organización sin fines de lucro que, desde el
-                            14 de diciembre de 1993, se ha dedicado al cultivo,
-                            desarrollo y divulgación de la música sinfónica.
-                        </p>
-                        <p>
-                            Nos caracterizamos por ofrecer espectáculos de alta
-                            factura en espacios convencionales y no
-                            convencionales, democratizando el acceso a la
-                            cultura y formando a las nuevas generaciones.
-                        </p>
+                    <!-- Texto introductorio -->
+                    <div class="relative text-center mb-24">
+                        <!-- Decorative frame -->
+                        <div class="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 rounded-2xl"></div>
+                        <div class="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-primary/30 rounded-tl-lg"></div>
+                        <div class="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-primary/30 rounded-tr-lg"></div>
+                        <div class="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-primary/30 rounded-bl-lg"></div>
+                        <div class="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-primary/30 rounded-br-lg"></div>
+
+                        <!-- Musical notes decoration -->
+                        <div class="absolute -top-6 left-1/4 text-primary/20 text-4xl">♪</div>
+                        <div class="absolute -top-4 right-1/4 text-primary/20 text-3xl">♫</div>
+                        <div class="absolute -bottom-6 left-1/3 text-primary/20 text-2xl">♪</div>
+                        <div class="absolute -bottom-4 right-1/3 text-primary/20 text-3xl">♫</div>
+
+                        <div class="relative bg-white/50 backdrop-blur-sm p-8 md:p-12 rounded-2xl border border-primary/10 shadow-lg">
+                            <h3 class="text-2xl md:text-3xl font-display font-bold text-text-dark mb-6">¿Quiénes somos?</h3>
+                            <p class="text-lg md:text-xl text-text-dark leading-relaxed max-w-4xl mx-auto font-serif italic">
+                                La FOSC es una organización sin fines de lucro fundada el 14 de diciembre de 1993, dedicada al cultivo, desarrollo y divulgación de la música sinfónica en el estado Carabobo. Su labor incluye la formación musical de niños, niñas y adolescentes, con especial atención a aquellos de escasos recursos y condiciones especiales, garantizando la continuidad de la Orquesta Sinfónica de Carabobo con altos estándares de calidad.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Cards Grid -->
-                <div class="grid md:grid-cols-3 gap-8 mb-32">
-                    <!-- Misión -->
-                    <div
-                        class="group bg-surface-light p-10 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgb(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-2 border border-border-light"
-                    >
-                        <div
-                            class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors"
-                        >
-                            <svg
-                                class="w-6 h-6 text-primary"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                ><path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1.5"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg
-                            >
-                        </div>
-                        <h3
-                            class="text-2xl font-display font-bold mb-4 text-text-dark"
-                        >
-                            Misión
-                        </h3>
-                        <p class="text-text-dark leading-relaxed">
-                            Transformar vidas a través de la educación de
-                            líderes con pensamiento crítico mediante la
-                            ejecución de la música sinfónica.
-                        </p>
+                    <!-- Imagen de orquesta -->
+                    <div class="mt-4 mb-16">
+                        <img
+                            src="/orchestra1.webp"
+                            alt="Orquesta Sinfónica"
+                            class="w-full max-w-3xl mx-auto rounded-2xl shadow-xl border border-primary/20"
+                        />
                     </div>
-
-                    <!-- Visión -->
-                    <div
-                        class="group bg-surface-light p-10 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgb(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-2 border border-border-light"
-                    >
-                        <div
-                            class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors"
-                        >
-                            <svg
-                                class="w-6 h-6 text-primary"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                ><path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1.5"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                ></path><path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1.5"
-                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                                ></path></svg
-                            >
-                        </div>
-                        <h3
-                            class="text-2xl font-display font-bold mb-4 text-text-dark"
-                        >
-                            Visión
-                        </h3>
-                        <p class="text-text-dark leading-relaxed">
-                            Ser vanguardia nacional e internacional en el
-                            desarrollo, divulgación y enseñanza de la música
-                            sinfónica.
-                        </p>
-                    </div>
-
-                    <!-- Valores -->
-                    <div
-                        class="group bg-surface-light p-10 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgb(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-2 border border-border-light"
-                    >
-                        <div
-                            class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors"
-                        >
-                            <svg
-                                class="w-6 h-6 text-primary"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                ><path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1.5"
-                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                                ></path></svg
-                            >
-                        </div>
-                        <h3
-                            class="text-2xl font-display font-bold mb-4 text-text-dark"
-                        >
-                            Valores
-                        </h3>
-                        <ul class="text-text-dark space-y-2">
-                            <li class="flex items-center gap-3">
-                                <span
-                                    class="w-1.5 h-1.5 rounded-full bg-primary"
-                                ></span> Sentido de pertenencia
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <span
-                                    class="w-1.5 h-1.5 rounded-full bg-primary"
-                                ></span> Excelencia y Disciplina
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <span
-                                    class="w-1.5 h-1.5 rounded-full bg-primary"
-                                ></span> Empatía y Respeto
-                            </li>
-                        </ul>
-                    </div>
-                </div>
 
                 <!-- Objetivos -->
                 <div
@@ -313,84 +213,7 @@ import HeroHeader from "../../components/HeroHeader.astro";
             </div>
         </section>
 
-        <!-- PROGRAMAS - Parallax Effect Background -->
-        <div
-            class="relative py-24 bg-surface-dark text-text-light overflow-hidden"
-        >
-            <div
-                class="absolute inset-0 z-0 opacity-20 bg-[url('/sinfonica.webp')] bg-fixed bg-cover bg-center"
-            >
-            </div>
-            <div class="absolute inset-0 bg-black/60 z-0"></div>
 
-            <div class="container mx-auto px-6 max-w-6xl relative z-10">
-                <div class="text-center mb-16">
-                    <span
-                        class="text-primary text-sm font-bold tracking-[0.2em] uppercase mb-4 block"
-                        >Impacto Social</span
-                    >
-                    <h2
-                        class="text-4xl md:text-5xl font-display font-bold text-text-light"
-                    >
-                        Nuestros Programas
-                    </h2>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <h3 class="text-3xl font-bold mb-6 text-primary">
-                            Academia "Maestro José Calabrese"
-                        </h3>
-                        <p
-                            class="text-text-light leading-relaxedtext-lg mb-8 leading-relaxed"
-                        >
-                            Desde 2019, formamos a más de 500 estudiantes,
-                            incluyendo niños con Síndrome de Down, con el aval
-                            de la UNESCO. Una verdadera escuela de vida.
-                        </p>
-                        <a
-                            href="http://www.academiajosecalabrese.com"
-                            target="_blank"
-                            class="inline-flex items-center gap-2 text-text-light border-b border-primary pb-1 hover:text-primary transition-colors"
-                        >
-                            Visitar sitio oficial
-                            <svg
-                                class="w-4 h-4"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                ><path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
-                            >
-                        </a>
-                    </div>
-                    <div
-                        class="bg-white/10 p-8 rounded-2xl backdrop-blur-sm border border-white/10"
-                    >
-                        <div class="flex items-center gap-6 mb-6">
-                            <span class="text-5xl font-bold text-text-light"
-                                >1.500+</span
-                            >
-                            <span class="text-text-light leading-tight"
-                                >Personas impactadas<br />por concierto</span
-                            >
-                        </div>
-                        <div class="h-px w-full bg-white/20 mb-6"></div>
-                        <div class="flex items-center gap-6">
-                            <span class="text-5xl font-bold text-text-light"
-                                >80+</span
-                            >
-                            <span class="text-text-light leading-tight"
-                                >Becas otorgadas<br />anualmente</span
-                            >
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!-- CTA FINAL -->
         <section
