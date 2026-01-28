@@ -1,394 +1,275 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/global/Header.astro";
-import HeroHeader from "../../components/HeroHeader.astro";
 ---
 
 <Layout>
     <Header />
 
-    <main class="bg-background-light text-text-dark">
-        <!-- HERO SECTION -->
-        <HeroHeader />
+    <main class="bg-white text-gray-800">
+        <!-- Hero Section -->
+        <section
+            class="relative min-h-[50vh] flex items-center justify-center bg-gray-900 overflow-hidden"
+        >
+            <div
+                class="absolute inset-0 z-0 opacity-30 bg-[url('/sinfonica.webp')] bg-fixed bg-cover bg-center"
+            >
+            </div>
+            <div
+                class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80 z-0"
+            >
+            </div>
 
-        <!-- ORQUESTA HISTORY ("Historia") -->
-        <section class="py-24 md:py-32 relative overflow-hidden" id="historia">
-            <div class="container mx-auto px-6 max-w-6xl relative z-10">
-                <div class="flex flex-col items-center text-center mb-24">
-                    <span
-                        class="text-primary text-sm font-bold tracking-[0.2em] uppercase mb-4 block"
-                        >Nuestra Trayectoria</span
-                    >
-                    <h2
-                        class="text-4xl md:text-6xl font-display font-bold text-text-dark mb-12"
-                    >
-                        Orquesta Sinfónica<br /><span
-                            class="text-primary italic">de Carabobo</span
+            <!-- Decoración de esquinas -->
+            <div
+                class="absolute top-4 left-4 w-24 h-24 border-l-4 border-t-4 border-primary opacity-60"
+            >
+            </div>
+            <div
+                class="absolute top-4 right-4 w-24 h-24 border-r-4 border-t-4 border-primary opacity-60"
+            >
+            </div>
+
+            <div class="container mx-auto px-6 relative z-10 text-center pt-24">
+                <p
+                    class="text-2xl md:text-3xl italic text-gray-300 font-serif mb-6 animate-fade-in"
+                >
+                    "El alma musical de Carabobo"
+                </p>
+
+                <div class="flex justify-center mb-8">
+                    <div class="relative group">
+                        <!-- Glow effect background -->
+                        <div
+                            class="absolute inset-0 bg-primary/20 rounded-full blur-2xl scale-110 opacity-60 group-hover:opacity-80 transition-opacity duration-500"
                         >
-                    </h2>
+                        </div>
 
-                    <div
-                        class="max-w-4xl space-y-8 text-lg md:text-xl leading-relaxed text-text-dark font-serif"
-                    >
-                        <p>
-                            Fundada en octubre de 1976, la Orquesta Sinfónica de
-                            Carabobo (OSC), posee una trayectoria ininterrumpida
-                            en su labor cultural y educativa. Se ha convertido
-                            en un referente necesario tanto en el estado
-                            Carabobo y en toda Venezuela, cuando de música y
-                            arte se trata.
-                        </p>
-                        <p>
-                            Su labor artística y de formación como parte de un
-                            programa social, ha sido catalogada como el hecho
-                            más importante en la vida cultural carabobeña. En
-                            sus inicios como Orquesta Juvenil "Juan José
-                            Landaeta" Módulo Carabobo, fue dirigida por diversos
-                            jóvenes maestros de aquella época como Federico
-                            Núñez Corona, Juan Tomás Martínez, Jorge Castillo,
-                            Francisco Noya, Felipe Izcaray, entre otros.
-                        </p>
-                        <p>
-                            Desde el año 1985 hasta el 2018 el podio de
-                            dirección estuvo ocupado por el Maestro de Maestros,
-                            José Calabrese, quien ya estaba ejerciendo labores
-                            en la organización como Director Académico y que con
-                            su aquilatada y refinada experiencia en la dirección
-                            de agrupaciones musicales, logró imprimirle a la
-                            orquesta un estilo propio y una musicalidad que la
-                            identifica, eso que algunos críticos llaman
-                            "Personalidad". Elevándola al grado de lo que
-                            conocemos hoy como: Orquesta Sinfónica de Carabobo,
-                            y fundando así la era dorada y profesional de la
-                            institución.
-                        </p>
-                        <p>
-                            Sin duda, el Maestro Calabrese ahora "Director
-                            Laureado" de la OSC hizo de ella una de las mejores
-                            orquestas del país y de Latinoamérica, asumiendo
-                            siempre proyectos exigentes que llevó a cabo con
-                            gran éxito y marcando una pauta en Venezuela.
-                        </p>
-                        <p>
-                            En el 2019 asume la Dirección Artística y Musical el
-                            Maestro José Carmelo Calabrese, quien actualmente es
-                            el Director carabobeño de mayor proyección
-                            internacional; con diversos premios de dirección
-                            orquestal ganados a nivel mundial y quien con nuevos
-                            proyectos y propósitos continúa llevando a la
-                            agrupación por el camino de éxito que dejó su
-                            antecesor.
-                        </p>
-                        <p>
-                            La OSC en cada presentación hace gala de una
-                            inigualable versatilidad, evidenciada en la amplia
-                            gama del repertorio que ejecuta, el cual va desde lo
-                            clásico universal hasta la música popular o
-                            bailable, pasando por la mejor música venezolana y
-                            latinoamericana de todos los tiempos.
-                        </p>
-                        <p>
-                            Una demostración del reconocimiento a la alta
-                            calidad de la OSC, está en el hecho histórico de
-                            haber sido escogida como la orquesta acompañante del
-                            famoso tenor italiano Luciano Pavarotti, en el
-                            memorable concierto realizado en la ciudad de
-                            Valencia en el año 1998.
-                        </p>
-                        <p>
-                            Cinco décadas de trabajo fructífero e
-                            ininterrumpido, le ha permitido un sólido sitial en
-                            el ámbito musical del país, distinguida con
-                            múltiples reconocimientos de los diversos sectores
-                            representativos de nuestra sociedad.
-                        </p>
+                        <!-- Logo container with artistic effects -->
+                        <div
+                            class="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-full p-4 border border-white/20 shadow-2xl group-hover:shadow-primary/20 transition-all duration-500 group-hover:scale-105"
+                        >
+                            <img
+                                src="/logo.webp"
+                                alt="Orquesta Sinfónica de Carabobo"
+                                class="h-24 md:h-32 object-contain filter brightness-110 contrast-110 drop-shadow-lg group-hover:drop-shadow-2xl transition-all duration-500"
+                            />
+
+                            <!-- Decorative elements -->
+                            <div
+                                class="absolute -top-2 -right-2 w-4 h-4 bg-primary rounded-full opacity-80 animate-pulse"
+                            >
+                            </div>
+                            <div
+                                class="absolute -bottom-1 -left-1 w-3 h-3 bg-accent-yellow rounded-full opacity-60 animate-pulse"
+                                style="animation-delay: 0.5s;"
+                            >
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <h1
+                    class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white"
+                >
+                    Orquesta Sinfónica <span class="text-primary">de Carabobo</span>
+                </h1>
             </div>
         </section>
 
-        <!-- DISCOGRAPHY SECTION -->
+        <!-- HISTORICAL REVIEW -->
         <section
             class="py-24 md:py-32 relative overflow-hidden"
-            id="discografia"
         >
             <div class="container mx-auto px-6 max-w-6xl relative z-10">
                 <div class="flex flex-col items-center text-center mb-24">
                     <span
                         class="text-primary text-sm font-bold tracking-[0.2em] uppercase mb-4 block"
-                        >Nuestra Música</span
+                        >Nuestra Historia</span
                     >
                     <h2
                         class="text-4xl md:text-6xl font-display font-bold text-text-dark mb-12"
                     >
-                        Discografía
+                        Reseña <span class="text-primary italic">Histórica</span>
                     </h2>
 
-                    <div
-                        class="max-w-4xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-lg md:text-xl leading-relaxed text-text-dark font-serif"
-                    >
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                22 aniversario
-                            </h3>
-                            <p class="text-gray-600">1998</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                9 sinfonías de Beethoven
-                            </h3>
-                            <p class="text-gray-600">1999</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Simón Díaz y la Orquesta Sinfónica de Carabobo
-                            </h3>
-                            <p class="text-gray-600">2001</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Mi Banda; Big Band Jazz
-                            </h3>
-                            <p class="text-gray-600">2004</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Los Melódicos y la Orquesta Sinfónica de
-                                Carabobo
-                            </h3>
-                            <p class="text-gray-600">2008</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Obras para Viola
-                            </h3>
-                            <p class="text-gray-600">2012</p>
+                    <!-- Texto introductorio -->
+                    <div class="relative text-center mb-24">
+                        <!-- Decorative frame -->
+                        <div class="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 rounded-2xl"></div>
+                        <div class="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-primary/30 rounded-tl-lg"></div>
+                        <div class="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-primary/30 rounded-tr-lg"></div>
+                        <div class="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-primary/30 rounded-bl-lg"></div>
+                        <div class="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-primary/30 rounded-br-lg"></div>
+
+                        <!-- Musical notes decoration -->
+                        <div class="absolute -top-6 left-1/4 text-primary/20 text-4xl">♪</div>
+                        <div class="absolute -top-4 right-1/4 text-primary/20 text-3xl">♫</div>
+                        <div class="absolute -bottom-6 left-1/3 text-primary/20 text-2xl">♪</div>
+                        <div class="absolute -bottom-4 right-1/3 text-primary/20 text-3xl">♫</div>
+
+                        <div class="relative bg-white/50 backdrop-blur-sm p-8 md:p-12 rounded-2xl border border-primary/10 shadow-lg">
+                            <p class="text-lg md:text-xl text-text-dark leading-relaxed max-w-4xl mx-auto font-serif italic">
+                                Fundada en octubre de 1976, la OSC ha mantenido una trayectoria ininterrumpida de labor cultural y educativa. Bajo la dirección del Maestro José Calabrese (1985-2018) y actualmente del Maestro José Carmelo Calabrese, se ha consolidado como referente musical en Venezuela y Latinoamérica.
+                            </p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- AWARDS SECTION -->
-        <section
-            class="py-24 md:py-32 relative overflow-hidden"
-            id="reconocimientos"
-        >
-            <div class="container mx-auto px-6 max-w-6xl relative z-10">
-                <div class="flex flex-col items-center text-center mb-24">
-                    <span
-                        class="text-primary text-sm font-bold tracking-[0.2em] uppercase mb-4 block"
-                        >Reconocimientos</span
+                <!-- Hitos destacados -->
+                <div
+                    class="bg-surface-light rounded-2xl p-12 shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light mb-16"
+                >
+                    <h3
+                        class="text-3xl font-display font-bold mb-6 text-text-dark text-center"
                     >
-                    <h2
-                        class="text-4xl md:text-6xl font-display font-bold text-text-dark mb-12"
-                    >
-                        Premios y Distinciones
-                    </h2>
+                        Hitos Destacados
+                    </h3>
+                    <ul class="space-y-4 text-text-dark">
+                        <li class="flex gap-4">
+                            <svg
+                                class="w-6 h-6 text-primary shrink-0"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path></svg
+                            >
+                            En 1998, acompañó al tenor Luciano Pavarotti en su única presentación en Venezuela.
+                        </li>
+                        <li class="flex gap-4">
+                            <svg
+                                class="w-6 h-6 text-primary shrink-0"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path></svg
+                            >
+                            Primera orquesta venezolana en grabar las 9 sinfonías de Beethoven en formato CD.
+                        </li>
+                        <li class="flex gap-4">
+                            <svg
+                                class="w-6 h-6 text-primary shrink-0"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path></svg
+                            >
+                            Considerada patrimonio cultural de Carabobo.
+                        </li>
+                    </ul>
+                </div>
 
-                    <div
-                        class="max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6 text-lg md:text-xl leading-relaxed text-text-dark font-serif"
+                <!-- Cifras representativas -->
+                <div
+                    class="bg-surface-light rounded-2xl p-12 shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light mb-16"
+                >
+                    <h3
+                        class="text-3xl font-display font-bold mb-6 text-text-dark text-center"
                     >
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Fundación Festivales del Cabriales
-                            </h3>
-                            <p class="text-gray-600">1992</p>
+                        Cifras Representativas
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-primary mb-2">2.400</div>
+                            <div class="text-text-dark">músicos formados en 49 años</div>
                         </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Palacio de las Convenciones de Cuba y Cubanacan,
-                                S.A.
-                            </h3>
-                            <p class="text-gray-600">1993</p>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-primary mb-2">17.000</div>
+                            <div class="text-text-dark">personas impactadas en redes sociales</div>
                         </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Orden Ciudad de Valencia
-                            </h3>
-                            <p class="text-gray-600">1998</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Cámara Municipal de Valencia
-                            </h3>
-                            <p class="text-gray-600">1998</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Alcaldía de Valencia, Tibor Rudas APM Shows
-                            </h3>
-                            <p class="text-gray-600">1998</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Gente y Eventos, Diario El Carabobeño
-                            </h3>
-                            <p class="text-gray-600">1998</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Hogares Crea de Venezuela
-                            </h3>
-                            <p class="text-gray-600">1998</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Sociedad Amigos de Valencia
-                            </h3>
-                            <p class="text-gray-600">1999</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Asamblea Nacional Constituyente
-                            </h3>
-                            <p class="text-gray-600">1999</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Contraloría del Estado Carabobo
-                            </h3>
-                            <p class="text-gray-600">2004</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Sokka Gakkai Internacional
-                            </h3>
-                            <p class="text-gray-600">2005</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Rotary Internacional
-                            </h3>
-                            <p class="text-gray-600">2005 y 2021</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Universidad de Carabobo
-                            </h3>
-                            <p class="text-gray-600">2007</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Red de Bibliotecas Públicas
-                            </h3>
-                            <p class="text-gray-600">2007</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Latinoamérica Sinfónica
-                            </h3>
-                            <p class="text-gray-600">2008</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Festival Internacional de Solistas Aldemaro
-                                Romero
-                            </h3>
-                            <p class="text-gray-600">2011</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Universidad Arturo Michelena
-                            </h3>
-                            <p class="text-gray-600">2011</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Alcaldía Municipio Carlos Arvelo
-                            </h3>
-                            <p class="text-gray-600">2011</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Alcaldía Municipio San Diego
-                            </h3>
-                            <p class="text-gray-600">2012</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Alcaldía Municipio Naguanagua
-                            </h3>
-                            <p class="text-gray-600">2019</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                "Orden al Mérito Ejecutivo" por la Asociación de
-                                Ejecutivos de Carabobo
-                            </h3>
-                            <p class="text-gray-600">2019</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Consejo Legislativo del Estado Carabobo
-                            </h3>
-                            <p class="text-gray-600">2019</p>
-                        </div>
-                        <div
-                            class="bg-surface-light p-6 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
-                        >
-                            <h3 class="text-xl font-bold mb-2">
-                                Institución UNESCO; Embajadores de la Paz
-                            </h3>
-                            <p class="text-gray-600">2021</p>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-primary mb-2">1.500</div>
+                            <div class="text-text-dark">personas impactadas en promedio por concierto</div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Últimos conciertos destacados -->
+                <div
+                    class="bg-surface-light rounded-2xl p-12 shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light"
+                >
+                    <h3
+                        class="text-3xl font-display font-bold mb-6 text-text-dark text-center"
+                    >
+                        Últimos Conciertos Destacados
+                    </h3>
+                    <ul class="space-y-4 text-text-dark">
+                        <li class="flex gap-4">
+                            <svg
+                                class="w-6 h-6 text-primary shrink-0"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path></svg
+                            >
+                            Latinoamerica le canta a Valencia con Huáscar Barradas.
+                        </li>
+                        <li class="flex gap-4">
+                            <svg
+                                class="w-6 h-6 text-primary shrink-0"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path></svg
+                            >
+                            Homenaje a Aldemaro Romero con María Teresa Chacín.
+                        </li>
+                        <li class="flex gap-4">
+                            <svg
+                                class="w-6 h-6 text-primary shrink-0"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path></svg
+                            >
+                            Bandas Sonoras de Películas, Series y Videojuegos.
+                        </li>
+                        <li class="flex gap-4">
+                            <svg
+                                class="w-6 h-6 text-primary shrink-0"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path></svg
+                            >
+                            Mágica Navidad con orquesta, coro y cantantes profesionales.
+                        </li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -415,7 +296,7 @@ import HeroHeader from "../../components/HeroHeader.astro";
                         Contáctanos
                     </a>
                     <a
-                        href="/conciertos"
+                        href="#"
                         class="bg-transparent border-2 border-text-light text-text-light px-10 py-4 rounded-full font-bold hover:bg-white/10 transition-colors"
                     >
                         Ver Conciertos
@@ -425,3 +306,20 @@ import HeroHeader from "../../components/HeroHeader.astro";
         </section>
     </main>
 </Layout>
+
+<style>
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-fade-in {
+        animation: fade-in 1s ease-out;
+    }
+</style>
