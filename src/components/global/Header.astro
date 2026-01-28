@@ -1,12 +1,21 @@
 ---
-// Dynamically generate navigation from pages directory
-const allPages = import.meta.glob('/src/pages/**/*.astro', { eager: true });
-
-// Define files to exclude
-const excludeFiles = [
-  '/src/pages/404.astro',
-  '/src/pages/blog/[slug].astro',
-  '/src/pages/blog/page/[page].astro'
+const navLinks = [
+  { href: "/", label: "Inicio", active: false },
+  {
+    href: "/nosotros",
+    label: "Nosotros",
+    active: false,
+    dropdown: [
+      { href: "/nosotros/reconocimientos", label: "Reconocimientos" },
+      { href: "/nosotros/discografia", label: "Discografia" },
+    ],
+  },
+  { href: "/agrupaciones", label: "Agrupaciones", active: false },
+  { href: "/programas", label: "Programas", active: false },
+  { href: "/blog", label: "Blog", active: false },
+  { href: "/libro", label: "Libro", active: false },
+  { href: "/apoyanos", label: "Apóyanos", active: false },
+  { href: "/contacto", label: "Contacto", active: false },
 ];
 
 // Create a map to store the navigation structure
@@ -200,15 +209,18 @@ const navLinks = navArray;
         />
         <div class="hidden md:flex flex-col">
           <span
-            class="text-sm font-bold tracking-wide text-white leading-tight font-serif"      >
+            class="text-sm font-bold tracking-wide text-white leading-tight font-serif"
+          >
             Fundación
           </span>
           <span
-            class="text-sm font-bold tracking-wide text-white leading-tight font-serif"        >
+            class="text-sm font-bold tracking-wide text-white leading-tight font-serif"
+          >
             Orquesta Sinfónica
           </span>
           <span
-            class="text-sm font-bold tracking-wide text-white leading-tight font-serif"        >
+            class="text-sm font-bold tracking-wide text-white leading-tight font-serif"
+          >
             de Carabobo
           </span>
         </div>
@@ -243,7 +255,7 @@ const navLinks = navArray;
                   >
                     <div class="nav-link-content">
                       <span class="nav-link-text">{link.label}</span>
-                      <span class="nav-dropdown-arrow">▼</span>
+                      <span class="nav-dropdown-arrow" />
                     </div>
                     <span class="nav-link-underline" />
                   </button>

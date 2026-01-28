@@ -103,7 +103,7 @@ const getStyles = (tier: SponsorshipTier) => {
 
 <section
     id="niveles"
-    class="py-24 bg-black text-white overflow-hidden font-light"
+    class="py-24 bg-[#fcfcfc] text-black overflow-hidden font-light"
 >
     <div class="container mx-auto px-6 max-w-7xl relative z-10">
         <div
@@ -111,42 +111,39 @@ const getStyles = (tier: SponsorshipTier) => {
         >
             <div class="max-w-2xl select-none">
                 <h2
-                    class="text-4xl md:text-6xl font-display font-light leading-tight"
+                    class="text-4xl md:text-6xl font-display font-light leading-tight text-black"
                 >
                     Niveles de <br />
-                    <span class="font-bold text-primary italic">Patrocinio</span
+                    <span class="font-bold text-[#800020] italic"
+                        >Patrocinio</span
                     >
                 </h2>
             </div>
             <p
-                class="text-gray-400 text-lg max-w-sm font-light border-l border-primary/40 pl-6 leading-relaxed select-none"
+                class="text-gray-600 text-lg max-w-sm font-light border-l border-[#800020]/30 pl-6 leading-relaxed select-none"
             >
                 Seleccione el alcance estratégico para su marca y forme parte de
                 nuestra historia.
             </p>
         </div>
 
-        <div
-            class="hidden lg:grid grid-cols-4 gap-px bg-white/10 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-[2px] h-[680px]"
-        >
+        <div class="hidden lg:grid grid-cols-4 gap-4 h-[680px]">
             {
                 tiers.map((tier) => {
-                    const styles = getStyles(tier);
+                    const styles = getStyles(tier); // Asegúrate que getStyles devuelva clases compatibles o usa las fijas abajo
                     const summary = tier.features.slice(0, 2);
                     const details = tier.features.slice(2);
 
                     return (
-                        <div class="group relative flex flex-col p-10 bg-black/60 hover:bg-black/40 transition-all duration-500 h-full overflow-hidden">
+                        <div class="group relative flex flex-col p-10 bg-white border border-gray-200 hover:border-[#800020] transition-all duration-500 h-full overflow-hidden shadow-sm hover:shadow-xl">
                             <div class="mb-10 select-none">
-                                <span
-                                    class={`inline-block px-3 py-0.5 text-[10px] font-bold uppercase tracking-widest mb-6 border ${styles.badge}`}
-                                >
+                                <span class="inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-widest mb-6 border border-[#800020] text-[#800020]">
                                     {tier.id}
                                 </span>
-                                <h3 class="text-xl font-display font-bold mb-2 text-gray-100 uppercase tracking-wide">
+                                <h3 class="text-xl font-display font-bold mb-2 text-black uppercase tracking-wide">
                                     {tier.title.replace("Patrocinio ", "")}
                                 </h3>
-                                <div class="text-4xl font-display text-primary italic">
+                                <div class="text-4xl font-display text-[#800020] italic font-medium">
                                     {tier.price}
                                 </div>
                             </div>
@@ -155,10 +152,8 @@ const getStyles = (tier: SponsorshipTier) => {
                                 <ul class="space-y-5">
                                     {summary.map((feature) => (
                                         <li class="flex items-start gap-4">
-                                            <div
-                                                class={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 ${styles.icon} bg-current opacity-60 group-hover:opacity-100 transition-opacity`}
-                                            />
-                                            <span class="text-sm text-gray-400 leading-relaxed font-light group-hover:text-gray-200 transition-colors">
+                                            <div class="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 bg-[#800020] opacity-60" />
+                                            <span class="text-sm text-gray-700 leading-relaxed font-light">
                                                 {feature}
                                             </span>
                                         </li>
@@ -166,22 +161,22 @@ const getStyles = (tier: SponsorshipTier) => {
                                 </ul>
                             </div>
 
-                            <div class="mt-auto group-hover:opacity-0 transition-opacity text-center py-4 border-t border-white/5">
-                                <span class="text-[10px] uppercase tracking-[0.3em] text-gray-500 italic">
+                            <div class="mt-auto group-hover:opacity-0 transition-opacity text-center py-4 border-t border-gray-100">
+                                <span class="text-[10px] uppercase tracking-[0.3em] text-gray-400 italic">
                                     Ver detalles ↑
                                 </span>
                             </div>
 
-                            <div class="absolute inset-x-0 bottom-0 bg-gray-900 p-10 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] flex flex-col h-[88%] z-20 border-t border-primary/30 shadow-2xl">
+                            <div class="absolute inset-x-0 bottom-0 bg-black p-10 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] flex flex-col h-[90%] z-20 shadow-2xl">
                                 <div class="overflow-y-auto pr-2 custom-scrollbar flex-grow mb-8">
-                                    <p class="font-display italic text-primary mb-6 text-sm tracking-widest select-none uppercase">
+                                    <p class="font-display italic text-[#a52a2a] mb-6 text-sm tracking-widest select-none uppercase">
                                         Beneficios Incluidos
                                     </p>
                                     <ul class="space-y-5">
                                         {details.map((feature) => (
                                             <li class="flex items-start gap-4">
                                                 <svg
-                                                    class={`w-4 h-4 flex-shrink-0 mt-0.5 ${styles.icon}`}
+                                                    class="w-4 h-4 flex-shrink-0 mt-0.5 text-[#800020]"
                                                     fill="none"
                                                     stroke="currentColor"
                                                     viewBox="0 0 24 24"
@@ -201,8 +196,8 @@ const getStyles = (tier: SponsorshipTier) => {
                                     </ul>
                                 </div>
                                 <a
-                                    href="mailto:gerencia@sinfocarabobo.com"
-                                    class={`block w-full py-4 rounded-xl font-bold text-[11px] uppercase tracking-[0.2em] text-center transition-all active:scale-[0.98] cursor-pointer select-none shadow-xl ${styles.button}`}
+                                    href="mailto:sinfocarabobo@gmail.com"
+                                    class="block w-full py-4 bg-[#800020] text-white rounded-xl font-bold text-[11px] uppercase tracking-[0.2em] text-center transition-all hover:bg-[#a52a2a] active:scale-[0.98]"
                                 >
                                     Elegir Plan
                                 </a>
@@ -215,77 +210,71 @@ const getStyles = (tier: SponsorshipTier) => {
 
         <div class="lg:hidden space-y-4">
             {
-                tiers.map((tier) => {
-                    const styles = getStyles(tier);
-                    return (
-                        <details class="group bg-black/60 border border-white/10 rounded-2xl overflow-hidden backdrop-blur-sm">
-                            <summary class="list-none cursor-pointer p-8 flex items-center justify-between select-none">
-                                <div>
-                                    <p
-                                        class={`text-[10px] font-bold uppercase tracking-[0.2em] mb-1 ${styles.text}`}
-                                    >
-                                        {tier.title}
-                                    </p>
-                                    <p class="text-3xl font-display italic text-gray-100">
-                                        {tier.price}
-                                    </p>
-                                </div>
-                                <div class="text-primary group-open:rotate-180 transition-transform">
-                                    <svg
-                                        class="w-6 h-6"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            d="M19 9l-7 7-7-7"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        />
-                                    </svg>
-                                </div>
-                            </summary>
-                            <div class="px-8 pb-8 pt-2 border-t border-white/5 bg-white/[0.02]">
-                                <ul class="space-y-4 mb-8">
-                                    {tier.features.map((feature) => (
-                                        <li class="flex items-start gap-3">
-                                            <div class="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 bg-primary opacity-60" />
-                                            <span class="text-sm text-gray-400 font-light leading-relaxed">
-                                                {feature}
-                                            </span>
-                                        </li>
-                                    ))}
-                                </ul>
-                                <a
-                                    href="mailto:gerencia@sinfocarabobo.com"
-                                    class={`block w-full py-4 rounded-xl text-[11px] uppercase tracking-widest font-bold text-center ${styles.button}`}
-                                >
-                                    Contactar
-                                </a>
+                tiers.map((tier) => (
+                    <details class="group bg-white border border-gray-200 rounded-2xl overflow-hidden">
+                        <summary class="list-none cursor-pointer p-8 flex items-center justify-between select-none">
+                            <div>
+                                <p class="text-[10px] font-bold uppercase tracking-[0.2em] mb-1 text-[#800020]">
+                                    {tier.title}
+                                </p>
+                                <p class="text-3xl font-display italic text-black">
+                                    {tier.price}
+                                </p>
                             </div>
-                        </details>
-                    );
-                })
+                            <div class="text-[#800020] group-open:rotate-180 transition-transform">
+                                <svg
+                                    class="w-6 h-6"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M19 9l-7 7-7-7"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </div>
+                        </summary>
+                        <div class="px-8 pb-8 pt-2 border-t border-gray-50 bg-gray-50/50">
+                            <ul class="space-y-4 mb-8">
+                                {tier.features.map((feature) => (
+                                    <li class="flex items-start gap-3">
+                                        <div class="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 bg-[#800020]" />
+                                        <span class="text-sm text-gray-600 font-light">
+                                            {feature}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
+                            <a
+                                href="mailto:sinfocarabobo@gmail.com"
+                                class="block w-full py-4 bg-[#800020] text-white rounded-xl text-[11px] uppercase tracking-widest font-bold text-center"
+                            >
+                                Contactar
+                            </a>
+                        </div>
+                    </details>
+                ))
             }
         </div>
 
         <div
-            class="mt-32 relative py-20 px-10 border border-white/10 rounded-[2.5rem] bg-zinc-900/50 overflow-hidden shadow-2xl"
+            class="mt-32 relative py-20 px-10 border border-gray-200 rounded-[2.5rem] bg-black overflow-hidden shadow-2xl"
         >
             <div
-                class="absolute inset-0 z-0 opacity-30 bg-[url('estudiantina.webp')] bg-cover bg-center bg-fixed grayscale"
+                class="absolute inset-0 z-0 opacity-40 bg-[url('estudiantina.webp')] bg-cover bg-center grayscale"
             >
             </div>
-
             <div
-                class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60 z-1"
+                class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80 z-1"
             >
             </div>
 
             <div class="max-w-4xl mx-auto text-center relative z-10">
                 <span
-                    class="text-primary text-[10px] font-bold uppercase tracking-[0.4em] mb-6 block italic"
+                    class="text-[#800020] text-[10px] font-bold uppercase tracking-[0.4em] mb-6 block italic"
                     >Personalización</span
                 >
                 <h3
@@ -293,21 +282,20 @@ const getStyles = (tier: SponsorshipTier) => {
                 >
                     ¿Busca un impacto <br />
                     <span
-                        class="font-bold italic text-primary underline underline-offset-[12px] decoration-white/10"
+                        class="font-bold italic text-[#800020] underline underline-offset-[12px] decoration-white/10"
                         >empresarial a medida?</span
                     >
                 </h3>
                 <p
-                    class="text-gray-300 max-w-2xl mx-auto mb-12 text-lg font-light leading-relaxed tracking-wide"
+                    class="text-gray-300 max-w-2xl mx-auto mb-12 text-lg font-light"
                 >
                     Diseñamos colaboraciones exclusivas para sus objetivos
-                    filantrópicos. Desde patrocinios mensuales hasta galas
-                    corporativas privadas.
+                    filantrópicos.
                 </p>
                 <div class="flex items-center justify-center">
                     <a
-                        href="mailto:gerencia@sinfocarabobo.com"
-                        class="group relative inline-block px-12 py-5 bg-primary text-black text-[11px] font-bold tracking-[0.3em] uppercase transition-all hover:bg-white active:scale-95 rounded-full"
+                        href="mailto:sinfocarabobo@gmail.com"
+                        class="px-12 py-5 bg-[#800020] text-white text-[11px] font-bold tracking-[0.3em] uppercase transition-all hover:bg-white hover:text-black rounded-full"
                     >
                         Consultar Alianza
                     </a>
@@ -317,11 +305,11 @@ const getStyles = (tier: SponsorshipTier) => {
 
         <div class="mt-12 flex items-center gap-4 select-none">
             <div
-                class="h-[1px] flex-grow bg-gradient-to-r from-primary/30 to-transparent"
+                class="h-[1px] flex-grow bg-gradient-to-r from-[#800020]/40 to-transparent"
             >
             </div>
             <p
-                class="text-gray-600 text-[10px] tracking-[0.3em] uppercase italic font-light"
+                class="text-gray-400 text-[10px] tracking-[0.3em] uppercase italic font-light"
             >
                 * Todos los beneficios están sujetos a términos de convenio
             </p>
@@ -337,7 +325,7 @@ const getStyles = (tier: SponsorshipTier) => {
         background: rgba(255, 255, 255, 0.05);
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
-        background-color: #ca8a04;
+        background-color: #800020;
         border-radius: 10px;
     }
     .select-none {
