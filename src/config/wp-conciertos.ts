@@ -1,7 +1,6 @@
 const domain = import.meta.env.WP_DOMAIN;
 const apiBase = `${domain}/wp-json/wp/v2`;
 
-// 1. Interfaz para los campos de Advanced Custom Fields (ACF)
 export interface ConciertoACF {
   event_date: string;        // Formato que devuelve ACF: "20260226" (YYYYMMDD)
   event_time: string;        // "10:00:00"
@@ -10,7 +9,6 @@ export interface ConciertoACF {
   event_description: string; // "Las HUNTRX en Valencia"
 }
 
-// 2. Interfaz principal del Post tipo 'Concierto'
 export interface WPConcierto {
   id: number;
   slug: string;
@@ -24,17 +22,16 @@ export interface WPConcierto {
   featured_media: number;
   _embedded?: {
     "wp:featuredmedia"?: Array<{
-      source_API_URL: string;
+      source_url: string;
       alt_text?: string;
     }>;
   };
 }
 
-// 3. Función Fetch
-export const getConciertos = async (): Promise<WPConcierto[]> => {
+export const getConciertos = async (perPage: number = 9): Promise<WPConcierto[]> => {
   try {
-    const API_URL = `${apiBase}/conciertos?_embed&status=publish`;
-    
+    const API_URL = `${apiBase}/conciertos?_embed&status=publish&per_page=${perPage}`;
+
     const res = await fetch(API_URL);
 
     if (!res.ok) {
