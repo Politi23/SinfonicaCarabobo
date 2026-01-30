@@ -1,0 +1,76 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getReconocimientos } from "src/config/reconocimientos";
+import type { WPReconocimiento } from "src/config/reconocimientos";
+
+// 1. Llamamos a la función
+const reconocimientos = await getReconocimientos();
+
+// Helper para obtener la imagen de forma segura
+const getImageUrl = (post: WPReconocimiento) => {
+    if (post._embedded && post._embedded["wp:featuredmedia"]) {
+        return post._embedded["wp:featuredmedia"][0].source_url;
+    }
+    return "/logosimple.webp";
+};
+---
+
+<Layout title="Reconocimientos | La Orquesta">
+    <main class="container mx-auto px-4 py-10">
+        <header class="mb-12 text-center">
+            <h1 class="text-4xl font-bold mb-4">Nuestros Reconocimientos</h1>
+            <p class="text-lg text-gray-600">
+                Premios y distinciones otorgados a nuestra orquesta a lo largo
+                de los años.
+            </p>
+        </header>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {
+                reconocimientos.length > 0 ? (
+                    reconocimientos.map((item) => (
+                        <article class="border rounded-lg shadow-lg overflow-hidden bg-white hover:shadow-xl transition-shadow duration-300">
+                            {item.featured_media !== 0 && (
+                                <div class="aspect-video w-full overflow-hidden">
+                                    <img
+                                        src={getImageUrl(item)}
+                                        alt={item.title.rendered}
+                                        class="w-full h-full object-cover"
+                                        loading="lazy"
+                                    />
+                                </div>
+                            )}
+
+                            <div class="p-6">
+                                <h2
+                                    class="text-2xl font-semibold mb-2"
+                                    set:html={item.title.rendered}
+                                />
+
+                                <div class="text-sm text-gray-500 mb-4">
+                                    {new Date(item.date).toLocaleDateString(
+                                        "es-VE",
+                                        {
+                                            year: "numeric",
+                                            month: "long",
+                                            day: "numeric",
+                                        },
+                                    )}
+                                </div>
+
+                                {/* Contenido / Extracto */}
+                                <div class="prose max-w-none text-gray-700">
+                                    <div set:html={item.content.rendered} />
+                                </div>
+                            </div>
+                        </article>
+                    ))
+                ) : (
+                    <p class="text-center col-span-2">
+                        No hay reconocimientos cargados aún.
+                    </p>
+                )
+            }
+        </section>
+    </main>
+</Layout>
