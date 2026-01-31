@@ -1,0 +1,130 @@
+---
+export const prerender = true;
+import Layout from '../../layouts/Layout.astro';
+import { getConciertos } from '../../config/wp-conciertos';
+import type { WPConcierto } from '../../config/wp-conciertos';
+
+// 1. OBLIGATORIO EN MODO ESTÁTICO:
+// Esta función le dice a Astro qué páginas crear antes de subir la web.
+export async function getStaticPaths() {
+  // Pedimos hasta 100 conciertos para asegurar que estén todos
+  const conciertos = await getConciertos(100);
+  
+  return conciertos.map((concierto) => ({
+    params: { slug: concierto.slug },
+    props: { concierto },
+  }));
+}
+
+// 2. RECUPERAR DATOS
+const { concierto } = Astro.props;
+
+// --- HELPERS (CON PROTECCIÓN DE ERRORES) ---
+
+// Formatear fecha
+const formatAcfDate = (dateString: string) => {
+  if (!dateString || dateString.length !== 8) return dateString;
+  const year = dateString.substring(0, 4);
+  const month = dateString.substring(4, 6);
+  const day = dateString.substring(6, 8);
+  const dateObj = new Date(Number(year), Number(month) - 1, Number(day));
+  return dateObj.toLocaleDateString('es-VE', {
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+  });
+};
+
+// Obtener imagen de forma segura (sin que rompa la página si no hay imagen)
+const getImageUrl = (c: WPConcierto) => {
+  // Los signos ?. significan: "Si esto existe, continúa. Si no, detente y devuelve undefined"
+  return c._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/logosimplebbg.webp';
+};
+
+const featuredImage = getImageUrl(concierto);
+---
+
+<Layout title={concierto.title.rendered}>
+  
+  {/* Cabecera */}
+  <div class="relative w-full h-[50vh] min-h-[400px] bg-gray-900 flex items-end">
+    <div class="absolute inset-0">
+      <img 
+        src={featuredImage} 
+        alt={concierto.title.rendered} 
+        class="w-full h-full object-cover opacity-60"
+        transition:name={`image-${concierto.slug}`} 
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 pb-12 relative z-10">
+      <span class="inline-block bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold mb-4 uppercase tracking-wider">
+        {concierto.acf?.event_price || 'Entrada Libre'}
+      </span>
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-4" set:html={concierto.title.rendered} />
+      {/* Usamos ?. por si la descripción viene vacía */}
+      <p class="text-xl text-gray-200 max-w-2xl">{concierto.acf?.event_description}</p>
+    </div>
+  </div>
+
+  <main class="container mx-auto px-4 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      
+      {/* Contenido Principal */}
+      <div class="lg:col-span-2">
+        <div class="prose prose-lg prose-indigo max-w-none text-white">
+           <div set:html={concierto.content.rendered} />
+        </div>
+      </div>
+
+      {/* Barra Lateral */}
+      <aside class="space-y-8">
+        <div class="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-100 sticky top-8">
+          <h3 class="text-xl font-bold text-gray-900 mb-6 border-b pb-2">Detalles del Evento</h3>
+          
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <div class="bg-white p-2 rounded shadow-sm mr-4 text-primary">
+                 📅
+              </div>
+              <div>
+                <p class="text-sm text-gray-500 font-semibold">Fecha</p>
+                <p class="text-gray-900 capitalize">
+                    {concierto.acf?.event_date ? formatAcfDate(concierto.acf.event_date) : 'Por confirmar'}
+                </p>
+              </div>
+            </li>
+
+            <li class="flex items-start">
+              <div class="bg-white p-2 rounded shadow-sm mr-4 text-primary">
+                ⏰
+              </div>
+              <div>
+                <p class="text-sm text-gray-500 font-semibold">Hora</p>
+                <p class="text-gray-900">
+                    {concierto.acf?.event_time ? concierto.acf.event_time.slice(0, 5) + ' hrs' : 'Por confirmar'}
+                </p>
+              </div>
+            </li>
+
+            <li class="flex items-start">
+              <div class="bg-white p-2 rounded shadow-sm mr-4 text-primary">
+                📍
+              </div>
+              <div>
+                <p class="text-sm text-gray-500 font-semibold">Lugar</p>
+                <p class="text-gray-900">{concierto.acf?.event_venue || 'Por confirmar'}</p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="mt-8">
+            <a href="/contacto" class="block w-full text-center bg-gray-900 text-white py-3 rounded-lg hover:bg-gray-800 transition-colors font-medium">
+              Contáctanos
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+</Layout>

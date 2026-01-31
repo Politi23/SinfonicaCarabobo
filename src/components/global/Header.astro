@@ -1,22 +1,192 @@
 ---
-const navLinks = [
-  { href: "/", label: "Inicio", active: false },
-  {
-    href: "/nosotros",
-    label: "Nosotros",
-    active: false,
-    dropdown: [
-      { href: "/nosotros/reconocimientos", label: "Reconocimientos" },
-      { href: "/nosotros/discografia", label: "Discografia" },
-    ],
-  },
-  { href: "/agrupaciones", label: "Agrupaciones", active: false },
-  { href: "/programas", label: "Programas", active: false },
-  { href: "/blog", label: "Blog", active: false },
-  { href: "/libro", label: "Libro", active: false },
-  { href: "/apoyanos", label: "Apóyanos", active: false },
-  { href: "/contacto", label: "Contacto", active: false },
+// Dynamically generate navigation from pages directory
+const allPages = import.meta.glob('/src/pages/**/*.astro', { eager: true });
+
+// Define files to exclude
+const excludeFiles = [
+  '/src/pages/404.astro',
+  '/src/pages/blog/[slug].astro',
+  '/src/pages/blog/page/[page].astro',
+  '/src/pages/libro/index.astro',
+  '/src/pages/conciertos/[slug].astro',
+  '/src/pages/galeria/[slug].astro'
 ];
+
+// Create a map to store the navigation structure
+const topLevelNav = new Map();
+
+// Process each page
+for (const [path, module] of Object.entries(allPages)) {
+  // Skip excluded files
+  if (excludeFiles.includes(path)) {
+    continue;
+  }
+
+  // Convert file path to URL path
+  let urlPath = path
+    .replace('/src/pages', '')         // Remove base path
+    .replace(/\/index\.astro$/, '/')   // Convert index files to directory
+    .replace(/\.astro$/, '')           // Remove .astro extension
+    .replace(/\/$/, '')               // Remove trailing slash except for root
+
+  // Special handling for root index
+  if (urlPath === '') {
+    urlPath = '/';
+  }
+
+  // Split path into segments
+  const segments = urlPath.split('/').filter(segment => segment !== '');
+
+  if (segments.length === 0) {
+    // This is the home page
+    topLevelNav.set('/', {
+      href: '/',
+      label: 'Inicio',
+      dropdown: []
+    });
+  } else if (segments.length === 1) {
+    // This is a top-level page or directory
+    const dirName = segments[0];
+
+    // Convert directory name to readable label
+    let dirLabel = dirName
+      .replace(/-/g, ' ')
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+
+    // Special case handling for known directories
+    switch(dirName) {
+      case 'nosotros':
+        dirLabel = 'Nosotros';
+        break;
+      case 'agrupaciones':
+        dirLabel = 'Agrupaciones';
+        break;
+      case 'programas':
+        dirLabel = 'Programas';
+        break;
+      case 'blog':
+        dirLabel = 'Blog';
+        break;
+      case 'libro':
+        dirLabel = 'Libro';
+        break;
+      case 'apoyanos':
+        dirLabel = 'Apóyanos';
+        break;
+      case 'contacto':
+        dirLabel = 'Contacto';
+        break;
+    }
+
+    // Initialize the top-level entry if it doesn't exist
+    if (!topLevelNav.has(`/${dirName}`)) {
+      topLevelNav.set(`/${dirName}`, {
+        href: `/${dirName}`,
+        label: dirLabel,
+        dropdown: []
+      });
+    }
+  } else if (segments.length >= 2) {
+    // This is a sub-page, create or update the parent's dropdown
+    const parentDir = segments[0];
+    const subPath = segments.slice(1).join('/');
+
+    // Convert sub-path to readable label
+    let subLabel = subPath
+      .replace(/-/g, ' ')
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+
+    // Special case handling for known sub-pages
+    if (parentDir === 'nosotros' && subPath === 'reconocimientos') {
+      subLabel = 'Reconocimientos';
+    } else if (parentDir === 'nosotros' && subPath === 'discografia') {
+      subLabel = 'Discografia';
+    } else if (parentDir === 'nosotros' && subPath === 'fosc') {
+      subLabel = 'FOSC';
+    } else if (parentDir === 'nosotros' && subPath === 'osc') {
+      subLabel = 'OSC';
+    }
+
+    // Initialize the parent if it doesn't exist
+    if (!topLevelNav.has(`/${parentDir}`)) {
+      let parentLabel = parentDir
+        .replace(/-/g, ' ')
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+
+      switch(parentDir) {
+        case 'nosotros':
+          parentLabel = 'Nosotros';
+          break;
+        case 'agrupaciones':
+          parentLabel = 'Agrupaciones';
+          break;
+        case 'programas':
+          parentLabel = 'Programas';
+          break;
+        case 'blog':
+          parentLabel = 'Blog';
+          break;
+        case 'libro':
+          parentLabel = 'Libro';
+          break;
+        case 'apoyanos':
+          parentLabel = 'Apóyanos';
+          break;
+        case 'contacto':
+          parentLabel = 'Contacto';
+          break;
+      }
+
+      topLevelNav.set(`/${parentDir}`, {
+        href: `/${parentDir}`,
+        label: parentLabel,
+        dropdown: []
+      });
+    }
+
+    // Add the sub-page to the parent's dropdown
+    const parentEntry = topLevelNav.get(`/${parentDir}`);
+    parentEntry.dropdown.push({
+      href: urlPath,
+      label: subLabel
+    });
+  }
+}
+
+// Convert map to array and sort
+const navArray = Array.from(topLevelNav.values());
+
+// Define custom sort order for top-level items
+const order = ['/', '/nosotros', '/agrupaciones', '/programas', '/blog', '/libro', '/apoyanos', '/contacto'];
+navArray.sort((a, b) => {
+  const aIndex = order.indexOf(a.href);
+  const bIndex = order.indexOf(b.href);
+
+  if (aIndex !== -1 && bIndex !== -1) {
+    return aIndex - bIndex;
+  } else if (aIndex !== -1) {
+    return -1;
+  } else if (bIndex !== -1) {
+    return 1;
+  } else {
+    return a.href.localeCompare(b.href);
+  }
+});
+
+// Sort dropdown items alphabetically
+navArray.forEach(item => {
+  if (item.dropdown) {
+    item.dropdown.sort((a: { label: string; }, b: { label: any; }) => a.label.localeCompare(b.label));
+  }
+});
+
+const navLinks = navArray;
 ---
 
 <!-- Header con efecto glassmorphism -->
@@ -33,18 +203,15 @@ const navLinks = [
         />
         <div class="hidden md:flex flex-col">
           <span
-            class="text-sm font-bold tracking-wide text-white leading-tight font-serif"
-          >
+            class="text-sm font-bold tracking-wide text-white leading-tight font-serif"      >
             Fundación
           </span>
           <span
-            class="text-sm font-bold tracking-wide text-white leading-tight font-serif"
-          >
+            class="text-sm font-bold tracking-wide text-white leading-tight font-serif"        >
             Orquesta Sinfónica
           </span>
           <span
-            class="text-sm font-bold tracking-wide text-white leading-tight font-serif"
-          >
+            class="text-sm font-bold tracking-wide text-white leading-tight font-serif"        >
             de Carabobo
           </span>
         </div>
@@ -79,12 +246,12 @@ const navLinks = [
                   >
                     <div class="nav-link-content">
                       <span class="nav-link-text">{link.label}</span>
-                      <span class="nav-dropdown-arrow" />
+                      <span class="nav-dropdown-arrow">▼</span>
                     </div>
                     <span class="nav-link-underline" />
                   </button>
                   <ul class="nav-dropdown-menu" hidden>
-                    {link.dropdown.map((subLink) => (
+                    {link.dropdown.map((subLink: { href: string | URL | null | undefined; label: unknown; }) => (
                       <li class="nav-dropdown-item">
                         <a href={subLink.href} class="nav-dropdown-link">
                           {subLink.label}
@@ -355,9 +522,7 @@ const navLinks = [
   .nav-dropdown-menu {
     max-height: 0;
     overflow: hidden;
-    transition:
-      max-height 0.3s ease,
-      opacity 0.3s ease;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
   }
 
   .nav-dropdown-menu[data-visible="true"] {
@@ -467,9 +632,7 @@ const navLinks = [
     });
 
     // Close menu when clicking a link
-    const navLinks = navList.querySelectorAll(
-      ".nav-link:not(.dropdown-toggle)",
-    );
+    const navLinks = navList.querySelectorAll(".nav-link:not(.dropdown-toggle)");
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
         navToggle.classList.remove("active");
@@ -480,57 +643,56 @@ const navLinks = [
   }
 
   // Handle dropdown menus
-  const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
-  const dropdownMenus = document.querySelectorAll(
-    "[data-dropdown] .nav-dropdown-menu",
-  );
+  const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+  const dropdownMenus = document.querySelectorAll('[data-dropdown] .nav-dropdown-menu');
 
-  dropdownToggles.forEach((toggle) => {
-    toggle.addEventListener("click", function (e) {
+  dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', function(this: HTMLButtonElement, e) {
       e.preventDefault();
 
       // Close all other dropdowns
-      dropdownToggles.forEach((otherToggle) => {
+      dropdownToggles.forEach(otherToggle => {
         if (otherToggle !== toggle) {
-          otherToggle.setAttribute("aria-expanded", "false");
+          otherToggle.setAttribute('aria-expanded', 'false');
         }
       });
 
-      dropdownMenus.forEach((menu) => {
+      dropdownMenus.forEach(menu => {
         if (menu !== this.nextElementSibling) {
-          menu.setAttribute("data-visible", "false");
-          menu.setAttribute("hidden", "");
+          menu.setAttribute('data-visible', 'false');
+          menu.setAttribute('hidden', '');
         }
       });
 
       // Toggle current dropdown
-      const isExpanded = this.getAttribute("aria-expanded") === "true";
-      this.setAttribute("aria-expanded", !isExpanded);
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', (!isExpanded).toString());
 
       const dropdownMenu = this.nextElementSibling;
       if (dropdownMenu) {
-        const isVisible = dropdownMenu.getAttribute("data-visible") === "true";
-        dropdownMenu.setAttribute("data-visible", !isVisible);
+        const isVisible = dropdownMenu.getAttribute('data-visible') === 'true';
+        dropdownMenu.setAttribute('data-visible', (!isVisible).toString());
 
         if (isVisible) {
-          dropdownMenu.setAttribute("hidden", "");
+          dropdownMenu.setAttribute('hidden', '');
         } else {
-          dropdownMenu.removeAttribute("hidden");
+          dropdownMenu.removeAttribute('hidden');
         }
       }
     });
   });
 
   // Close dropdowns when clicking elsewhere
-  document.addEventListener("click", function (event) {
-    if (!event.target.closest("[data-dropdown]")) {
-      dropdownToggles.forEach((toggle) => {
-        toggle.setAttribute("aria-expanded", "false");
+  document.addEventListener('click', function(event) {
+    const target = event.target;
+    if (!target || !(target instanceof Element) || !target.closest('[data-dropdown]')) {
+      dropdownToggles.forEach(toggle => {
+        toggle.setAttribute('aria-expanded', 'false');
       });
 
-      dropdownMenus.forEach((menu) => {
-        menu.setAttribute("data-visible", "false");
-        menu.setAttribute("hidden", "");
+      dropdownMenus.forEach(menu => {
+        menu.setAttribute('data-visible', 'false');
+        menu.setAttribute('hidden', '');
       });
     }
   });

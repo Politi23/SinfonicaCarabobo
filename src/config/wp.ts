@@ -1,235 +1,70 @@
-const domain = import.meta.env.WP_DOMAIN;
-const apiBase = `${domain}/wp-json/wp/v2`;
+import { fetchAPI } from "./wp-client";
+import { cleanText } from "./wp-utils";
 
-function decodeHtmlEntities(text: string): string {
-  if (!text) return "";
-  return text
-    .replace(/&#(\d+);/g, (match, dec) => {
-      return String.fromCharCode(dec);
-    })
-    .replace(/&quot;/g, '"')
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&apos;/g, "'")
-    .replace(/&nbsp;/g, " ");
+export interface WPPost {
+  id: number;
+  date: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content?: string;
+  image: string;
+  imageCaption?: string;
+  category: string;
+  author: string;
 }
 
-export const getPage = async (slug: string) => {
-  const response = await fetch(`${apiBase}/pages?slug=${slug}`);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch page info for slug: ${slug}`);
-  }
-  const data = await response.json();
-  return data[0];
-};
-
-export const getPosts = async ({ perPage = 6, page = 1, category = undefined }: { perPage?: number, page?: number, category?: string } = {}) => {
-  if (!domain) throw new Error('WP_DOMAIN environment variable is not set')
-
-  // Build the API URL with optional category filtering
-  // Include ACF fields if the ACF to REST API plugin is enabled
-  let apiUrl = `${apiBase}/posts?per_page=${perPage}&page=${page}&_embed=1&acf=true`;
-
-  // If category is specified, get the category ID first and add it to the URL
-  if (category) {
-    // First get the category ID by name
-    const categoryResponse = await fetch(`${apiBase}/categories?search=${encodeURIComponent(category)}`);
-    if (categoryResponse.ok) {
-      const categoriesData = await categoryResponse.json();
-      if (categoriesData.length > 0) {
-        const categoryId = categoriesData[0].id;
-        apiUrl += `&categories=${categoryId}`;
-      }
-    }
-  }
-
-  // Request embedded resources so we can access featured media and terms
-  const response = await fetch(apiUrl);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch posts`);
-  }
-  const data = await response.json();
-  if (!data.length) {
-    console.log(`No posts found for page ${page}`);
-    return [];
-  }
-
-  // Process posts
-  const posts = data.map((post: any) => {
-    const date: string = post.date;
-    const slug: string = post.slug;
-
-    // Title & excerpt come as rendered HTML from WP; strip tags for summary
-    const titleRaw = post.title?.rendered || "";
-    const excerptRaw = post.excerpt?.rendered || "";
-    const stripHtml = (s: string) => s.replace(/<[^>]*>/g, "").trim();
-    const title = decodeHtmlEntities(stripHtml(titleRaw));
-    const excerpt = decodeHtmlEntities(stripHtml(excerptRaw));
-
-    // Featured image (using _embedded)
-    let image = ""; // Will be set based on context
-    let imageCaption = "";
-    try {
-      const fm = post._embedded?.["wp:featuredmedia"]?.[0];
-      image = fm?.source_url || ""; // Use featured image if available
-      imageCaption = fm?.caption?.rendered || "";
-    } catch (e) {
-      image = ""; // Set to empty if there's an error
-      imageCaption = "";
-    }
-
-    // Category: take first term in taxonomy if present
-    let category = "";
-    try {
-      const terms = post._embedded?.["wp:term"]?.[0];
-      category = terms?.[0]?.name || "";
-    } catch (e) {
-      category = "";
-    }
-
-    // Tags: collect all tag names
-    let tags: string[] = [];
-    try {
-      const postTags = post._embedded?.["wp:term"]?.[1]; // Second array typically contains tags
-      if (Array.isArray(postTags)) {
-        tags = postTags.map((t: any) => t.name);
-      }
-    } catch (e) {
-      tags = [];
-    }
-
-    let author = "";
-    try {
-      author = post._embedded?.["author"]?.[0]?.name || "";
-    } catch (e) {
-      author = "";
-    }
-
-    // Include ACF fields if available
-    const acf = post.acf || post.meta || {};
-
-    return {
-      date,
-      title,
-      excerpt,
-      slug,
-      image,
-      imageCaption,
-      category,
-      tags,
-      author,
-      acf,
-    };
-  });
-
-  return posts;
-};
-
-// New function to get only concert posts
-export const getConcertPosts = async ({ perPage = 3, page = 1 }: { perPage?: number, page?: number } = {}) => {
-  try {
-    const posts = await getPosts({ perPage, page, category: "conciertos" });
-    // Add white square as fallback for concert posts
-    return posts.map(post => ({
-      ...post,
-      image: post.image || "/white-square-64.webp"
-    }));
-  } catch (error) {
-    console.warn("Failed to fetch concert posts from WordPress:", error.message);
-    return []; // Return empty array if fetch fails
-  }
-};
-
+// Obtener información general (para paginación)
 export const getPostsInfo = async ({ perPage = 6, category = undefined }: { perPage?: number, category?: string } = {}) => {
-  if (!domain) throw new Error('WP_DOMAIN environment variable is not set')
+  if (!import.meta.env.WP_DOMAIN) throw new Error('WP_DOMAIN missing');
+  let url = `/posts?per_page=${perPage}`;
 
-  // Build the API URL with optional category filtering
-  let apiUrl = `${apiBase}/posts?per_page=${perPage}`;
-
-  // If category is specified, get the category ID first and add it to the URL
   if (category) {
-    // First get the category ID by name
-    const categoryResponse = await fetch(`${apiBase}/categories?search=${encodeURIComponent(category)}`);
-    if (categoryResponse.ok) {
-      const categoriesData = await categoryResponse.json();
-      if (categoriesData.length > 0) {
-        const categoryId = categoriesData[0].id;
-        apiUrl += `&categories=${categoryId}`;
-      }
+    const catRes = await fetch(`${import.meta.env.WP_DOMAIN}/wp-json/wp/v2/categories?search=${encodeURIComponent(category)}`);
+    if (catRes.ok) {
+      const cats = await catRes.json();
+      if (cats.length) url += `&categories=${cats[0].id}`;
     }
   }
 
-  // Make a HEAD request to get headers without the body
-  const response = await fetch(apiUrl, {
-    method: "HEAD",
-  });
-  if (!response.ok) {
-    throw new Error("Failed to fetch post info");
-  }
-
-  const totalPosts = Number(response.headers.get("X-WP-Total") || 0);
-  const totalPages = Number(response.headers.get("X-WP-TotalPages") || 0);
-
-  return { totalPosts, totalPages };
-};
-
-// New function to get concert posts info
-export const getConcertPostsInfo = async ({ perPage = 6 }: { perPage?: number } = {}) => {
-  return await getPostsInfo({ perPage, category: "conciertos" });
-};
-
-export const getPost = async (slug: string) => {
-  if (!domain) throw new Error("WP_DOMAIN environment variable is not set");
-  const response = await fetch(`${apiBase}/posts?slug=${slug}&_embed=1`);
-  if (!response.ok) throw new Error("Failed to fetch post");
-  const data = await response.json();
-  const post = data?.[0];
-  if (!post) return null;
-
-  const title = post.title?.rendered || "";
-  const excerpt = post.excerpt?.rendered || "";
-  const date = post.date;
-  const slugOut = post.slug;
-
-  let image = "";
-  let imageCaption = "";
-  try {
-    const fm = post._embedded?.["wp:featuredmedia"]?.[0];
-    image = fm?.source_url || "";
-    imageCaption = fm?.caption?.rendered || "";
-  } catch (e) {
-    image = "";
-    imageCaption = "";
-  }
-
-  let category = "";
-  try {
-    category = post._embedded?.["wp:term"]?.[0]?.[0]?.name || "";
-  } catch (e) {
-    category = "";
-  }
-
-  let author = "";
-  try {
-    author = post._embedded?.["author"]?.[0]?.name || "";
-  } catch (e) {
-    author = "";
-  }
-
-  // Include ACF fields if available
-  const acf = post.acf || post.meta || {};
-
+  const res = await fetch(import.meta.env.WP_DOMAIN + "/wp-json/wp/v2" + url, { method: "HEAD" });
   return {
-    title,
-    excerpt,
-    date,
-    slug: slugOut,
-    image,
-    imageCaption,
-    category,
-    author,
-    content: post.content?.rendered || "",
-    acf,
+    totalPosts: Number(res.headers.get("X-WP-Total") || 0),
+    totalPages: Number(res.headers.get("X-WP-TotalPages") || 0),
   };
+};
+
+// Obtener lista de posts
+export const getPosts = async ({ perPage = 6, page = 1, category = undefined }: { perPage?: number, page?: number, category?: string } = {}): Promise<WPPost[]> => {
+  let url = `/posts?per_page=${perPage}&page=${page}&_embed=1`;
+
+  if (category) {
+    const catRes = await fetch(`${import.meta.env.WP_DOMAIN}/wp-json/wp/v2/categories?search=${encodeURIComponent(category)}`);
+    if (catRes.ok) {
+      const cats = await catRes.json();
+      if (cats.length) url += `&categories=${cats[0].id}`;
+    }
+  }
+
+  const data = await fetchAPI(url);
+  if (!data || !Array.isArray(data)) return [];
+
+  return data.map((post: any) => ({
+    id: post.id,
+    date: post.date,
+    slug: post.slug,
+    title: cleanText(post.title?.rendered),
+    excerpt: cleanText(post.excerpt?.rendered),
+    image: post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "",
+    imageCaption: post._embedded?.["wp:featuredmedia"]?.[0]?.caption?.rendered || "",
+    category: post._embedded?.["wp:term"]?.[0]?.[0]?.name || "",
+    author: post._embedded?.["author"]?.[0]?.name || "",
+    content: post.content?.rendered || "",
+  }));
+};
+
+// Obtener un solo post completo (para [slug])
+export const getAllPostsSlugs = async () => {
+  // Pedimos 100 para generar las rutas estáticas
+  return await getPosts({ perPage: 100 });
 };
