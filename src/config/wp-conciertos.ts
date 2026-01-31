@@ -1,5 +1,4 @@
-const domain = import.meta.env.WP_DOMAIN;
-const apiBase = `${domain}/wp-json/wp/v2`;
+import { fetchAPI } from "./wp-client";
 
 export interface ConciertoACF {
   event_date: string;        // Formato que devuelve ACF: "20260226" (YYYYMMDD)
@@ -30,15 +29,10 @@ export interface WPConcierto {
 
 export const getConciertos = async (perPage: number = 9): Promise<WPConcierto[]> => {
   try {
-    const API_URL = `${apiBase}/conciertos?_embed&status=publish&per_page=${perPage}`;
+    const data = await fetchAPI(`/conciertos?_embed&status=publish&per_page=${perPage}`);
 
-    const res = await fetch(API_URL);
+    if (!data || !Array.isArray(data)) return [];
 
-    if (!res.ok) {
-      throw new Error(`Error fetching conciertos: ${res.statusText}`);
-    }
-
-    const data = await res.json();
     return data as WPConcierto[];
   } catch (error) {
     console.error("Error obteniendo los conciertos:", error);

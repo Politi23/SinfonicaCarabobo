@@ -1,5 +1,4 @@
-const domain = import.meta.env.WP_DOMAIN;
-const apiBase = `${domain}/wp-json/wp/v2`;
+import { fetchAPI } from "./wp-client";
 
 export interface WPReconocimiento {
   id: number;
@@ -29,17 +28,12 @@ export interface WPReconocimiento {
   };
 }
 
-const API_URL = "http://localhost:10004/wp-json/wp/v2/reconocimientos?_embed";
-
 export const getReconocimientos = async (): Promise<WPReconocimiento[]> => {
   try {
-    const res = await fetch(API_URL);
+    const data = await fetchAPI("/reconocimientos?_embed");
 
-    if (!res.ok) {
-      throw new Error("Error al conectar con WordPress");
-    }
+    if (!data || !Array.isArray(data)) return [];
 
-    const data = await res.json();
     return data as WPReconocimiento[];
   } catch (error) {
     console.error("Error fetching reconocimientos:", error);

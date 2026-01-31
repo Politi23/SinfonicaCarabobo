@@ -1,5 +1,5 @@
-const domain = import.meta.env.WP_DOMAIN;
-const apiBase = `${domain}/wp-json/wp/v2`;
+import { fetchAPI } from "./wp-client";
+import { cleanText } from "./wp-utils";
 
 export interface WPPost {
   id: number;
@@ -14,32 +14,20 @@ export interface WPPost {
   author: string;
 }
 
-// Helper para limpiar caracteres HTML
-function cleanText(text: string): string {
-  if (!text) return "";
-  return text
-    .replace(/<[^>]*>/g, "")
-    .replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(dec))
-    .replace(/&quot;/g, '"').replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<").replace(/&gt;/g, ">")
-    .replace(/&apos;/g, "'").replace(/&nbsp;/g, " ")
-    .trim();
-}
-
 // Obtener información general (para paginación)
 export const getPostsInfo = async ({ perPage = 6, category = undefined }: { perPage?: number, category?: string } = {}) => {
-  if (!domain) throw new Error('WP_DOMAIN missing');
-  let url = `${apiBase}/posts?per_page=${perPage}`;
-  
+  if (!import.meta.env.WP_DOMAIN) throw new Error('WP_DOMAIN missing');
+  let url = `/posts?per_page=${perPage}`;
+
   if (category) {
-    const catRes = await fetch(`${apiBase}/categories?search=${encodeURIComponent(category)}`);
+    const catRes = await fetch(`${import.meta.env.WP_DOMAIN}/wp-json/wp/v2/categories?search=${encodeURIComponent(category)}`);
     if (catRes.ok) {
       const cats = await catRes.json();
       if (cats.length) url += `&categories=${cats[0].id}`;
     }
   }
 
-  const res = await fetch(url, { method: "HEAD" });
+  const res = await fetch(import.meta.env.WP_DOMAIN + "/wp-json/wp/v2" + url, { method: "HEAD" });
   return {
     totalPosts: Number(res.headers.get("X-WP-Total") || 0),
     totalPages: Number(res.headers.get("X-WP-TotalPages") || 0),
@@ -48,20 +36,18 @@ export const getPostsInfo = async ({ perPage = 6, category = undefined }: { perP
 
 // Obtener lista de posts
 export const getPosts = async ({ perPage = 6, page = 1, category = undefined }: { perPage?: number, page?: number, category?: string } = {}): Promise<WPPost[]> => {
-  let url = `${apiBase}/posts?per_page=${perPage}&page=${page}&_embed=1`;
-  
+  let url = `/posts?per_page=${perPage}&page=${page}&_embed=1`;
+
   if (category) {
-    const catRes = await fetch(`${apiBase}/categories?search=${encodeURIComponent(category)}`);
+    const catRes = await fetch(`${import.meta.env.WP_DOMAIN}/wp-json/wp/v2/categories?search=${encodeURIComponent(category)}`);
     if (catRes.ok) {
       const cats = await catRes.json();
       if (cats.length) url += `&categories=${cats[0].id}`;
     }
   }
 
-  const res = await fetch(url);
-  if (!res.ok) return [];
-  const data = await res.json();
-  if (!data.length) return [];
+  const data = await fetchAPI(url);
+  if (!data || !Array.isArray(data)) return [];
 
   return data.map((post: any) => ({
     id: post.id,
