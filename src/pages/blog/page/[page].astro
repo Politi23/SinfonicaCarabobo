@@ -1,55 +1,52 @@
 ---
-import { getPosts, getPostsInfo } from "../../../config/wp";
+export const prerender = true;
 import Layout from "../../../layouts/Layout.astro";
 import HeroHeader from "../../../components/blog/HeroHeader.astro";
 import BlogCard from "../../../components/blog/BlogCard.astro";
 import Pagination from "../../../components/blog/Pagination.astro";
+import { getPosts, getPostsInfo } from "../../../config/wp";
+
+export async function getStaticPaths() {
+  const { totalPages } = await getPostsInfo();
+  
+  return Array.from({ length: totalPages }, (_, i) => ({
+    params: { page: (i + 1).toString() },
+  }));
+}
 
 const { page } = Astro.params;
 const currentPage = page ? parseInt(page, 10) : 1;
 
-let totalPages = 1;
 let posts = [];
+let totalPages = 1;
 
 try {
-  const postsInfo = await getPostsInfo();
-  totalPages = postsInfo.totalPages;
+  const info = await getPostsInfo();
+  totalPages = info.totalPages;
   posts = await getPosts({ page: currentPage });
 } catch (error) {
-  console.error("Failed to fetch blog posts from WordPress:", error.message);
-  totalPages = 0;
-  posts = [];
+  console.error("Error fetching blog page:", error);
 }
 ---
 
-<Layout>
-  <head>
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-  </head>
+<Layout title={`Blog - Página ${currentPage}`}>
   <main class="bg-background-light min-h-screen">
     <HeroHeader />
 
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12">
       {posts.length > 0 ? (
         <>
-          <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
-          >
-            {
-              posts.map((p) => (
-                <BlogCard
-                  title={p.title}
-                  excerpt={p.excerpt}
-                  image={p.image}
-                  date={p.date}
-                  category={p.category}
-                  slug={p.slug}
-                />
-              ))
-            }
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+            {posts.map((p) => (
+              <BlogCard
+                title={p.title}
+                excerpt={p.excerpt}
+                image={p.image}
+                date={p.date}
+                category={p.category}
+                slug={p.slug}
+              />
+            ))}
           </div>
 
           <Pagination
@@ -60,8 +57,7 @@ try {
         </>
       ) : (
         <div class="text-center py-12">
-          <p class="text-lg text-text-dark">No se pudieron cargar las entradas del blog en este momento.</p>
-          <p class="text-text-muted">Por favor, inténtelo de nuevo más tarde.</p>
+          <p class="text-lg text-text-dark">No hay entradas disponibles.</p>
         </div>
       )}
     </section>

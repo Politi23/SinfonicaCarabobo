@@ -4,177 +4,45 @@
 
 <style is:global>
   .article-content {
-    @apply text-lg leading-relaxed;
+    @apply text-lg leading-relaxed text-black;
   }
 
-  /*
-    ================================================================
-    == ESTILOS PARA ENCABEZADOS (H1-H6)
-    ================================================================
-    - Elementos: <h1>, <h2>, <h3>, etc.
-    - Estilos: Clases de Tailwind para tamaño, peso y márgenes.
-  */
-  .article-content h1,
-  .article-content h2,
-  .article-content h3,
-  .article-content h4,
-  .article-content h5,
-  .article-content h6 {
-    @apply font-bold leading-tight my-6;
+  /* Estilos forzados a negro (unificados) */
+  .article-content :where(h1, h2, h3, h4, h5, h6, p, li, blockquote p, cite, summary) {
     color: #000000 !important;
   }
 
-  .article-content h1 {
-    @apply text-4xl lg:text-5xl;
-  }
-  .article-content h2 {
-    @apply text-3xl lg:text-4xl mt-12;
-  }
-  .article-content h3 {
-    @apply text-2xl lg:text-3xl mt-10;
-  }
-  .article-content h4 {
-    @apply text-xl lg:text-2xl mt-8;
-  }
-  .article-content h5 {
-    @apply text-lg lg:text-xl mt-6;
-  }
-  .article-content h6 {
-    @apply text-base lg:text-lg mt-4;
-  }
+  /* Encabezados */
+  .article-content h1 { @apply text-4xl lg:text-5xl font-bold my-6; }
+  .article-content h2 { @apply text-3xl lg:text-4xl font-bold mt-12 mb-6; }
+  .article-content h3 { @apply text-2xl lg:text-3xl font-bold mt-10 mb-6; }
+  .article-content h4 { @apply text-xl lg:text-2xl font-bold mt-8 mb-6; }
 
-  /*
-    ================================================================
-    == ESTILOS PARA PÁRRAFOS Y ENLACES
-    ================================================================
-  */
-  .article-content p {
-    @apply my-4;
-    color: #000000 !important;
-  }
-
-  .article-content a {
-    @apply text-primary hover:underline;
-  }
-
-  /*
-    ================================================================
-    == ESTILOS PARA LISTAS
-    ================================================================
-  */
-  .article-content ul,
-  .article-content ol {
-    @apply my-6 pl-8;
-  }
-
-  .article-content ul {
-    @apply list-disc;
-  }
-
-  .article-content ol {
-    @apply list-decimal;
-  }
-
-  .article-content li {
-    @apply my-2;
-    color: #000000 !important;
-  }
-
-  /*
-    ================================================================
-    == ESTILOS PARA CITAS (CON Y SIN AUTOR)
-    ================================================================
-    - Elemento: <blockquote> para el contenedor.
-    - Estilos: Borde izquierdo, espaciado, etc.
-    - `p` dentro del blockquote es el texto de la cita.
-    - `cite` dentro del blockquote es el autor de la cita.
-  */
+  /* Elementos generales */
+  .article-content a { @apply text-primary hover:underline; }
+  .article-content ul { @apply list-disc my-6 pl-8; }
+  .article-content ol { @apply list-decimal my-6 pl-8; }
+  .article-content li { @apply my-2; }
+  
+  /* Citas */
   .article-content blockquote {
-    @apply my-8 relative py-4 px-6 lg:-mx-8;
-    border-left: 2px solid theme("colors.primary");
+    @apply my-8 relative py-4 px-6 border-l-4 border-primary bg-gray-50;
   }
-
-  .article-content blockquote p {
-    @apply text-xl font-medium leading-relaxed italic;
-    color: #000000 !important;
-  }
-
   .article-content blockquote cite {
-    @apply block text-right text-base not-italic font-semibold mt-4;
-    color: #000000 !important;
+    @apply block text-right text-base font-semibold mt-4 not-italic;
   }
 
-  /* Images, Media, and Figures */
-  .article-content img,
-  .article-content video,
-  .article-content figure,
-  .article-content table,
-  .article-content .wp-calendar-table,
-  .article-content ul,
-  .article-content ol,
-  .article-content pre,
-  .article-content blockquote {
-    @apply my-8;
+  /* Tablas */
+  .article-content table { @apply w-full border-collapse my-8; }
+  .article-content th, .article-content td { 
+    @apply border border-gray-300 p-3 text-center text-black; 
+  }
+  .article-content th { 
+    @apply font-bold bg-[#F4C430] text-black; /* Tu color dorado/amarillo */
   }
 
-  .article-content img,
-  .article-content video {
-    @apply rounded-lg shadow-md max-w-full h-auto;
-  }
-
-  .article-content figure img,
-  .article-content figure video,
-  .article-content figure table,
-  .article-content figure .wp-calendar-table,
-  .article-content figure ul,
-  .article-content figure ol,
-  .article-content figure pre,
-  .article-content figure blockquote {
-    @apply my-0;
-  }
-
-  .article-content .aligncenter {
-    @apply block mx-auto;
-  }
-
-  .article-content figcaption {
-    @apply text-center text-sm mt-3;
-    color: #000000 !important;
-  }
-
-  .article-content audio {
-    @apply w-full my-8;
-  }
-
-  /* Tables */
-  .article-content table,
-  .article-content .wp-calendar-table {
-    @apply w-full border-collapse text-left;
-  }
-
-  .article-content table th,
-  .article-content .wp-calendar-table th,
-  .article-content table td,
-  .article-content .wp-calendar-table td {
-    @apply border border-border-light p-3 text-center;
-    color: #000000 !important;
-  }
-
-  .article-content table thead th,
-  .article-content .wp-calendar-table thead th {
-    @apply font-bold text-center;
-    background-color: var(--color-accent-yellow) !important; /* Fondo dorado */
-    color: #000000 !important; /* Texto negro */
-  }
-
-  /* Preformatted & Code */
-  .article-content pre {
-    @apply bg-background-light p-4 rounded-lg my-8 overflow-x-auto text-sm;
-    color: #000000 !important;
-  }
-
-  /* Details/Summary elements */
-  .article-content summary {
-    color: #000000 !important;
-  }
+  /* Medios */
+  .article-content img, .article-content video { @apply rounded-lg shadow-md max-w-full h-auto my-8; }
+  .article-content figure { @apply my-8; }
+  .article-content figcaption { @apply text-center text-sm mt-2 text-gray-600 !important; }
 </style>
