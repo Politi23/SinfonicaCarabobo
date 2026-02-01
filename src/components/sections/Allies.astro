@@ -43,7 +43,47 @@
         <img src="/ally-scgc.webp" alt="Secretaría de Cultura Gobernación de Carabobo" class="logo-image" />
       </div>
 
-      <!-- Duplicate set for seamless infinite scroll -->
+      <!-- Second set for seamless infinite scroll -->
+      <div class="logo-container">
+        <img src="/ally-hesperia.webp" alt="HesperiaWTC" class="logo-image" />
+      </div>
+      <div class="logo-container">
+        <img src="/ally-ujap.webp" alt="UJAP" class="logo-image" />
+      </div>
+      <div class="logo-container">
+        <img src="/ally-multimax.webp" alt="Multimax" class="logo-image" />
+      </div>
+      <div class="logo-container">
+        <img src="/ally-clxsamsung.webp" alt="CLXSamsung" class="logo-image" />
+      </div>
+      <div class="logo-container">
+        <img src="/ally-alcaldia-sandiego.webp" alt="AlcaldiaSanDiego" class="logo-image" />
+      </div>
+      <div class="logo-container">
+        <img src="/ally-scgc.webp" alt="Secretaría de Cultura Gobernación de Carabobo" class="logo-image" />
+      </div>
+
+      <!-- Third set for extended cycle -->
+      <div class="logo-container">
+        <img src="/ally-hesperia.webp" alt="HesperiaWTC" class="logo-image" />
+      </div>
+      <div class="logo-container">
+        <img src="/ally-ujap.webp" alt="UJAP" class="logo-image" />
+      </div>
+      <div class="logo-container">
+        <img src="/ally-multimax.webp" alt="Multimax" class="logo-image" />
+      </div>
+      <div class="logo-container">
+        <img src="/ally-clxsamsung.webp" alt="CLXSamsung" class="logo-image" />
+      </div>
+      <div class="logo-container">
+        <img src="/ally-alcaldia-sandiego.webp" alt="AlcaldiaSanDiego" class="logo-image" />
+      </div>
+      <div class="logo-container">
+        <img src="/ally-scgc.webp" alt="Secretaría de Cultura Gobernación de Carabobo" class="logo-image" />
+      </div>
+
+      <!-- Fourth set for extended cycle -->
       <div class="logo-container">
         <img src="/ally-hesperia.webp" alt="HesperiaWTC" class="logo-image" />
       </div>
@@ -88,7 +128,7 @@
       transform: translateX(0);
     }
     to {
-      transform: translateX(-50%);
+      transform: translateX(-75%);
     }
   }
 
@@ -101,7 +141,15 @@
   }
 
   .animate-infinite-scroll {
-    animation: infinite-scroll 40s linear infinite;
+    /* Mobile Version */
+    animation: infinite-scroll 15s linear infinite;
+  }
+
+  @media (min-width: 768px) {
+    .animate-infinite-scroll {
+      /* Desktop Version */
+      animation: infinite-scroll 40s linear infinite;
+    }
   }
 
   .animate-bounce {
