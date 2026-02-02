@@ -9,14 +9,14 @@ export default {
             // ============================================
             colors: {
                 // Colores principales
-                primary: '#C28F24',        // Dorado principal - Acentos principales
-                'primary-dark': '#B07F1F', // Dorado oscuro - Hover y variantes
-                'primary-light': '#DDB850', // Dorado claro - Variantes suaves
+                primary: '#D19D2E',        // Dorado principal - Acentos principales
+                'primary-dark': '#A77E25', // Dorado oscuro - Hover y variantes
+                'primary-light': '#DAB158', // Dorado claro - Variantes suaves
 
-                secondary: '#82181a',      // Rojo oscuro - Acentos secundarios
-                'secondary-light': '#9C1F21', // Rojo claro - Variantes suaves
-                'secondary-dark': '#6A1315',  // Rojo más oscuro - Variantes oscuras
-                'wine': '#A21904',            // Vinotinto - Nuevo color
+                secondary: '#A21904',      // Rojo oscuro - Acentos secundarios
+                'secondary-light': '#C71F05', // Rojo claro - Variantes suaves
+                'secondary-dark': '#630F03',  // Rojo más oscuro - Variantes oscuras
+                'wine': '#A21904',            // Vinotinto - Usado en varios componentes
 
                 // Colores de fondo
                 'background-dark': '#000000',    // Negro puro - Fondo principal
@@ -33,23 +33,12 @@ export default {
                 // Colores de borde y divisores
                 'border-dark': '#4A4A4A',    // Gris oscuro para bordes
                 'border-light': '#E5E5E0',   // Gris claro para bordes
-                'divider': '#C28F24',        // Línea divisoria dorada
+                'divider': '#D19D2E',        // Línea divisoria dorada
 
                 // Colores de overlay/gradientes
                 'overlay-dark': 'rgba(0, 0, 0, 0.85)',  // Negro semi-transparente
                 'overlay-mid': 'rgba(0, 0, 0, 0.40)',   // Negro transparente medio
                 'overlay-light': 'rgba(0, 0, 0, 0.70)', // Negro transparente claro
-
-                // Colores de acento adicionales
-                accent: {
-                    yellow: '#DDB850',       // Amarillo/Dorado alternativo
-                    gold: '#C28F24',         // Dorado principal
-                    'gold-dark': '#B07F1F',  // Dorado oscuro (hover)
-                    'gold-light': '#F5E7C1', // Dorado claro
-                    red: '#82181a',          // Rojo principal
-                    'red-dark': '#6A1315',   // Rojo oscuro
-                    wine: '#A21904',         // Vinotinto
-                },
 
                 // Colores para estados
                 success: '#10B981',          // Verde para éxitos

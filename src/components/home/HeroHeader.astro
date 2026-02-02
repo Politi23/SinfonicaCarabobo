@@ -45,9 +45,9 @@ const { showVideo = true } = Astro.props;
 <style>
   /* Variables CSS */
   :root {
-    --gold: #c28f24; /* primary */
-    --gold-light: #ddb850; /* primary-light */
-    --gold-dark: #9a7219; /* tono oscuro del dorado */
+    --primary: #D19D2E; /* primary */
+    --primary-light: #DAB158; /* primary-light */
+    --primary-dark: #A77E25; /* tono oscuro del dorado */
     --white: #ffffff; /* text-light o white */
     --black: #000000; /* background-dark */
   }
@@ -99,9 +99,9 @@ const { showVideo = true } = Astro.props;
   .hero-btn-primary {
     background: linear-gradient(
       135deg,
-      var(--gold-light) 0%,
-      var(--gold) 50%,
-      var(--gold-dark) 100%
+      var(--primary-light) 0%,
+      var(--primary) 50%,
+      var(--primary-dark) 100%
     );
     color: var(--black);
     border: none;
@@ -168,8 +168,8 @@ const { showVideo = true } = Astro.props;
   }
 
   .hero-btn-secondary:hover {
-    border-color: var(--gold);
-    color: var(--gold-light);
+    border-color: var(--primary);
+    color: var(--primary-light);
     transform: translateY(-3px);
     box-shadow:
       0 8px 25px rgba(0, 0, 0, 0.3),
