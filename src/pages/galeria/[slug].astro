@@ -49,6 +49,14 @@ const { album } = Astro.props;
                         }</span
                     >
                 </div>
+
+                {
+                    album.excerpt && (
+                        <div class="mt-6 text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto italic">
+                            <p>{album.excerpt}</p>
+                        </div>
+                    )
+                }
             </header>
 
             {

@@ -246,7 +246,7 @@ const navLinks = navArray;
                   >
                     <div class="nav-link-content">
                       <span class="nav-link-text">{link.label}</span>
-                      <span class="nav-dropdown-arrow">▼</span>
+                      <span class="nav-dropdown-arrow">⟩</span>
                     </div>
                     <span class="nav-link-underline" />
                   </button>
@@ -311,9 +311,9 @@ const navLinks = navArray;
     inset: 0;
     background: linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.95) 0%,
-      rgba(0, 0, 0, 0.85) 50%,
-      rgba(0, 0, 0, 0.7) 100%
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 1) 50%,
+      rgba(0, 0, 0, 1) 100%
     );
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -578,14 +578,21 @@ const navLinks = navArray;
       bottom: 0;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 16px;
+      justify-content: flex-start;
+      padding-top: 20px;
+      gap: 12px;
       background: rgba(0, 0, 0, 0.98);
       backdrop-filter: blur(20px);
       opacity: 0;
       visibility: hidden;
       transform: translateY(-20px);
       transition: all 0.4s ease;
+      overflow-y: auto;
+    }
+
+    .mobile-menu-open {
+      overflow: hidden;
+      height: 100vh;
     }
 
     .nav-list.active {
@@ -629,6 +636,9 @@ const navLinks = navArray;
       navList.classList.toggle("active");
       const isExpanded = navToggle.getAttribute("aria-expanded") === "true";
       navToggle.setAttribute("aria-expanded", (!isExpanded).toString());
+
+      // Toggle body scroll lock
+      document.body.classList.toggle('mobile-menu-open');
     });
 
     // Close menu when clicking a link
@@ -638,6 +648,7 @@ const navLinks = navArray;
         navToggle.classList.remove("active");
         navList.classList.remove("active");
         navToggle.setAttribute("aria-expanded", "false");
+        document.body.classList.remove('mobile-menu-open');
       });
     });
   }

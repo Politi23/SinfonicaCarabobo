@@ -34,15 +34,24 @@
 
   /* Tablas */
   .article-content table { @apply w-full border-collapse my-8; }
-  .article-content th, .article-content td { 
-    @apply border border-gray-300 p-3 text-center text-black; 
+  .article-content th, .article-content td {
+    @apply border border-gray-300 p-3 text-center text-black;
   }
-  .article-content th { 
-    @apply font-bold bg-[#F4C430] text-black; /* Tu color dorado/amarillo */
+  .article-content th {
+    @apply font-bold bg-gray-200 text-black;
   }
 
   /* Medios */
   .article-content img, .article-content video { @apply rounded-lg shadow-md max-w-full h-auto my-8; }
   .article-content figure { @apply my-8; }
   .article-content figcaption { @apply text-center text-sm mt-2 text-gray-600 !important; }
+
+  /* WordPress Blocks */
+  .wp-block-verse {
+    @apply max-w-full overflow-x-auto text-center;
+  }
+
+  .wp-block-code {
+    @apply max-w-full overflow-x-auto bg-gray-100 p-4 rounded;
+  }
 </style>
