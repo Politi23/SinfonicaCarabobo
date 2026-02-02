@@ -16,12 +16,13 @@ export default {
                 secondary: '#82181a',      // Rojo oscuro - Acentos secundarios
                 'secondary-light': '#9C1F21', // Rojo claro - Variantes suaves
                 'secondary-dark': '#6A1315',  // Rojo más oscuro - Variantes oscuras
+                'wine': '#A21904',            // Vinotinto - Nuevo color
 
                 // Colores de fondo
                 'background-dark': '#000000',    // Negro puro - Fondo principal
                 'surface-dark': '#1a1a1a',       // Gris oscuro - Superficies secundarias
-                'background-light': '#FDFBF7',   // Crema claro - Fondo secciones claras
-                'surface-light': '#FFFFFF',      // Blanco - Superficies claras
+                'background-light': '#FFFFFF',   // Crema claro - Fondo secciones claras
+                'surface-light': '#FDFBF7',      // Blanco - Superficies claras
 
                 // Colores de texto
                 'text-dark': '#181711',      // Marrón oscuro - Texto en fondos claros
@@ -47,6 +48,7 @@ export default {
                     'gold-light': '#F5E7C1', // Dorado claro
                     red: '#82181a',          // Rojo principal
                     'red-dark': '#6A1315',   // Rojo oscuro
+                    wine: '#A21904',         // Vinotinto
                 },
 
                 // Colores para estados
