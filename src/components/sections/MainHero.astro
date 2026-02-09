@@ -1,0 +1,67 @@
+---
+interface Props {
+    title: string;
+    titleHighlight?: string;
+    subtitle?: string;
+    bgImage?: string;
+}
+
+const {
+    title,
+    titleHighlight,
+    subtitle,
+    bgImage = "/sinfonica.webp",
+} = Astro.props;
+---
+
+<section
+    class="relative min-h-[50vh] flex items-center justify-center bg-gray-900 overflow-hidden"
+>
+    <div
+        class="absolute inset-0 z-0 opacity-30 bg-fixed bg-cover bg-center"
+        style={`background-image: url('${bgImage}');`}
+    >
+    </div>
+    <div
+        class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80 z-0"
+    >
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10 text-center pt-24">
+        {
+            subtitle && (
+                <p class="text-2xl md:text-3xl italic text-gray-300 font-serif mb-6 animate-fade-in">
+                    "{subtitle}"
+                </p>
+            )
+        }
+
+        <h1
+            class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-12"
+        >
+            {title}
+            {
+                titleHighlight && (
+                    <span class="text-primary">{titleHighlight}</span>
+                )
+            }
+        </h1>
+    </div>
+</section>
+
+<style>
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-fade-in {
+        animation: fade-in 1s ease-out;
+    }
+</style>

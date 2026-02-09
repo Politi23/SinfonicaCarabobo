@@ -1,5 +1,7 @@
 ---
+import { getFoundationYears } from "../../utils/foundation";
 
+const yearsOfHistory = getFoundationYears();
 ---
 
 <section class="py-24 bg-background-light overflow-hidden">
@@ -12,7 +14,7 @@
           <h2
             class="text-3xl md:text-4xl font-display font-bold text-text-dark mb-4"
           >
-            <span class="text-primary">45 años</span> de historia
+            <span class="text-primary">{yearsOfHistory} años</span> de historia
           </h2>
           <p class="text-lg text-text-dark max-w-2xl mx-auto md:mx-0">
             Descubre nuestro libro conmemorativo que narra la extraordinaria

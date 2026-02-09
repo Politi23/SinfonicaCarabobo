@@ -2,75 +2,69 @@
 export const prerender = true;
 
 import Layout from "../../layouts/Layout.astro";
+import MainHero from "../../components/sections/MainHero.astro";
 import { getAlbums } from "../../config/wp-albums";
 
 const albums = await getAlbums();
 ---
 
 <Layout title="Galería Multimedia">
-  <main class="bg-background-light min-h-screen pt-24 pb-12">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="text-center mb-16">
-        <h1 class="text-4xl md:text-6xl font-black text-primary mb-4">
-          Nuestra Galería
-        </h1>
-        <p class="text-xl text-gray-500 italic">
-          Momentos capturados en el tiempo
-        </p>
-        <div class="w-24 h-1 bg-primary mx-auto mt-6 rounded-full opacity-60">
+  <MainHero
+    title="Nuestra"
+    titleHighlight="Galería"
+    subtitle="Momentos capturados en el tiempo"
+  />
+
+  <div class="max-w-7xl mx-auto px-4 py-16">
+    {
+      albums.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {albums.map((album) => (
+            <a
+              href={`/galeria/${album.slug}`}
+              class="group block bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+            >
+              <div class="relative aspect-[4/3] overflow-hidden">
+                <img
+                  src={album.coverImage}
+                  alt={album.title}
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-300" />
+
+                <div class="absolute bottom-3 right-3 bg-black/80 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg">
+                  <span class="material-icons text-sm">photo_library</span>
+                  {album.photos.length}
+                </div>
+              </div>
+
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-gray-900 group-hover:text-primary transition-colors leading-tight mb-2">
+                  {album.title}
+                </h3>
+                <p class="text-gray-500 text-sm font-medium flex items-center gap-1">
+                  <span class="material-icons text-sm">event</span>
+                  {new Date(album.date).toLocaleDateString("es-VE", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </p>
+              </div>
+            </a>
+          ))}
         </div>
-      </div>
-
-      {
-        albums.length > 0 ? (
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {albums.map((album) => (
-              <a
-                href={`/galeria/${album.slug}`}
-                class="group block bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
-              >
-                <div class="relative aspect-[4/3] overflow-hidden">
-                  <img
-                    src={album.coverImage}
-                    alt={album.title}
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-300" />
-
-                  <div class="absolute bottom-3 right-3 bg-black/80 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg">
-                    <span class="material-icons text-sm">photo_library</span>
-                    {album.photos.length}
-                  </div>
-                </div>
-
-                <div class="p-6">
-                  <h3 class="text-xl font-bold text-gray-900 group-hover:text-primary transition-colors leading-tight mb-2">
-                    {album.title}
-                  </h3>
-                  <p class="text-gray-500 text-sm font-medium flex items-center gap-1">
-                    <span class="material-icons text-sm">event</span>
-                    {new Date(album.date).toLocaleDateString("es-VE", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </p>
-                </div>
-              </a>
-            ))}
-          </div>
-        ) : (
-          <div class="text-center py-16">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
-              No se pudieron cargar las fotos de la galería
-            </h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-              Lo sentimos, hubo un problema al intentar acceder a las fotos de
-              nuestra galería. Por favor, inténtalo más tarde.
-            </p>
-          </div>
-        )
-      }
-    </div>
-  </main>
+      ) : (
+        <div class="text-center py-16">
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+            No se pudieron cargar las fotos de la galería
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Lo sentimos, hubo un problema al intentar acceder a las fotos de
+            nuestra galería. Por favor, inténtalo más tarde.
+          </p>
+        </div>
+      )
+    }
+  </div>
 </Layout>

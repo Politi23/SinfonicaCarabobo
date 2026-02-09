@@ -1,12 +1,15 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import HeroApoyanos from "@components/apoyanos/HeroApoyanos.astro";
+import MainHero from "../../components/sections/MainHero.astro";
 import SponsorshipTiers from "@components/apoyanos/SponsorshipTiers.astro";
 ---
 
 <Layout>
-    <!-- HERO SECTION -->
-    <HeroApoyanos />
+    <MainHero
+        title="Sé parte de"
+        titleHighlight="nuestra melodía"
+        subtitle="Juntos podemos crear un legado musical mucho más grande"
+    />
 
     <!-- SPONSORSHIP TIERS -->
     <SponsorshipTiers />

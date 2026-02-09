@@ -1,14 +1,18 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
-import HeroApoyanos from "@components/apoyanos/HeroApoyanos.astro";
+import MainHero from "../../../components/sections/MainHero.astro";
 import CorporateProgram from "../../../components/apoyanos/CorporateProgram.astro";
 import BenefitsList from "../../../components/apoyanos/BenefitsList.astro";
 import SponsorshipTiers from "../../../components/apoyanos/SponsorshipTiers.astro";
 ---
 
 <Layout title="Programa Empresarial - Fundación Orquesta Sinfónica de Carabobo">
-  <main class="bg-background-light min-h-screen pt-20">
-    <HeroApoyanos />
+  <main class="bg-background-light min-h-screen">
+    <MainHero
+      title="Alianza"
+      titleHighlight="Empresarial"
+      subtitle="Inversión social a través del arte y la cultura"
+    />
     <CorporateProgram />
     <BenefitsList />
     <SponsorshipTiers />

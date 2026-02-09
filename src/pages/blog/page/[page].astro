@@ -1,7 +1,7 @@
 ---
 export const prerender = true;
 import Layout from "../../../layouts/Layout.astro";
-import HeroHeader from "../../../components/blog/HeroHeader.astro";
+import MainHero from "../../../components/sections/MainHero.astro";
 import BlogCard from "../../../components/blog/BlogCard.astro";
 import Pagination from "../../../components/blog/Pagination.astro";
 import { getBlogs, getBlogsInfo } from "../../../config/wp-blogs";
@@ -46,7 +46,11 @@ try {
 
 <Layout title={`Blog - Página ${currentPage}`}>
   <main class="bg-background-light min-h-screen">
-    <HeroHeader />
+    <MainHero
+      title="Noticias y"
+      titleHighlight="Actualidad"
+      subtitle="Explora nuestras últimas noticias, eventos y experiencias musicales"
+    />
 
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12">
       {

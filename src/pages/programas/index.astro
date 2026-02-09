@@ -1,14 +1,18 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import ProgramsHero from "@components/programs/ProgramsHero.astro";
+import MainHero from "../../components/sections/MainHero.astro";
 import AcademiaSection from "@components/programs/AcademiaSection.astro";
 import ImpactoSocialSection from "@components/programs/ImpactoSocialSection.astro";
 import OtrosProgramasSection from "@components/programs/OtrosProgramasSection.astro";
 ---
 
 <Layout title="Programas">
-  <main class="bg-background-light min-h-screen pt-20">
-    <ProgramsHero />
+  <main class="bg-background-light min-h-screen">
+    <MainHero
+      title="Nuestros"
+      titleHighlight="Programas"
+      subtitle="Formando Futuras Generaciones"
+    />
     <AcademiaSection />
     <ImpactoSocialSection />
     <OtrosProgramasSection />
