@@ -1,50 +1,89 @@
 ---
-import { getPosts, getPostsInfo } from "../../../config/wp";
+export const prerender = true;
 import Layout from "../../../layouts/Layout.astro";
 import HeroHeader from "../../../components/blog/HeroHeader.astro";
 import BlogCard from "../../../components/blog/BlogCard.astro";
 import Pagination from "../../../components/blog/Pagination.astro";
+import { getBlogs, getBlogsInfo } from "../../../config/wp-blogs";
+
+export async function getStaticPaths() {
+  const { totalPages } = await getBlogsInfo();
+
+  // Si no hay blogs, al menos generamos la página 1 vacía para que no rompa el build
+  const safeTotal = totalPages > 0 ? totalPages : 1;
+
+  return Array.from({ length: safeTotal }, (_, i) => ({
+    params: { page: (i + 1).toString() },
+  }));
+}
 
 const { page } = Astro.params;
 const currentPage = page ? parseInt(page, 10) : 1;
 
-const { totalPages } = await getPostsInfo();
-const posts = await getPosts({ page: currentPage });
+// Define the type for a blog post
+type Blog = {
+  title: string;
+  excerpt: string;
+  image: string;
+  date: string;
+  category: string;
+  slug: string;
+};
+
+let blogs: Blog[] = [];
+let totalPages = 1;
+
+try {
+  const info = await getBlogsInfo();
+  totalPages = info.totalPages;
+
+  // Solicitamos los blogs de la página actual
+  blogs = await getBlogs({ page: currentPage });
+} catch (error) {
+  console.error("Error cargando blogs:", error);
+}
 ---
 
-<Layout>
-  <head>
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-  </head>
+<Layout title={`Blog - Página ${currentPage}`}>
   <main class="bg-background-light min-h-screen">
     <HeroHeader />
 
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12">
-      <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
-      >
-        {
-          posts.map((p) => (
-            <BlogCard
-              title={p.title}
-              excerpt={p.excerpt}
-              image={p.image}
-              date={p.date}
-              category={p.category}
-              slug={p.slug}
-            />
-          ))
-        }
-      </div>
+      {
+        blogs.length > 0 ? (
+          <>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+              {blogs.map((b) => (
+                <BlogCard
+                  title={b.title}
+                  excerpt={b.excerpt}
+                  image={b.image}
+                  date={b.date}
+                  category={b.category}
+                  slug={b.slug}
+                />
+              ))}
+            </div>
 
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        baseUrl="/blog/page"
-      />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              baseUrl="/blog/page"
+            />
+          </>
+        ) : (
+          <div class="text-center py-20">
+            <p class="text-xl text-gray-500 italic">
+              No hay publicaciones disponibles en este momento.
+            </p>
+            <div class="mt-8">
+              <a href="/" class="text-primary font-bold hover:underline">
+                Volver al inicio
+              </a>
+            </div>
+          </div>
+        )
+      }
     </section>
   </main>
 </Layout>

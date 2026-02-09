@@ -13,7 +13,7 @@ import HeroHeader from "../../components/HeroHeader.astro";
             class="relative min-h-[50vh] flex items-center justify-center bg-gray-900 overflow-hidden"
         >
             <div
-                class="absolute inset-0 z-0 opacity-30 bg-[url('/sinfonica.jpg')] bg-fixed bg-cover bg-center"
+                class="absolute inset-0 z-0 opacity-30 bg-[url('/sinfonica.webp')] bg-fixed bg-cover bg-center"
             >
             </div>
             <div
@@ -29,6 +29,40 @@ import HeroHeader from "../../components/HeroHeader.astro";
             <div
                 class="absolute top-4 right-4 w-24 h-24 border-r-4 border-t-4 border-primary opacity-60"
             >
+            </div>
+
+            <!-- Floating animated musical notes -->
+            <div class="absolute inset-0 pointer-events-none">
+                <div
+                    class="absolute top-1/4 left-1/4 text-primary/30 text-6xl animate-float-1"
+                >
+                    ♪
+                </div>
+                <div
+                    class="absolute top-1/3 right-1/5 text-primary/40 text-5xl animate-float-2"
+                >
+                    ♫
+                </div>
+                <div
+                    class="absolute bottom-1/4 left-1/3 text-primary/20 text-7xl animate-float-3"
+                >
+                    ♪
+                </div>
+                <div
+                    class="absolute bottom-1/3 right-1/4 text-primary/30 text-4xl animate-float-1"
+                >
+                    ♫
+                </div>
+                <div
+                    class="absolute top-1/2 left-1/6 text-primary/25 text-5xl animate-float-2"
+                >
+                    ♪
+                </div>
+                <div
+                    class="absolute top-2/3 right-1/3 text-primary/35 text-6xl animate-float-3"
+                >
+                    ♫
+                </div>
             </div>
 
             <div class="container mx-auto px-6 relative z-10 text-center pt-24">
@@ -51,7 +85,7 @@ import HeroHeader from "../../components/HeroHeader.astro";
                             class="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-full p-4 border border-white/20 shadow-2xl group-hover:shadow-primary/20 transition-all duration-500 group-hover:scale-105"
                         >
                             <img
-                                src="/logo.png"
+                                src="/logo.webp"
                                 alt="Fundación Orquesta Sinfónica de Carabobo"
                                 class="h-24 md:h-32 object-contain filter brightness-110 contrast-110 drop-shadow-lg group-hover:drop-shadow-2xl transition-all duration-500"
                             />
@@ -62,7 +96,7 @@ import HeroHeader from "../../components/HeroHeader.astro";
                             >
                             </div>
                             <div
-                                class="absolute -bottom-1 -left-1 w-3 h-3 bg-accent-yellow rounded-full opacity-60 animate-pulse"
+                                class="absolute -bottom-1 -left-1 w-3 h-3 bg-primary rounded-full opacity-60 animate-pulse"
                                 style="animation-delay: 0.5s;"
                             >
                             </div>
@@ -71,16 +105,18 @@ import HeroHeader from "../../components/HeroHeader.astro";
                 </div>
 
                 <h1
-                    class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white"
+                    class="text-2xl md:text-4xl lg:text-4xl font-display font-bold text-white"
                 >
-                    Sobre <span class="text-primary">Nosotros</span>
+                    Fundación Orquesta Sinfónica <span class="text-primary">
+                        de Carabobo</span
+                    >
                 </h1>
             </div>
         </section>
 
         <!-- FUNDACIÓN INFO ("Quiénes Somos") -->
         <section
-            class="py-24 md:py-32 relative overflow-hidden"
+            class="py-24 md:py-32 relative overflow-hidden bg-gradient-to-br from-surface-light/30 via-white to-surface-light/20"
             id="quienes-somos"
         >
             <div class="container mx-auto px-6 max-w-6xl relative z-10">
@@ -97,137 +133,85 @@ import HeroHeader from "../../components/HeroHeader.astro";
                         >
                     </h2>
 
-                    <div
-                        class="max-w-4xl space-y-8 text-lg md:text-xl leading-relaxed text-text-dark font-serif"
-                    >
-                        <p>
-                            La Fundación Orquesta Sinfónica de Carabobo (FOSC)
-                            es una organización sin fines de lucro que, desde el
-                            14 de diciembre de 1993, se ha dedicado al cultivo,
-                            desarrollo y divulgación de la música sinfónica.
-                        </p>
-                        <p>
-                            Nos caracterizamos por ofrecer espectáculos de alta
-                            factura en espacios convencionales y no
-                            convencionales, democratizando el acceso a la
-                            cultura y formando a las nuevas generaciones.
-                        </p>
+                    <!-- Texto introductorio -->
+                    <div class="relative text-center mb-24">
+                        <!-- Decorative frame -->
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 rounded-2xl"
+                        >
+                        </div>
+                        <div
+                            class="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-primary/30 rounded-tl-lg"
+                        >
+                        </div>
+                        <div
+                            class="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-primary/30 rounded-tr-lg"
+                        >
+                        </div>
+                        <div
+                            class="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-primary/30 rounded-bl-lg"
+                        >
+                        </div>
+                        <div
+                            class="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-primary/30 rounded-br-lg"
+                        >
+                        </div>
+
+                        <!-- Musical notes decoration -->
+                        <div
+                            class="absolute -top-6 left-1/4 text-primary/20 text-4xl"
+                        >
+                            ♪
+                        </div>
+                        <div
+                            class="absolute -top-4 right-1/4 text-primary/20 text-3xl"
+                        >
+                            ♫
+                        </div>
+                        <div
+                            class="absolute -bottom-6 left-1/3 text-primary/20 text-2xl"
+                        >
+                            ♪
+                        </div>
+                        <div
+                            class="absolute -bottom-4 right-1/3 text-primary/20 text-3xl"
+                        >
+                            ♫
+                        </div>
+
+                        <div
+                            class="relative bg-white/50 backdrop-blur-sm p-8 md:p-12 rounded-2xl border border-primary/10 shadow-lg"
+                        >
+                            <h3
+                                class="text-2xl md:text-3xl font-display font-bold text-text-dark mb-6"
+                            >
+                                ¿Quiénes somos?
+                            </h3>
+                            <p
+                                class="text-lg md:text-xl text-text-dark leading-relaxed max-w-4xl mx-auto font-serif italic"
+                            >
+                                La FOSC es una organización sin fines de lucro
+                                fundada el 14 de diciembre de 1993, dedicada al
+                                cultivo, desarrollo y divulgación de la música
+                                sinfónica en el estado Carabobo. Su labor
+                                incluye la formación musical de niños, niñas y
+                                adolescentes, con especial atención a aquellos
+                                de escasos recursos y condiciones especiales,
+                                garantizando la continuidad de la Orquesta
+                                Sinfónica de Carabobo con altos estándares de
+                                calidad.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Cards Grid -->
-                <div class="grid md:grid-cols-3 gap-8 mb-32">
-                    <!-- Misión -->
-                    <div
-                        class="group bg-surface-light p-10 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgb(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-2 border border-border-light"
-                    >
-                        <div
-                            class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors"
-                        >
-                            <svg
-                                class="w-6 h-6 text-primary"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                ><path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1.5"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg
-                            >
-                        </div>
-                        <h3
-                            class="text-2xl font-display font-bold mb-4 text-text-dark"
-                        >
-                            Misión
-                        </h3>
-                        <p class="text-text-dark leading-relaxed">
-                            Transformar vidas a través de la educación de
-                            líderes con pensamiento crítico mediante la
-                            ejecución de la música sinfónica.
-                        </p>
-                    </div>
-
-                    <!-- Visión -->
-                    <div
-                        class="group bg-surface-light p-10 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgb(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-2 border border-border-light"
-                    >
-                        <div
-                            class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors"
-                        >
-                            <svg
-                                class="w-6 h-6 text-primary"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                ><path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1.5"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                ></path><path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1.5"
-                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                                ></path></svg
-                            >
-                        </div>
-                        <h3
-                            class="text-2xl font-display font-bold mb-4 text-text-dark"
-                        >
-                            Visión
-                        </h3>
-                        <p class="text-text-dark leading-relaxed">
-                            Ser vanguardia nacional e internacional en el
-                            desarrollo, divulgación y enseñanza de la música
-                            sinfónica.
-                        </p>
-                    </div>
-
-                    <!-- Valores -->
-                    <div
-                        class="group bg-surface-light p-10 rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgb(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-2 border border-border-light"
-                    >
-                        <div
-                            class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors"
-                        >
-                            <svg
-                                class="w-6 h-6 text-primary"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                ><path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1.5"
-                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                                ></path></svg
-                            >
-                        </div>
-                        <h3
-                            class="text-2xl font-display font-bold mb-4 text-text-dark"
-                        >
-                            Valores
-                        </h3>
-                        <ul class="text-text-dark space-y-2">
-                            <li class="flex items-center gap-3">
-                                <span
-                                    class="w-1.5 h-1.5 rounded-full bg-primary"
-                                ></span> Sentido de pertenencia
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <span
-                                    class="w-1.5 h-1.5 rounded-full bg-primary"
-                                ></span> Excelencia y Disciplina
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <span
-                                    class="w-1.5 h-1.5 rounded-full bg-primary"
-                                ></span> Empatía y Respeto
-                            </li>
-                        </ul>
-                    </div>
+                <!-- Imagen de orquesta -->
+                <div class="mt-4 mb-16">
+                    <img
+                        src="/orchestra1.webp"
+                        alt="Orquesta Sinfónica"
+                        class="w-full max-w-3xl mx-auto rounded-2xl shadow-xl border border-primary/20"
+                    />
                 </div>
 
                 <!-- Objetivos -->
@@ -241,188 +225,246 @@ import HeroHeader from "../../components/HeroHeader.astro";
                             >
                                 Objetivo General
                             </h3>
-                            <p class="text-text-dark leading-relaxed text-lg">
-                                Contribuir con el conocimiento, desarrollo y
-                                divulgación masiva de la música sinfónica
-                                ejecutada con altos estándares de calidad y el
-                                fortalecimiento de las capacidades musicales.
-                            </p>
-                        </div>
-                        <div class="relative">
-                            <div
-                                class="absolute left-0 top-0 bottom-0 w-px bg-border-light hidden md:block"
-                            >
-                            </div>
-                            <div class="md:pl-16">
-                                <h3
-                                    class="text-3xl font-display font-bold mb-6 text-text-dark"
+                            <ul class="space-y-4 text-text-dark">
+                                <li class="flex gap-4">
+                                    <svg
+                                        class="w-6 h-6 text-primary shrink-0"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        ><path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="1.5"
+                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        ></path></svg
+                                    >
+                                    Contribuir al conocimiento desarrollo.
+                                </li>
+                                <li class="flex gap-4">
+                                    <svg
+                                        class="w-6 h-6 text-primary shrink-0"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        ><path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="1.5"
+                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        ></path></svg
+                                    >
+                                    Divulgación masiva de la música sinfónica.
+                                </li>
+                            </ul>
+                            <li class="flex gap-4">
+                                <svg
+                                    class="w-6 h-6 text-primary shrink-0"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    ><path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    ></path></svg
                                 >
-                                    Objetivos Específicos
-                                </h3>
-                                <ul class="space-y-4 text-text-dark">
-                                    <li class="flex gap-4">
-                                        <svg
-                                            class="w-6 h-6 text-primary shrink-0"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                            ><path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="1.5"
-                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                            ></path></svg
-                                        >
-                                        Conciertos del repertorio sinfónico con excelencia.
-                                    </li>
-                                    <li class="flex gap-4">
-                                        <svg
-                                            class="w-6 h-6 text-primary shrink-0"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                            ><path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="1.5"
-                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                            ></path></svg
-                                        >
-                                        Formación y perfeccionamiento de nuevas generaciones.
-                                    </li>
-                                    <li class="flex gap-4">
-                                        <svg
-                                            class="w-6 h-6 text-primary shrink-0"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                            ><path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="1.5"
-                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                            ></path></svg
-                                        >
-                                        Proyectos de integración con la comunidad.
-                                    </li>
-                                </ul>
-                            </div>
+                                fortaleciendo las capacidades musicales de la comunidad
+                                carabobeña.
+                            </li>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div
+                            class="absolute left-0 top-0 bottom-0 w-px bg-border-light hidden md:block"
+                        >
+                        </div>
+                        <div class="md:pl-16">
+                            <h3
+                                class="text-3xl font-display font-bold mb-6 text-text-dark"
+                            >
+                                Objetivos Específicos
+                            </h3>
+                            <ul class="space-y-4 text-text-dark">
+                                <li class="flex gap-4">
+                                    <svg
+                                        class="w-6 h-6 text-primary shrink-0"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        ><path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="1.5"
+                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        ></path></svg
+                                    >
+                                    Conciertos del repertorio sinfónico con excelencia.
+                                </li>
+                                <li class="flex gap-4">
+                                    <svg
+                                        class="w-6 h-6 text-primary shrink-0"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        ><path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="1.5"
+                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        ></path></svg
+                                    >
+                                    Formación y perfeccionamiento de nuevas generaciones.
+                                </li>
+                                <li class="flex gap-4">
+                                    <svg
+                                        class="w-6 h-6 text-primary shrink-0"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        ><path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="1.5"
+                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        ></path></svg
+                                    >
+                                    Proyectos de integración con la comunidad.
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- PROGRAMAS - Parallax Effect Background -->
-        <div
-            class="relative py-24 bg-surface-dark text-text-light overflow-hidden"
-        >
+            <!-- Programa de Formación Musical -->
             <div
-                class="absolute inset-0 z-0 opacity-20 bg-[url('/sinfonica.jpg')] bg-fixed bg-cover bg-center"
+                class="bg-surface-light rounded-2xl p-12 shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-border-light mt-16"
             >
-            </div>
-            <div class="absolute inset-0 bg-black/60 z-0"></div>
-
-            <div class="container mx-auto px-6 max-w-6xl relative z-10">
-                <div class="text-center mb-16">
-                    <span
-                        class="text-primary text-sm font-bold tracking-[0.2em] uppercase mb-4 block"
-                        >Impacto Social</span
-                    >
-                    <h2
-                        class="text-4xl md:text-5xl font-display font-bold text-text-light"
-                    >
-                        Nuestros Programas
-                    </h2>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <h3 class="text-3xl font-bold mb-6 text-primary">
-                            Academia "Maestro José Calabrese"
-                        </h3>
-                        <p
-                            class="text-text-light leading-relaxedtext-lg mb-8 leading-relaxed"
-                        >
-                            Desde 2019, formamos a más de 500 estudiantes,
-                            incluyendo niños con Síndrome de Down, con el aval
-                            de la UNESCO. Una verdadera escuela de vida.
-                        </p>
-                        <a
-                            href="http://www.academiajosecalabrese.com"
-                            target="_blank"
-                            class="inline-flex items-center gap-2 text-text-light border-b border-primary pb-1 hover:text-primary transition-colors"
-                        >
-                            Visitar sitio oficial
-                            <svg
-                                class="w-4 h-4"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                ><path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
-                            >
-                        </a>
-                    </div>
-                    <div
-                        class="bg-white/10 p-8 rounded-2xl backdrop-blur-sm border border-white/10"
-                    >
-                        <div class="flex items-center gap-6 mb-6">
-                            <span class="text-5xl font-bold text-text-light"
-                                >1.500+</span
-                            >
-                            <span class="text-text-light leading-tight"
-                                >Personas impactadas<br />por concierto</span
-                            >
-                        </div>
-                        <div class="h-px w-full bg-white/20 mb-6"></div>
-                        <div class="flex items-center gap-6">
-                            <span class="text-5xl font-bold text-text-light"
-                                >80+</span
-                            >
-                            <span class="text-text-light leading-tight"
-                                >Becas otorgadas<br />anualmente</span
-                            >
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- CTA FINAL -->
-        <section
-            class="py-24 background-dark text-text-light text-center bg-background-dark"
-        >
-            <div class="container mx-auto px-6 max-w-4xl">
-                <h2
-                    class="text-4xl md:text-5xl font-display font-bold mb-8 text-text-light"
+                <h3
+                    class="text-3xl font-display font-bold mb-6 text-text-dark text-center"
                 >
-                    Únete a la Excelencia
-                </h2>
-                <p class="text-xl text-text-light/90 mb-12 max-w-2xl mx-auto">
-                    Ya sea como patrocinador, alumno o donante, tu apoyo es
-                    vital para seguir construyendo cultura en Carabobo.
+                    Programa de Formación Musical "Maestro José Calabrese"
+                </h3>
+                <p class="text-text-dark leading-relaxed text-lg mb-6">
+                    Fundado el 7 de octubre de 2019, es un programa académico
+                    que hoy cuenta con una matrícula de más de 200 estudiantes,
+                    entre niños, jóvenes y adultos. Ofrece:
                 </p>
-                <div class="flex flex-col md:flex-row gap-6 justify-center">
-                    <a
-                        href="#contacto"
-                        class="bg-surface-light text-text-dark px-10 py-4 rounded-full font-bold hover:bg-gray-100 transition-transform hover:scale-105 shadow-xl"
-                    >
-                        Contáctanos
-                    </a>
-                    <a
-                        href="#"
-                        class="bg-transparent border-2 border-text-light text-text-light px-10 py-4 rounded-full font-bold hover:bg-white/10 transition-colors"
-                    >
-                        Ver Conciertos
-                    </a>
-                </div>
+                <ul class="space-y-4 text-text-dark">
+                    <li class="flex gap-4">
+                        <svg
+                            class="w-6 h-6 text-primary shrink-0"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            ><path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                            ></path></svg
+                        >
+                        Becas para más de 80 niños y jóvenes.
+                    </li>
+                    <li class="flex gap-4">
+                        <svg
+                            class="w-6 h-6 text-primary shrink-0"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            ><path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                            ></path></svg
+                        >
+                        Asignación de instrumentos para quienes inician.
+                    </li>
+                    <li class="flex gap-4">
+                        <svg
+                            class="w-6 h-6 text-primary shrink-0"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            ><path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                            ></path></svg
+                        >
+                        Programas inclusivos para niños con Síndrome de Down.
+                    </li>
+                    <li class="flex gap-4">
+                        <svg
+                            class="w-6 h-6 text-primary shrink-0"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            ><path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                            ></path></svg
+                        >
+                        Aval nacional de la Universidad José Antonio Páez y el Conservatorio
+                        de Música Vicente Emilio Sojo.
+                    </li>
+                    <li class="flex gap-4">
+                        <svg
+                            class="w-6 h-6 text-primary shrink-0"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            ><path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                            ></path></svg
+                        >
+                        Alianzas internacionales en Estados Unidos, Brasil y Colombia,
+                        con aval de la UNESCO.
+                    </li>
+                </ul>
             </div>
         </section>
     </main>
+
+    <!-- CTA FINAL -->
+    <section
+        class="py-24 background-dark text-text-light text-center bg-background-dark"
+    >
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2
+                class="text-4xl md:text-5xl font-display font-bold mb-8 text-text-light"
+            >
+                Únete a la Excelencia
+            </h2>
+            <p class="text-xl text-text-light/90 mb-12 max-w-2xl mx-auto">
+                Ya sea como patrocinador, alumno o donante, tu apoyo es vital
+                para seguir construyendo cultura en Carabobo.
+            </p>
+            <div class="flex flex-col md:flex-row gap-6 justify-center">
+                <a
+                    href="#contacto"
+                    class="bg-surface-light text-text-dark px-10 py-4 rounded-full font-bold hover:bg-gray-100 transition-transform hover:scale-105 shadow-xl"
+                >
+                    Contáctanos
+                </a>
+                <a
+                    href="#"
+                    class="bg-transparent border-2 border-text-light text-text-light px-10 py-4 rounded-full font-bold hover:bg-white/10 transition-colors"
+                >
+                    Ver Conciertos
+                </a>
+            </div>
+        </div>
+    </section>
 </Layout>
 
 <style>
@@ -439,5 +481,47 @@ import HeroHeader from "../../components/HeroHeader.astro";
 
     .animate-fade-in {
         animation: fade-in 1s ease-out;
+    }
+
+    @keyframes float-1 {
+        0%,
+        100% {
+            transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-20px) rotate(5deg);
+        }
+    }
+
+    @keyframes float-2 {
+        0%,
+        100% {
+            transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-15px) rotate(-5deg);
+        }
+    }
+
+    @keyframes float-3 {
+        0%,
+        100% {
+            transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-25px) rotate(3deg);
+        }
+    }
+
+    .animate-float-1 {
+        animation: float-1 6s ease-in-out infinite;
+    }
+
+    .animate-float-2 {
+        animation: float-2 8s ease-in-out infinite;
+    }
+
+    .animate-float-3 {
+        animation: float-3 7s ease-in-out infinite;
     }
 </style>

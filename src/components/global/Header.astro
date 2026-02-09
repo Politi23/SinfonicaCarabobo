@@ -1,13 +1,203 @@
 ---
-const navLinks = [
-  { href: "/", label: "Inicio", active: false },
-  { href: "/nosotros", label: "Nosotros", active: false },
-  { href: "/programas", label: "Programas", active: false },
-  { href: "/blog", label: "Blog", active: false },
-  { href: "/libro", label: "Libro", active: false },
-  { href: "/apoyanos", label: "Apóyanos", active: false },
-  { href: "/contacto", label: "Contacto", active: false },
+// Dynamically generate navigation from pages directory
+const allPages = import.meta.glob("/src/pages/**/*.astro", { eager: true });
+
+// Define files to exclude
+const excludeFiles = [
+  "/src/pages/404.astro",
+  "/src/pages/blog/[slug].astro",
+  "/src/pages/blog/page/[page].astro",
+  "/src/pages/libro/index.astro",
+  "/src/pages/conciertos/[slug].astro",
+  "/src/pages/galeria/[slug].astro",
 ];
+
+// Create a map to store the navigation structure
+const topLevelNav = new Map();
+
+// Process each page
+for (const [path, module] of Object.entries(allPages)) {
+  // Skip excluded files
+  if (excludeFiles.includes(path)) {
+    continue;
+  }
+
+  // Convert file path to URL path
+  let urlPath = path
+    .replace("/src/pages", "") // Remove base path
+    .replace(/\/index\.astro$/, "/") // Convert index files to directory
+    .replace(/\.astro$/, "") // Remove .astro extension
+    .replace(/\/$/, ""); // Remove trailing slash except for root
+
+  // Special handling for root index
+  if (urlPath === "") {
+    urlPath = "/";
+  }
+
+  // Split path into segments
+  const segments = urlPath.split("/").filter((segment) => segment !== "");
+
+  if (segments.length === 0) {
+    // This is the home page
+    topLevelNav.set("/", {
+      href: "/",
+      label: "Inicio",
+      dropdown: [],
+    });
+  } else if (segments.length === 1) {
+    // This is a top-level page or directory
+    const dirName = segments[0];
+
+    // Convert directory name to readable label
+    let dirLabel = dirName
+      .replace(/-/g, " ")
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+
+    // Special case handling for known directories
+    switch (dirName) {
+      case "nosotros":
+        dirLabel = "Nosotros";
+        break;
+      case "agrupaciones":
+        dirLabel = "Agrupaciones";
+        break;
+      case "programas":
+        dirLabel = "Programas";
+        break;
+      case "blog":
+        dirLabel = "Blog";
+        break;
+      case "libro":
+        dirLabel = "Libro";
+        break;
+      case "apoyanos":
+        dirLabel = "Apóyanos";
+        break;
+      case "contacto":
+        dirLabel = "Contacto";
+        break;
+    }
+
+    // Initialize the top-level entry if it doesn't exist
+    if (!topLevelNav.has(`/${dirName}`)) {
+      topLevelNav.set(`/${dirName}`, {
+        href: `/${dirName}`,
+        label: dirLabel,
+        dropdown: [],
+      });
+    }
+  } else if (segments.length >= 2) {
+    // This is a sub-page, create or update the parent's dropdown
+    const parentDir = segments[0];
+    const subPath = segments.slice(1).join("/");
+
+    // Convert sub-path to readable label
+    let subLabel = subPath
+      .replace(/-/g, " ")
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+
+    // Special case handling for known sub-pages
+    if (parentDir === "nosotros" && subPath === "reconocimientos") {
+      subLabel = "Reconocimientos";
+    } else if (parentDir === "nosotros" && subPath === "discografia") {
+      subLabel = "Discografia";
+    } else if (parentDir === "nosotros" && subPath === "fosc") {
+      subLabel = "FOSC";
+    } else if (parentDir === "nosotros" && subPath === "osc") {
+      subLabel = "OSC";
+    }
+
+    // Initialize the parent if it doesn't exist
+    if (!topLevelNav.has(`/${parentDir}`)) {
+      let parentLabel = parentDir
+        .replace(/-/g, " ")
+        .split(" ")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+
+      switch (parentDir) {
+        case "nosotros":
+          parentLabel = "Nosotros";
+          break;
+        case "agrupaciones":
+          parentLabel = "Agrupaciones";
+          break;
+        case "programas":
+          parentLabel = "Programas";
+          break;
+        case "blog":
+          parentLabel = "Blog";
+          break;
+        case "libro":
+          parentLabel = "Libro";
+          break;
+        case "apoyanos":
+          parentLabel = "Apóyanos";
+          break;
+        case "contacto":
+          parentLabel = "Contacto";
+          break;
+      }
+
+      topLevelNav.set(`/${parentDir}`, {
+        href: `/${parentDir}`,
+        label: parentLabel,
+        dropdown: [],
+      });
+    }
+
+    // Add the sub-page to the parent's dropdown
+    const parentEntry = topLevelNav.get(`/${parentDir}`);
+    parentEntry.dropdown.push({
+      href: urlPath,
+      label: subLabel,
+    });
+  }
+}
+
+// Convert map to array and sort
+const navArray = Array.from(topLevelNav.values());
+
+// Define custom sort order for top-level items
+const order = [
+  "/",
+  "/nosotros",
+  "/agrupaciones",
+  "/programas",
+  "/blog",
+  "/libro",
+  "/apoyanos",
+  "/contacto",
+];
+navArray.sort((a, b) => {
+  const aIndex = order.indexOf(a.href);
+  const bIndex = order.indexOf(b.href);
+
+  if (aIndex !== -1 && bIndex !== -1) {
+    return aIndex - bIndex;
+  } else if (aIndex !== -1) {
+    return -1;
+  } else if (bIndex !== -1) {
+    return 1;
+  } else {
+    return a.href.localeCompare(b.href);
+  }
+});
+
+// Sort dropdown items alphabetically
+navArray.forEach((item) => {
+  if (item.dropdown) {
+    item.dropdown.sort((a: { label: string }, b: { label: any }) =>
+      a.label.localeCompare(b.label),
+    );
+  }
+});
+
+const navLinks = navArray;
 ---
 
 <!-- Header con efecto glassmorphism -->
@@ -15,16 +205,16 @@ const navLinks = [
   <div class="header-backdrop"></div>
   <div class="header-container">
     <!-- Logo -->
-    <a href="http://localhost:4321" class="logo-link group">
+    <a href="/" class="logo-link group">
       <div class="flex items-center gap-4">
         <img
-          src="/logosimple.png"
+          src="/logosimple.webp"
           alt="Logo de la Fundación Orquesta Sinfónica de Carabobo"
           class="logo-image drop-shadow-lg transition-transform duration-300 group-hover:scale-105"
         />
         <div class="hidden md:flex flex-col">
           <span
-            class="text-xs font-light tracking-widest text-gray-300 uppercase leading-tight"
+            class="text-sm font-bold tracking-wide text-white leading-tight font-serif"
           >
             Fundación
           </span>
@@ -34,7 +224,7 @@ const navLinks = [
             Orquesta Sinfónica
           </span>
           <span
-            class="text-xs font-medium tracking-wider text-accent-yellow uppercase leading-tight"
+            class="text-sm font-bold tracking-wide text-white leading-tight font-serif"
           >
             de Carabobo
           </span>
@@ -61,13 +251,43 @@ const navLinks = [
         {
           navLinks.map((link) => (
             <li class="nav-item">
-              <a
-                href={link.href}
-                class={`nav-link ${link.active ? "nav-link-active" : ""}`}
-              >
-                <span class="nav-link-text">{link.label}</span>
-                <span class="nav-link-underline" />
-              </a>
+              {link.dropdown && link.dropdown.length > 0 ? (
+                <div class="nav-dropdown" data-dropdown>
+                  <button
+                    class={`nav-link dropdown-toggle ${link.active ? "nav-link-active" : ""}`}
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                  >
+                    <div class="nav-link-content">
+                      <span class="nav-link-text">{link.label}</span>
+                      <span class="nav-dropdown-arrow">⟩</span>
+                    </div>
+                    <span class="nav-link-underline" />
+                  </button>
+                  <ul class="nav-dropdown-menu" hidden>
+                    {link.dropdown.map(
+                      (subLink: {
+                        href: string | URL | null | undefined;
+                        label: unknown;
+                      }) => (
+                        <li class="nav-dropdown-item">
+                          <a href={subLink.href} class="nav-dropdown-link">
+                            {subLink.label}
+                          </a>
+                        </li>
+                      ),
+                    )}
+                  </ul>
+                </div>
+              ) : (
+                <a
+                  href={link.href}
+                  class={`nav-link ${link.active ? "nav-link-active" : ""}`}
+                >
+                  <span class="nav-link-text">{link.label}</span>
+                  <span class="nav-link-underline" />
+                </a>
+              )}
             </li>
           ))
         }
@@ -81,10 +301,10 @@ const navLinks = [
   :root {
     --header-height: 80px;
     --header-height-mobile: 64px;
-    --gold: #c28f24; /* primary */
-    --gold-light: #ddb850; /* primary-light */
-    --gold-dark: #9a7219; /* tono oscuro del dorado */
-    --red-accent: #82181a; /* secondary */
+    --primary: #d19d2e; /* primary */
+    --primary-light: #dab158; /* primary-light */
+    --primary-dark: #a77e25; /* tono oscuro del dorado */
+    --secondary: #a21904; /* secondary */
     --black: #000000; /* background-dark */
     --black-soft: #0a0a0a; /* surface-dark más claro */
     --white: #ffffff; /* text-light */
@@ -110,9 +330,9 @@ const navLinks = [
     inset: 0;
     background: linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.95) 0%,
-      rgba(0, 0, 0, 0.85) 50%,
-      rgba(0, 0, 0, 0.7) 100%
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 1) 50%,
+      rgba(0, 0, 0, 1) 100%
     );
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -169,7 +389,7 @@ const navLinks = [
   }
 
   .nav-toggle:hover {
-    border-color: var(--gold);
+    border-color: var(--primary);
     background: rgba(194, 143, 36, 0.1);
   }
 
@@ -236,7 +456,12 @@ const navLinks = [
     transform: translateX(-50%) scaleX(0);
     width: 30px;
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--primary),
+      transparent
+    );
     transition: transform 0.3s ease;
     border-radius: 2px;
   }
@@ -250,11 +475,87 @@ const navLinks = [
   }
 
   .nav-link-active {
-    color: var(--gold);
+    color: var(--primary);
   }
 
   .nav-link-active .nav-link-underline {
     transform: translateX(-50%) scaleX(0);
+  }
+
+  .nav-link-content {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* Dropdown menu styles */
+  .nav-dropdown {
+    position: relative;
+  }
+  .nav-dropdown-arrow {
+    margin-left: 4px;
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+  }
+  .dropdown-toggle[aria-expanded="true"] .nav-dropdown-arrow {
+    transform: rotate(180deg);
+  }
+  .nav-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 10px;
+    min-width: 200px;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 8px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  .nav-dropdown-menu[data-visible="true"] {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .nav-dropdown-item {
+    list-style: none;
+  }
+  .nav-dropdown-link {
+    display: block;
+    padding: 12px 20px;
+    color: var(--gray-light);
+    text-decoration: none;
+    font-family: "Merriweather", serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    transition: all 0.3s ease;
+  }
+  .nav-dropdown-link:hover {
+    color: var(--primary);
+    background: rgba(194, 143, 36, 0.1);
+  }
+  /* ============================================
+     DROPDOWN ANIMATION
+  ============================================ */
+  .nav-dropdown-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition:
+      max-height 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  .nav-dropdown-menu[data-visible="true"] {
+    max-height: 300px; /* Adjust as needed based on content */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
   }
 
   /* ============================================
@@ -268,6 +569,13 @@ const navLinks = [
     .nav-link {
       padding: 10px 14px;
       font-size: 0.85rem;
+    }
+
+    .nav-dropdown-menu {
+      position: static;
+      margin-top: 0;
+      min-width: 160px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
   }
 
@@ -296,14 +604,21 @@ const navLinks = [
       bottom: 0;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 16px;
+      justify-content: flex-start;
+      padding-top: 20px;
+      gap: 12px;
       background: rgba(0, 0, 0, 0.98);
       backdrop-filter: blur(20px);
       opacity: 0;
       visibility: hidden;
       transform: translateY(-20px);
       transition: all 0.4s ease;
+      overflow-y: auto;
+    }
+
+    .mobile-menu-open {
+      overflow: hidden;
+      height: 100vh;
     }
 
     .nav-list.active {
@@ -315,6 +630,23 @@ const navLinks = [
     .nav-link {
       font-size: 1.1rem;
       padding: 16px 24px;
+    }
+
+    .nav-dropdown {
+      width: 100%;
+      text-align: center;
+    }
+
+    .nav-dropdown-menu {
+      position: static;
+      background: rgba(30, 30, 30, 0.95);
+      width: 80%;
+      margin: 10px auto;
+      max-width: 300px;
+    }
+
+    .nav-dropdown-menu[data-visible="true"] {
+      max-height: 200px;
     }
   }
 </style>
@@ -330,16 +662,83 @@ const navLinks = [
       navList.classList.toggle("active");
       const isExpanded = navToggle.getAttribute("aria-expanded") === "true";
       navToggle.setAttribute("aria-expanded", (!isExpanded).toString());
+
+      // Toggle body scroll lock
+      document.body.classList.toggle("mobile-menu-open");
     });
 
     // Close menu when clicking a link
-    const navLinks = navList.querySelectorAll(".nav-link");
+    const navLinks = navList.querySelectorAll(
+      ".nav-link:not(.dropdown-toggle)",
+    );
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
         navToggle.classList.remove("active");
         navList.classList.remove("active");
         navToggle.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("mobile-menu-open");
       });
     });
   }
+
+  // Handle dropdown menus
+  const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+  const dropdownMenus = document.querySelectorAll(
+    "[data-dropdown] .nav-dropdown-menu",
+  );
+
+  dropdownToggles.forEach((toggle) => {
+    toggle.addEventListener("click", function (this: HTMLButtonElement, e) {
+      e.preventDefault();
+
+      // Close all other dropdowns
+      dropdownToggles.forEach((otherToggle) => {
+        if (otherToggle !== toggle) {
+          otherToggle.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      dropdownMenus.forEach((menu) => {
+        if (menu !== this.nextElementSibling) {
+          menu.setAttribute("data-visible", "false");
+          menu.setAttribute("hidden", "");
+        }
+      });
+
+      // Toggle current dropdown
+      const isExpanded = this.getAttribute("aria-expanded") === "true";
+      this.setAttribute("aria-expanded", (!isExpanded).toString());
+
+      const dropdownMenu = this.nextElementSibling;
+      if (dropdownMenu) {
+        const isVisible = dropdownMenu.getAttribute("data-visible") === "true";
+        dropdownMenu.setAttribute("data-visible", (!isVisible).toString());
+
+        if (isVisible) {
+          dropdownMenu.setAttribute("hidden", "");
+        } else {
+          dropdownMenu.removeAttribute("hidden");
+        }
+      }
+    });
+  });
+
+  // Close dropdowns when clicking elsewhere
+  document.addEventListener("click", function (event) {
+    const target = event.target;
+    if (
+      !target ||
+      !(target instanceof Element) ||
+      !target.closest("[data-dropdown]")
+    ) {
+      dropdownToggles.forEach((toggle) => {
+        toggle.setAttribute("aria-expanded", "false");
+      });
+
+      dropdownMenus.forEach((menu) => {
+        menu.setAttribute("data-visible", "false");
+        menu.setAttribute("hidden", "");
+      });
+    }
+  });
 </script>

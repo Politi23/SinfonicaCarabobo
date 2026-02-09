@@ -1,150 +1,109 @@
 ---
+export const prerender = true;
 import Layout from "../../layouts/Layout.astro";
 import ArticleContent from "../../components/blog/ArticleContent.astro";
-import { getPosts, getPost } from "../../config/wp";
+
+import { getAllBlogsRecursive } from "../../config/wp-blogs";
 
 export async function getStaticPaths() {
-  const posts = await getPosts();
+  const blogs = await getAllBlogsRecursive();
 
-  return posts.map((post: any) => {
-    return {
-      params: { slug: post.slug },
-      props: { post },
-    };
-  });
+  return blogs.map((blog) => ({
+    params: { slug: blog.slug },
+    props: { blog },
+  }));
 }
-
-const { slug } = Astro.params;
-const post = await getPost(slug as string);
-
-if (!post) {
-  return new Response("Post not found", { status: 404 });
-}
+const { blog } = Astro.props;
 ---
 
-<Layout>
+<Layout title={blog.title}>
   <head>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
   </head>
+
   <main class="bg-background-light min-h-screen pt-20">
     <article
       class="layout-content-container flex flex-col max-w-[960px] w-full flex-1 px-4 lg:px-20 py-10 lg:py-16 mx-auto"
     >
+      {/* Header: Categoría y Título */}
       <div class="flex gap-3 mb-6">
         {
-          post.category && (
+          blog.category && (
             <div class="flex h-7 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary/20 pl-3 pr-3">
               <p class="text-black text-xs font-bold uppercase tracking-wide leading-normal">
-                {post.category}
+                {blog.category}
               </p>
             </div>
           )
         }
       </div>
 
-      <div class="flex flex-col gap-4 mb-8">
-        {
-          /*
-          ================================================================
-          == TÍTULO PRINCIPAL DEL ARTÍCULO (H1)
-          ================================================================
-          - Elemento: <h1>
-          - Estilos: Clases de Tailwind aplicadas directamente aquí.
-          - Fuente: 'font-display' viene de `tailwind.config.mjs`.
-        */
-        }
-        <h1
-          class="text-4xl lg:text-5xl font-bold leading-[1.1] tracking-[-0.02em] text-text-dark"
-          set:html={post.title}
-        />
+      <h1
+        class="text-3xl md:text-5xl lg:text-6xl font-black text-text-dark mb-8 leading-tight"
+      >
+        {blog.title}
+      </h1>
 
+      <div class="flex flex-col gap-4 mb-10">
         {
-          /*
-          ================================================================
-          == EXCERPT / SUBTÍTULO (TEXTO DORADO)
-          ================================================================
-          - Elemento: <div>
-          - Estilos: Clases de Tailwind aplicadas directamente aquí.
-                     El color dorado es `text-[#898361]`.
-        */
-        }
-        {
-          post.excerpt && (
-            <div
-              class="text-[#898361] text-xl lg:text-2xl font-normal leading-relaxed italic"
-              set:html={post.excerpt}
-            />
+          blog.excerpt && (
+            <div class="text-xl text-text-dark/80 leading-relaxed italic border-l-4 border-primary pl-4">
+              {blog.excerpt}
+            </div>
           )
         }
       </div>
 
-      {
-        /*
-        ================================================================
-        == METADATOS (AUTOR Y FECHA)
-        ================================================================
-        - Elementos: <p> para el autor, <span> para la fecha.
-        - Estilos: Clases de Tailwind aplicadas directamente aquí.
-      */
-      }
+      {/* Meta Data: Autor y Fecha */}
       <div
         class="flex items-center justify-between border-t border-b border-[#e5e5e0] py-6 mb-10"
       >
         <div class="flex gap-4 items-center">
           <div class="flex flex-col justify-center">
             <p class="text-lg font-bold text-text-dark">
-              {post.author || "Equipo Sinfónica"}
+              {blog.author || "Equipo Sinfónica"}
             </p>
             <div class="flex items-center gap-2 text-[#898361] text-lg">
-              <span
-                >{
-                  new Date(post.date).toLocaleDateString("es-ES", {
+              <span class="material-icons text-base">calendar_today</span>
+              <span>
+                {
+                  new Date(blog.date).toLocaleDateString("es-VE", {
                     year: "numeric",
                     month: "long",
                     day: "numeric",
                   })
-                }</span
-              >
-              <span>•</span>
-              <span>4 min de lectura</span>
+                }
+              </span>
             </div>
           </div>
         </div>
       </div>
 
+      {/* Featured Image */}
       {
-        post.image && (
+        blog.image && (
           <div class="w-full mb-12">
             <div
-              class="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden rounded-lg min-h-[400px] lg:min-h-[500px] shadow-sm relative"
-              style={`background-image: url('${post.image}')`}
+              class="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden rounded-lg min-h-[300px] md:min-h-[400px] lg:min-h-[500px] shadow-sm relative"
+              style={`background-image: url('${blog.image}')`}
             >
               <div class="absolute inset-0 bg-black/10" />
             </div>
-            {post.imageCaption && (
+            {blog.imageCaption && (
               <figcaption
-                class="mt-3 text-xs text-[#898361] text-center"
-                set:html={post.imageCaption}
+                class="mt-3 text-sm text-gray-500 text-center italic"
+                set:html={blog.imageCaption}
               />
             )}
           </div>
         )
       }
 
-      <ArticleContent set:html={post.content} />
-
-      <!-- Tags can be implemented if available in the API -->
-      <!--
-      <div class="mt-16 pt-8 border-t border-[#e5e5e0]">
-        <h4 class="text-sm font-bold uppercase tracking-wide text-[#898361] mb-4">Etiquetas</h4>
-        <div class="flex gap-3 flex-wrap">
-          <a class="px-4 py-2 bg-[#f4f4f0] rounded-lg text-[#181711] text-sm hover:bg-primary/20 transition-colors" href="#">Tag</a>
-        </div>
-      </div>
-      -->
+      {/* Contenido Principal */}
+      <ArticleContent set:html={blog.content} />
     </article>
   </main>
 </Layout>

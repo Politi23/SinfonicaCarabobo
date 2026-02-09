@@ -1,0 +1,109 @@
+---
+export const prerender = true;
+
+import Layout from "../../layouts/Layout.astro";
+import { getAlbums } from "../../config/wp-albums";
+
+export async function getStaticPaths() {
+    const albums = await getAlbums();
+    return albums.map((album) => ({
+        params: { slug: album.slug },
+        props: { album },
+    }));
+}
+
+const { album } = Astro.props;
+---
+
+<Layout title={album.title}>
+    <head>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
+        />
+    </head>
+
+    <main class="bg-background-light min-h-screen pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <a
+                href="/galeria"
+                class="inline-flex items-center gap-2 text-primary font-bold uppercase text-xs tracking-widest hover:text-primary-dark mb-8 transition-colors"
+            >
+                <span class="material-icons text-base">arrow_back</span> Volver a
+                la galería
+            </a>
+
+            <header class="mb-12 text-center max-w-4xl mx-auto">
+                <h1 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
+                    {album.title}
+                </h1>
+                <div
+                    class="flex items-center justify-center gap-2 text-gray-500"
+                >
+                    <span class="material-icons text-lg">calendar_today</span>
+                    <span
+                        >{
+                            new Date(album.date).toLocaleDateString("es-VE", {
+                                dateStyle: "full",
+                            })
+                        }</span
+                    >
+                </div>
+
+                {
+                    album.excerpt && (
+                        <div class="mt-6 text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto italic">
+                            <p>{album.excerpt}</p>
+                        </div>
+                    )
+                }
+            </header>
+
+            {
+                album.photos.length > 0 ? (
+                    <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4 px-2">
+                        {album.photos.map((imgUrl, index) => (
+                            <a
+                                href={imgUrl}
+                                data-fancybox="gallery"
+                                data-caption={`${album.title} - Foto ${index + 1}`}
+                                class="block relative group rounded-lg overflow-hidden shadow-md break-inside-avoid"
+                            >
+                                <img
+                                    src={imgUrl}
+                                    class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105 hover:brightness-110"
+                                    loading="lazy"
+                                    alt={`Foto de ${album.title}`}
+                                />
+                                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors pointer-events-none" />
+                            </a>
+                        ))}
+                    </div>
+                ) : (
+                    <div class="text-center py-20 border-2 border-dashed border-gray-300 rounded-xl bg-white/50">
+                        <p class="text-gray-500 text-lg">
+                            Este álbum aún no tiene fotos cargadas.
+                        </p>
+                    </div>
+                )
+            }
+        </div>
+    </main>
+
+    <script
+        is:inline
+        src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"
+    ></script>
+    <script is:inline>
+        Fancybox.bind("[data-fancybox]", {
+            Thumbs: { type: "modern" },
+            Toolbar: {
+                display: {
+                    left: ["infobar"],
+                    middle: [],
+                    right: ["slideshow", "thumbs", "close"],
+                },
+            },
+        });
+    </script>
+</Layout>

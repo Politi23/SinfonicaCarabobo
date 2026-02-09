@@ -1,0 +1,5 @@
+[acf field="event_date"]
+[acf field="event_time"]
+[acf field="event_venue"]
+[acf field="event_price"]
+[acf field="event_description"]

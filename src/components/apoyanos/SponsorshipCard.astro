@@ -1,0 +1,70 @@
+---
+interface Props {
+    title: string;
+    price: string;
+    features: string[];
+    isPlatinum?: boolean;
+    titleClass?: string;
+    buttonClass?: string;
+}
+
+const {
+    title,
+    price,
+    features,
+    isPlatinum = false,
+    titleClass = "text-gray-500",
+    buttonClass = "bg-gray-500 hover:bg-primary-dark",
+} = Astro.props;
+---
+
+<div
+    class={`relative flex flex-col p-8 rounded-3xl transition-all duration-300 bg-white hover:shadow-xl border border-gray-200 hover:border-gray-300 h-full`}
+>
+    <div class="mb-8">
+        <h3
+            class={`text-xl font-bold mb-2 uppercase tracking-wide ${titleClass}`}
+        >
+            {title}
+        </h3>
+        <div class="flex items-baseline gap-1">
+            <span
+                class="text-4xl md:text-5xl font-display font-bold text-primary"
+                >{price}</span
+            >
+            <span class="text-sm text-gray-500">USD</span>
+        </div>
+    </div>
+
+    <ul class="space-y-4 mb-8 flex-grow">
+        {
+            features.map((feature) => (
+                <li class="flex items-start gap-3">
+                    <svg
+                        class="w-5 h-5 flex-shrink-0 mt-0.5 text-primary"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M5 13l4 4L19 7"
+                        />
+                    </svg>
+                    <span class="text-sm leading-relaxed text-gray-600">
+                        {feature}
+                    </span>
+                </li>
+            ))
+        }
+    </ul>
+
+    <a
+        href="mailto:gerencia@sinfonicarabobo.com"
+        class={`w-full py-3 px-6 font-bold text-center transition-all duration-300 transform hover:-translate-y-1 ${buttonClass} text-white`}
+    >
+        Elegir Plan
+    </a>
+</div>

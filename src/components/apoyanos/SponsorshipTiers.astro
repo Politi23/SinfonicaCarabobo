@@ -1,0 +1,335 @@
+---
+const tiers = [
+    {
+        title: "Patrocinio Bronce",
+        price: "$500",
+        id: "bronze",
+        features: [
+            "Publicación de un (1) flyer en el feed y una (1) historia en redes sociales (IG y FB) con mención.",
+            "Dos (2) asientos preferenciales en dos (2) conciertos al año.",
+            "Mención de la empresa en dos (2) actividades artísticas anuales.",
+        ],
+    },
+    {
+        title: "Patrocinio Plata",
+        price: "$1.000",
+        id: "silver",
+        features: [
+            "Publicación de dos (2) flyers en el feed y dos (2) historias en redes sociales con mención.",
+            "Diseño y promoción de un (1) video tipo reel con vinculación de marca.",
+            "Cuatro (4) asientos preferenciales en tres (3) conciertos al año.",
+            "Mención de la empresa en tres (3) actividades artísticas anuales.",
+        ],
+    },
+    {
+        title: "Patrocinio Oro",
+        price: "$2.000",
+        id: "gold",
+        isFeatured: true,
+        features: [
+            "Publicación de dos (2) flyers en el feed y dos (2) historias en redes sociales con mención.",
+            "Diseño y promoción de un (1) video tipo reel con vinculación de marca.",
+            "Seis (6) asientos preferenciales en tres (3) conciertos al año.",
+            "Dos (2) pases preferenciales para sorteo en nombre de la empresa.",
+            "Mención de la empresa en tres (3) actividades artísticas anuales.",
+            "Área para stand en la entrada de la sala en un (1) concierto del año.",
+        ],
+    },
+    {
+        title: "Patrocinio Platino",
+        price: "$3.000",
+        id: "platinum",
+        isPlatinum: true,
+        features: [
+            "Publicación de tres (3) flyers en el feed y tres (3) historias en redes sociales con mención.",
+            "Diseño y promoción de un (1) video tipo reel con vinculación de marca.",
+            "Ocho (8) asientos preferenciales en tres (3) conciertos al año.",
+            "Cuatro (4) pases preferenciales para sorteo en tres (3) conciertos.",
+            "Mención de la empresa en tres (3) actividades artísticas.",
+            "Área para stand en la entrada de la sala en dos (2) conciertos.",
+            "Elaboración de pendón de vinculación (Patrocinante-OSC) para 3 conciertos.",
+            "Participación de un (1) músico de la orquesta en actividad de la empresa.",
+        ],
+    },
+];
+
+const tierStyles = {
+    bronze: {
+        border: "border-white/10",
+        text: "text-amber-500",
+        badge: "border-amber-500/30 text-amber-500",
+        button: "bg-white text-black hover:bg-amber-500 hover:text-white",
+        icon: "text-amber-500",
+    },
+    silver: {
+        border: "border-white/10",
+        text: "text-slate-400",
+        badge: "border-slate-400/30 text-slate-400",
+        button: "bg-white text-black hover:bg-slate-400 hover:text-white",
+        icon: "text-slate-400",
+    },
+    gold: {
+        border: "border-primary/20",
+        text: "text-primary",
+        badge: "border-primary text-primary",
+        button: "bg-primary text-black hover:bg-white",
+        icon: "text-primary",
+    },
+    platinum: {
+        border: "border-indigo-500/30",
+        text: "text-indigo-400",
+        badge: "border-indigo-500 text-indigo-400",
+        button: "bg-indigo-600 text-white hover:bg-white hover:text-black",
+        icon: "text-indigo-400",
+    },
+};
+
+type SponsorshipTier = {
+    title: string;
+    price: string;
+    id: string;
+    features: string[];
+    isFeatured?: boolean;
+    isPlatinum?: boolean;
+};
+
+const getStyles = (tier: SponsorshipTier) => {
+    if (tier.isPlatinum) return tierStyles.platinum;
+    if (tier.isFeatured) return tierStyles.gold;
+    if (tier.price === "$1.000") return tierStyles.silver;
+    return tierStyles.bronze;
+};
+---
+
+<section
+    id="niveles"
+    class="py-24 bg-[#fcfcfc] text-black overflow-hidden font-light"
+>
+    <div class="container mx-auto px-6 max-w-7xl relative z-10">
+        <div
+            class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8"
+        >
+            <div class="max-w-2xl select-none">
+                <h2
+                    class="text-4xl md:text-6xl font-display font-light leading-tight text-black"
+                >
+                    Niveles de <br />
+                    <span class="font-bold text-[#800020] italic"
+                        >Patrocinio</span
+                    >
+                </h2>
+            </div>
+            <p
+                class="text-gray-600 text-lg max-w-sm font-light border-l border-[#800020]/30 pl-6 leading-relaxed select-none"
+            >
+                Seleccione el alcance estratégico para su marca y forme parte de
+                nuestra historia.
+            </p>
+        </div>
+
+        <div class="hidden lg:grid grid-cols-4 gap-4 h-[680px]">
+            {
+                tiers.map((tier) => {
+                    const styles = getStyles(tier); // Asegúrate que getStyles devuelva clases compatibles o usa las fijas abajo
+                    const summary = tier.features.slice(0, 2);
+                    const details = tier.features.slice(2);
+
+                    return (
+                        <div class="group relative flex flex-col p-10 bg-white border border-gray-200 hover:border-[#800020] transition-all duration-500 h-full overflow-hidden shadow-sm hover:shadow-xl">
+                            <div class="mb-10 select-none">
+                                <span class="inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-widest mb-6 border border-[#800020] text-[#800020]">
+                                    {tier.id}
+                                </span>
+                                <h3 class="text-xl font-display font-bold mb-2 text-black uppercase tracking-wide">
+                                    {tier.title.replace("Patrocinio ", "")}
+                                </h3>
+                                <div class="text-4xl font-display text-[#800020] italic font-medium">
+                                    {tier.price}
+                                </div>
+                            </div>
+
+                            <div class="space-y-8 flex-grow">
+                                <ul class="space-y-5">
+                                    {summary.map((feature) => (
+                                        <li class="flex items-start gap-4">
+                                            <div class="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 bg-[#800020] opacity-60" />
+                                            <span class="text-sm text-gray-700 leading-relaxed font-light">
+                                                {feature}
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            <div class="mt-auto group-hover:opacity-0 transition-opacity text-center py-4 border-t border-gray-100">
+                                <span class="text-[10px] uppercase tracking-[0.3em] text-gray-400 italic">
+                                    Ver detalles ↑
+                                </span>
+                            </div>
+
+                            <div class="absolute inset-x-0 bottom-0 bg-black p-10 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] flex flex-col h-[90%] z-20 shadow-2xl">
+                                <div class="overflow-y-auto pr-2 custom-scrollbar flex-grow mb-8">
+                                    <p class="font-display italic text-[#a52a2a] mb-6 text-sm tracking-widest select-none uppercase">
+                                        Beneficios Incluidos
+                                    </p>
+                                    <ul class="space-y-5">
+                                        {details.map((feature) => (
+                                            <li class="flex items-start gap-4">
+                                                <svg
+                                                    class="w-4 h-4 flex-shrink-0 mt-0.5 text-[#800020]"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M5 13l4 4L19 7"
+                                                    />
+                                                </svg>
+                                                <span class="text-sm text-gray-300 leading-relaxed font-light">
+                                                    {feature}
+                                                </span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <a
+                                    href="mailto:sinfocarabobo@gmail.com"
+                                    class="block w-full py-4 bg-[#800020] text-white font-bold text-[11px] uppercase tracking-[0.2em] text-center transition-all hover:bg-[#a52a2a] active:scale-[0.98]"
+                                >
+                                    Elegir Plan
+                                </a>
+                            </div>
+                        </div>
+                    );
+                })
+            }
+        </div>
+
+        <div class="lg:hidden space-y-4">
+            {
+                tiers.map((tier) => (
+                    <details class="group bg-white border border-gray-200 rounded-2xl overflow-hidden">
+                        <summary class="list-none cursor-pointer p-8 flex items-center justify-between select-none">
+                            <div>
+                                <p class="text-[10px] font-bold uppercase tracking-[0.2em] mb-1 text-[#800020]">
+                                    {tier.title}
+                                </p>
+                                <p class="text-3xl font-display italic text-black">
+                                    {tier.price}
+                                </p>
+                            </div>
+                            <div class="text-[#800020] group-open:rotate-180 transition-transform">
+                                <svg
+                                    class="w-6 h-6"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M19 9l-7 7-7-7"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </div>
+                        </summary>
+                        <div class="px-8 pb-8 pt-2 border-t border-gray-50 bg-gray-50/50">
+                            <ul class="space-y-4 mb-8">
+                                {tier.features.map((feature) => (
+                                    <li class="flex items-start gap-3">
+                                        <div class="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 bg-[#800020]" />
+                                        <span class="text-sm text-gray-600 font-light">
+                                            {feature}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
+                            <a
+                                href="mailto:sinfocarabobo@gmail.com"
+                                class="block w-full py-4 bg-[#800020] text-white text-[11px] uppercase tracking-widest font-bold text-center"
+                            >
+                                Contactar
+                            </a>
+                        </div>
+                    </details>
+                ))
+            }
+        </div>
+
+        <div
+            class="mt-32 relative py-20 px-10 border border-gray-200 rounded-[2.5rem] bg-black overflow-hidden shadow-2xl"
+        >
+            <div
+                class="absolute inset-0 z-0 opacity-40 bg-[url('/estudiantina.webp')] bg-cover bg-center grayscale"
+            >
+            </div>
+            <div
+                class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80 z-1"
+            >
+            </div>
+
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                <span
+                    class="text-[#800020] text-[10px] font-bold uppercase tracking-[0.4em] mb-6 block italic"
+                    >Personalización</span
+                >
+                <h3
+                    class="text-3xl md:text-5xl font-display font-light text-white mb-8 leading-tight"
+                >
+                    ¿Busca un impacto <br />
+                    <span
+                        class="font-bold italic text-[#800020] underline underline-offset-[12px] decoration-white/10"
+                        >empresarial a medida?</span
+                    >
+                </h3>
+                <p
+                    class="text-gray-300 max-w-2xl mx-auto mb-12 text-lg font-light"
+                >
+                    Diseñamos colaboraciones exclusivas para sus objetivos
+                    filantrópicos.
+                </p>
+                <div class="flex items-center justify-center">
+                    <a
+                        href="mailto:sinfocarabobo@gmail.com"
+                        class="px-12 py-5 bg-[#800020] text-white text-[11px] font-bold tracking-[0.3em] uppercase transition-all hover:bg-white hover:text-black"
+                    >
+                        Consultar Alianza
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 flex items-center gap-4 select-none">
+            <div
+                class="h-[1px] flex-grow bg-gradient-to-r from-[#800020]/40 to-transparent"
+            >
+            </div>
+            <p
+                class="text-gray-400 text-[10px] tracking-[0.3em] uppercase italic font-light"
+            >
+                * Todos los beneficios están sujetos a términos de convenio
+            </p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 3px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background-color: #800020;
+        border-radius: 10px;
+    }
+    .select-none {
+        user-select: none;
+        -webkit-user-select: none;
+    }
+</style>
