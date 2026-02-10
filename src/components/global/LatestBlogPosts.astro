@@ -1,0 +1,72 @@
+---
+import { getBlogs } from "../../config/wp-blogs";
+import BlogCard from "../blog/BlogCard.astro";
+
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  numberOfPosts?: number;
+  showViewAllButton?: boolean;
+  viewAllButtonText?: string;
+}
+
+const {
+  title = "Últimas Entradas del Blog",
+  subtitle = "Mantente al día con nuestras últimas noticias y artículos.",
+  numberOfPosts = 3,
+  showViewAllButton = true,
+  viewAllButtonText = "Ver todos los artículos",
+} = Astro.props;
+
+// Fetch the latest blog posts
+const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
+---
+
+<section class="py-16 bg-background-light">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-text-dark">
+        {title}
+      </h2>
+      <p class="mt-4 text-text-dark/80">
+        {subtitle}
+      </p>
+    </div>
+
+    {
+      latestPosts.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {latestPosts.map((post) => (
+            <BlogCard
+              title={post.title}
+              excerpt={post.excerpt}
+              image={post.image}
+              date={post.date}
+              category={post.category}
+              slug={post.slug}
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-10">
+          <p class="text-text-dark/60 text-lg">
+            No hay entradas del blog disponibles por el momento.
+          </p>
+        </div>
+      )
+    }
+
+    {
+      showViewAllButton && (
+        <div class="text-center mt-12">
+          <a
+            href="/blog"
+            class="inline-block px-8 py-3 border-2 border-primary text-primary font-bold bg-white hover:bg-primary hover:text-white transition-colors duration-300"
+          >
+            {viewAllButtonText}
+          </a>
+        </div>
+      )
+    }
+  </div>
+</section>
