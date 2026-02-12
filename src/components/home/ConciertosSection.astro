@@ -1,6 +1,7 @@
 ---
 import { getConciertos } from "src/config/wp-conciertos";
 import type { WPConcierto } from "src/config/wp-conciertos";
+import Button from "../ui/GoldenButton.astro";
 
 interface Props {
   perPage?: number;
@@ -59,9 +60,6 @@ const getImageUrl = (concierto: WPConcierto) => {
                       alt={concierto.title.rendered}
                       class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                     />
-                    <div class="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm font-semibold backdrop-blur-sm">
-                      {concierto.acf.event_price || "Entrada Libre"}
-                    </div>
                   </div>
 
                   <div class="p-6 flex flex-col flex-grow">
@@ -209,12 +207,7 @@ const getImageUrl = (concierto: WPConcierto) => {
     }
 
     <div class="text-center mt-12">
-      <a
-        href="/blog"
-        class="inline-block px-8 py-3 border-2 border-primary text-primary font-bold bg-white hover:bg-primary hover:text-white transition-colors duration-300"
-      >
-        Ver todos los conciertos
-      </a>
+      <Button href="/eventos"> Ver todos los conciertos </Button>
     </div>
   </div>
 
