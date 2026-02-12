@@ -1,6 +1,7 @@
 ---
 import { getConciertos } from "src/config/wp-conciertos";
 import type { WPConcierto } from "src/config/wp-conciertos";
+import Button from "../ui/GoldenButton.astro";
 
 interface Props {
   perPage?: number;
@@ -209,12 +210,7 @@ const getImageUrl = (concierto: WPConcierto) => {
     }
 
     <div class="text-center mt-12">
-      <a
-        href="/blog"
-        class="inline-block px-8 py-3 border-2 border-primary text-primary font-bold bg-white hover:bg-primary hover:text-white transition-colors duration-300"
-      >
-        Ver todos los conciertos
-      </a>
+      <Button href="/eventos"> Ver todos los conciertos </Button>
     </div>
   </div>
 
