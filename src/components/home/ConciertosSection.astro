@@ -60,9 +60,6 @@ const getImageUrl = (concierto: WPConcierto) => {
                       alt={concierto.title.rendered}
                       class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                     />
-                    <div class="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm font-semibold backdrop-blur-sm">
-                      {concierto.acf.event_price || "Entrada Libre"}
-                    </div>
                   </div>
 
                   <div class="p-6 flex flex-col flex-grow">

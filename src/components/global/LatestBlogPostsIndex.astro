@@ -1,9 +1,10 @@
 ---
 import { getBlogs } from "../../config/wp-blogs";
-import SimpleBlogCard from "../blog/SimpleBlogCard.astro";
+import BlogCard from "../blog/BlogCard.astro";
 import Button from "../ui/GoldenButton.astro";
 
 export interface Props {
+  title?: string;
   subtitle?: string;
   numberOfPosts?: number;
   showViewAllButton?: boolean;
@@ -11,31 +12,33 @@ export interface Props {
 }
 
 const {
-  subtitle = "Últimas Entradas del Blog",
-  numberOfPosts = 5,
+  title = "Últimas Entradas del Blog",
+  subtitle = "Mantente al día con nuestras últimas noticias y artículos.",
+  numberOfPosts = 3,
   showViewAllButton = true,
-  viewAllButtonText = "Ver todos",
+  viewAllButtonText = "Ver todos los artículos",
 } = Astro.props;
 
 // Fetch the latest blog posts
 const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
 ---
 
-<section class="py-16 bg-surface-light">
+<section class="py-16 bg-background-light">
   <div class="container mx-auto px-4">
     <div class="text-center mb-12">
-      <span
-        class="text-text-muted text-sm font-bold tracking-[0.2em] uppercase block"
-      >
+      <h2 class="text-3xl md:text-4xl font-bold text-text-dark">
+        {title}
+      </h2>
+      <p class="mt-4 text-text-dark/80">
         {subtitle}
-      </span>
+      </p>
     </div>
 
     {
       latestPosts.length > 0 ? (
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {latestPosts.map((post) => (
-            <SimpleBlogCard
+            <BlogCard
               title={post.title}
               excerpt={post.excerpt}
               image={post.image}
@@ -46,9 +49,9 @@ const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
           ))}
         </div>
       ) : (
-        <div class="text-center py-6">
-          <p class="text-text-muted text-sm">
-            No hay entradas del blog disponibles.
+        <div class="text-center py-10">
+          <p class="text-text-dark/60 text-lg">
+            No hay entradas del blog disponibles por el momento.
           </p>
         </div>
       )
@@ -57,9 +60,7 @@ const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
     {
       showViewAllButton && (
         <div class="text-center mt-12">
-          <Button href="/blog" class="px-6 py-2 text-sm">
-            {viewAllButtonText}
-          </Button>
+          <Button href="/blog">{viewAllButtonText}</Button>
         </div>
       )
     }
