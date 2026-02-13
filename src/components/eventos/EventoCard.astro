@@ -30,6 +30,16 @@ const formattedDate = (() => {
     return date;
   }
 })();
+
+// Limitar el excerpt a 25 palabras
+const truncateExcerpt = (text: string, wordLimit: number = 25): string => {
+  if (!text) return "";
+  const words = text.split(" ");
+  if (words.length <= wordLimit) return text;
+  return words.slice(0, wordLimit).join(" ") + "...";
+};
+
+const truncatedExcerpt = truncateExcerpt(excerpt, 25);
 ---
 
 <article
@@ -64,7 +74,7 @@ const formattedDate = (() => {
       {title}
     </h2>
     <p class="text-text-dark/80 mb-4 flex-grow leading-relaxed line-clamp-2">
-      {excerpt}
+      {truncatedExcerpt}
     </p>
     <div class="mb-4">
       <p class="text-text-dark/70 text-sm flex items-center gap-1">

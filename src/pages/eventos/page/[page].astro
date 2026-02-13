@@ -45,10 +45,18 @@ try {
   const endIndex = startIndex + perPage;
   const eventosToShow = allEventos.slice(startIndex, endIndex);
 
+  // Función para limitar el excerpt a 25 palabras
+  const truncateExcerpt = (text: string, wordLimit: number = 25): string => {
+    if (!text) return "";
+    const words = text.split(" ");
+    if (words.length <= wordLimit) return text;
+    return words.slice(0, wordLimit).join(" ") + "...";
+  };
+
   // Mapeamos los eventos al formato esperado por el componente
   eventos = eventosToShow.map((e) => ({
     title: e.title.rendered,
-    excerpt: e.acf.event_description,
+    excerpt: truncateExcerpt(e.acf.event_description, 25),
     image:
       e._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
       "/logosimplebbg.webp",

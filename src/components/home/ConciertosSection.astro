@@ -133,8 +133,15 @@ const getImageUrl = (evento: WPEvento) => {
                     </div>
 
                     <hr class="border-gray-100 my-2" />
-                    <p class="text-gray-600 text-sm flex-grow">
-                      {evento.acf.event_description}
+                    <p class="text-gray-600 text-sm flex-grow line-clamp-2">
+                      {/* Función para limitar el excerpt a 25 palabras */}
+                      {(() => {
+                        const text = evento.acf.event_description;
+                        if (!text) return "";
+                        const words = text.split(" ");
+                        if (words.length <= 25) return text;
+                        return words.slice(0, 25).join(" ") + "...";
+                      })()}
                     </p>
 
                     <div class="mt-4 pt-4">
