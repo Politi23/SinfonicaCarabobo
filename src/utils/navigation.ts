@@ -77,8 +77,8 @@ export async function generateNavigation(): Promise<NavItem[]> {
 			case "/agrupaciones":
 				label = "Agrupaciones";
 				break;
-			case "/programas":
-				label = "Programas";
+			case "/academia":
+				label = "Academia";
 				break;
 			case "/blog":
 				label = "Blog";
@@ -155,7 +155,7 @@ export async function generateNavigation(): Promise<NavItem[]> {
 			"/",
 			"/nosotros",
 			"/agrupaciones",
-			"/programas",
+			"/academia",
 			"/blog",
 			"/libro",
 			"/apoyanos",
