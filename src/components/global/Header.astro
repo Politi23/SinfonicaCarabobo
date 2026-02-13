@@ -40,12 +40,9 @@ for (const [path, module] of Object.entries(allPages)) {
   const segments = urlPath.split("/").filter((segment) => segment !== "");
 
   if (segments.length === 0) {
-    // This is the home page
-    topLevelNav.set("/", {
-      href: "/",
-      label: "Inicio",
-      dropdown: [],
-    });
+    // This is the home page - skip adding it to the navigation menu
+    // The logo already serves as a link to the homepage
+    // Do nothing here to exclude the home page from the menu
   } else if (segments.length === 1) {
     // This is a top-level page or directory
     const dirName = segments[0];
@@ -162,12 +159,12 @@ const navArray = Array.from(topLevelNav.values());
 
 // Define custom sort order for top-level items
 const order = [
-  "/",
   "/nosotros",
   "/agrupaciones",
-  "/academia",
+  "/eventos",
+  "/galeria",
   "/blog",
-  "/libro",
+  "/academia",
   "/apoyanos",
   "/contacto",
 ];
