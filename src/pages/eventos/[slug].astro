@@ -1,23 +1,23 @@
 ---
 export const prerender = true;
 import Layout from "../../layouts/Layout.astro";
-import { getConciertos } from "../../config/wp-conciertos";
-import type { WPConcierto } from "../../config/wp-conciertos";
+import { getEventos } from "../../config/wp-eventos"; // Importamos desde el archivo modificado
+import type { WPEvento } from "../../config/wp-eventos"; // Importamos desde el archivo modificado
 
 // 1. OBLIGATORIO EN MODO ESTÁTICO:
 // Esta función le dice a Astro qué páginas crear antes de subir la web.
 export async function getStaticPaths() {
-  // Pedimos hasta 100 conciertos para asegurar que estén todos
-  const conciertos = await getConciertos(100);
+  // Pedimos hasta 100 eventos para asegurar que estén todos
+  const eventos = await getEventos(100);
 
-  return conciertos.map((concierto) => ({
-    params: { slug: concierto.slug },
-    props: { concierto },
+  return eventos.map((evento) => ({
+    params: { slug: evento.slug },
+    props: { evento },
   }));
 }
 
 // 2. RECUPERAR DATOS
-const { concierto } = Astro.props;
+const { evento } = Astro.props;
 
 // --- HELPERS (CON PROTECCIÓN DE ERRORES) ---
 
@@ -37,17 +37,17 @@ const formatAcfDate = (dateString: string) => {
 };
 
 // Obtener imagen de forma segura (sin que rompa la página si no hay imagen)
-const getImageUrl = (c: WPConcierto) => {
+const getImageUrl = (e: WPEvento) => {
   // Los signos ?. significan: "Si esto existe, continúa. Si no, detente y devuelve undefined"
   return (
-    c._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "/logosimplebbg.webp"
+    e._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "/logosimplebbg.webp"
   );
 };
 
-const featuredImage = getImageUrl(concierto);
+const featuredImage = getImageUrl(evento);
 ---
 
-<Layout title={concierto.title.rendered}>
+<Layout title={evento.title.rendered}>
   {/* Cabecera */}
   <div
     class="relative w-full h-[50vh] min-h-[400px] bg-gray-900 flex items-end"
@@ -55,9 +55,9 @@ const featuredImage = getImageUrl(concierto);
     <div class="absolute inset-0">
       <img
         src={featuredImage}
-        alt={concierto.title.rendered}
+        alt={evento.title.rendered}
         class="w-full h-full object-cover opacity-60"
-        transition:name={`image-${concierto.slug}`}
+        transition:name={`image-${evento.slug}`}
       />
       <div
         class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"
@@ -67,17 +67,17 @@ const featuredImage = getImageUrl(concierto);
 
     <div class="container mx-auto px-4 pb-12 relative z-10">
       <span
-        class="inline-block bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold mb-4 uppercase tracking-wider"
+        class="inline-block bg-black text-primary px-3 py-1 rounded-full text-sm font-semibold mb-4 uppercase tracking-wider border border-primary"
       >
-        {concierto.acf?.event_price || "Entrada Libre"}
+        {evento.acf?.event_price || "Entrada Libre"}
       </span>
       <h1
         class="text-4xl md:text-6xl font-bold text-white mb-4"
-        set:html={concierto.title.rendered}
+        set:html={evento.title.rendered}
       />
       {/* Usamos ?. por si la descripción viene vacía */}
       <p class="text-xl text-gray-200 max-w-2xl">
-        {concierto.acf?.event_description}
+        {evento.acf?.event_description}
       </p>
     </div>
   </div>
@@ -87,7 +87,7 @@ const featuredImage = getImageUrl(concierto);
       {/* Contenido Principal */}
       <div class="lg:col-span-2">
         <div class="prose prose-lg prose-indigo max-w-none text-white">
-          <div set:html={concierto.content.rendered} />
+          <div set:html={evento.content.rendered} />
         </div>
       </div>
 
@@ -109,8 +109,8 @@ const featuredImage = getImageUrl(concierto);
                 <p class="text-sm text-gray-500 font-semibold">Fecha</p>
                 <p class="text-gray-900 capitalize">
                   {
-                    concierto.acf?.event_date
-                      ? formatAcfDate(concierto.acf.event_date)
+                    evento.acf?.event_date
+                      ? formatAcfDate(evento.acf.event_date)
                       : "Por confirmar"
                   }
                 </p>
@@ -125,8 +125,8 @@ const featuredImage = getImageUrl(concierto);
                 <p class="text-sm text-gray-500 font-semibold">Hora</p>
                 <p class="text-gray-900">
                   {
-                    concierto.acf?.event_time
-                      ? concierto.acf.event_time.slice(0, 5) + " hrs"
+                    evento.acf?.event_time
+                      ? evento.acf.event_time.slice(0, 5) + " hrs"
                       : "Por confirmar"
                   }
                 </p>
@@ -140,7 +140,7 @@ const featuredImage = getImageUrl(concierto);
               <div>
                 <p class="text-sm text-gray-500 font-semibold">Lugar</p>
                 <p class="text-gray-900">
-                  {concierto.acf?.event_venue || "Por confirmar"}
+                  {evento.acf?.event_venue || "Por confirmar"}
                 </p>
               </div>
             </li>

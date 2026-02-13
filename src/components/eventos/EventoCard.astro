@@ -1,0 +1,83 @@
+---
+export interface Props {
+  title: string;
+  excerpt: string;
+  image: string;
+  date: string;
+  price: string;
+  venue: string;
+  slug?: string;
+}
+const { title, excerpt, image, date, price, venue, slug } = Astro.props;
+
+// Formateo de fecha seguro
+const formattedDate = (() => {
+  try {
+    // La fecha viene en formato YYYYMMDD desde ACF, necesitamos convertirla
+    if (date && date.length === 8) {
+      const year = date.substring(0, 4);
+      const month = date.substring(4, 6);
+      const day = date.substring(6, 8);
+      const dateObj = new Date(Number(year), Number(month) - 1, Number(day));
+      return dateObj.toLocaleDateString("es-VE", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      });
+    }
+    return date;
+  } catch {
+    return date;
+  }
+})();
+---
+
+<article
+  class="group flex flex-col bg-white dark:bg-card-dark rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-border-light"
+>
+  <div class="relative w-full aspect-[4/3] overflow-hidden">
+    <a href={`/eventos/${slug || "#"}`} class="block w-full h-full">
+      <img
+        src={image || "/logosimplebbg.webp"}
+        alt={title}
+        class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+      />
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80"
+      >
+      </div>
+    </a>
+    <span
+      class="absolute bottom-4 left-4 text-white text-sm font-medium flex items-center gap-1 drop-shadow-md z-10"
+    >
+      <span class="material-icons text-base text-primary/80"
+        >calendar_today</span
+      >
+      {formattedDate}
+    </span>
+  </div>
+
+  <div class="p-6 flex flex-col flex-grow">
+    <h2
+      class="text-2xl font-bold mb-3 text-text-dark group-hover:text-primary transition-colors leading-tight line-clamp-2"
+    >
+      {title}
+    </h2>
+    <p class="text-text-dark/80 mb-4 flex-grow leading-relaxed line-clamp-2">
+      {excerpt}
+    </p>
+    <div class="mb-4">
+      <p class="text-text-dark/70 text-sm flex items-center gap-1">
+        <span class="material-icons text-base text-primary/80">location_on</span
+        >
+        {venue}
+      </p>
+    </div>
+    <a
+      href={`/eventos/${slug || "#"}`}
+      class="inline-flex items-center text-primary font-bold uppercase text-xs tracking-widest hover:text-primary-dark transition-all group-hover:gap-2 gap-1"
+    >
+      Ver detalles <span class="material-icons text-sm">arrow_forward</span>
+    </a>
+  </div>
+</article>

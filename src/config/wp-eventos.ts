@@ -1,6 +1,6 @@
 import { fetchAPI } from "./wp-client";
 
-export interface ConciertoACF {
+export interface EventoACF {
 	event_date: string; // Formato que devuelve ACF: "20260226" (YYYYMMDD)
 	event_time: string; // "10:00:00"
 	event_venue: string; // "UJAP"
@@ -8,7 +8,7 @@ export interface ConciertoACF {
 	event_description: string; // "Las HUNTRX en Valencia"
 }
 
-export interface WPConcierto {
+export interface WPEvento {
 	id: number;
 	slug: string;
 	title: {
@@ -17,7 +17,7 @@ export interface WPConcierto {
 	content: {
 		rendered: string;
 	};
-	acf: ConciertoACF;
+	acf: EventoACF;
 	featured_media: number;
 	_embedded?: {
 		"wp:featuredmedia"?: Array<{
@@ -27,19 +27,19 @@ export interface WPConcierto {
 	};
 }
 
-export const getConciertos = async (
+export const getEventos = async (
 	perPage: number = 9,
-): Promise<WPConcierto[]> => {
+): Promise<WPEvento[]> => {
 	try {
 		const data = await fetchAPI(
-			`/concierto?_embed&status=publish&per_page=${perPage}`,
+			`/evento?_embed&status=publish&per_page=${perPage}`,
 		);
 
 		if (!data || !Array.isArray(data)) return [];
 
-		return data as WPConcierto[];
+		return data as WPEvento[];
 	} catch (error) {
-		console.error("Error obteniendo los conciertos:", error);
+		console.error("Error obteniendo los eventos:", error);
 		return [];
 	}
 };

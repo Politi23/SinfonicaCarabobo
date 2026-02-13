@@ -1,0 +1,112 @@
+---
+export const prerender = true;
+import Layout from "../../../layouts/Layout.astro";
+import MainHero from "../../../components/sections/MainHero.astro";
+import EventoCard from "../../../components/eventos/EventoCard.astro"; // Usamos el componente que ya creamos anteriormente
+import Pagination from "../../../components/blog/Pagination.astro";
+import { getEventos } from "../../../config/wp-eventos"; // Usamos la función actualizada
+
+// Función para calcular el total de páginas
+export async function getStaticPaths() {
+  const allEventos = await getEventos(100); // Obtenemos todos los eventos
+  const perPage = 6;
+  const totalPages = Math.max(1, Math.ceil(allEventos.length / perPage));
+
+  return Array.from({ length: totalPages }, (_, i) => ({
+    params: { page: (i + 1).toString() },
+  }));
+}
+
+const { page } = Astro.params;
+const currentPage = page ? parseInt(page, 10) : 1;
+const perPage = 6;
+
+// Define the type for an evento
+type Evento = {
+  title: string;
+  excerpt: string;
+  image: string;
+  date: string;
+  price: string;
+  venue: string;
+  slug: string;
+};
+
+let eventos: Evento[] = [];
+let totalPages = 1;
+
+try {
+  // Obtenemos los eventos
+  const allEventos = await getEventos(100); // Obtenemos todos los eventos
+  totalPages = Math.max(1, Math.ceil(allEventos.length / perPage));
+
+  // Calculamos el índice de inicio y fin para la página actual
+  const startIndex = (currentPage - 1) * perPage;
+  const endIndex = startIndex + perPage;
+  const eventosToShow = allEventos.slice(startIndex, endIndex);
+
+  // Mapeamos los eventos al formato esperado por el componente
+  eventos = eventosToShow.map((e) => ({
+    title: e.title.rendered,
+    excerpt: e.acf.event_description,
+    image:
+      e._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
+      "/logosimplebbg.webp",
+    date: e.acf.event_date,
+    price: e.acf.event_price,
+    venue: e.acf.event_venue,
+    slug: e.slug,
+  }));
+} catch (error) {
+  console.error("Error cargando eventos:", error);
+}
+---
+
+<Layout title={`Eventos - Página ${currentPage}`}>
+  <main class="bg-white text-gray-800 min-h-screen">
+    <MainHero
+      title="Nuestros"
+      titleHighlight="Eventos"
+      subtitle="Explora nuestros próximos eventos, conciertos y actividades musicales"
+    />
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12">
+      {
+        eventos.length > 0 ? (
+          <>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+              {eventos.map((e) => (
+                <EventoCard
+                  title={e.title}
+                  excerpt={e.excerpt}
+                  image={e.image}
+                  date={e.date}
+                  price={e.price}
+                  venue={e.venue}
+                  slug={e.slug}
+                />
+              ))}
+            </div>
+
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              baseUrl="/eventos/page"
+            />
+          </>
+        ) : (
+          <div class="text-center py-20">
+            <p class="text-xl text-gray-500 italic">
+              No hay eventos disponibles en este momento.
+            </p>
+            <div class="mt-8">
+              <a href="/" class="text-primary font-bold hover:underline">
+                Volver al inicio
+              </a>
+            </div>
+          </div>
+        )
+      }
+    </section>
+  </main>
+</Layout>
