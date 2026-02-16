@@ -43,3 +43,18 @@ export const getEventos = async (
 		return [];
 	}
 };
+
+export const getEventoBySlug = async (slug: string): Promise<WPEvento | null> => {
+	try {
+		const data = await fetchAPI(
+			`/evento?slug=${slug}&_embed=1&status=publish`,
+		);
+
+		if (!data || !Array.isArray(data) || data.length === 0) return null;
+
+		return data[0] as WPEvento;
+	} catch (error) {
+		console.error(`Error obteniendo el evento ${slug}:`, error);
+		return null;
+	}
+};

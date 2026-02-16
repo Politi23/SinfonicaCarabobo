@@ -1,19 +1,21 @@
 ---
-export const prerender = true;
+export const prerender = false;
 import Layout from "../../layouts/Layout.astro";
 import ArticleContent from "../../components/blog/ArticleContent.astro";
 
-import { getAllBlogsRecursive } from "../../config/wp-blogs";
+import { getBlogBySlug } from "../../config/wp-blogs";
 
-export async function getStaticPaths() {
-  const blogs = await getAllBlogsRecursive();
+const { slug } = Astro.params;
 
-  return blogs.map((blog) => ({
-    params: { slug: blog.slug },
-    props: { blog },
-  }));
+if (!slug) {
+  return Astro.redirect("/404");
 }
-const { blog } = Astro.props;
+
+const blog = await getBlogBySlug(slug);
+
+if (!blog) {
+  return Astro.redirect("/404");
+}
 ---
 
 <Layout title={blog.title}>
