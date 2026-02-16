@@ -1,18 +1,20 @@
 ---
-export const prerender = true;
+export const prerender = false;
 
 import Layout from "../../layouts/Layout.astro";
-import { getAlbums } from "../../config/wp-albums";
+import { getAlbumBySlug } from "../../config/wp-albums";
 
-export async function getStaticPaths() {
-    const albums = await getAlbums();
-    return albums.map((album) => ({
-        params: { slug: album.slug },
-        props: { album },
-    }));
+const { slug } = Astro.params;
+
+if (!slug) {
+    return Astro.redirect("/404");
 }
 
-const { album } = Astro.props;
+const album = await getAlbumBySlug(slug);
+
+if (!album) {
+    return Astro.redirect("/404");
+}
 ---
 
 <Layout title={album.title}>
