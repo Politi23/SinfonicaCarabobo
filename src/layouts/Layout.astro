@@ -2,6 +2,12 @@
 import Footer from "../components/global/Footer.astro";
 import Header from "../components/global/Header.astro";
 import LatestBlogPosts from "../components/global/LatestBlogPosts.astro";
+
+export interface Props {
+  is404?: boolean;
+}
+
+const { is404 = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -27,9 +33,9 @@ import LatestBlogPosts from "../components/global/LatestBlogPosts.astro";
     <Header />
     <slot />
     {
-      Astro.url.pathname !== "/" && Astro.url.pathname !== "" && (
-        <LatestBlogPosts />
-      )
+      Astro.url.pathname !== "/" &&
+        Astro.url.pathname !== "" &&
+        !is404 && <LatestBlogPosts />
     }
     <Footer />
   </body><style is:global>
