@@ -2,435 +2,172 @@
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/global/Header.astro";
 import MainHero from "../../components/sections/MainHero.astro";
+
+const institutionalRecognitions = [
+    { year: "2021", event: "Institución UNESCO; Embajadores de la Paz" },
+    {
+        year: "2019",
+        event: "Reconocimiento del Consejo Legislativo del Estado Carabobo",
+    },
+    {
+        year: "2019",
+        event: "Orden al Mérito Ejecutivo – Asociación de Ejecutivos de Carabobo",
+    },
+    {
+        year: "2019",
+        event: "Reconocimiento de la Alcaldía Municipio Naguanagua",
+    },
+    {
+        year: "2012",
+        event: "Reconocimiento de la Alcaldía Municipio San Diego",
+    },
+    {
+        year: "2011",
+        event: "Reconocimiento de la Universidad Arturo Michelena",
+    },
+    {
+        year: "2011",
+        event: "Premio Festival Internacional de Solistas Aldemaro Romero",
+    },
+    { year: "2008", event: "Reconocimiento Latinoamérica Sinfónica" },
+    { year: "2007", event: "Reconocimiento de la Universidad de Carabobo" },
+    { year: "2005", event: "Reconocimiento de Sokka Gakkai Internacional" },
+    { year: "2005", event: "Reconocimiento de Rotary Internacional" },
+    { year: "1998", event: "Orden Ciudad de Valencia" },
+    {
+        year: "1998",
+        event: "Reconocimiento de la Cámara Municipal de Valencia",
+    },
+    {
+        year: "1993",
+        event: "Reconocimiento del Palacio de las Convenciones de Cuba",
+    },
+    {
+        year: "1992",
+        event: "Reconocimiento de la Fundación Festivales del Cabriales",
+    },
+];
 ---
 
-<Layout>
+<Layout title="Nuestros Reconocimientos - Orquesta Sinfónica de Carabobo">
     <Header />
 
     <main class="bg-white text-gray-800">
         <MainHero
             title="Nuestros"
             titleHighlight="Reconocimientos"
-            subtitle="Excelencia y Compromiso"
+            subtitle="Casi medio siglo de excelencia y compromiso artístico"
+            bgImage="/orchestra1.webp"
         />
-        <section
-            class="py-24 md:py-32 relative overflow-hidden bg-gradient-to-br from-surface-light/30 via-white to-surface-light/20"
-        >
-            <div class="container mx-auto px-6 max-w-6xl relative z-10">
-                <div class="flex flex-col items-center text-center mb-0">
+
+        <!-- Intro Section with sober aesthetic -->
+        <section class="py-32 relative overflow-hidden bg-white">
+            <div
+                class="absolute -left-10 top-20 text-[20rem] font-display font-bold text-gray-50/50 select-none leading-none"
+            >
+                49
+            </div>
+            <div class="container mx-auto px-6 max-w-5xl relative z-10">
+                <div class="max-w-3xl">
                     <span
-                        class="text-primary text-sm font-bold tracking-[0.2em] uppercase mb-4 block"
-                        >Nuestra Trayectoria</span
+                        class="text-[#800020] text-sm font-bold uppercase tracking-[0.4em] mb-6 block"
+                        >Trayectoria Institucional</span
                     >
                     <h2
-                        class="text-4xl md:text-6xl font-display font-bold text-text-dark mb-12"
+                        class="text-6xl md:text-8xl font-display font-medium text-black mb-12 tracking-tight leading-none"
                     >
-                        49 Años de <span class="text-primary italic"
-                            >Excelencia</span
+                        Un Legado <br />
+                        <span class="font-bold text-[#800020] italic"
+                            >Incontestable.</span
                         >
                     </h2>
-                    <div class="relative text-center mb-24">
+                    <div class="border-l-[6px] border-[#800020] pl-10 py-2">
+                        <p
+                            class="text-2xl text-black leading-relaxed font-serif italic mb-4"
+                        >
+                            "La Orquesta Sinfónica de Carabobo es custodia del
+                            patrimonio musical del estado."
+                        </p>
+                        <p
+                            class="text-gray-500 font-light leading-relaxed max-w-2xl"
+                        >
+                            A lo largo de casi cinco décadas, nuestra
+                            institución ha sido honrada con múltiples
+                            distinciones que avalan su impacto en la cultura, la
+                            educación y el tejido social de Venezuela. Cada
+                            reconocimiento es un compromiso renovado con la
+                            excelencia.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Milestones Grid with sharp edges -->
+        <section class="py-24 bg-gray-50">
+            <div class="container mx-auto px-6 max-w-7xl">
+                <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                    <!-- Pavarotti Section -->
+                    <div
+                        class="group relative overflow-hidden bg-black text-white h-full min-h-[500px] flex flex-col border border-black hover:border-[#800020] transition-colors duration-500"
+                    >
                         <div
-                            class="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 rounded-2xl"
+                            class="absolute inset-0 z-0 opacity-40 bg-[url('/orchestra1.webp')] bg-cover bg-center grayscale filter contrast-125"
                         >
                         </div>
                         <div
-                            class="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-primary/30 rounded-tl-lg"
+                            class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent z-1"
                         >
-                        </div>
-                        <div
-                            class="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-primary/30 rounded-tr-lg"
-                        >
-                        </div>
-                        <div
-                            class="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-primary/30 rounded-bl-lg"
-                        >
-                        </div>
-                        <div
-                            class="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-primary/30 rounded-br-lg"
-                        >
-                        </div>
-                        <div
-                            class="absolute -top-6 left-1/4 text-primary/20 text-4xl"
-                        >
-                            ♪
-                        </div>
-                        <div
-                            class="absolute -top-4 right-1/4 text-primary/20 text-3xl"
-                        >
-                            ♫
-                        </div>
-                        <div
-                            class="absolute -bottom-6 left-1/3 text-primary/20 text-2xl"
-                        >
-                            ♪
-                        </div>
-                        <div
-                            class="absolute -bottom-4 right-1/3 text-primary/20 text-3xl"
-                        >
-                            ♫
                         </div>
 
-                        <div
-                            class="relative bg-white/50 backdrop-blur-sm p-8 md:p-12 rounded-2xl border border-primary/10 shadow-lg"
-                        >
-                            <p
-                                class="text-lg md:text-xl text-text-dark leading-relaxed max-w-4xl mx-auto font-serif italic"
-                            >
-                                La Fundación Orquesta Sinfónica de Carabobo
-                                (FOSC) y la Orquesta Sinfónica de Carabobo (OSC)
-                                han recibido a lo largo de sus 49 años de
-                                trayectoria múltiples reconocimientos por su
-                                contribución a la cultura, la educación y el
-                                desarrollo social en Venezuela y el mundo. Estos
-                                premios y distinciones reflejan el impacto, la
-                                excelencia y el compromiso de nuestra
-                                institución.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex items-center justify-center mb-16">
-                    <div
-                        class="flex-1 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"
-                    >
-                    </div>
-                    <div class="mx-8 text-primary text-4xl">♪</div>
-                    <div
-                        class="flex-1 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"
-                    >
-                    </div>
-                </div>
-                <div class="mb-24">
-                    <h3
-                        class="text-3xl md:text-4xl font-display font-bold text-text-dark text-center mb-12"
-                    >
-                        Reconocimientos <span class="text-primary italic"
-                            >Institucionales Destacados</span
-                        >
-                    </h3>
-                    <ul class="space-y-4 max-w-4xl mx-auto">
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >2021</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Institución UNESCO; Embajadores de la Paz
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >2019</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Reconocimiento del Consejo Legislativo del
-                                Estado Carabobo
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >2019</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Orden al Mérito Ejecutivo – Asociación de
-                                Ejecutivos de Carabobo
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >2019</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Reconocimiento de la Alcaldía Municipio
-                                Naguanagua
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >2012</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Reconocimiento de la Alcaldía Municipio San
-                                Diego
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >2011</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Reconocimiento de la Alcaldía Municipio Carlos
-                                Arvelo
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >2011</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Reconocimiento de la Universidad Arturo
-                                Michelena
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >2011</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Premio Festival Internacional de Solistas
-                                Aldemaro Romero
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >2008</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Reconocimiento Latinoamérica Sinfónica
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >2007</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Reconocimiento de la Universidad de Carabobo
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >2007</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Reconocimiento de la Red de Bibliotecas Públicas
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >2005</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Reconocimiento de Sokka Gakkai Internacional
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >2005 & 2021</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Reconocimiento de Rotary Internacional
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >2004</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Reconocimiento de la Contraloría del Estado
-                                Carabobo
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >1999</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Reconocimiento de la Asamblea Nacional
-                                Constituyente
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >1998</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Orden Ciudad de Valencia
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >1999</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Reconocimiento de la Sociedad Amigos de Valencia
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >1998</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Reconocimiento de la Alcaldía de Valencia, Tibor
-                                Rudas APM Shows
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >1998</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Reconocimiento de la Cámara Municipal de
-                                Valencia
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >1998</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Reconocimiento de Hogares Crea de Venezuela
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >1998</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Reconocimiento de Gente y Eventos, Diario El
-                                Carabobeño
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >1993</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Reconocimiento del Palacio de las Convenciones
-                                de Cuba y Cubanacan, S.A.
-                            </p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span
-                                class="text-sm font-bold text-primary min-w-[60px]"
-                                >1992</span
-                            >
-                            <p class="text-text-dark font-medium">
-                                Reconocimiento de la Fundación Festivales del
-                                Cabriales
-                            </p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="mb-24">
-                    <h3
-                        class="text-3xl md:text-4xl font-display font-bold text-text-dark text-center mb-12"
-                    >
-                        Hito Histórico como <span class="text-primary italic"
-                            >Reconocimiento Implícito</span
-                        >
-                    </h3>
-                    <div
-                        class="bg-surface-light rounded-2xl p-12 shadow-lg border border-border-light"
-                    >
-                        <div
-                            class="flex flex-col md:flex-row items-center gap-8"
-                        >
-                            <div class="flex-1">
-                                <p
-                                    class="text-lg text-text-dark leading-relaxed mb-6"
-                                >
-                                    En 1998, la Orquesta Sinfónica de Carabobo
-                                    fue seleccionada como orquesta acompañante
-                                    del famoso tenor italiano <strong
-                                        class="text-primary"
-                                        >Luciano Pavarotti</strong
-                                    > en su único concierto en Venezuela, realizado
-                                    en Valencia. Este hecho es considerado un reconocimiento
-                                    a la calidad artística de la OSC.
-                                </p>
-                                <div class="flex items-center gap-4">
-                                    <div
-                                        class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center"
-                                    >
-                                        <svg
-                                            class="w-6 h-6 text-primary"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                            ></path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p class="font-bold text-text-dark">
-                                            1998
-                                        </p>
-                                        <p class="text-sm text-text-dark/70">
-                                            Concierto con Luciano Pavarotti
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-24">
-                    <h3
-                        class="text-3xl md:text-4xl font-display font-bold text-text-dark text-center mb-12"
-                    >
-                        Reconocimiento <span class="text-primary italic"
-                            >Internacional</span
-                        >
-                    </h3>
-                    <div
-                        class="bg-gradient-to-r from-primary/5 to-primary/5 rounded-2xl p-12 shadow-lg border border-primary/10"
-                    >
-                        <div class="text-center">
+                        <div class="relative z-10 p-12 mt-auto">
                             <div
-                                class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
+                                class="inline-block px-4 py-2 border border-[#D19D2E] text-[#D19D2E] text-[10px] font-bold uppercase tracking-[0.3em] mb-8"
                             >
-                                <svg
-                                    class="w-10 h-10 text-primary"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"
-                                    ></path>
-                                </svg>
+                                Hito Histórico — 1998
                             </div>
-                            <h4 class="text-2xl font-bold text-text-dark mb-4">
-                                Aval y apoyo de la UNESCO
-                            </h4>
-                            <p
-                                class="text-lg text-text-dark leading-relaxed max-w-3xl mx-auto"
+                            <h3
+                                class="text-5xl font-display font-bold mb-6 uppercase tracking-wider"
                             >
-                                Como institución educativa y cultural de impacto
-                                social, la FOSC y OSC cuentan con el aval y
-                                apoyo de la UNESCO, reconociendo su contribución
-                                al desarrollo cultural y educativo en Venezuela
-                                y Latinoamérica.
+                                Pavarotti <br />
+                                <span class="text-[#D19D2E]">en Valencia</span>
+                            </h3>
+                            <p
+                                class="text-gray-400 leading-relaxed text-lg font-light max-w-md"
+                            >
+                                Seleccionados como la orquesta acompañante
+                                oficial para el concierto único del tenor
+                                Luciano Pavarotti en Venezuela.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- UNESCO Section -->
+                    <div
+                        class="group relative overflow-hidden bg-[#800020] text-white h-full min-h-[500px] flex flex-col border border-[#800020] transition-all duration-500"
+                    >
+                        <div
+                            class="absolute inset-0 z-0 opacity-10 bg-[url('/image-grid.webp')] bg-cover bg-center mix-blend-overlay"
+                        >
+                        </div>
+                        <div class="relative z-10 p-12 mt-auto">
+                            <div
+                                class="inline-block px-4 py-2 border border-white/30 text-white text-[10px] font-bold uppercase tracking-[0.3em] mb-8"
+                            >
+                                Aval Continental
+                            </div>
+                            <h3
+                                class="text-5xl font-display font-bold mb-6 uppercase tracking-wider"
+                            >
+                                UNESCO <br />
+                                <span class="text-white/60">Paz y Cultura</span>
+                            </h3>
+                            <p
+                                class="text-white/80 leading-relaxed text-lg font-light max-w-md"
+                            >
+                                Designación como Embajadores de la Paz por
+                                nuestra contribución ininterrumpida al
+                                desarrollo cultural latinoamericano.
                             </p>
                         </div>
                     </div>
@@ -438,47 +175,86 @@ import MainHero from "../../components/sections/MainHero.astro";
             </div>
         </section>
 
-        <section
-            class="py-24 background-dark text-text-light text-center bg-background-dark relative"
-        >
-            <div class="container mx-auto px-6 max-w-4xl relative">
-                <div class="absolute top-8 left-8 text-primary/10 text-2xl">
-                    ♪
-                </div>
-                <div class="absolute top-16 right-12 text-primary/15 text-3xl">
-                    ♫
-                </div>
+        <!-- Timeline / List section (Minimalist) -->
+        <section class="py-32 bg-white">
+            <div class="container mx-auto px-6 max-w-6xl">
                 <div
-                    class="absolute bottom-16 left-1/4 text-primary/20 text-4xl"
+                    class="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8 px-4"
                 >
-                    ♬
-                </div>
-                <div
-                    class="absolute bottom-24 right-1/3 text-primary/10 text-2xl"
-                >
-                    ♪
-                </div>
-                <h2
-                    class="text-4xl md:text-5xl font-display font-bold mb-8 text-text-light"
-                >
-                    Únete a Nuestra Misión
-                </h2>
-                <p class="text-xl text-text-light/90 mb-12 max-w-2xl mx-auto">
-                    Ya sea como patrocinador, alumno o donante, tu apoyo es
-                    vital para seguir construyendo cultura en Carabobo.
-                </p>
-                <div class="flex flex-col md:flex-row gap-6 justify-center">
-                    <a
-                        href="/contacto"
-                        class="bg-primary text-black px-10 py-4 font-bold hover:bg-primary-dark transition-all duration-300 shadow-xl"
+                    <div class="max-w-2xl">
+                        <h3
+                            class="text-5xl font-display font-bold text-black uppercase tracking-tight"
+                        >
+                            Menciones y <br /><span
+                                class="text-[#800020] italic">Distinciones</span
+                            >
+                        </h3>
+                    </div>
+                    <div
+                        class="h-px flex-grow bg-gray-100 mb-4 hidden md:block"
                     >
-                        Contáctanos
+                    </div>
+                    <span
+                        class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.5em] mb-4"
+                        >Registro Histórico</span
+                    >
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-0">
+                    {
+                        institutionalRecognitions.map((item) => (
+                            <div class="group flex items-baseline gap-6 py-6 border-b border-gray-100 hover:border-[#800020] transition-all duration-300">
+                                <span class="text-sm font-bold text-[#800020] uppercase tracking-widest min-w-[60px]">
+                                    {item.year}
+                                </span>
+                                <p class="text-[15px] text-gray-700 font-medium leading-[1.6] group-hover:text-black transition-colors">
+                                    {item.event}
+                                </p>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA section (Structured) -->
+        <section class="py-40 bg-black text-white relative">
+            <div
+                class="absolute inset-0 opacity-10 bg-[url('/sinfonica.webp')] bg-cover bg-fixed bg-center filter grayscale contrast-150"
+            >
+            </div>
+
+            <div
+                class="container mx-auto px-6 max-w-4xl relative z-10 text-center"
+            >
+                <h2
+                    class="text-6xl md:text-8xl font-display font-medium mb-12 leading-none uppercase tracking-tighter"
+                >
+                    Únase al <br />
+                    <span class="font-bold text-[#800020] italic"
+                        >Movimiento</span
+                    >
+                </h2>
+                <div class="w-16 h-1 bg-[#800020] mx-auto mb-16"></div>
+                <p
+                    class="text-xl text-gray-400 mb-20 max-w-2xl mx-auto font-light leading-relaxed"
+                >
+                    Nuestra historia se escribe con el apoyo de quienes creen en
+                    el poder transformador de la música.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-0 justify-center">
+                    <a
+                        href="/apoyanos/empresarial"
+                        class="px-16 py-6 bg-[#800020] text-white font-bold text-[11px] uppercase tracking-[0.4em] transition-all hover:bg-white hover:text-black border border-[#800020] active:scale-95"
+                    >
+                        Alianza Empresarial
                     </a>
                     <a
                         href="/academia"
-                        class="bg-primary text-black px-10 py-4 font-bold hover:bg-primary-dark transition-all duration-300 shadow-xl"
+                        class="px-16 py-6 bg-transparent text-white font-bold text-[11px] uppercase tracking-[0.4em] transition-all hover:bg-white hover:text-black border border-white/20 active:scale-95"
                     >
-                        Ver programas
+                        Academia
                     </a>
                 </div>
             </div>
@@ -486,4 +262,9 @@ import MainHero from "../../components/sections/MainHero.astro";
     </main>
 </Layout>
 
-<style></style>
+<style>
+    /* Focus on crisp, architectural lines */
+    main {
+        text-rendering: optimizeLegibility;
+    }
+</style>
