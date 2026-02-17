@@ -1,21 +1,10 @@
 ---
-export const prerender = true;
+export const prerender = false;
 import Layout from "../../../layouts/Layout.astro";
 import MainHero from "../../../components/sections/MainHero.astro";
 import BlogCard from "../../../components/blog/BlogCard.astro";
 import Pagination from "../../../components/blog/Pagination.astro";
 import { getBlogs, getBlogsInfo } from "../../../config/wp-blogs";
-
-export async function getStaticPaths() {
-  const { totalPages } = await getBlogsInfo();
-
-  // Si no hay blogs, al menos generamos la página 1 vacía para que no rompa el build
-  const safeTotal = totalPages > 0 ? totalPages : 1;
-
-  return Array.from({ length: safeTotal }, (_, i) => ({
-    params: { page: (i + 1).toString() },
-  }));
-}
 
 const { page } = Astro.params;
 const currentPage = page ? parseInt(page, 10) : 1;

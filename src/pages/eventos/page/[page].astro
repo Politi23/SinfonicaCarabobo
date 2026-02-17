@@ -1,21 +1,12 @@
 ---
-export const prerender = true;
+export const prerender = false;
 import Layout from "../../../layouts/Layout.astro";
 import MainHero from "../../../components/sections/MainHero.astro";
 import EventoCard from "../../../components/eventos/EventoCard.astro"; // Usamos el componente que ya creamos anteriormente
 import Pagination from "../../../components/blog/Pagination.astro";
 import { getEventos } from "../../../config/wp-eventos"; // Usamos la función actualizada
 
-// Función para calcular el total de páginas
-export async function getStaticPaths() {
-  const allEventos = await getEventos(100); // Obtenemos todos los eventos
-  const perPage = 6;
-  const totalPages = Math.max(1, Math.ceil(allEventos.length / perPage));
-
-  return Array.from({ length: totalPages }, (_, i) => ({
-    params: { page: (i + 1).toString() },
-  }));
-}
+// Función para calcular el total de páginas -> Removed for SSR
 
 const { page } = Astro.params;
 const currentPage = page ? parseInt(page, 10) : 1;
