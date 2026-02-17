@@ -1,23 +1,20 @@
 ---
-export const prerender = true;
+export const prerender = false;
 import Layout from "../../layouts/Layout.astro";
-import { getEventos } from "../../config/wp-eventos"; // Importamos desde el archivo modificado
+import { getEventos, getEventoBySlug } from "../../config/wp-eventos"; // Importamos desde el archivo modificado
 import type { WPEvento } from "../../config/wp-eventos"; // Importamos desde el archivo modificado
 
-// 1. OBLIGATORIO EN MODO ESTÁTICO:
-// Esta función le dice a Astro qué páginas crear antes de subir la web.
-export async function getStaticPaths() {
-  // Pedimos hasta 100 eventos para asegurar que estén todos
-  const eventos = await getEventos(100);
+const { slug } = Astro.params;
 
-  return eventos.map((evento) => ({
-    params: { slug: evento.slug },
-    props: { evento },
-  }));
+if (!slug) {
+  return Astro.redirect("/404");
 }
 
-// 2. RECUPERAR DATOS
-const { evento } = Astro.props;
+const evento = await getEventoBySlug(slug);
+
+if (!evento) {
+  return Astro.redirect("/404");
+}
 
 // --- HELPERS (CON PROTECCIÓN DE ERRORES) ---
 
