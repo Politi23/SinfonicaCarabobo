@@ -4,87 +4,165 @@ import Header from "../../components/global/Header.astro";
 import MainHero from "../../components/sections/MainHero.astro";
 ---
 
-<Layout>
+<Layout title="Nosotros Somos - Fundación Orquesta Sinfónica de Carabobo">
     <Header />
 
-    <main class="bg-white text-gray-800">
+    <main class="bg-white text-gray-950 min-h-screen">
         <MainHero
             title="Nosotros"
             titleHighlight="Somos"
-            subtitle="Orquesta Sinfónica de Carabobo: 49 Años de Historia, Arte y Formación"
+            subtitle="Casi medio siglo construyendo el alma musical de una región."
         />
-        <section class="py-24 md:py-32 relative overflow-hidden">
+
+        <!-- INTRO SECTION: ARCHITECTURAL QUOTE -->
+        <section
+            class="py-24 md:py-32 relative overflow-hidden border-b border-gray-100"
+        >
             <div class="container mx-auto px-6 max-w-6xl relative z-10">
-                <div class="flex flex-col items-center text-center mb-0">
+                <div class="grid md:grid-cols-12 gap-12 items-center">
+                    <div
+                        class="md:col-span-1 border-l-4 border-[#800020] h-full hidden md:block"
+                    >
+                    </div>
+                    <div class="md:col-span-10">
+                        <span
+                            class="text-[#800020] text-xs font-bold tracking-[0.4em] uppercase mb-8 block italic"
+                            >Manifesto</span
+                        >
+                        <h2
+                            class="text-4xl md:text-7xl font-display font-medium text-black mb-12 leading-none tracking-tighter uppercase"
+                        >
+                            Una institución <br /><span
+                                class="text-[#800020] font-bold italic"
+                                >cultural integral</span
+                            >
+                        </h2>
+                        <div
+                            class="relative bg-black p-10 md:p-16 border border-black shadow-2xl overflow-hidden group"
+                        >
+                            <div
+                                class="absolute inset-0 z-0 opacity-20 bg-[url('/orchestra1.webp')] bg-cover bg-center grayscale scale-110 group-hover:scale-100 transition-transform duration-1000"
+                            >
+                            </div>
+                            <div class="relative z-10">
+                                <p
+                                    class="text-xl md:text-3xl text-white leading-tight font-display font-light italic"
+                                >
+                                    "Desde hace 49 años, hemos unido en un mismo
+                                    propósito la formación académica, la
+                                    producción artística de alto nivel y el
+                                    compromiso social inquebrantable."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="md:col-span-1 border-r-4 border-gray-200 h-full hidden md:block"
+                    >
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HISTORY SECTION: TIMELINE ELEMENTS -->
+        <section class="py-32 bg-gray-50 relative overflow-hidden">
+            <!-- Subtle Background watermark -->
+            <div
+                class="absolute top-10 right-10 text-[12rem] md:text-[18rem] font-display font-bold text-gray-100 pointer-events-none select-none leading-none opacity-50"
+            >
+                49
+            </div>
+
+            <div class="container mx-auto px-6 max-w-6xl relative">
+                <div class="mb-24">
                     <span
-                        class="text-primary text-sm font-bold tracking-[0.2em] uppercase mb-4 block"
-                        >Nuestra Identidad</span
+                        class="text-[#800020] text-xs font-bold tracking-[0.4em] uppercase mb-4 block italic"
+                        >Nuestra Trayectoria</span
                     >
                     <h2
-                        class="text-4xl md:text-6xl font-display font-bold text-text-dark mb-12"
+                        class="text-5xl md:text-8xl font-display font-medium text-black leading-none tracking-tighter uppercase"
                     >
-                        Somos una institución <span class="text-primary italic"
-                            >cultural integral</span
+                        Historia <br /><span
+                            class="text-[#800020] font-bold italic"
+                            >y Prestigio</span
                         >
                     </h2>
+                </div>
 
-                    <div class="relative text-center mb-24">
+                <div
+                    class="grid md:grid-cols-2 gap-1 bg-gray-200 border border-gray-200 shadow-xl"
+                >
+                    <div
+                        class="bg-white p-12 border-l-4 border-transparent hover:border-[#800020] transition-colors duration-500"
+                    >
+                        <span
+                            class="text-[#d19d2e] font-display text-4xl mb-6 block font-bold"
+                            >1976</span
+                        >
+                        <h3
+                            class="text-2xl font-bold uppercase tracking-tight mb-4 text-black"
+                        >
+                            Fundación
+                        </h3>
+                        <p class="text-gray-500 leading-relaxed font-light">
+                            Nacemos en octubre de 1976 para convertirnos en el
+                            eje fundamental de la cultura carabobeña, iniciando
+                            un camino de excelencia ininterrumpida.
+                        </p>
+                    </div>
+                    <div
+                        class="bg-white p-12 border-l-4 border-transparent hover:border-[#800020] transition-colors duration-500"
+                    >
+                        <span
+                            class="text-[#d19d2e] font-display text-4xl mb-6 block font-bold"
+                            >1998</span
+                        >
+                        <h3
+                            class="text-2xl font-bold uppercase tracking-tight mb-4 text-black"
+                        >
+                            Hito Universal
+                        </h3>
+                        <p class="text-gray-500 leading-relaxed font-light">
+                            Acompañamos al legendario tenor Luciano Pavarotti en
+                            su única presentación en Venezuela, consolidando
+                            nuestra calidad interpretativa a nivel mundial.
+                        </p>
+                    </div>
+                    <div
+                        class="bg-white p-12 border-l-4 border-transparent hover:border-[#800020] transition-colors duration-500"
+                    >
+                        <span
+                            class="text-[#d19d2e] font-display text-4xl mb-6 block font-bold"
+                            >2021</span
+                        >
+                        <h3
+                            class="text-2xl font-bold uppercase tracking-tight mb-4 text-black"
+                        >
+                            UNESCO
+                        </h3>
+                        <p class="text-gray-500 leading-relaxed font-light">
+                            Fuimos reconocidos por la UNESCO como "Embajadores
+                            de la Paz", un honor que ratifica nuestra labor
+                            social y compromiso con la humanidad.
+                        </p>
+                    </div>
+                    <div
+                        class="bg-white p-12 text-center flex flex-col justify-center items-center overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-700"
+                    >
                         <div
-                            class="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 rounded-2xl"
+                            class="absolute inset-0 z-0 opacity-10 bg-[url('/estudiantina.webp')] bg-cover bg-center"
                         >
                         </div>
-                        <div
-                            class="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-primary/30 rounded-tl-lg"
-                        >
-                        </div>
-                        <div
-                            class="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-primary/30 rounded-tr-lg"
-                        >
-                        </div>
-                        <div
-                            class="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-primary/30 rounded-bl-lg"
-                        >
-                        </div>
-                        <div
-                            class="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-primary/30 rounded-br-lg"
-                        >
-                        </div>
-
-                        <div
-                            class="absolute -top-6 left-1/4 text-primary/20 text-4xl"
-                        >
-                            ♪
-                        </div>
-                        <div
-                            class="absolute -top-4 right-1/4 text-primary/20 text-3xl"
-                        >
-                            ♫
-                        </div>
-                        <div
-                            class="absolute -bottom-6 left-1/3 text-primary/20 text-2xl"
-                        >
-                            ♪
-                        </div>
-                        <div
-                            class="absolute -bottom-4 right-1/3 text-primary/20 text-3xl"
-                        >
-                            ♫
-                        </div>
-
-                        <div
-                            class="relative bg-white/50 backdrop-blur-sm p-8 md:p-12 rounded-2xl border border-primary/10 shadow-lg"
-                        >
-                            <p
-                                class="text-lg md:text-xl text-text-dark leading-relaxed max-w-4xl mx-auto font-serif italic"
+                        <div class="relative z-10">
+                            <h3
+                                class="text-3xl font-display font-medium text-black uppercase italic mb-2 tracking-tighter"
                             >
-                                Somos una institución cultural integral con 49
-                                años de trayectoria ininterrumpida, dedicada a
-                                la excelencia musical, la formación de nuevas
-                                generaciones y la transformación social a través
-                                del arte sinfónico. Desde nuestros inicios,
-                                hemos unido en un mismo propósito la formación
-                                académica, la producción artística de alto nivel
-                                y el compromiso social.
+                                Patrimonio
+                            </h3>
+                            <p
+                                class="text-[10px] font-bold tracking-[0.3em] uppercase text-[#800020]"
+                            >
+                                Inmaterial de Carabobo
                             </p>
                         </div>
                     </div>
@@ -92,371 +170,290 @@ import MainHero from "../../components/sections/MainHero.astro";
             </div>
         </section>
 
-        <section class="py-24 bg-surface-light relative">
-            <div class="container mx-auto px-6 max-w-6xl relative">
-                <div class="absolute top-16 left-8 text-primary/15 text-3xl">
-                    ♪
-                </div>
-                <div class="absolute top-32 right-12 text-primary/10 text-4xl">
-                    ♫
-                </div>
-                <div
-                    class="absolute bottom-20 left-1/4 text-primary/20 text-2xl"
-                >
-                    ♬
-                </div>
-                <div
-                    class="absolute bottom-32 right-1/3 text-primary/15 text-3xl"
-                >
-                    ♪
-                </div>
-                <div class="text-center mb-16">
-                    <h2
-                        class="text-4xl md:text-5xl font-display font-bold text-text-dark mb-6"
-                    >
-                        Nuestra Historia y <span class="text-primary italic"
-                            >Trayectoria</span
-                        >
-                    </h2>
-                    <p class="text-lg text-text-dark/80 max-w-3xl mx-auto">
-                        Fundada en octubre de 1976, hemos crecido para
-                        convertirnos en un referente cultural necesario en
-                        Carabobo y Venezuela. Bajo la dirección del Maestro José
-                        Calabrese (1985-2018) y actualmente del Maestro José
-                        Carmelo Calabrese, hemos alcanzado reconocimiento
-                        nacional e internacional.
-                    </p>
-                </div>
-
-                <div
-                    class="bg-white rounded-2xl p-12 shadow-lg border border-border-light"
-                >
-                    <h3
-                        class="text-3xl font-display font-bold mb-6 text-text-dark text-center"
-                    >
-                        Hitos históricos que nos enorgullecen:
-                    </h3>
-                    <ul class="space-y-4 text-text-dark">
-                        <li class="flex gap-4">
-                            <svg
-                                class="w-6 h-6 text-primary shrink-0"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1.5"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                ></path>
-                            </svg>
-                            En 1998, fuimos la orquesta acompañante del tenor Luciano
-                            Pavarotti en su única presentación en Venezuela.
-                        </li>
-                        <li class="flex gap-4">
-                            <svg
-                                class="w-6 h-6 text-primary shrink-0"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1.5"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                ></path>
-                            </svg>
-                            Primera orquesta venezolana en grabar las 9 Sinfonías
-                            de Beethoven en formato CD.
-                        </li>
-                        <li class="flex gap-4">
-                            <svg
-                                class="w-6 h-6 text-primary shrink-0"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1.5"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                ></path>
-                            </svg>
-                            Reconocidos como Patrimonio Cultural de Carabobo y Embajadores
-                            de la Paz por la UNESCO (2021).
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-24">
+        <!-- FORMATION & PRODUCTION: SOPHISTICATED GRID -->
+        <section class="py-32 bg-white">
             <div class="container mx-auto px-6 max-w-6xl">
-                <div class="text-center mb-16">
-                    <h2
-                        class="text-4xl md:text-5xl font-display font-bold text-text-dark mb-6"
-                    >
-                        Nuestro Modelo Integral: <span
-                            class="text-primary italic"
-                            >Formación y Excelencia Artística</span
+                <div
+                    class="flex flex-col md:flex-row justify-between items-start gap-12 mb-24"
+                >
+                    <div class="max-w-2xl">
+                        <span
+                            class="text-[#800020] text-xs font-bold tracking-[0.4em] uppercase mb-4 block italic"
+                            >Modelo Integral</span
                         >
-                    </h2>
+                        <h2
+                            class="text-5xl md:text-7xl font-display font-medium text-black leading-none tracking-tighter uppercase"
+                        >
+                            Formación y <br /><span
+                                class="text-[#800020] font-bold italic"
+                                >Excelencia</span
+                            >
+                        </h2>
+                    </div>
+                    <div class="md:max-w-sm border-l-4 border-gray-100 pl-8">
+                        <p class="text-gray-500 font-light leading-relaxed">
+                            Nuestra estructura garantiza que el talento joven se
+                            encuentre con la experiencia profesional en un ciclo
+                            de aprendizaje continuo.
+                        </p>
+                    </div>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-12">
+                    <!-- Academy Card -->
                     <div
-                        class="bg-surface-light rounded-2xl p-8 shadow-lg border border-border-light"
+                        class="border border-black bg-white shadow-2xl relative"
                     >
-                        <h3
-                            class="text-2xl font-display font-bold mb-6 text-text-dark"
+                        <div
+                            class="absolute top-0 right-0 w-24 h-24 bg-black/5 flex items-center justify-center text-black/20 text-4xl font-display italic"
                         >
-                            Programa de Formación Musical "Maestro José
-                            Calabrese"
-                        </h3>
-                        <p class="text-text-dark mb-4">
-                            Desde el 7 de octubre de 2019, formamos a más de 200
-                            estudiantes (niños, jóvenes y adultos) con:
-                        </p>
-                        <ul class="space-y-2 text-text-dark">
-                            <li>• Becas para más de 80 niños y jóvenes</li>
-                            <li>
-                                • Asignación de instrumentos para quienes
-                                inician
-                            </li>
-                            <li>
-                                • Programas inclusivos para niños con Síndrome
-                                de Down
-                            </li>
-                            <li>
-                                • Aval de la UNESCO y alianzas internacionales
-                            </li>
-                        </ul>
+                            A
+                        </div>
+                        <div class="p-12 h-full flex flex-col">
+                            <h3
+                                class="text-3xl font-display font-bold mb-8 text-black uppercase tracking-tighter border-b-2 border-[#800020] pb-4 inline-block self-start"
+                            >
+                                Academia
+                            </h3>
+                            <p
+                                class="text-gray-900 font-medium mb-8 italic leading-relaxed text-lg"
+                            >
+                                Programa de Formación Musical <br />
+                                <span class="text-[#800020]"
+                                    >"Maestro José Calabrese"</span
+                                >
+                            </p>
+                            <ul class="space-y-6 flex-grow">
+                                {
+                                    [
+                                        {
+                                            title: "Becas Directas",
+                                            desc: "Más de 80 niños y jóvenes beneficiados",
+                                        },
+                                        {
+                                            title: "Dotación",
+                                            desc: "Asignación de instrumentos para iniciación",
+                                        },
+                                        {
+                                            title: "Inclusión",
+                                            desc: "Programas especializados para Síndrome de Down",
+                                        },
+                                        {
+                                            title: "Acreditación",
+                                            desc: "Aval internacional de la UNESCO",
+                                        },
+                                    ].map((item) => (
+                                        <li class="flex items-start gap-5">
+                                            <div class="w-2 h-2 mt-1.5 bg-[#800020] shrink-0" />
+                                            <div>
+                                                <p class="text-[10px] font-bold uppercase tracking-widest text-black mb-1">
+                                                    {item.title}
+                                                </p>
+                                                <p class="text-sm font-light text-gray-500 uppercase tracking-tighter">
+                                                    {item.desc}
+                                                </p>
+                                            </div>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
                     </div>
 
+                    <!-- Production Card -->
                     <div
-                        class="bg-surface-light rounded-2xl p-8 shadow-lg border border-border-light"
+                        class="border border-[#800020] bg-white shadow-2xl relative"
                     >
-                        <h3
-                            class="text-2xl font-display font-bold mb-6 text-text-dark"
+                        <div
+                            class="absolute top-0 right-0 w-24 h-24 bg-[#800020]/5 flex items-center justify-center text-[#800020]/20 text-4xl font-display italic"
                         >
-                            Producción Artística y Conciertos
-                        </h3>
-                        <p class="text-text-dark mb-4">
-                            Realizamos eventos artísticos y académicos anuales
-                            que impactan a miles de personas:
-                        </p>
-                        <ul class="space-y-2 text-text-dark">
-                            <li>• Más de 2.400 músicos formados en 49 años</li>
-                            <li>
-                                • 17.000 personas impactadas en redes sociales
-                            </li>
-                            <li>• 1.500 personas por concierto en promedio</li>
-                            <li>
-                                • Conciertos masivos como "Latinoamérica le
-                                canta a Valencia", "Homenaje a Aldemaro Romero"
-                                y "Mágica Navidad"
-                            </li>
-                        </ul>
+                            P
+                        </div>
+                        <div class="p-12 h-full flex flex-col">
+                            <h3
+                                class="text-3xl font-display font-bold mb-8 text-black uppercase tracking-tighter border-b-2 border-black pb-4 inline-block self-start"
+                            >
+                                Producción
+                            </h3>
+                            <p
+                                class="text-gray-900 font-medium mb-8 italic leading-relaxed text-lg"
+                            >
+                                Eventos de impacto <br /><span
+                                    class="text-black"
+                                >
+                                    masivo y profesional</span
+                                >
+                            </p>
+                            <ul class="space-y-6 flex-grow">
+                                {
+                                    [
+                                        {
+                                            title: "Historial",
+                                            desc: "Más de 2.400 músicos formados en 49 años",
+                                        },
+                                        {
+                                            title: "Afluencia",
+                                            desc: "1.500 personas por concierto en promedio",
+                                        },
+                                        {
+                                            title: "Repertorio",
+                                            desc: "Galas sinfónicas y eventos de alto nivel",
+                                        },
+                                        {
+                                            title: "Continuidad",
+                                            desc: "Múltiples eventos temáticos anuales",
+                                        },
+                                    ].map((item) => (
+                                        <li class="flex items-start gap-5">
+                                            <div class="w-2 h-2 mt-1.5 bg-black shrink-0" />
+                                            <div>
+                                                <p class="text-[10px] font-bold uppercase tracking-widest text-[#800020] mb-1">
+                                                    {item.title}
+                                                </p>
+                                                <p class="text-sm font-light text-gray-500 uppercase tracking-tighter">
+                                                    {item.desc}
+                                                </p>
+                                            </div>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-24 bg-surface-light">
-            <div class="container mx-auto px-6 max-w-6xl">
-                <div class="text-center mb-16">
-                    <h2
-                        class="text-4xl md:text-5xl font-display font-bold text-text-dark mb-6"
+        <!-- IMPACT: ARCHITECTURAL NUMBERS -->
+        <section class="py-32 bg-black text-white relative overflow-hidden">
+            <div
+                class="absolute inset-0 opacity-10 bg-[url('/orchestra1.webp')] bg-cover bg-center grayscale"
+            >
+            </div>
+            <div class="container mx-auto px-6 max-w-6xl relative z-10">
+                <div class="text-center mb-24">
+                    <span
+                        class="text-[#d19d2e] text-xs font-bold tracking-[0.4em] uppercase mb-6 block italic"
                     >
-                        Nuestro Impacto y <span class="text-primary italic"
-                            >Presencia</span
+                        Impacto Social</span
+                    >
+                    <h2
+                        class="text-5xl md:text-8xl font-display font-medium leading-none tracking-tighter uppercase mb-4"
+                    >
+                        Nuestras <span class="text-[#d19d2e] italic"
+                            >Cifras</span
                         >
                     </h2>
-                    <p class="text-lg text-text-dark/80 max-w-3xl mx-auto">
-                        En cifras:
-                    </p>
                 </div>
 
-                <div class="grid grid-cols-2 gap-8 mb-12">
+                <div
+                    class="grid grid-cols-2 md:grid-cols-4 border border-white/20"
+                >
                     <div
-                        class="text-center bg-white rounded-2xl p-6 shadow-lg border border-border-light"
+                        class="p-12 border-r border-b md:border-b-0 border-white/20 text-center hover:bg-[#d19d2e] group transition-colors duration-500"
                     >
-                        <div class="text-4xl font-bold text-primary mb-2">
+                        <div
+                            class="text-6xl font-display font-bold text-[#d19d2e] group-hover:text-black transition-colors mb-2"
+                        >
                             49
                         </div>
-                        <div class="text-text-dark">
-                            años construyendo cultura
-                        </div>
+                        <p
+                            class="text-[10px] font-bold tracking-[0.3em] uppercase text-white/60 group-hover:text-black"
+                        >
+                            Años de Trayectoria
+                        </p>
                     </div>
                     <div
-                        class="text-center bg-white rounded-2xl p-6 shadow-lg border border-border-light"
+                        class="p-12 border-r border-b md:border-b-0 border-white/20 text-center hover:bg-[#d19d2e] group transition-colors duration-500"
                     >
-                        <div class="text-4xl font-bold text-primary mb-2">
-                            2.400
+                        <div
+                            class="text-6xl font-display font-bold text-[#d19d2e] group-hover:text-black transition-colors mb-2"
+                        >
+                            2.4K
                         </div>
-                        <div class="text-text-dark">músicos formados</div>
+                        <p
+                            class="text-[10px] font-bold tracking-[0.3em] uppercase text-white/60 group-hover:text-black"
+                        >
+                            Músicos Formados
+                        </p>
                     </div>
                     <div
-                        class="text-center bg-white rounded-2xl p-6 shadow-lg border border-border-light"
+                        class="p-12 border-r border-white/20 text-center hover:bg-[#d19d2e] group transition-colors duration-500"
                     >
-                        <div class="text-4xl font-bold text-primary mb-2">
+                        <div
+                            class="text-6xl font-display font-bold text-[#d19d2e] group-hover:text-black transition-colors mb-2"
+                        >
                             200+
                         </div>
-                        <div class="text-text-dark">
-                            estudiantes activos en formación
-                        </div>
-                    </div>
-                    <div
-                        class="text-center bg-white rounded-2xl p-6 shadow-lg border border-border-light"
-                    >
-                        <div class="text-4xl font-bold text-primary mb-2">
-                            17.000
-                        </div>
-                        <div class="text-text-dark">
-                            personas impactadas en redes sociales
-                        </div>
-                    </div>
-                </div>
-
-                <div
-                    class="bg-white rounded-2xl p-8 shadow-lg border border-border-light"
-                >
-                    <h3
-                        class="text-2xl font-display font-bold mb-6 text-text-dark text-center"
-                    >
-                        Versatilidad musical
-                    </h3>
-                    <p class="text-text-dark text-center">
-                        Desde lo clásico universal hasta la música popular,
-                        venezolana, latinoamericana, jazz y bandas sonoras de
-                        películas y videojuegos.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-24">
-            <div class="container mx-auto px-6 max-w-6xl">
-                <div class="text-center mb-16">
-                    <h2
-                        class="text-4xl md:text-5xl font-display font-bold text-text-dark mb-6"
-                    >
-                        Nuestro <span class="text-primary italic"
-                            >Compromiso</span
-                        >
-                    </h2>
-                </div>
-
-                <div class="relative text-center">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 rounded-2xl"
-                    >
-                    </div>
-                    <div
-                        class="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-primary/30 rounded-tl-lg"
-                    >
-                    </div>
-                    <div
-                        class="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-primary/30 rounded-tr-lg"
-                    >
-                    </div>
-                    <div
-                        class="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-primary/30 rounded-bl-lg"
-                    >
-                    </div>
-                    <div
-                        class="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-primary/30 rounded-br-lg"
-                    >
-                    </div>
-
-                    <div
-                        class="absolute -top-6 left-1/4 text-primary/20 text-4xl"
-                    >
-                        ♪
-                    </div>
-                    <div
-                        class="absolute -top-4 right-1/4 text-primary/20 text-3xl"
-                    >
-                        ♫
-                    </div>
-                    <div
-                        class="absolute -bottom-6 left-1/3 text-primary/20 text-2xl"
-                    >
-                        ♪
-                    </div>
-                    <div
-                        class="absolute -bottom-4 right-1/3 text-primary/20 text-3xl"
-                    >
-                        ♫
-                    </div>
-
-                    <div
-                        class="relative bg-white/50 backdrop-blur-sm p-8 md:p-12 rounded-2xl border border-primary/10 shadow-lg"
-                    >
                         <p
-                            class="text-lg md:text-xl text-text-dark leading-relaxed max-w-4xl mx-auto font-serif italic"
+                            class="text-[10px] font-bold tracking-[0.3em] uppercase text-white/60 group-hover:text-black"
                         >
-                            Somos más que una orquesta; somos un proyecto de
-                            vida cultural y educativo. A través de la música
-                            sinfónica, creamos espacios de sano esparcimiento,
-                            elevación espiritual y desarrollo social. Formamos a
-                            las nuevas generaciones mientras llevamos música de
-                            excelencia a todos los rincones de Carabobo y más
-                            allá.
+                            Alumnos Activos
                         </p>
-                        <p class="text-2xl font-bold text-primary mt-6">
-                            ¡Somos el alma musical de Carabobo!
+                    </div>
+                    <div
+                        class="p-12 text-center hover:bg-[#d19d2e] group transition-colors duration-500"
+                    >
+                        <div
+                            class="text-6xl font-display font-bold text-[#d19d2e] group-hover:text-black transition-colors mb-2"
+                        >
+                            17K
+                        </div>
+                        <p
+                            class="text-[10px] font-bold tracking-[0.3em] uppercase text-white/60 group-hover:text-black"
+                        >
+                            Alcance Digital
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section
-            class="py-24 background-dark text-text-light text-center bg-background-dark relative"
-        >
-            <div class="container mx-auto px-6 max-w-4xl relative">
-                <div class="absolute top-8 left-8 text-primary/10 text-2xl">
-                    ♪
-                </div>
-                <div class="absolute top-16 right-12 text-primary/15 text-3xl">
-                    ♫
-                </div>
+        <!-- CTAS: BOLD BLOCKS -->
+        <section class="py-32 bg-gray-100">
+            <div class="container mx-auto px-6 max-w-5xl">
                 <div
-                    class="absolute bottom-16 left-1/4 text-primary/20 text-4xl"
+                    class="grid md:grid-cols-2 gap-1 border-4 border-black bg-black shadow-2xl"
                 >
-                    ♬
-                </div>
-                <div
-                    class="absolute bottom-24 right-1/3 text-primary/10 text-2xl"
-                >
-                    ♪
-                </div>
-                <h2
-                    class="text-4xl md:text-5xl font-display font-bold mb-8 text-text-light"
-                >
-                    Únete a Nuestra Misión
-                </h2>
-                <p class="text-xl text-text-light/90 mb-12 max-w-2xl mx-auto">
-                    Ya sea como patrocinador, alumno o donante, tu apoyo es
-                    vital para seguir construyendo cultura en Carabobo.
-                </p>
-                <div class="flex flex-col md:flex-row gap-6 justify-center">
-                    <a
-                        href="/contacto"
-                        class="bg-primary text-black px-10 py-4 font-bold hover:bg-primary-dark transition-all duration-300 shadow-xl"
-                    >
-                        Contáctanos
-                    </a>
-                    <a
-                        href="/academia"
-                        class="bg-primary text-black px-10 py-4 font-bold hover:bg-primary-dark transition-all duration-300 shadow-xl"
-                    >
-                        Ver programas
-                    </a>
+                    <div class="bg-white p-12">
+                        <h3
+                            class="text-3xl font-display font-bold mb-6 text-black uppercase tracking-tight italic border-b-4 border-[#800020] pb-2 inline-block"
+                        >
+                            Únete
+                        </h3>
+                        <p
+                            class="text-gray-500 mb-10 font-light leading-relaxed"
+                        >
+                            Ya sea como patrocinante corporativo, benefactor o
+                            estudiante, tu presencia es vital para nuestra
+                            misión.
+                        </p>
+                        <a
+                            href="/contacto"
+                            class="block w-full py-5 bg-[#800020] text-white text-center text-xs font-bold uppercase tracking-[0.4em] hover:bg-black transition-colors"
+                        >
+                            Contacto Directo
+                        </a>
+                    </div>
+                    <div class="bg-white p-12">
+                        <h3
+                            class="text-3xl font-display font-bold mb-6 text-black uppercase tracking-tight italic border-b-4 border-[#d19d2e] pb-2 inline-block"
+                        >
+                            Academia
+                        </h3>
+                        <p
+                            class="text-gray-500 mb-10 font-light leading-relaxed"
+                        >
+                            Explora las oportunidades académicas y conviértete
+                            en parte de la nueva generación de músicos de élite.
+                        </p>
+                        <a
+                            href="/academia"
+                            class="block w-full py-5 bg-black text-white text-center text-xs font-bold uppercase tracking-[0.4em] hover:bg-[#800020] transition-colors"
+                        >
+                            Programas Académicos
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -464,60 +461,8 @@ import MainHero from "../../components/sections/MainHero.astro";
 </Layout>
 
 <style>
-    @keyframes fade-in {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .animate-fade-in {
-        animation: fade-in 1s ease-out;
-    }
-
-    @keyframes float-1 {
-        0%,
-        100% {
-            transform: translateY(0px) rotate(0deg);
-        }
-        50% {
-            transform: translateY(-20px) rotate(5deg);
-        }
-    }
-
-    @keyframes float-2 {
-        0%,
-        100% {
-            transform: translateY(0px) rotate(0deg);
-        }
-        50% {
-            transform: translateY(-15px) rotate(-5deg);
-        }
-    }
-
-    @keyframes float-3 {
-        0%,
-        100% {
-            transform: translateY(0px) rotate(0deg);
-        }
-        50% {
-            transform: translateY(-25px) rotate(3deg);
-        }
-    }
-
-    .animate-float-1 {
-        animation: float-1 6s ease-in-out infinite;
-    }
-
-    .animate-float-2 {
-        animation: float-2 8s ease-in-out infinite;
-    }
-
-    .animate-float-3 {
-        animation: float-3 7s ease-in-out infinite;
+    /* Architectural Sharp Edges & Shadows */
+    .shadow-2xl {
+        box-shadow: 20px 20px 0px rgba(0, 0, 0, 0.1);
     }
 </style>
