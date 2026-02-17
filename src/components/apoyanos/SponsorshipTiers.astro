@@ -52,53 +52,6 @@ const tiers = [
         ],
     },
 ];
-
-const tierStyles = {
-    bronze: {
-        border: "border-white/10",
-        text: "text-amber-500",
-        badge: "border-amber-500/30 text-amber-500",
-        button: "bg-white text-black hover:bg-amber-500 hover:text-white",
-        icon: "text-amber-500",
-    },
-    silver: {
-        border: "border-white/10",
-        text: "text-slate-400",
-        badge: "border-slate-400/30 text-slate-400",
-        button: "bg-white text-black hover:bg-slate-400 hover:text-white",
-        icon: "text-slate-400",
-    },
-    gold: {
-        border: "border-primary/20",
-        text: "text-primary",
-        badge: "border-primary text-primary",
-        button: "bg-primary text-black hover:bg-white",
-        icon: "text-primary",
-    },
-    platinum: {
-        border: "border-indigo-500/30",
-        text: "text-indigo-400",
-        badge: "border-indigo-500 text-indigo-400",
-        button: "bg-indigo-600 text-white hover:bg-white hover:text-black",
-        icon: "text-indigo-400",
-    },
-};
-
-type SponsorshipTier = {
-    title: string;
-    price: string;
-    id: string;
-    features: string[];
-    isFeatured?: boolean;
-    isPlatinum?: boolean;
-};
-
-const getStyles = (tier: SponsorshipTier) => {
-    if (tier.isPlatinum) return tierStyles.platinum;
-    if (tier.isFeatured) return tierStyles.gold;
-    if (tier.price === "$1.000") return tierStyles.silver;
-    return tierStyles.bronze;
-};
 ---
 
 <section
@@ -127,122 +80,152 @@ const getStyles = (tier: SponsorshipTier) => {
             </p>
         </div>
 
-        <div class="hidden lg:grid grid-cols-4 gap-4 h-[680px]">
-            {
-                tiers.map((tier) => {
-                    const styles = getStyles(tier); // Asegúrate que getStyles devuelva clases compatibles o usa las fijas abajo
-                    const summary = tier.features.slice(0, 2);
-                    const details = tier.features.slice(2);
+        <div class="hidden lg:block overflow-hidden rounded-[2rem] border border-gray-200 bg-white shadow-xl">
+            <div class="grid grid-cols-5">
+                <!-- Etiquetas de Beneficios -->
+                <div class="bg-gray-50/50 border-r border-gray-100 flex flex-col">
+                    <div class="h-48 p-10 flex flex-col justify-end">
+                        <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#800020] mb-2 italic">Estructura</span>
+                        <h4 class="text-sm font-bold uppercase tracking-widest text-black">Beneficios</h4>
+                    </div>
+                    {[
+                        "Redes Sociales",
+                        "Contenido Audiovisual",
+                        "Asientos Preferenciales",
+                        "Mención de Marca",
+                        "Pases para Sorteos",
+                        "Presencia en Sala",
+                        "Beneficios Exclusivos"
+                    ].map((label) => (
+                        <div class="p-8 border-t border-gray-100 flex items-center h-[120px]">
+                            <span class="text-sm font-medium text-gray-700 leading-tight">{label}</span>
+                        </div>
+                    ))}
+                    <div class="p-10 border-t border-gray-100 flex items-center h-[140px]"></div>
+                </div>
+
+                <!-- Columnas de Tiers -->
+                {tiers.map((tier) => {
+                    const isGold = tier.id === "gold";
+                    const isPlatinum = tier.id === "platinum";
+                    
+                    // Mapeo manual de beneficios para la tabla basado en los datos originales
+                    const benefitsMap = {
+                        bronze: [
+                            "1 Flyer + 1 Historia (IG/FB)",
+                            "—",
+                            "2 asientos (2 conciertos)",
+                            "2 actividades anuales",
+                            "—",
+                            "—",
+                            "—"
+                        ],
+                        silver: [
+                            "2 Flyers + 2 Historias (IG/FB)",
+                            "1 Video Reel vinculado",
+                            "4 asientos (3 conciertos)",
+                            "3 actividades anuales",
+                            "—",
+                            "—",
+                            "—"
+                        ],
+                        gold: [
+                            "2 Flyers + 2 Historias (IG/FB)",
+                            "1 Video Reel vinculado",
+                            "6 asientos (3 conciertos)",
+                            "3 actividades anuales",
+                            "2 pases preferenciales",
+                            "Stand (1 concierto)",
+                            "—"
+                        ],
+                        platinum: [
+                            "3 Flyers + 3 Historias (IG/FB)",
+                            "1 Video Reel vinculado",
+                            "8 asientos (3 conciertos)",
+                            "3 actividades anuales",
+                            "4 pases (3 conciertos)",
+                            "Stand (2 conciertos)",
+                            "Pendón + Músico en actividad"
+                        ]
+                    };
+
+                    const currentBenefits = benefitsMap[tier.id as keyof typeof benefitsMap];
 
                     return (
-                        <div class="group relative flex flex-col p-10 bg-white border border-gray-200 hover:border-[#800020] transition-all duration-500 h-full overflow-hidden shadow-sm hover:shadow-xl">
-                            <div class="mb-10 select-none">
-                                <span class="inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-widest mb-6 border border-[#800020] text-[#800020]">
+                        <div class={`relative border-r border-gray-100 last:border-r-0 flex flex-col ${isGold ? 'bg-[#800020]/[0.02]' : ''} ${isPlatinum ? 'bg-slate-100' : ''}`}>
+                            {isGold && (
+                                <div class="absolute top-0 inset-x-0 h-1.5 bg-[#800020] animate-pulse" />
+                            )}
+                            {isGold && (
+                                <div class="absolute top-4 left-1/2 -translate-x-1/2 bg-[#800020] text-white text-[9px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg z-20 whitespace-nowrap">
+                                    Más Popular
+                                </div>
+                            )}
+
+                            <!-- Header -->
+                            <div class={`h-48 p-10 flex flex-col items-center text-center justify-center ${isGold ? 'pt-16' : ''}`}>
+                                <span class={`text-[10px] font-bold uppercase tracking-widest mb-3 text-[#800020]`}>
                                     {tier.id}
                                 </span>
-                                <h3 class="text-xl font-display font-bold mb-2 text-black uppercase tracking-wide">
+                                <h3 class="text-xl font-display font-bold uppercase mb-2 tracking-wide text-black">
                                     {tier.title.replace("Patrocinio ", "")}
                                 </h3>
-                                <div class="text-4xl font-display text-[#800020] italic font-medium">
+                                <div class={`text-4xl font-display italic font-medium text-[#800020]`}>
                                     {tier.price}
                                 </div>
                             </div>
 
-                            <div class="space-y-8 flex-grow">
-                                <ul class="space-y-5">
-                                    {summary.map((feature) => (
-                                        <li class="flex items-start gap-4">
-                                            <div class="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 bg-[#800020] opacity-60" />
-                                            <span class="text-sm text-gray-700 leading-relaxed font-light">
-                                                {feature}
-                                            </span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-
-                            <div class="mt-auto group-hover:opacity-0 transition-opacity text-center py-4 border-t border-gray-100">
-                                <span class="text-[10px] uppercase tracking-[0.3em] text-gray-400 italic">
-                                    Ver detalles ↑
-                                </span>
-                            </div>
-
-                            <div class="absolute inset-x-0 bottom-0 bg-black p-10 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] flex flex-col h-[90%] z-20 shadow-2xl">
-                                <div class="overflow-y-auto pr-2 custom-scrollbar flex-grow mb-8">
-                                    <p class="font-display italic text-[#a52a2a] mb-6 text-sm tracking-widest select-none uppercase">
-                                        Beneficios Incluidos
-                                    </p>
-                                    <ul class="space-y-5">
-                                        {details.map((feature) => (
-                                            <li class="flex items-start gap-4">
-                                                <svg
-                                                    class="w-4 h-4 flex-shrink-0 mt-0.5 text-[#800020]"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <path
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M5 13l4 4L19 7"
-                                                    />
-                                                </svg>
-                                                <span class="text-sm text-gray-300 leading-relaxed font-light">
-                                                    {feature}
-                                                </span>
-                                            </li>
-                                        ))}
-                                    </ul>
+                            <!-- Valores -->
+                            {currentBenefits.map((benefit, idx) => (
+                                <div class={`p-8 border-t flex items-center justify-center text-center h-[120px] ${isPlatinum ? 'border-gray-300/50' : 'border-gray-100'}`}>
+                                    <span class={`text-sm leading-relaxed ${benefit === "—" ? 'text-gray-300' : 'text-gray-600'} ${isGold || isPlatinum ? 'font-medium text-black' : ''}`}>
+                                        {benefit}
+                                    </span>
                                 </div>
+                            ))}
+
+                            <!-- CTA -->
+                            <div class={`p-10 border-t flex flex-col items-center h-[140px] ${isPlatinum ? 'border-gray-300/50' : 'border-gray-100'}`}>
                                 <a
                                     href="mailto:sinfocarabobo@gmail.com"
-                                    class="block w-full py-4 bg-[#800020] text-white font-bold text-[11px] uppercase tracking-[0.2em] text-center transition-all hover:bg-[#a52a2a] active:scale-[0.98]"
+                                    class={`w-full py-4 text-[10px] font-bold uppercase tracking-[0.2em] text-center transition-all active:scale-[0.98] ${
+                                        isPlatinum 
+                                            ? 'bg-black text-white hover:bg-[#800020]' 
+                                            : 'bg-[#800020] text-white hover:bg-black'
+                                    }`}
                                 >
                                     Elegir Plan
                                 </a>
                             </div>
                         </div>
                     );
-                })
-            }
+                })}
+            </div>
         </div>
 
-        <div class="lg:hidden space-y-4">
+        <div class="lg:hidden space-y-6">
             {
                 tiers.map((tier) => (
-                    <details class="group bg-white border border-gray-200 rounded-2xl overflow-hidden">
-                        <summary class="list-none cursor-pointer p-8 flex items-center justify-between select-none">
-                            <div>
-                                <p class="text-[10px] font-bold uppercase tracking-[0.2em] mb-1 text-[#800020]">
-                                    {tier.title}
-                                </p>
-                                <p class="text-3xl font-display italic text-black">
-                                    {tier.price}
-                                </p>
+                    <div class={`relative border-2 overflow-hidden rounded-2xl shadow-sm ${tier.id === 'gold' ? 'border-[#800020]' : (tier.id === 'platinum' ? 'border-slate-300 bg-slate-100' : 'border-gray-100 bg-white')}`}>
+                        {tier.id === 'gold' && (
+                            <div class="absolute top-0 right-0 bg-[#800020] text-white text-[8px] font-bold uppercase tracking-widest px-3 py-1 rounded-bl-lg z-10">
+                                Más Popular
                             </div>
-                            <div class="text-[#800020] group-open:rotate-180 transition-transform">
-                                <svg
-                                    class="w-6 h-6"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        d="M19 9l-7 7-7-7"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                </svg>
-                            </div>
-                        </summary>
-                        <div class="px-8 pb-8 pt-2 border-t border-gray-50 bg-gray-50/50">
-                            <ul class="space-y-4 mb-8">
+                        )}
+                        <div class={`p-8 text-center border-b border-inherit ${tier.id === 'gold' ? 'pt-12' : ''}`}>
+                            <p class={`text-[10px] font-bold uppercase tracking-[0.2em] mb-2 text-[#800020]`}>
+                                {tier.title}
+                            </p>
+                            <p class={`text-4xl font-display italic mb-2 ${tier.id === 'platinum' ? 'text-black' : 'text-black'}`}>
+                                {tier.price}
+                            </p>
+                        </div>
+                        <div class="p-8 space-y-6">
+                            <ul class="space-y-4">
                                 {tier.features.map((feature) => (
                                     <li class="flex items-start gap-3">
-                                        <div class="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 bg-[#800020]" />
-                                        <span class="text-sm text-gray-600 font-light">
+                                        <div class={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 bg-[#800020]`} />
+                                        <span class={`text-sm font-light leading-relaxed text-gray-600`}>
                                             {feature}
                                         </span>
                                     </li>
@@ -250,15 +233,21 @@ const getStyles = (tier: SponsorshipTier) => {
                             </ul>
                             <a
                                 href="mailto:sinfocarabobo@gmail.com"
-                                class="block w-full py-4 bg-[#800020] text-white text-[11px] uppercase tracking-widest font-bold text-center"
+                                class={`block w-full py-5 text-[10px] uppercase tracking-widest font-bold text-center transition-colors ${
+                                    tier.id === 'platinum' 
+                                        ? 'bg-black text-white hover:bg-[#800020]' 
+                                        : 'bg-[#800020] text-white hover:bg-black'
+                                }`}
                             >
                                 Contactar
                             </a>
                         </div>
-                    </details>
+                    </div>
                 ))
             }
         </div>
+
+
 
         <div
             class="mt-32 relative py-20 px-10 border border-gray-200 rounded-[2.5rem] bg-black overflow-hidden shadow-2xl"
