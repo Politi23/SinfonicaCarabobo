@@ -80,7 +80,7 @@ const tiers = [
             </p>
         </div>
 
-        <div class="hidden lg:block overflow-hidden rounded-[2rem] border border-gray-200 bg-white shadow-xl">
+        <div class="hidden lg:block overflow-hidden border border-gray-200 bg-white shadow-xl">
             <div class="grid grid-cols-5">
                 <!-- Etiquetas de Beneficios -->
                 <div class="bg-gray-50/50 border-r border-gray-100 flex flex-col">
@@ -157,7 +157,7 @@ const tiers = [
                                 <div class="absolute top-0 inset-x-0 h-1.5 bg-[#800020] animate-pulse" />
                             )}
                             {isGold && (
-                                <div class="absolute top-4 left-1/2 -translate-x-1/2 bg-[#800020] text-white text-[9px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg z-20 whitespace-nowrap">
+                                <div class="absolute top-0 left-1/2 -translate-x-1/2 bg-[#800020] text-white text-[9px] font-bold uppercase tracking-widest px-6 py-2 shadow-lg z-20 whitespace-nowrap">
                                     Más Popular
                                 </div>
                             )}
@@ -206,9 +206,9 @@ const tiers = [
         <div class="lg:hidden space-y-6">
             {
                 tiers.map((tier) => (
-                    <div class={`relative border-2 overflow-hidden rounded-2xl shadow-sm ${tier.id === 'gold' ? 'border-[#800020]' : (tier.id === 'platinum' ? 'border-slate-300 bg-slate-100' : 'border-gray-100 bg-white')}`}>
+                    <div class={`relative border-2 overflow-hidden shadow-sm ${tier.id === 'gold' ? 'border-[#800020]' : (tier.id === 'platinum' ? 'border-slate-300 bg-slate-100' : 'border-gray-100 bg-white')}`}>
                         {tier.id === 'gold' && (
-                            <div class="absolute top-0 right-0 bg-[#800020] text-white text-[8px] font-bold uppercase tracking-widest px-3 py-1 rounded-bl-lg z-10">
+                            <div class="absolute top-0 right-0 bg-[#800020] text-white text-[8px] font-bold uppercase tracking-widest px-4 py-2 z-10">
                                 Más Popular
                             </div>
                         )}
@@ -223,8 +223,8 @@ const tiers = [
                         <div class="p-8 space-y-6">
                             <ul class="space-y-4">
                                 {tier.features.map((feature) => (
-                                    <li class="flex items-start gap-3">
-                                        <div class={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 bg-[#800020]`} />
+                                    <li class="flex items-start gap-4">
+                                        <div class={`w-2 h-2 mt-2 flex-shrink-0 bg-[#800020]`} />
                                         <span class={`text-sm font-light leading-relaxed text-gray-600`}>
                                             {feature}
                                         </span>
@@ -250,7 +250,7 @@ const tiers = [
 
 
         <div
-            class="mt-32 relative py-20 px-10 border border-gray-200 rounded-[2.5rem] bg-black overflow-hidden shadow-2xl"
+            class="mt-32 relative py-20 px-10 border border-black bg-black overflow-hidden shadow-2xl"
         >
             <div
                 class="absolute inset-0 z-0 opacity-40 bg-[url('/estudiantina.webp')] bg-cover bg-center grayscale"
@@ -267,16 +267,16 @@ const tiers = [
                     >Personalización</span
                 >
                 <h3
-                    class="text-3xl md:text-5xl font-display font-light text-white mb-8 leading-tight"
+                    class="text-4xl md:text-6xl font-display font-medium text-white mb-8 leading-tight uppercase tracking-tighter"
                 >
-                    ¿Busca un impacto <br />
+                    ¿Impacto <br />
                     <span
                         class="font-bold italic text-[#800020] underline underline-offset-[12px] decoration-white/10"
-                        >empresarial a medida?</span
+                        >a medida?</span
                     >
                 </h3>
                 <p
-                    class="text-gray-300 max-w-2xl mx-auto mb-12 text-lg font-light"
+                    class="text-gray-400 max-w-2xl mx-auto mb-12 text-lg font-light leading-relaxed"
                 >
                     Diseñamos colaboraciones exclusivas para sus objetivos
                     filantrópicos.
@@ -284,7 +284,7 @@ const tiers = [
                 <div class="flex items-center justify-center">
                     <a
                         href="mailto:sinfocarabobo@gmail.com"
-                        class="px-12 py-5 bg-[#800020] text-white text-[11px] font-bold tracking-[0.3em] uppercase transition-all hover:bg-white hover:text-black"
+                        class="px-16 py-6 bg-[#800020] text-white text-[11px] font-bold tracking-[0.4em] uppercase transition-all hover:bg-white hover:text-black border border-[#800020]"
                     >
                         Consultar Alianza
                     </a>
