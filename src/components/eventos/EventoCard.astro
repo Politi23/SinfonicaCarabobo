@@ -4,32 +4,27 @@ export interface Props {
   excerpt: string;
   image: string;
   date: string;
-  price: string;
+  time: string;
   venue: string;
-  slug?: string;
+  slug: string;
 }
-const { title, excerpt, image, date, price, venue, slug } = Astro.props;
+
+const { title, excerpt, image, date, time, venue, slug } = Astro.props;
 
 // Formateo de fecha seguro
-const formattedDate = (() => {
-  try {
-    // La fecha viene en formato YYYYMMDD desde ACF, necesitamos convertirla
-    if (date && date.length === 8) {
-      const year = date.substring(0, 4);
-      const month = date.substring(4, 6);
-      const day = date.substring(6, 8);
-      const dateObj = new Date(Number(year), Number(month) - 1, Number(day));
-      return dateObj.toLocaleDateString("es-VE", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-      });
-    }
-    return date;
-  } catch {
-    return date;
-  }
-})();
+const formatAcfDate = (dateString: string) => {
+  if (!dateString || dateString.length !== 8) return dateString;
+  const year = dateString.substring(0, 4);
+  const month = dateString.substring(4, 6);
+  const day = dateString.substring(6, 8);
+  const dateObj = new Date(Number(year), Number(month) - 1, Number(day));
+  return dateObj.toLocaleDateString("es-VE", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+};
 
 // Limitar el excerpt a 25 palabras
 const truncateExcerpt = (text: string, wordLimit: number = 25): string => {
@@ -39,55 +34,105 @@ const truncateExcerpt = (text: string, wordLimit: number = 25): string => {
   return words.slice(0, wordLimit).join(" ") + "...";
 };
 
+const formattedDate = formatAcfDate(date);
 const truncatedExcerpt = truncateExcerpt(excerpt, 25);
+const imageUrl = image || "/logosimplebbg.webp";
 ---
 
-<article
-  class="group flex flex-col bg-white dark:bg-card-dark rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-border-light"
->
-  <div class="relative w-full aspect-[4/3] overflow-hidden">
-    <a href={`/eventos/${slug || "#"}`} class="block w-full h-full">
+<article class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col h-full">
+  {/* Imagen */}
+  <div class="relative h-48 w-full overflow-hidden bg-gray-200">
+    <a href={`/eventos/${slug}`} class="block w-full h-full">
       <img
-        src={image || "/logosimplebbg.webp"}
+        src={imageUrl}
         alt={title}
-        class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+        class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
       />
-      <div
-        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80"
-      >
-      </div>
     </a>
-    <span
-      class="absolute bottom-4 left-4 text-white text-sm font-medium flex items-center gap-1 drop-shadow-md z-10"
-    >
-      <span class="material-icons text-base text-primary/80"
-        >calendar_today</span
-      >
-      {formattedDate}
-    </span>
   </div>
 
   <div class="p-6 flex flex-col flex-grow">
-    <h2
-      class="text-2xl font-bold mb-3 text-text-dark group-hover:text-primary transition-colors leading-tight line-clamp-2"
-    >
-      {title}
-    </h2>
-    <p class="text-text-dark/80 mb-4 flex-grow leading-relaxed line-clamp-2">
+    <h3
+      class="text-xl font-bold text-gray-800 mb-2"
+      set:html={title}
+    />
+
+    <div class="space-y-2 mb-4 text-sm text-gray-600">
+      <div class="flex items-center gap-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 text-primary-500"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+          />
+        </svg>
+        <span class="capitalize">
+          {formattedDate}
+        </span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 text-primary-500"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        <span>{time.slice(0, 5)} hrs</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 text-primary-500"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+          />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+          />
+        </svg>
+        <span>{venue}</span>
+      </div>
+    </div>
+
+    <hr class="border-gray-100 my-2" />
+    <p class="text-gray-600 text-sm flex-grow line-clamp-2">
       {truncatedExcerpt}
     </p>
-    <div class="mb-4">
-      <p class="text-text-dark/70 text-sm flex items-center gap-1">
-        <span class="material-icons text-base text-primary/80">location_on</span
-        >
-        {venue}
-      </p>
+
+    <div class="mt-4 pt-4">
+      <a
+        href={`/eventos/${slug}`}
+        class="block w-full text-center bg-gray-900 text-white py-2 rounded hover:bg-gray-700 transition-colors text-sm font-medium"
+      >
+        Ver detalles
+      </a>
     </div>
-    <a
-      href={`/eventos/${slug || "#"}`}
-      class="inline-flex items-center text-primary font-bold uppercase text-xs tracking-widest hover:text-primary-dark transition-all group-hover:gap-2 gap-1"
-    >
-      Ver detalles <span class="material-icons text-sm">arrow_forward</span>
-    </a>
   </div>
 </article>

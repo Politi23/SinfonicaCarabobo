@@ -18,7 +18,7 @@ type Evento = {
   excerpt: string;
   image: string;
   date: string;
-  price: string;
+  time: string;
   venue: string;
   slug: string;
 };
@@ -52,7 +52,7 @@ try {
       e._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
       "/logosimplebbg.webp",
     date: e.acf.event_date,
-    price: e.acf.event_price,
+    time: e.acf.event_time,
     venue: e.acf.event_venue,
     slug: e.slug,
   }));
@@ -80,7 +80,7 @@ try {
                   excerpt={e.excerpt}
                   image={e.image}
                   date={e.date}
-                  price={e.price}
+                  time={e.time}
                   venue={e.venue}
                   slug={e.slug}
                 />
