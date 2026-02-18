@@ -3,9 +3,21 @@ export const prerender = false;
 
 import Layout from "../../layouts/Layout.astro";
 import MainHero from "../../components/sections/MainHero.astro";
+import StaticGallery from "../../components/global/StaticGallery.astro";
 import { getAlbums } from "../../config/wp-albums";
 
 const albums = await getAlbums();
+
+// Importar imágenes estáticas de src/assets/galeria
+const staticImages = await import.meta.glob<ImageMetadata>(
+  "../../assets/galeria/*.{jpg,jpeg,png,webp,gif,JPG,JPEG,PNG,WEBP,GIF}",
+  { eager: true }
+);
+
+const galleryImages = Object.values(staticImages).map((img) => ({
+  src: img.default || img,
+  alt: "Foto de galería",
+}));
 ---
 
 <Layout title="Galería Multimedia">
@@ -64,6 +76,19 @@ const albums = await getAlbums();
               Lo sentimos, hubo un problema al intentar acceder a las fotos de
               nuestra galería. Por favor, inténtalo más tarde.
             </p>
+          </div>
+        )
+      }
+
+      {
+        galleryImages.length > 0 && (
+          <div class="mt-16">
+            <StaticGallery
+              images={galleryImages}
+              columns={12}
+              title="Imágenes de los músicos de nuestra academia, compromiso y pasión"
+              isOpen={false}
+            />
           </div>
         )
       }

@@ -1,0 +1,113 @@
+---
+import { getImage } from "astro:assets";
+
+interface Image {
+  src: ImageMetadata;
+  alt?: string;
+}
+
+interface Props {
+  images: Image[];
+  columns?: number;
+  title: string;
+  isOpen: boolean;
+}
+
+const { images, columns = 3, title = "Galería", isOpen = false } = Astro.props;
+
+// Generar columnas para Tailwind (1-12)
+const getColumnClass = (cols: number) => {
+  const map: Record<number, string> = {
+    1: "grid-cols-1",
+    2: "grid-cols-2",
+    3: "grid-cols-3",
+    4: "grid-cols-4",
+    5: "grid-cols-5",
+    6: "grid-cols-6",
+    7: "grid-cols-7",
+    8: "grid-cols-8",
+    9: "grid-cols-9",
+    10: "grid-cols-10",
+    11: "grid-cols-11",
+    12: "grid-cols-12"
+  };
+  return map[cols] || "grid-cols-3";
+};
+---
+
+<div class="static-gallery">
+  {
+    images.length > 0 ? (
+      <details class="group" open={isOpen}>
+        <summary class="cursor-pointer list-none">
+          <div class="flex items-center justify-between bg-primary/10 hover:bg-primary/20 transition-colors px-6 py-4 rounded-t-xl">
+            <h2 class="text-2xl font-bold text-gray-900 font-display">
+              {title}
+            </h2>
+            <span class="material-icons text-primary transition-transform duration-300 group-open:rotate-180">
+              expand_more
+            </span>
+          </div>
+        </summary>
+
+        <div class="bg-white border-t-0 border border-gray-200 rounded-b-xl p-6">
+          <div
+            class={`grid ${getColumnClass(columns)} md:${getColumnClass(
+              columns,
+            )} gap-4`}
+          >
+            {images.map(async ({ src, alt }) => {
+              const optimizedImage = await getImage({
+                src,
+                width: 800,
+                format: "webp",
+              });
+              return (
+                <div class="relative group overflow-hidden rounded-lg shadow-md aspect-square">
+                  <img
+                    src={optimizedImage.src}
+                    alt={alt || "Imagen de galería"}
+                    width={optimizedImage.attributes.width}
+                    height={optimizedImage.attributes.height}
+                    loading="lazy"
+                    class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </details>
+    ) : (
+      <div class="text-center py-12 border-2 border-dashed border-gray-300 rounded-xl bg-gray-50">
+        <p class="text-gray-500">No hay imágenes en esta galería.</p>
+      </div>
+    )
+  }
+</div>
+
+<style>
+  details > summary {
+    list-style: none;
+  }
+
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details[open] summary ~ * {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
