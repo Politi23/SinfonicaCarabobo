@@ -35,7 +35,7 @@ const galleryImages = Object.values(staticImages).map((img) => ({
             {albums.map((album) => (
               <a
                 href={`/galeria/${album.slug}`}
-                class="group block bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+                class="group block bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300"
               >
                 <div class="relative aspect-[4/3] overflow-hidden">
                   <img
