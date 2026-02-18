@@ -4,10 +4,11 @@ import Header from "../components/global/Header.astro";
 import LatestBlogPosts from "../components/global/LatestBlogPosts.astro";
 
 export interface Props {
+  title?: string;
   is404?: boolean;
 }
 
-const { is404 = false } = Astro.props;
+const { title = "Orquesta Sinfónica de Carabobo", is404 = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -28,14 +29,14 @@ const { is404 = false } = Astro.props;
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <title>Orquesta Sinfónica de Carabobo</title>
+    <title>{title}</title>
   </head><body>
     <Header />
     <slot />
     {
-      Astro.url.pathname !== "/" &&
-        Astro.url.pathname !== "" &&
-        !is404 && <LatestBlogPosts />
+      Astro.url.pathname !== "/" && Astro.url.pathname !== "" && !is404 && (
+        <LatestBlogPosts />
+      )
     }
     <Footer />
   </body><style is:global>

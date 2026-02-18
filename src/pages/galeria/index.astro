@@ -1,7 +1,7 @@
 ---
 export const prerender = false;
 
-import Layout from "../../layouts/Layout.astro";
+import Layout from "@layouts/Layout.astro";
 import MainHero from "../../components/sections/MainHero.astro";
 import StaticGallery from "../../components/global/StaticGallery.astro";
 import { getAlbums } from "../../config/wp-albums";
@@ -9,13 +9,13 @@ import { getAlbums } from "../../config/wp-albums";
 const albums = await getAlbums();
 
 // Importar imágenes estáticas de src/assets/galeria
-const staticImages = await import.meta.glob<ImageMetadata>(
+const staticImages = import.meta.glob<{ default: ImageMetadata }>(
   "../../assets/galeria/*.{jpg,jpeg,png,webp,gif,JPG,JPEG,PNG,WEBP,GIF}",
-  { eager: true }
+  { eager: true },
 );
 
 const galleryImages = Object.values(staticImages).map((img) => ({
-  src: img.default || img,
+  src: img.default,
   alt: "Foto de galería",
 }));
 ---
@@ -85,7 +85,7 @@ const galleryImages = Object.values(staticImages).map((img) => ({
           <div class="mt-16">
             <StaticGallery
               images={galleryImages}
-              columns={12}
+              columns={3}
               title="Imágenes de los músicos de nuestra academia, compromiso y pasión"
               isOpen={false}
             />
