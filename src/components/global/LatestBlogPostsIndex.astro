@@ -36,18 +36,46 @@ const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
 
     {
       latestPosts.length > 0 ? (
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {latestPosts.map((post) => (
-            <BlogCard
-              title={post.title}
-              excerpt={post.excerpt}
-              image={post.image}
-              date={post.date}
-              category={post.category}
-              slug={post.slug}
-            />
-          ))}
-        </div>
+        <>
+          {/* Desktop Grid */}
+          <div class="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {latestPosts.map((post) => (
+              <BlogCard
+                title={post.title}
+                excerpt={post.excerpt}
+                image={post.image}
+                date={post.date}
+                category={post.category}
+                slug={post.slug}
+              />
+            ))}
+          </div>
+
+          {/* Mobile Carousel */}
+          <div class="md:hidden relative">
+            <div class="overflow-hidden">
+              <div
+                id="blog-track-index"
+                class="flex transition-transform duration-500 ease-in-out"
+              >
+                {latestPosts.map((post) => (
+                  <div class="flex-none w-full px-4">
+                    <BlogCard
+                      title={post.title}
+                      excerpt={post.excerpt}
+                      image={post.image}
+                      date={post.date}
+                      category={post.category}
+                      slug={post.slug}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div id="blog-dots-index" class="flex justify-center mt-8 space-x-2"></div>
+          </div>
+        </>
       ) : (
         <div class="text-center py-10">
           <p class="text-text-dark/60 text-lg">
@@ -65,4 +93,55 @@ const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
       )
     }
   </div>
+
+  <script define:vars={{ totalItems: latestPosts.length }}>
+    if (totalItems === 0) {
+    } else {
+      const track = document.getElementById("blog-track-index");
+      const dotsContainer = document.getElementById("blog-dots-index");
+
+      let currentIndex = 0;
+      let totalPages = totalItems;
+
+      const renderDots = () => {
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = "";
+
+        for (let i = 0; i < totalPages; i++) {
+          const btn = document.createElement("button");
+          btn.className = `indicator-dot w-3 h-3 rounded-full transition-colors duration-300 ${i === currentIndex ? "bg-primary" : "bg-gray-300"}`;
+          btn.ariaLabel = `Go to slide ${i + 1}`;
+          btn.addEventListener("click", () => goToSlide(i));
+          dotsContainer.appendChild(btn);
+        }
+      };
+
+      const updateCarousel = () => {
+        if (!track) return;
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+        const dots = dotsContainer.querySelectorAll(".indicator-dot");
+        dots.forEach((dot, i) => {
+          if (i === currentIndex) {
+            dot.classList.remove("bg-gray-300");
+            dot.classList.add("bg-primary");
+          } else {
+            dot.classList.remove("bg-primary");
+            dot.classList.add("bg-gray-300");
+          }
+        });
+      };
+
+      const goToSlide = (index) => {
+        if (index < 0) currentIndex = totalPages - 1;
+        else if (index >= totalPages) currentIndex = 0;
+        else currentIndex = index;
+        updateCarousel();
+      };
+
+      // Inicializar
+      renderDots();
+      updateCarousel();
+    }
+  </script>
 </section>
