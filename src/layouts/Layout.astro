@@ -34,9 +34,10 @@ const { title = "Orquesta Sinfónica de Carabobo", is404 = false } = Astro.props
     <Header />
     <slot />
     {
-      Astro.url.pathname !== "/" && Astro.url.pathname !== "" && !is404 && (
-        <LatestBlogPosts />
-      )
+      Astro.url.pathname !== "/" &&
+        Astro.url.pathname !== "" &&
+        !Astro.url.pathname.startsWith("/blog/page/") &&
+        !is404 && <LatestBlogPosts />
     }
     <Footer />
   </body><style is:global>

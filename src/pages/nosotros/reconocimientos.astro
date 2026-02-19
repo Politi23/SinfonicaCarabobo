@@ -2,6 +2,10 @@
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/global/Header.astro";
 import MainHero from "../../components/sections/MainHero.astro";
+import ReconocimientosIntro from "../../components/nosotros/ReconocimientosIntro.astro";
+import ReconocimientosMilestones from "../../components/nosotros/ReconocimientosMilestones.astro";
+import ReconocimientosList from "../../components/nosotros/ReconocimientosList.astro";
+import ReconocimientosCTA from "../../components/nosotros/ReconocimientosCTA.astro";
 
 const institutionalRecognitions = [
     { year: "2021", event: "Institución UNESCO; Embajadores de la Paz" },
@@ -56,214 +60,21 @@ const institutionalRecognitions = [
         <MainHero
             title="Nuestros"
             titleHighlight="Reconocimientos"
-            subtitle="Casi medio siglo de excelencia y compromiso artístico"
+            subtitle="Medio siglo de excelencia y compromiso artístico"
             bgImage="/orchestra1.webp"
         />
 
-        <!-- Intro Section with sober aesthetic -->
-        <section class="py-32 relative overflow-hidden bg-white">
-            <div
-                class="absolute -left-10 top-20 text-[20rem] font-display font-bold text-gray-50/50 select-none leading-none"
-            >
-                49
-            </div>
-            <div class="container mx-auto px-6 max-w-5xl relative z-10">
-                <div class="max-w-3xl">
-                    <span
-                        class="text-[#800020] text-sm font-bold uppercase tracking-[0.4em] mb-6 block"
-                        >Trayectoria Institucional</span
-                    >
-                    <h2
-                        class="text-6xl md:text-8xl font-display font-medium text-black mb-12 tracking-tight leading-none"
-                    >
-                        Un Legado <br />
-                        <span class="font-bold text-[#800020] italic"
-                            >Incontestable.</span
-                        >
-                    </h2>
-                    <div class="border-l-[6px] border-[#800020] pl-10 py-2">
-                        <p
-                            class="text-2xl text-black leading-relaxed font-serif italic mb-4"
-                        >
-                            "La Orquesta Sinfónica de Carabobo es custodia del
-                            patrimonio musical del estado."
-                        </p>
-                        <p
-                            class="text-gray-500 font-light leading-relaxed max-w-2xl"
-                        >
-                            A lo largo de casi cinco décadas, nuestra
-                            institución ha sido honrada con múltiples
-                            distinciones que avalan su impacto en la cultura, la
-                            educación y el tejido social de Venezuela. Cada
-                            reconocimiento es un compromiso renovado con la
-                            excelencia.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Milestones Grid with sharp edges -->
-        <section class="py-24 bg-gray-50">
-            <div class="container mx-auto px-6 max-w-7xl">
-                <div class="grid md:grid-cols-2 gap-8 items-stretch">
-                    <!-- Pavarotti Section -->
-                    <div
-                        class="group relative overflow-hidden bg-black text-white h-full min-h-[500px] flex flex-col border border-black hover:border-[#800020] transition-colors duration-500"
-                    >
-                        <div
-                            class="absolute inset-0 z-0 opacity-40 bg-[url('/orchestra1.webp')] bg-cover bg-center grayscale filter contrast-125"
-                        >
-                        </div>
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent z-1"
-                        >
-                        </div>
-
-                        <div class="relative z-10 p-12 mt-auto">
-                            <div
-                                class="inline-block px-4 py-2 border border-[#D19D2E] text-[#D19D2E] text-[10px] font-bold uppercase tracking-[0.3em] mb-8"
-                            >
-                                Hito Histórico — 1998
-                            </div>
-                            <h3
-                                class="text-5xl font-display font-bold mb-6 uppercase tracking-wider"
-                            >
-                                Pavarotti <br />
-                                <span class="text-[#D19D2E]">en Valencia</span>
-                            </h3>
-                            <p
-                                class="text-gray-400 leading-relaxed text-lg font-light max-w-md"
-                            >
-                                Seleccionados como la orquesta acompañante
-                                oficial para el concierto único del tenor
-                                Luciano Pavarotti en Venezuela.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- UNESCO Section -->
-                    <div
-                        class="group relative overflow-hidden bg-[#800020] text-white h-full min-h-[500px] flex flex-col border border-[#800020] transition-all duration-500"
-                    >
-                        <div
-                            class="absolute inset-0 z-0 opacity-10 bg-[url('/image-grid.webp')] bg-cover bg-center mix-blend-overlay"
-                        >
-                        </div>
-                        <div class="relative z-10 p-12 mt-auto">
-                            <div
-                                class="inline-block px-4 py-2 border border-white/30 text-white text-[10px] font-bold uppercase tracking-[0.3em] mb-8"
-                            >
-                                Aval Continental
-                            </div>
-                            <h3
-                                class="text-5xl font-display font-bold mb-6 uppercase tracking-wider"
-                            >
-                                UNESCO <br />
-                                <span class="text-white/60">Paz y Cultura</span>
-                            </h3>
-                            <p
-                                class="text-white/80 leading-relaxed text-lg font-light max-w-md"
-                            >
-                                Designación como Embajadores de la Paz por
-                                nuestra contribución ininterrumpida al
-                                desarrollo cultural latinoamericano.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Timeline / List section (Minimalist) -->
-        <section class="py-32 bg-white">
-            <div class="container mx-auto px-6 max-w-6xl">
-                <div
-                    class="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8 px-4"
-                >
-                    <div class="max-w-2xl">
-                        <h3
-                            class="text-5xl font-display font-bold text-black uppercase tracking-tight"
-                        >
-                            Menciones y <br /><span
-                                class="text-[#800020] italic">Distinciones</span
-                            >
-                        </h3>
-                    </div>
-                    <div
-                        class="h-px flex-grow bg-gray-100 mb-4 hidden md:block"
-                    >
-                    </div>
-                    <span
-                        class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.5em] mb-4"
-                        >Registro Histórico</span
-                    >
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-0">
-                    {
-                        institutionalRecognitions.map((item) => (
-                            <div class="group flex items-baseline gap-6 py-6 border-b border-gray-100 hover:border-[#800020] transition-all duration-300">
-                                <span class="text-sm font-bold text-[#800020] uppercase tracking-widest min-w-[60px]">
-                                    {item.year}
-                                </span>
-                                <p class="text-[15px] text-gray-700 font-medium leading-[1.6] group-hover:text-black transition-colors">
-                                    {item.event}
-                                </p>
-                            </div>
-                        ))
-                    }
-                </div>
-            </div>
-        </section>
-
-        <!-- Final CTA section (Structured) -->
-        <section class="py-40 bg-black text-white relative">
-            <div
-                class="absolute inset-0 opacity-10 bg-[url('/sinfonica.webp')] bg-cover bg-fixed bg-center filter grayscale contrast-150"
-            >
-            </div>
-
-            <div
-                class="container mx-auto px-6 max-w-4xl relative z-10 text-center"
-            >
-                <h2
-                    class="text-6xl md:text-8xl font-display font-medium mb-12 leading-none uppercase tracking-tighter"
-                >
-                    Únase al <br />
-                    <span class="font-bold text-[#800020] italic"
-                        >Movimiento</span
-                    >
-                </h2>
-                <div class="w-16 h-1 bg-[#800020] mx-auto mb-16"></div>
-                <p
-                    class="text-xl text-gray-400 mb-20 max-w-2xl mx-auto font-light leading-relaxed"
-                >
-                    Nuestra historia se escribe con el apoyo de quienes creen en
-                    el poder transformador de la música.
-                </p>
-
-                <div class="flex flex-col sm:flex-row gap-0 justify-center">
-                    <a
-                        href="/apoyanos/empresarial"
-                        class="px-16 py-6 bg-[#800020] text-white font-bold text-[11px] uppercase tracking-[0.4em] transition-all hover:bg-white hover:text-black border border-[#800020] active:scale-95"
-                    >
-                        Alianza Empresarial
-                    </a>
-                    <a
-                        href="/academia"
-                        class="px-16 py-6 bg-transparent text-white font-bold text-[11px] uppercase tracking-[0.4em] transition-all hover:bg-white hover:text-black border border-white/20 active:scale-95"
-                    >
-                        Academia
-                    </a>
-                </div>
-            </div>
-        </section>
+        <ReconocimientosIntro />
+        <ReconocimientosMilestones />
+        <ReconocimientosList
+            institutionalRecognitions={institutionalRecognitions}
+        />
+        <ReconocimientosCTA />
     </main>
 </Layout>
 
 <style>
-    /* Focus on crisp, architectural lines */
+    /* Focus on crisp, architectural lines handled in components where applicable */
     main {
         text-rendering: optimizeLegibility;
     }
