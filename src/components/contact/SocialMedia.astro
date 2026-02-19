@@ -1,0 +1,36 @@
+---
+export interface Props {
+    title?: string;
+    socialLinks: Array<{
+        href: string;
+        label: string;
+        icon: string;
+    }>;
+}
+
+const { title = "Redes Sociales", socialLinks } = Astro.props;
+---
+
+<div class="flex-1">
+    <h3
+        class="text-lg font-display font-semibold text-white mb-4 flex items-center gap-3"
+    >
+        <div class="w-8 h-[1px] bg-primary"></div>
+        {title}
+    </h3>
+    <div class="flex gap-3">
+        {
+            socialLinks.map((social) => (
+                <a
+                    href={social.href}
+                    aria-label={social.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 border border-gray-700 rounded flex items-center justify-center text-gray-400 hover:border-primary hover:text-primary transition-all duration-300"
+                >
+                    <span set:html={social.icon} />
+                </a>
+            ))
+        }
+    </div>
+</div>

@@ -1,0 +1,30 @@
+---
+export interface Props {
+    title?: string;
+}
+
+const { title = "Horario de Atención" } = Astro.props;
+---
+
+<div class="flex-1">
+    <h3
+        class="text-lg font-display font-semibold text-white mb-4 flex items-center gap-3"
+    >
+        <div class="w-8 h-[1px] bg-primary"></div>
+        {title}
+    </h3>
+    <div class="space-y-2 text-sm">
+        <div class="flex justify-between text-gray-400 gap-8">
+            <span>Lunes a Viernes</span>
+            <span class="text-white whitespace-nowrap">9:00 AM - 5:00 PM</span>
+        </div>
+        <div class="flex justify-between text-gray-400 gap-8">
+            <span>Sábados</span>
+            <span class="text-white whitespace-nowrap">9:00 AM - 12:00 PM</span>
+        </div>
+        <div class="flex justify-between text-gray-400 gap-8">
+            <span>Domingos</span>
+            <span class="text-gray-500">Cerrado</span>
+        </div>
+    </div>
+</div>
