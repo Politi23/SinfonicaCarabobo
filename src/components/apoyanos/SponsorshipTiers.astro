@@ -80,7 +80,7 @@ const tiers = [
             </p>
         </div>
 
-        <div class="hidden lg:block overflow-hidden border border-gray-200 bg-white shadow-xl">
+        <div class="hidden lg:block overflow-hidden border border-gray-200 bg-white">
             <div class="grid grid-cols-5">
                 <!-- Etiquetas de Beneficios -->
                 <div class="bg-gray-50/50 border-r border-gray-100 flex flex-col">
@@ -191,6 +191,18 @@ const tiers = [
             </div>
         </div>
 
+        <div class="mt-12 flex items-center gap-4 select-none">
+            <div
+                class="h-[1px] flex-grow bg-gradient-to-r from-[#800020]/40 to-transparent"
+            >
+            </div>
+            <p
+                class="text-gray-400 text-[10px] tracking-[0.3em] uppercase italic font-light"
+            >
+                * Todos los beneficios están sujetos a términos de convenio
+            </p>
+        </div>
+
         <div class="lg:hidden space-y-6">
             {
                 tiers.map((tier) => (
@@ -229,62 +241,7 @@ const tiers = [
 
 
         <div
-            class="mt-32 relative py-20 px-10 border border-black bg-black overflow-hidden shadow-2xl"
-        >
-            <div
-                class="absolute inset-0 z-0 opacity-40 bg-[url('/estudiantina.webp')] bg-cover bg-center grayscale"
-            >
-            </div>
-            <div
-                class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80 z-1"
-            >
-            </div>
-
-            <div class="max-w-4xl mx-auto text-center relative z-10">
-                <span
-                    class="text-[#800020] text-[10px] font-bold uppercase tracking-[0.4em] mb-6 block italic"
-                    >Personalización</span
-                >
-                <h3
-                    class="text-4xl md:text-6xl font-display font-medium text-white mb-8 leading-tight uppercase tracking-tighter"
-                >
-                    ¿Impacto <br />
-                    <span
-                        class="font-bold italic text-[#800020] underline underline-offset-[12px] decoration-white/10"
-                        >a medida?</span
-                    >
-                </h3>
-                <p
-                    class="text-gray-400 max-w-2xl mx-auto mb-12 text-lg font-light leading-relaxed"
-                >
-                    Diseñamos colaboraciones exclusivas para sus objetivos
-                    filantrópicos.
-                </p>
-                <div class="flex items-center justify-center">
-                    <a
-                        href="mailto:sinfocarabobo@gmail.com"
-                        class="px-16 py-6 bg-[#800020] text-white text-[11px] font-bold tracking-[0.4em] uppercase transition-all hover:bg-white hover:text-black border border-[#800020]"
-                    >
-                        Consultar Alianza
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="mt-12 flex items-center gap-4 select-none">
-            <div
-                class="h-[1px] flex-grow bg-gradient-to-r from-[#800020]/40 to-transparent"
-            >
-            </div>
-            <p
-                class="text-gray-400 text-[10px] tracking-[0.3em] uppercase italic font-light"
-            >
-                * Todos los beneficios están sujetos a términos de convenio
-            </p>
-        </div>
-
-        <div
-            class="mt-20 relative py-20 px-10 border border-black bg-black overflow-hidden shadow-2xl"
+            class="mt-32 relative py-20 px-10 border border-black bg-black overflow-hidden"
         >
             <div
                 class="absolute inset-0 z-0 opacity-40 bg-[url('/estudiantina.webp')] bg-cover bg-center grayscale"

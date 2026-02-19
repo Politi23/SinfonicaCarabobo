@@ -23,42 +23,42 @@ const formattedDate = (() => {
 })();
 ---
 
-<article
-    class="group flex flex-col bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-border-light h-full"
->
-    <div class="relative w-full aspect-video overflow-hidden">
-        <a href={`/blog/${slug || "#"}`} class="block w-full h-full">
+<a href={`/blog/${slug || "#"}`} class="block group">
+    <article
+        class="flex flex-col bg-white dark:bg-card-dark rounded-lg overflow-hidden shadow-md border border-border-light h-full"
+    >
+        <div class="relative w-full aspect-video overflow-hidden">
             <img
                 src={image || "/logosimplebbg.webp"}
                 alt={title}
                 class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 ease-out"
             />
-        </a>
-        {
-            category && (
-                <span class="absolute top-2 left-2 bg-black/80 backdrop-blur-sm border border-primary/40 text-primary px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider z-10">
-                    {category}
-                </span>
-            )
-        }
-    </div>
+            {
+                category && (
+                    <span class="absolute top-2 left-2 bg-black/80 backdrop-blur-sm border border-primary/40 text-primary px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider z-10">
+                        {category}
+                    </span>
+                )
+            }
+        </div>
 
-    <div class="p-3 flex flex-col flex-grow">
-        <h3
-            class="text-sm font-bold text-text-dark group-hover:text-primary transition-colors leading-snug line-clamp-2 mb-1"
-        >
-            {title}
-        </h3>
-        <p
-            class="text-[11px] text-text-dark/70 line-clamp-2 leading-relaxed mb-2"
-        >
-            {excerpt}
-        </p>
-        <span
-            class="text-[10px] text-text-muted flex items-center gap-1 mt-auto"
-        >
-            <span class="material-icons text-[12px]">calendar_today</span>
-            {formattedDate}
-        </span>
-    </div>
-</article>
+        <div class="p-3 flex flex-col flex-grow">
+            <h3
+                class="text-sm font-bold text-text-dark group-hover:text-primary transition-colors leading-snug line-clamp-2 mb-1"
+            >
+                {title}
+            </h3>
+            <p
+                class="text-[11px] text-text-dark/70 line-clamp-2 leading-relaxed mb-2"
+            >
+                {excerpt}
+            </p>
+            <span
+                class="text-[10px] text-text-muted flex items-center gap-1 mt-auto"
+            >
+                <span class="material-icons text-[12px]">calendar_today</span>
+                {formattedDate}
+            </span>
+        </div>
+    </article>
+</a>
