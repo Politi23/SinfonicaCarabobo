@@ -90,9 +90,9 @@ const tiers = [
                     </div>
                     {[
                         "Redes Sociales",
-                        "Contenido Audiovisual",
                         "Asientos Preferenciales",
                         "Mención de Marca",
+                        "Contenido Audiovisual",
                         "Pases para Sorteos",
                         "Presencia en Sala",
                         "Beneficios Exclusivos"
@@ -108,41 +108,42 @@ const tiers = [
                 {tiers.map((tier) => {
                     const isGold = tier.id === "gold";
                     const isPlatinum = tier.id === "platinum";
-                    
+
                     // Mapeo manual de beneficios para la tabla basado en los datos originales
+                    // Contenido Audiovisual moved after Mención de Marca, before Pases para Sorteos
                     const benefitsMap = {
                         bronze: [
                             "1 Flyer + 1 Historia (IG/FB)",
-                            "—",
                             "2 asientos (2 conciertos)",
                             "2 actividades anuales",
+                            "—",
                             "—",
                             "—",
                             "—"
                         ],
                         silver: [
                             "2 Flyers + 2 Historias (IG/FB)",
-                            "1 Video Reel vinculado",
                             "4 asientos (3 conciertos)",
                             "3 actividades anuales",
+                            "1 Video Reel vinculado",
                             "—",
                             "—",
                             "—"
                         ],
                         gold: [
                             "2 Flyers + 2 Historias (IG/FB)",
-                            "1 Video Reel vinculado",
                             "6 asientos (3 conciertos)",
                             "3 actividades anuales",
+                            "1 Video Reel vinculado",
                             "2 pases preferenciales",
                             "Stand (1 concierto)",
                             "—"
                         ],
                         platinum: [
                             "3 Flyers + 3 Historias (IG/FB)",
-                            "1 Video Reel vinculado",
                             "8 asientos (3 conciertos)",
                             "3 actividades anuales",
+                            "1 Video Reel vinculado",
                             "4 pases (3 conciertos)",
                             "Stand (2 conciertos)",
                             "Pendón + Músico en actividad"
@@ -152,18 +153,9 @@ const tiers = [
                     const currentBenefits = benefitsMap[tier.id as keyof typeof benefitsMap];
 
                     return (
-                        <div class={`relative border-r border-gray-100 last:border-r-0 flex flex-col ${isGold ? 'bg-[#800020]/[0.02]' : ''} ${isPlatinum ? 'bg-slate-100' : ''}`}>
-                            {isGold && (
-                                <div class="absolute top-0 inset-x-0 h-1.5 bg-[#800020] animate-pulse" />
-                            )}
-                            {isGold && (
-                                <div class="absolute top-0 left-1/2 -translate-x-1/2 bg-[#800020] text-white text-[9px] font-bold uppercase tracking-widest px-6 py-2 shadow-lg z-20 whitespace-nowrap">
-                                    Más Popular
-                                </div>
-                            )}
-
+                        <div class={`relative border-r border-gray-100 last:border-r-0 flex flex-col bg-white`}>
                             <!-- Header -->
-                            <div class={`h-48 p-10 flex flex-col items-center text-center justify-center ${isGold ? 'pt-16' : ''}`}>
+                            <div class="h-48 p-10 flex flex-col items-center text-center justify-center">
                                 <span class={`text-[10px] font-bold uppercase tracking-widest mb-3 text-[#800020]`}>
                                     {tier.id}
                                 </span>
@@ -188,11 +180,7 @@ const tiers = [
                             <div class={`p-10 border-t flex flex-col items-center h-[140px] ${isPlatinum ? 'border-gray-300/50' : 'border-gray-100'}`}>
                                 <a
                                     href="mailto:sinfocarabobo@gmail.com"
-                                    class={`w-full py-4 text-[10px] font-bold uppercase tracking-[0.2em] text-center transition-all active:scale-[0.98] ${
-                                        isPlatinum 
-                                            ? 'bg-black text-white hover:bg-[#800020]' 
-                                            : 'bg-[#800020] text-white hover:bg-black'
-                                    }`}
+                                    class={`w-full py-4 text-[10px] font-bold uppercase tracking-[0.2em] text-center transition-all active:scale-[0.98] bg-[#800020] text-white hover:bg-black`}
                                 >
                                     Elegir Plan
                                 </a>
@@ -206,13 +194,8 @@ const tiers = [
         <div class="lg:hidden space-y-6">
             {
                 tiers.map((tier) => (
-                    <div class={`relative border-2 overflow-hidden shadow-sm ${tier.id === 'gold' ? 'border-[#800020]' : (tier.id === 'platinum' ? 'border-slate-300 bg-slate-100' : 'border-gray-100 bg-white')}`}>
-                        {tier.id === 'gold' && (
-                            <div class="absolute top-0 right-0 bg-[#800020] text-white text-[8px] font-bold uppercase tracking-widest px-4 py-2 z-10">
-                                Más Popular
-                            </div>
-                        )}
-                        <div class={`p-8 text-center border-b border-inherit ${tier.id === 'gold' ? 'pt-12' : ''}`}>
+                    <div class={`relative border-2 overflow-hidden shadow-sm ${tier.id === 'gold' ? 'border-[#800020]' : (tier.id === 'platinum' ? 'border-gray-300' : 'border-gray-100')} bg-white`}>
+                        <div class="p-8 text-center border-b border-inherit">
                             <p class={`text-[10px] font-bold uppercase tracking-[0.2em] mb-2 text-[#800020]`}>
                                 {tier.title}
                             </p>
@@ -233,11 +216,7 @@ const tiers = [
                             </ul>
                             <a
                                 href="mailto:sinfocarabobo@gmail.com"
-                                class={`block w-full py-5 text-[10px] uppercase tracking-widest font-bold text-center transition-colors ${
-                                    tier.id === 'platinum' 
-                                        ? 'bg-black text-white hover:bg-[#800020]' 
-                                        : 'bg-[#800020] text-white hover:bg-black'
-                                }`}
+                                class={`block w-full py-5 text-[10px] uppercase tracking-widest font-bold text-center transition-colors bg-[#800020] text-white hover:bg-black`}
                             >
                                 Contactar
                             </a>
@@ -302,6 +281,49 @@ const tiers = [
             >
                 * Todos los beneficios están sujetos a términos de convenio
             </p>
+        </div>
+
+        <div
+            class="mt-20 relative py-20 px-10 border border-black bg-black overflow-hidden shadow-2xl"
+        >
+            <div
+                class="absolute inset-0 z-0 opacity-40 bg-[url('/estudiantina.webp')] bg-cover bg-center grayscale"
+            >
+            </div>
+            <div
+                class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80 z-1"
+            >
+            </div>
+
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                <span
+                    class="text-[#800020] text-[10px] font-bold uppercase tracking-[0.4em] mb-6 block italic"
+                    >Personalización</span
+                >
+                <h3
+                    class="text-4xl md:text-6xl font-display font-medium text-white mb-8 leading-tight uppercase tracking-tighter"
+                >
+                    ¿Impacto <br />
+                    <span
+                        class="font-bold italic text-[#800020] underline underline-offset-[12px] decoration-white/10"
+                        >a medida?</span
+                    >
+                </h3>
+                <p
+                    class="text-gray-400 max-w-2xl mx-auto mb-12 text-lg font-light leading-relaxed"
+                >
+                    Diseñamos colaboraciones exclusivas para sus objetivos
+                    filantrópicos.
+                </p>
+                <div class="flex items-center justify-center">
+                    <a
+                        href="mailto:sinfocarabobo@gmail.com"
+                        class="px-16 py-6 bg-[#800020] text-white text-[11px] font-bold tracking-[0.4em] uppercase transition-all hover:bg-white hover:text-black border border-[#800020]"
+                    >
+                        Consultar Alianza
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
