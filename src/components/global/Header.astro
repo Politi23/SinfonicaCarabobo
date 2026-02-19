@@ -18,7 +18,7 @@ const excludeFiles = [
 const topLevelNav = new Map();
 
 // Process each page
-for (const [path, module] of Object.entries(allPages)) {
+for (const [path] of Object.entries(allPages)) {
   // Skip excluded files
   if (excludeFiles.includes(path)) {
     continue;

@@ -3,7 +3,6 @@ interface Props {
     title: string;
     price: string;
     features: string[];
-    isPlatinum?: boolean;
     titleClass?: string;
     buttonClass?: string;
 }
@@ -12,7 +11,6 @@ const {
     title,
     price,
     features,
-    isPlatinum = false,
     titleClass = "text-gray-500",
     buttonClass = "bg-gray-500 hover:bg-primary-dark",
 } = Astro.props;

@@ -1,4 +1,4 @@
-import { AstroGlob } from "astro";
+// Removed invalid import
 
 /**
  * Interface for navigation items
@@ -28,7 +28,7 @@ export async function generateNavigation(): Promise<NavItem[]> {
 	const navMap = new Map<string, NavItem>();
 
 	// Process each page
-	for (const [path, module] of Object.entries(pages)) {
+	for (const [path] of Object.entries(pages)) {
 		// Skip excluded files
 		if (excludePatterns.includes(path)) {
 			continue;

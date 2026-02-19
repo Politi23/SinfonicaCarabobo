@@ -70,7 +70,7 @@ const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
               </div>
             </div>
 
-            <div id="blog-dots" class="flex justify-center mt-8 space-x-2"></div>
+            <div id="blog-dots" class="flex justify-center mt-8 space-x-2" />
           </div>
         </>
       ) : (
@@ -93,7 +93,7 @@ const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
     }
   </div>
 
-  <script define:vars={{ totalItems: latestPosts.length }}>
+  <script is:inline define:vars={{ totalItems: latestPosts.length }}>
     if (totalItems === 0) {
     } else {
       const track = document.getElementById("blog-track");

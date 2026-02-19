@@ -168,7 +168,7 @@ const tiers = [
                             </div>
 
                             <!-- Valores -->
-                            {currentBenefits.map((benefit, idx) => (
+                            {currentBenefits.map((benefit) => (
                                 <div class={`p-8 border-t flex items-center justify-center text-center h-[120px] ${isPlatinum ? 'border-gray-300/50' : 'border-gray-100'}`}>
                                     <span class={`text-sm leading-relaxed ${benefit === "—" ? 'text-gray-300' : 'text-gray-600'} ${isGold || isPlatinum ? 'font-medium text-black' : ''}`}>
                                         {benefit}

@@ -1,6 +1,6 @@
 ---
 import { getEventos } from "src/config/wp-eventos";
-import type { WPEvento } from "src/config/wp-eventos";
+
 import Button from "../ui/GoldenButton.astro";
 import EventoCard from "../eventos/EventoCard.astro";
 
@@ -108,7 +108,7 @@ const eventos = await getEventos(perPage);
     </div>
   </div>
 
-  <script define:vars={{ totalItems: eventos.length }}>
+  <script is:inline define:vars={{ totalItems: eventos.length }}>
     if (totalItems === 0) {
     } else {
       const track = document.getElementById("concert-track");
