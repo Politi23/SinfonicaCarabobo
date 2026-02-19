@@ -13,16 +13,15 @@ export default {
                 'primary-dark': '#A77E25', // Dorado oscuro - Hover y variantes
                 'primary-light': '#DAB158', // Dorado claro - Variantes suaves
 
-                secondary: '#A21904',      // Rojo oscuro - Acentos secundarios
-                'secondary-light': '#C71F05', // Rojo claro - Variantes suaves
-                'secondary-dark': '#630F03',  // Rojo más oscuro - Variantes oscuras
-                'wine': '#A21904',            // Vinotinto - Usado en varios componentes
+                secondary: '#800020',      // Borgoña - Acentos secundarios
+                'secondary-light': '#9A0026', // Borgoña claro - Hover y variantes
+                'secondary-dark': '#5A0016',  // Borgoña oscuro - Variantes oscuras
 
                 // Colores de fondo
                 'background-dark': '#000000',    // Negro puro - Fondo principal
                 'surface-dark': '#1a1a1a',       // Gris oscuro - Superficies secundarias
-                'background-light': '#FFFFFF',   // Crema claro - Fondo secciones claras
-                'surface-light': '#FDFBF7',      // Blanco - Superficies claras
+                'background-light': '#FFFFFF',   // Blanco puro - Fondo secciones claras
+                'surface-light': '#F9FAFB',      // Gris muy claro - Fondo alternativo (bg-gray-50)
 
                 // Colores de texto
                 'text-dark': '#181711',      // Marrón oscuro - Texto en fondos claros

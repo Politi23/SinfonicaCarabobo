@@ -72,7 +72,7 @@
 <style>
     .agrupaciones-section {
         padding: 80px 0;
-        background: #ffffff;
+        background: var(--color-background-light);
     }
 
     .container {
@@ -92,7 +92,7 @@
         font-size: 1rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        color: #c28f24;
+        color: var(--color-primary);
         margin-bottom: 8px;
         font-weight: 600;
     }
@@ -100,14 +100,14 @@
     .agrupaciones-title {
         font-family: "Playfair Display", "Merriweather", serif;
         font-size: 2.4rem;
-        color: #1a1a1a;
+        color: var(--color-surface-dark);
         margin: 0 0 16px;
         font-weight: 700;
     }
 
     .agrupaciones-subtitle {
         font-size: 1rem;
-        color: #666666;
+        color: var(--color-text-muted);
         margin: 0;
         line-height: 1.7;
     }
@@ -135,35 +135,35 @@
     }
 
     .preview-card {
-        background: #f9f9f9;
-        border: 1px solid #e0e0e0;
+        background: var(--color-surface-light);
+        border: 1px solid var(--color-border-light);
         padding: 32px 24px;
         text-align: center;
         transition: all 0.3s ease;
     }
 
     .preview-card:hover {
-        border-color: #c28f24;
+        border-color: var(--color-primary);
         transform: translateY(-4px);
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     }
 
     .preview-icon {
-        color: #c28f24;
+        color: var(--color-primary);
         margin-bottom: 16px;
     }
 
     .preview-title {
         font-family: "Merriweather", serif;
         font-size: 1.1rem;
-        color: #1a1a1a;
+        color: var(--color-surface-dark);
         margin: 0 0 8px;
         font-weight: 700;
     }
 
     .preview-desc {
         font-size: 0.9rem;
-        color: #666666;
+        color: var(--color-text-muted);
         margin: 0;
     }
 
@@ -177,8 +177,8 @@
         align-items: center;
         gap: 10px;
         padding: 14px 32px;
-        background: #c28f24;
-        color: #000000;
+        background: var(--color-primary);
+        color: var(--color-background-dark);
         text-decoration: none;
         font-family: "Merriweather", serif;
         font-size: 0.95rem;
@@ -189,13 +189,13 @@
     }
 
     .agrupaciones-btn:hover {
-        background: #a57a1f;
+        background: var(--color-primary-dark);
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(194, 143, 36, 0.3);
+        box-shadow: 0 6px 20px rgba(209, 157, 46, 0.3);
     }
 
     .contact-bar {
-        background: #c28f24;
+        background: var(--color-primary);
         padding: 20px 32px;
         border-radius: 4px;
         display: flex;
@@ -206,7 +206,7 @@
     }
 
     .contact-label {
-        color: #000000;
+        color: var(--color-background-dark);
         font-weight: 700;
         font-size: 1rem;
     }
@@ -215,7 +215,7 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        color: #000000;
+        color: var(--color-background-dark);
         text-decoration: none;
         font-size: 1rem;
         transition: opacity 0.2s ease;

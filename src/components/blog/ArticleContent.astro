@@ -4,12 +4,12 @@
 
 <style is:global>
   .article-content {
-    @apply text-lg leading-relaxed text-black;
+    @apply text-lg leading-relaxed text-text-dark;
   }
 
-  /* Estilos forzados a negro (unificados) */
+  /* Estilos unificados para el contenido del artículo */
   .article-content :where(h1, h2, h3, h4, h5, h6, p, li, blockquote p, cite, summary) {
-    color: #000000 !important;
+    color: var(--color-text-dark) !important;
   }
 
   /* Encabezados */
@@ -35,16 +35,16 @@
   /* Tablas */
   .article-content table { @apply w-full border-collapse my-8; }
   .article-content th, .article-content td {
-    @apply border border-gray-300 p-3 text-center text-black;
+    @apply border border-gray-300 p-3 text-center text-text-dark;
   }
   .article-content th {
-    @apply font-bold bg-gray-200 text-black;
+    @apply font-bold bg-gray-200 text-text-dark;
   }
 
   /* Medios */
   .article-content img, .article-content video { @apply rounded-lg shadow-md max-w-full h-auto my-8; }
   .article-content figure { @apply my-8; }
-  .article-content figcaption { @apply text-center text-sm mt-2 text-gray-600 !important; }
+  .article-content figcaption { @apply text-center text-sm mt-2 text-text-muted !important; }
 
   /* WordPress Blocks */
   .wp-block-verse {

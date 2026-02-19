@@ -1,0 +1,126 @@
+/* ============================================
+   GLOBAL STYLES & CSS CUSTOM PROPERTIES
+   Orquesta Sinfónica de Carabobo
+   ============================================ */
+
+/* ============================================
+   CSS CUSTOM PROPERTIES (Design Tokens)
+   Mapeados desde tailwind.config.mjs
+   ============================================ */
+:root {
+   /* ==========================================
+     🎨 COLORES PRINCIPALES
+     ========================================== */
+   /* Dorados */
+   --color-primary: #D19D2E;
+   --color-primary-dark: #A77E25;
+   --color-primary-light: #DAB158;
+
+   /* Borgoña/Vinotinto */
+   --color-secondary: #800020;
+   --color-secondary-light: #9A0026;
+   --color-secondary-dark: #5A0016;
+
+   /* ==========================================
+     🎨 FONDOS
+     ========================================== */
+   --color-background-dark: #000000;
+   --color-surface-dark: #1a1a1a;
+   --color-background-light: #FFFFFF;
+   --color-surface-light: #F9FAFB;
+   --color-surface-cream: #FDFBF7;
+
+   /* ==========================================
+     🎨 TEXTOS
+     ========================================== */
+   --color-text-dark: #181711;
+   --color-text-light: #FFFFFF;
+   --color-text-muted: #6b6b6b;
+   --color-text-secondary: #E4E2DD;
+
+   /* ==========================================
+     🎨 BORDES Y DIVISORES
+     ========================================== */
+   --color-border-dark: #4A4A4A;
+   --color-border-light: #E5E5E0;
+   --color-divider: #D19D2E;
+
+   /* ==========================================
+     🎨 OVERLAYS (con transparencia)
+     ========================================== */
+   --color-overlay-dark: rgba(0, 0, 0, 0.85);
+   --color-overlay-mid: rgba(0, 0, 0, 0.40);
+   --color-overlay-light: rgba(0, 0, 0, 0.70);
+
+   /* ==========================================
+     🎨 ESTADOS
+     ========================================== */
+   --color-success: #10B981;
+   --color-warning: #F59E0B;
+   --color-error: #EF4444;
+
+   /* ==========================================
+     📝 TIPOGRAFÍAS
+     ========================================== */
+   --font-serif: 'Merriweather', serif;
+   --font-display: 'Playfair Display', serif;
+
+   /* ==========================================
+     📐 LAYOUT
+     ========================================== */
+   --header-height: 80px;
+   --header-height-mobile: 64px;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+html {
+   scroll-behavior: smooth;
+}
+
+body {
+   margin: 0;
+   padding: 0;
+   font-family: var(--font-serif);
+   background-color: var(--color-background-dark);
+   color: var(--color-text-light);
+}
+
+/* ============================================
+   UTILIDADES DE TIPOGRAFÍA
+   ============================================ */
+.font-display {
+   font-family: var(--font-display);
+}
+
+.font-serif {
+   font-family: var(--font-serif);
+}
+
+/* ============================================
+   UTILIDADES DE COLOR
+   ============================================ */
+.text-primary {
+   color: var(--color-primary);
+}
+
+.text-secondary {
+   color: var(--color-secondary);
+}
+
+.bg-primary {
+   background-color: var(--color-primary);
+}
+
+.bg-secondary {
+   background-color: var(--color-secondary);
+}
+
+.border-primary {
+   border-color: var(--color-primary);
+}
+
+.border-secondary {
+   border-color: var(--color-secondary);
+}
