@@ -191,27 +191,15 @@ const tiers = [
             </div>
         </div>
 
-        <div class="mt-12 flex items-center gap-4 select-none">
-            <div
-                class="h-[1px] flex-grow bg-gradient-to-r from-secondary/40 to-transparent"
-            >
-            </div>
-            <p
-                class="text-gray-400 text-[10px] tracking-[0.3em] uppercase italic font-light"
-            >
-                * Todos los beneficios están sujetos a términos de convenio
-            </p>
-        </div>
-
         <div class="lg:hidden space-y-6">
             {
                 tiers.map((tier) => (
-                    <div class={`relative border-2 overflow-hidden shadow-sm ${tier.id === 'gold' ? 'border-secondary' : (tier.id === 'platinum' ? 'border-gray-300' : 'border-gray-100')} bg-white`}>
-                        <div class="p-8 text-center border-b border-inherit">
+                    <div class={`relative border border-gray-300 bg-white`}>
+                        <div class="p-8 text-center border-b border-gray-300">
                             <p class={`text-[10px] font-bold uppercase tracking-[0.2em] mb-2 text-secondary`}>
                                 {tier.title}
                             </p>
-                            <p class={`text-4xl font-display italic mb-2 ${tier.id === 'platinum' ? 'text-black' : 'text-black'}`}>
+                            <p class="text-4xl font-display italic mb-2 text-black">
                                 {tier.price}
                             </p>
                         </div>
@@ -228,7 +216,7 @@ const tiers = [
                             </ul>
                             <a
                                 href="mailto:sinfocarabobo@gmail.com"
-                                class={`block w-full py-5 text-[10px] uppercase tracking-widest font-bold text-center transition-colors bg-secondary text-white hover:bg-black`}
+                                class="block w-full py-5 text-[10px] uppercase tracking-widest font-bold text-center transition-colors bg-secondary text-white hover:bg-black"
                             >
                                 Contactar
                             </a>
@@ -236,6 +224,18 @@ const tiers = [
                     </div>
                 ))
             }
+        </div>
+
+        <div class="mt-12 flex items-center gap-4 select-none">
+            <div
+                class="h-[1px] flex-grow bg-gradient-to-r from-secondary/40 to-transparent"
+            >
+            </div>
+            <p
+                class="text-gray-400 text-[10px] tracking-[0.3em] uppercase italic font-light"
+            >
+                * Todos los beneficios están sujetos a términos de convenio
+            </p>
         </div>
     </div>
 </section>
