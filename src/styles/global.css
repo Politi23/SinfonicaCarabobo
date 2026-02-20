@@ -28,7 +28,6 @@
    --color-surface-dark: #1a1a1a;
    --color-background-light: #FFFFFF;
    --color-surface-light: #F9FAFB;
-   --color-surface-cream: #FDFBF7;
 
    /* ==========================================
      🎨 TEXTOS
@@ -123,4 +122,87 @@ body {
 
 .border-secondary {
    border-color: var(--color-secondary);
+}
+
+/* ============================================
+   CLASES DIRECTAS DE COLOR
+   Uso: class="primary", class="secondary", etc.
+   ============================================ */
+/* Primary (Gold) */
+.primary {
+   color: var(--color-primary);
+}
+
+.bg-primary {
+   background-color: var(--color-primary);
+}
+
+.border-primary {
+   border-color: var(--color-primary);
+}
+
+/* Secondary (Burgundy) */
+.secondary {
+   color: var(--color-secondary);
+}
+
+.bg-secondary {
+   background-color: var(--color-secondary);
+}
+
+.border-secondary {
+   border-color: var(--color-secondary);
+}
+
+/* ============================================
+   UTILIDADES DE BORDE POR GROSOR
+   ============================================ */
+.border-2-primary {
+   border-width: 2px;
+   border-color: var(--color-primary);
+}
+
+.border-2-secondary {
+   border-width: 2px;
+   border-color: var(--color-secondary);
+}
+
+.border-4-primary {
+   border-width: 4px;
+   border-color: var(--color-primary);
+}
+
+.border-4-secondary {
+   border-width: 4px;
+   border-color: var(--color-secondary);
+}
+
+/* ============================================
+   UTILIDADES CON OPACIDAD
+   ============================================ */
+.text-secondary\/40 {
+   color: rgba(128, 0, 32, 0.4);
+}
+
+.text-secondary\/20 {
+   color: rgba(128, 0, 32, 0.2);
+}
+
+.bg-secondary\/5 {
+   background-color: rgba(128, 0, 32, 0.05);
+}
+
+/* ============================================
+   HOVER STATES
+   ============================================ */
+.hover\:border-secondary:hover {
+   border-color: var(--color-secondary);
+}
+
+.hover\:text-secondary:hover {
+   color: var(--color-secondary);
+}
+
+.hover\:bg-secondary:hover {
+   background-color: var(--color-secondary);
 }

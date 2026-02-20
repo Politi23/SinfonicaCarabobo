@@ -3,10 +3,6 @@ export default {
     content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
     theme: {
         extend: {
-            // ============================================
-            // 🎨 PALETA DE COLORES OFICIAL DEL SITIO
-            // Colores principales y consistentes para todo el sitio
-            // ============================================
             colors: {
                 // Colores principales
                 primary: '#D19D2E',        // Dorado principal - Acentos principales
@@ -50,9 +46,6 @@ export default {
                 }
             },
 
-            // ============================================
-            // 📝 TIPOGRAFÍAS
-            // ============================================
             fontFamily: {
                 serif: ['Merriweather', 'serif'],      // Fuente para textos generales
                 display: ['Playfair Display', 'serif'], // Fuente para títulos hero
