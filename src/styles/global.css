@@ -1,79 +1,63 @@
-/* ============================================
-   GLOBAL STYLES & CSS CUSTOM PROPERTIES
-   Orquesta Sinfónica de Carabobo
-   ============================================ */
-
-/* ============================================
-   CSS CUSTOM PROPERTIES (Design Tokens)
-   Mapeados desde tailwind.config.mjs
-   ============================================ */
 :root {
-   /* ==========================================
-     🎨 COLORES PRINCIPALES
-     ========================================== */
+
+   /* 🎨 COLORES PRINCIPALES */
+
    /* Dorados */
    --color-primary: #D19D2E;
    --color-primary-dark: #A77E25;
    --color-primary-light: #DAB158;
+
+   /* Primary con opacidad */
+   --color-primary-10: rgba(209, 157, 46, 0.1);
+   --color-primary-20: rgba(209, 157, 46, 0.2);
+   --color-primary-30: rgba(209, 157, 46, 0.3);
+   --color-primary-40: rgba(209, 157, 46, 0.4);
+   --color-primary-50: rgba(209, 157, 46, 0.5);
 
    /* Borgoña/Vinotinto */
    --color-secondary: #800020;
    --color-secondary-light: #9A0026;
    --color-secondary-dark: #5A0016;
 
-   /* ==========================================
-     🎨 FONDOS
-     ========================================== */
+   /* 🎨 FONDOS */
+
    --color-background-dark: #000000;
    --color-surface-dark: #1a1a1a;
    --color-background-light: #FFFFFF;
    --color-surface-light: #F9FAFB;
 
-   /* ==========================================
-     🎨 TEXTOS
-     ========================================== */
+   /* TEXTOS */
+
    --color-text-dark: #181711;
    --color-text-light: #FFFFFF;
    --color-text-muted: #6b6b6b;
    --color-text-secondary: #E4E2DD;
 
-   /* ==========================================
-     🎨 BORDES Y DIVISORES
-     ========================================== */
+   /* 🎨 BORDES Y DIVISORES */
    --color-border-dark: #4A4A4A;
    --color-border-light: #E5E5E0;
    --color-divider: #D19D2E;
 
-   /* ==========================================
-     🎨 OVERLAYS (con transparencia)
-     ========================================== */
+   /* 🎨 OVERLAYS (con transparencia) */
    --color-overlay-dark: rgba(0, 0, 0, 0.85);
    --color-overlay-mid: rgba(0, 0, 0, 0.40);
    --color-overlay-light: rgba(0, 0, 0, 0.70);
 
-   /* ==========================================
-     🎨 ESTADOS
-     ========================================== */
+   /* 🎨 ESTADOS */
    --color-success: #10B981;
    --color-warning: #F59E0B;
    --color-error: #EF4444;
 
-   /* ==========================================
-     📝 TIPOGRAFÍAS
-     ========================================== */
+   /* 📝 TIPOGRAFÍAS */
    --font-serif: 'Merriweather', serif;
    --font-display: 'Playfair Display', serif;
 
-   /* ==========================================
-     📐 LAYOUT
-     ========================================== */
+   /* 📐 LAYOUT */
    --header-height: 80px;
    --header-height-mobile: 64px;
 }
 
-/* ============================================
-   BASE STYLES
-   ============================================ */
+/* BASE STYLES */
 html {
    scroll-behavior: smooth;
 }
@@ -86,9 +70,7 @@ body {
    color: var(--color-text-light);
 }
 
-/* ============================================
-   UTILIDADES DE TIPOGRAFÍA
-   ============================================ */
+/* UTILIDADES DE TIPOGRAFÍA */
 .font-display {
    font-family: var(--font-display);
 }
@@ -97,9 +79,7 @@ body {
    font-family: var(--font-serif);
 }
 
-/* ============================================
-   UTILIDADES DE COLOR
-   ============================================ */
+/* UTILIDADES DE COLOR */
 .text-primary {
    color: var(--color-primary);
 }
@@ -124,10 +104,8 @@ body {
    border-color: var(--color-secondary);
 }
 
-/* ============================================
-   CLASES DIRECTAS DE COLOR
-   Uso: class="primary", class="secondary", etc.
-   ============================================ */
+/* CLASES DIRECTAS DE COLOR */
+
 /* Primary (Gold) */
 .primary {
    color: var(--color-primary);
@@ -154,9 +132,7 @@ body {
    border-color: var(--color-secondary);
 }
 
-/* ============================================
-   UTILIDADES DE BORDE POR GROSOR
-   ============================================ */
+/* UTILIDADES DE BORDE POR GROSOR */
 .border-2-primary {
    border-width: 2px;
    border-color: var(--color-primary);
@@ -177,9 +153,7 @@ body {
    border-color: var(--color-secondary);
 }
 
-/* ============================================
-   UTILIDADES CON OPACIDAD
-   ============================================ */
+/* UTILIDADES CON OPACIDAD */
 .text-secondary\/40 {
    color: rgba(128, 0, 32, 0.4);
 }
@@ -192,9 +166,7 @@ body {
    background-color: rgba(128, 0, 32, 0.05);
 }
 
-/* ============================================
-   HOVER STATES
-   ============================================ */
+/* HOVER STATES */
 .hover\:border-secondary:hover {
    border-color: var(--color-secondary);
 }

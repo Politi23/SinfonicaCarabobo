@@ -97,7 +97,7 @@ const { showVideo = true } = Astro.props;
     color: var(--color-background-dark);
     border: none;
     box-shadow:
-      0 4px 15px rgba(209, 157, 46, 0.4),
+      0 4px 15px var(--color-primary-40),
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 
@@ -120,7 +120,7 @@ const { showVideo = true } = Astro.props;
   .hero-btn-primary:hover {
     transform: translateY(-3px);
     box-shadow:
-      0 8px 25px rgba(209, 157, 46, 0.5),
+      0 8px 25px var(--color-primary-50),
       0 4px 10px rgba(0, 0, 0, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
@@ -164,7 +164,7 @@ const { showVideo = true } = Astro.props;
     transform: translateY(-3px);
     box-shadow:
       0 8px 25px rgba(0, 0, 0, 0.3),
-      0 0 20px rgba(209, 157, 46, 0.2);
+      0 0 20px var(--color-primary-20);
   }
 
   .hero-btn-secondary:hover::before {
