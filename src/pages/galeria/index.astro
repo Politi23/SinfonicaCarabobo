@@ -8,9 +8,9 @@ import { getAlbums } from "../../config/wp-albums";
 
 const albums = await getAlbums();
 
-// Importar imágenes estáticas de src/assets/galeria
+// Importar imágenes estáticas de src/assets/images/galeria
 const staticImages = import.meta.glob<{ default: ImageMetadata }>(
-  "../../assets/galeria/*.{jpg,jpeg,png,webp,gif,JPG,JPEG,PNG,WEBP,GIF}",
+  "../../assets/images/galeria/*.{jpg,jpeg,png,webp,gif,JPG,JPEG,PNG,WEBP,GIF}",
   { eager: true },
 );
 
