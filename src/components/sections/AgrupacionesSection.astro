@@ -127,46 +127,6 @@
         object-fit: cover;
     }
 
-    .agrupaciones-preview {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 24px;
-        margin-bottom: 48px;
-    }
-
-    .preview-card {
-        background: var(--color-surface-light);
-        border: 1px solid var(--color-border-light);
-        padding: 32px 24px;
-        text-align: center;
-        transition: all 0.3s ease;
-    }
-
-    .preview-card:hover {
-        border-color: var(--color-primary);
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    }
-
-    .preview-icon {
-        color: var(--color-primary);
-        margin-bottom: 16px;
-    }
-
-    .preview-title {
-        font-family: "Merriweather", serif;
-        font-size: 1.1rem;
-        color: var(--color-surface-dark);
-        margin: 0 0 8px;
-        font-weight: 700;
-    }
-
-    .preview-desc {
-        font-size: 0.9rem;
-        color: var(--color-text-muted);
-        margin: 0;
-    }
-
     .agrupaciones-cta {
         text-align: center;
         margin-bottom: 48px;
@@ -226,12 +186,6 @@
         text-decoration: underline;
     }
 
-    @media (max-width: 900px) {
-        .agrupaciones-preview {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
     @media (max-width: 640px) {
         .agrupaciones-section {
             padding: 60px 0 72px;
@@ -239,10 +193,6 @@
 
         .agrupaciones-title {
             font-size: 1.8rem;
-        }
-
-        .agrupaciones-preview {
-            grid-template-columns: 1fr;
         }
 
         .featured-image {
