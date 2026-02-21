@@ -1,5 +1,6 @@
 import { fetchAPI } from "./wp-client";
 import { cleanText, extractImagesFromContent } from "./wp-utils";
+import logoSimpleBbg from "@assets/images/logo/logosimplebbg.webp";
 
 // Helper para procesar la respuesta de la API y convertirla en un objeto WPAlbum
 const processAlbum = (item: any): WPAlbum => {
@@ -21,7 +22,7 @@ const processAlbum = (item: any): WPAlbum => {
 		title: cleanText(item.title?.rendered),
 		excerpt: cleanText(item.excerpt?.rendered || ""),
 		date: item.date,
-		coverImage: cover || "/logosimplebbg.webp",
+		coverImage: cover || logoSimpleBbg.src,
 		photos: allPhotos,
 	};
 };

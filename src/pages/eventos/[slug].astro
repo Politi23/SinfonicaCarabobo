@@ -3,6 +3,7 @@ export const prerender = false;
 import Layout from "../../layouts/Layout.astro";
 import { getEventoBySlug } from "../../config/wp-eventos"; // Importamos desde el archivo modificado
 import type { WPEvento } from "../../config/wp-eventos"; // Importamos desde el archivo modificado
+import logoSimpleBbg from "@assets/images/logo/logosimplebbg.webp";
 
 const { slug } = Astro.params;
 
@@ -37,7 +38,7 @@ const formatAcfDate = (dateString: string) => {
 const getImageUrl = (e: WPEvento) => {
   // Los signos ?. significan: "Si esto existe, continúa. Si no, detente y devuelve undefined"
   return (
-    e._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "/logosimplebbg.webp"
+    e._embedded?.["wp:featuredmedia"]?.[0]?.source_url || logoSimpleBbg.src
   );
 };
 

@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import logo from "@assets/images/logo/logo.webp";
 ---
 
 <Layout is404>
@@ -8,10 +9,14 @@ import Layout from "../layouts/Layout.astro";
   >
     <div class="text-center">
       <img
-        src="/logo.webp"
+        src={logo.src}
         alt="Logo de la Orquesta Sinfónica de Carabobo"
         class="mx-auto"
         style="width: 26rem; height: auto;"
+        width={logo.width}
+        height={logo.height}
+        loading="eager"
+        fetchpriority="high"
       />
       <h1 class="text-3xl font-bold text-text-light">
         ¡Ups! Parece que esta página no existe.

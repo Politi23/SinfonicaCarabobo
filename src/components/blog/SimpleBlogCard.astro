@@ -1,4 +1,6 @@
 ---
+import logoSimpleBbg from "@assets/images/logo/logosimplebbg.webp";
+
 export interface Props {
     title: string;
     excerpt: string;
@@ -29,9 +31,13 @@ const formattedDate = (() => {
     >
         <div class="relative w-full aspect-video overflow-hidden">
             <img
-                src={image || "/logosimplebbg.webp"}
+                src={image || logoSimpleBbg.src}
                 alt={title}
                 class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 ease-out"
+                width={logoSimpleBbg.width}
+                height={logoSimpleBbg.height}
+                loading="lazy"
+                decoding="async"
             />
             {
                 category && (

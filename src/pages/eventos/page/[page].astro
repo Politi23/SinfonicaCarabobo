@@ -5,6 +5,7 @@ import MainHero from "../../../components/sections/MainHero.astro";
 import EventoCard from "../../../components/eventos/EventoCard.astro"; // Usamos el componente que ya creamos anteriormente
 import Pagination from "../../../components/blog/Pagination.astro";
 import { getEventos } from "../../../config/wp-eventos"; // Usamos la función actualizada
+import logoSimpleBbg from "@assets/images/logo/logosimplebbg.webp";
 
 // Función para calcular el total de páginas -> Removed for SSR
 
@@ -50,7 +51,7 @@ try {
     excerpt: truncateExcerpt(e.acf.event_description, 25),
     image:
       e._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
-      "/logosimplebbg.webp",
+      logoSimpleBbg.src,
     date: e.acf.event_date,
     time: e.acf.event_time,
     venue: e.acf.event_venue,

@@ -1,4 +1,6 @@
 ---
+import logoSimple from "@assets/images/logo/logosimple.webp";
+
 // Dynamically generate navigation from pages directory
 const allPages = import.meta.glob("/src/pages/**/*.astro", { eager: true });
 
@@ -203,9 +205,13 @@ const navLinks = navArray;
     <a href="/" class="logo-link group">
       <div class="flex items-center gap-4">
         <img
-          src="/logosimple.webp"
+          src={logoSimple.src}
           alt="Logo de la Fundación Orquesta Sinfónica de Carabobo"
           class="logo-image drop-shadow-lg transition-transform duration-300 group-hover:scale-105"
+          width={logoSimple.width}
+          height={logoSimple.height}
+          loading="eager"
+          fetchpriority="high"
         />
         <div class="hidden md:flex flex-col">
           <span

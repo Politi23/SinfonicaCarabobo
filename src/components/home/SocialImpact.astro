@@ -1,7 +1,11 @@
+---
+import imageGrid from "@assets/images/backgrounds/image-grid.webp";
+---
 <!-- Seccion de la academia -->
 <div class="relative py-24 bg-surface-dark text-text-light overflow-hidden">
   <div
-    class="absolute inset-0 z-0 opacity-20 bg-[url('/image-grid.webp')] bg-fixed bg-cover bg-center"
+    class="absolute inset-0 z-0 opacity-20 bg-cover bg-fixed bg-center"
+    style={`background-image: url('${imageGrid.src}');`}
   >
   </div>
   <div class="absolute inset-0 bg-black/60 z-0"></div>

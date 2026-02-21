@@ -5,6 +5,7 @@ import ReconocimientosIntro from "../../components/nosotros/ReconocimientosIntro
 import ReconocimientosMilestones from "../../components/nosotros/ReconocimientosMilestones.astro";
 import ReconocimientosList from "../../components/nosotros/ReconocimientosList.astro";
 import ReconocimientosCTA from "../../components/nosotros/ReconocimientosCTA.astro";
+import orchestra1 from "@assets/images/orchestra/orchestra1.webp";
 
 const institutionalRecognitions = [
     { year: "2021", event: "Institución UNESCO; Embajadores de la Paz" },
@@ -58,7 +59,7 @@ const institutionalRecognitions = [
             title="Nuestros"
             titleHighlight="Reconocimientos"
             subtitle="Medio siglo de excelencia y compromiso artístico"
-            bgImage="/orchestra1.webp"
+            bgImage={orchestra1.src}
         />
 
         <ReconocimientosIntro />

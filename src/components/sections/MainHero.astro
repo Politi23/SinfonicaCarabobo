@@ -1,4 +1,6 @@
 ---
+import sinfonica from "@assets/images/orchestra/sinfonica.webp";
+
 interface Props {
     title: string;
     titleHighlight?: string;
@@ -10,7 +12,7 @@ const {
     title,
     titleHighlight,
     subtitle,
-    bgImage = "/sinfonica.webp",
+    bgImage = sinfonica.src,
 } = Astro.props;
 ---
 

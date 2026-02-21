@@ -2,6 +2,11 @@
 import Layout from "@layouts/Layout.astro";
 import MainHero from "@components/sections/MainHero.astro";
 
+import bailable from "@assets/images/orchestra/bailable.webp";
+import estudiantina from "@assets/images/orchestra/estudiantina.webp";
+import coro from "@assets/images/orchestra/coro.webp";
+import camara from "@assets/images/orchestra/camara.webp";
+
 // Datos de las agrupaciones
 const agrupaciones = [
     {
@@ -20,14 +25,14 @@ const agrupaciones = [
     },
     {
         nombre: "Orquesta Bailable Sinfocarabobo",
-        imagen: "/bailable.webp",
+        imagen: bailable.src,
         descripcion: "Conformada por 11 músicos con amplia trayectoria musical latina caribeña.",
         tiposEventos: "Eventos sociales tales como: matrimonios, 15 años, graduaciones, anniversarios y empresariales.",
         reverse: false
     },
     {
         nombre: "Estudiantina José Calabrese",
-        imagen: "/estudiantina.webp",
+        imagen: estudiantina.src,
         descripcion: "Conformada entre 15 y 20 ejecutantes de instrumentos venezolanos y clásicos, con un amplio repertorio de música venezolana, latinoamericana y popular universal.",
         tiposEventos: "Para eventos académicos, culturales, sociales y corporativos.",
         reverse: true
@@ -41,14 +46,14 @@ const agrupaciones = [
     },
     {
         nombre: "Coro Académico José Calabrese",
-        imagen: "/coro.webp",
+        imagen: coro.src,
         descripcion: "Coro conformado desde 8 voces en adelante. Entre cantantes masculinos y femeninos, jóvenes y adultos.",
         tiposEventos: "Para misas, actividades culturales o artísticas, con un amplio repertorio académico, eclesiástico y popular universal.",
         reverse: true
     },
     {
         nombre: "Agrupaciones de Cámara",
-        imagen: "/camara.webp",
+        imagen: camara.src,
         descripcion: "Agrupaciones de entre 5 y 14 músicos de instrumentos de cuerdas, vientos o combinados, con amplia experiencia musical y artística.",
         tiposEventos: "Para ceremonias eclesiásticas, aper tura de eventos sociales, de negocios y cualquier otro tipo de actividad cultural o artística que requiera este formato musical, con un amplio repertorio académico, popular universal, latinoamericano y venezolano.",
         reverse: false
@@ -110,6 +115,10 @@ const agrupaciones = [
                                 src={agrupacion.imagen}
                                 alt={agrupacion.nombre}
                                 class="w-full aspect-[4/3] object-cover rounded-xl"
+                                width="800"
+                                height="600"
+                                loading="lazy"
+                                decoding="async"
                             />
                         </div>
                         

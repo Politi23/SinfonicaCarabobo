@@ -1,5 +1,6 @@
 ---
-
+import orchestra1 from "@assets/images/orchestra/orchestra1.webp";
+import imageGrid from "@assets/images/backgrounds/image-grid.webp";
 ---
 
 <!-- Milestones Grid with sharp edges -->
@@ -11,7 +12,8 @@
                 class="group relative overflow-hidden bg-black text-white h-full min-h-[500px] flex flex-col border border-black hover:border-secondary transition-colors duration-500"
             >
                 <div
-                    class="absolute inset-0 z-0 opacity-40 bg-[url('/orchestra1.webp')] bg-cover bg-center grayscale filter contrast-125"
+                    class="absolute inset-0 z-0 opacity-40 bg-cover bg-center grayscale filter contrast-125"
+                    style={`background-image: url('${orchestra1.src}');`}
                 >
                 </div>
                 <div
@@ -46,7 +48,8 @@
                 class="group relative overflow-hidden bg-secondary text-white h-full min-h-[500px] flex flex-col border border-secondary transition-all duration-500"
             >
                 <div
-                    class="absolute inset-0 z-0 opacity-10 bg-[url('/image-grid.webp')] bg-cover bg-center mix-blend-overlay"
+                    class="absolute inset-0 z-0 opacity-10 bg-cover bg-center mix-blend-overlay"
+                    style={`background-image: url('${imageGrid.src}');`}
                 >
                 </div>
                 <div class="relative z-10 p-6 md:p-12 mt-auto">

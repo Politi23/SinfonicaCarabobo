@@ -1,4 +1,6 @@
 ---
+import logoSimpleBbg from "@assets/images/logo/logosimplebbg.webp";
+
 import { getEventos } from "src/config/wp-eventos";
 
 import Button from "../ui/GoldenButton.astro";
@@ -37,7 +39,7 @@ const eventos = await getEventos(perPage);
                   excerpt={evento.acf.event_description}
                   image={
                     evento._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
-                    "/logosimplebbg.webp"
+                    logoSimpleBbg.src
                   }
                   date={evento.acf.event_date}
                   time={evento.acf.event_time}

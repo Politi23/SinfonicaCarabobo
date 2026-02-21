@@ -1,8 +1,13 @@
+---
+import imageGrid from "@assets/images/backgrounds/image-grid.webp";
+---
+
 <section
     class="relative h-[60vh] min-h-[500px] flex items-center justify-center bg-gradient-to-br from-background-light to-secondary/10 overflow-hidden"
 >
     <div
-        class="absolute inset-0 z-0 bg-[url('/image-grid.webp')] bg-cover bg-center opacity-10"
+        class="absolute inset-0 z-0 bg-cover bg-center opacity-10"
+        style={`background-image: url('${imageGrid.src}');`}
     >
     </div>
 
