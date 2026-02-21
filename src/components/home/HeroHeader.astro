@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import violinHeader from "@assets/images/orchestra/violin-header.webp";
+import videoFondo from "@assets/videos/video-fondo.mp4";
 
 const { showVideo = true } = Astro.props;
 ---
@@ -21,7 +22,7 @@ const { showVideo = true } = Astro.props;
         height={violinHeader.height}
         transition:persist
       >
-        <source src="/video-fondo.mp4" type="video/mp4" />
+        <source src={videoFondo} type="video/mp4" />
       </video>
     ) : (
       <!-- Imagen de fondo estática para cuando no hay video -->
