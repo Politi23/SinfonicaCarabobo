@@ -1,94 +1,103 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from "@layouts/Layout.astro";
 import MainHero from "@components/sections/MainHero.astro";
 
+import orquestaSinfonica from "@assets/images/orchestra/orquesta-sinfonica.webp";
+import orquestaCamara from "@assets/images/orchestra/orquesta-camara.webp";
 import bailable from "@assets/images/orchestra/bailable.webp";
 import estudiantina from "@assets/images/orchestra/estudiantina.webp";
+import jazzEnsamble from "@assets/images/orchestra/jazz-ensamble.webp";
 import coro from "@assets/images/orchestra/coro.webp";
 import camara from "@assets/images/orchestra/camara.webp";
+import cuartetoCuerdas from "@assets/images/orchestra/cuarteto-cuerdas.webp";
+import trioSinfocarabobo from "@assets/images/orchestra/trio-sinfocarabobo.webp";
+import duoSinfocarabobo from "@assets/images/orchestra/duo-sinfocarabobo.webp";
+import saxoSinfocarabobo from "@assets/images/orchestra/saxo-sinfocarabobo.webp";
+import acordeonSinfocarabobo from "@assets/images/orchestra/acordeon-sinfocarabobo.webp";
 
 // Datos de las agrupaciones
 const agrupaciones = [
     {
         nombre: "Orquesta Sinfónica de Carabobo",
-        imagen: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=800&q=80",
+        imagen: orquestaSinfonica,
         descripcion: "Orquesta Sinfónica conformada por músicos profesionales, para repertorios y eventos que requieran este formato musical.",
         tiposEventos: "Para conciertos de artistas académicos y populares, eventos sociales y/o culturales, sesiones de grabación, documentales, piezas publicitarias, entre otros. Cubre todo el repertorio de los grandes compositores y obras de estreno por encargo.",
         reverse: false
     },
     {
         nombre: "Orquesta de Cámara Sinfocarabobo",
-        imagen: "https://images.unsplash.com/photo-1567619822659-2094d3ebef04?w=800&auto=format&fit=crop&q=80",
+        imagen: orquestaCamara,
         descripcion: "Agrupación musical conformada entre 15 y 25 músicos, de las secciones de cuerdas, vientos, percusión, bajo eléctrico y voz, para repertorios que requieran este formato musical.",
         tiposEventos: "Para todo tipo de eventos artísticos, sociales, eclesiásticos, culturales y personales, con un amplio repertorio sacro, popular y académico, adaptado a la naturaleza del evento o actividad.",
         reverse: true
     },
     {
         nombre: "Orquesta Bailable Sinfocarabobo",
-        imagen: bailable.src,
+        imagen: bailable,
         descripcion: "Conformada por 11 músicos con amplia trayectoria musical latina caribeña.",
         tiposEventos: "Eventos sociales tales como: matrimonios, 15 años, graduaciones, anniversarios y empresariales.",
         reverse: false
     },
     {
         nombre: "Estudiantina José Calabrese",
-        imagen: estudiantina.src,
+        imagen: estudiantina,
         descripcion: "Conformada entre 15 y 20 ejecutantes de instrumentos venezolanos y clásicos, con un amplio repertorio de música venezolana, latinoamericana y popular universal.",
         tiposEventos: "Para eventos académicos, culturales, sociales y corporativos.",
         reverse: true
     },
     {
         nombre: "Sinfocarabobo Jazz Ensamble",
-        imagen: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=800&q=80",
+        imagen: jazzEnsamble,
         descripcion: "Agrupación musical, conformada por differentes instrumentos acústicos, eléctricos, electrónicos y voz, en diferentes formatos instrumentales, según el requerimiento del evento.",
         tiposEventos: "Presenta para todos los eventos sociales, culturales y personales, un amplio repertorio de los grandes temas musicales universales, latinoamericanos, afrocaribeños y venezolanos.",
         reverse: false
     },
     {
         nombre: "Coro Académico José Calabrese",
-        imagen: coro.src,
-        descripcion: "Coro conformado desde 8 voces en adelante. Entre cantantes masculinos y femeninos, jóvenes y adultos.",
+        imagen: coro,
+        descripcion: "Coro conformada desde 8 voces en adelante. Entre cantantes masculinos y femeninos, jóvenes y adultos.",
         tiposEventos: "Para misas, actividades culturales o artísticas, con un amplio repertorio académico, eclesiástico y popular universal.",
         reverse: true
     },
     {
         nombre: "Agrupaciones de Cámara",
-        imagen: camara.src,
+        imagen: camara,
         descripcion: "Agrupaciones de entre 5 y 14 músicos de instrumentos de cuerdas, vientos o combinados, con amplia experiencia musical y artística.",
         tiposEventos: "Para ceremonias eclesiásticas, aper tura de eventos sociales, de negocios y cualquier otro tipo de actividad cultural o artística que requiera este formato musical, con un amplio repertorio académico, popular universal, latinoamericano y venezolano.",
         reverse: false
     },
     {
         nombre: "Cuarteto Sinfocarabobo",
-        imagen: "https://media.istockphoto.com/id/1300767412/es/foto/cuarteto-de-cuerdas-vista-desde-arriba.webp?a=1&b=1&s=612x612&w=0&k=20&c=_7SuK7kpbdE8uXFPAJJtePQOEs_Q_r1fZeYZ0NSgdps=",
+        imagen: cuartetoCuerdas,
         descripcion: "Cuarteto de cuerdas conformado por dos violines, viola y violonchelo, con amplia experiencia musical y artística.",
         tiposEventos: "Para ceremonias eclesiásticas, recepciones, apertura de eventos sociales, de negocios y cualquier otro tipo de actividad cultural y artística que requiera este formato musical, con un amplio repertorio académico y popular universal, latinoamericano y venezolano.",
         reverse: true
     },
     {
         nombre: "Trío Sinfocarabobo",
-        imagen: "https://plus.unsplash.com/premium_photo-1703618159093-497aacd99241?w=800&auto=format&fit=crop&q=80",
+        imagen: trioSinfocarabobo,
         descripcion: "Trío musical conformado por violín, viola y violonchelo, donde se combina la técnica y la elegancia de la música clásica, con la creatividad y la innovación de la música moderna.",
         tiposEventos: "Para eventos sociales, culturales y personales, con un amplio repertorio de los grandes compositores universales, latinoamericanos y venezolanos.",
         reverse: false
     },
     {
         nombre: "Dúo Sinfocarabobo",
-        imagen: "https://plus.unsplash.com/premium_photo-1661434240769-dc337a3e2b3f?w=800&auto=format&fit=crop&q=80",
+        imagen: duoSinfocarabobo,
         descripcion: "Dúo formado por violín, acompañado por piano o acordeón, especializado en la interpretación de los distintos compositores clásicos y populares.",
         tiposEventos: "Amplio repertorio para ceremonias eclesiásticas, recepciones, eventos sociales, de negocios, y cualquier otro tipo de actividad cultural y artística que requiera este formato musical.",
         reverse: true
     },
     {
         nombre: "Saxo Sinfocarabobo",
-        imagen: "https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=800&q=80",
+        imagen: saxoSinfocarabobo,
         descripcion: "Saxofonista en vivo acompañado por pistas musicales, en los distintos géneros populares, clásicos y del jazz.",
         tiposEventos: "Para todos los tipos de eventos corporativos, sociales, eclesiásticos, culturales y personales, con un amplio repertorio musical adaptado a la naturaleza de la actividad.",
         reverse: false
     },
     {
         nombre: "Acordeón Sinfocarabobo",
-        imagen: "https://images.unsplash.com/photo-1682715601026-bcbbd23ac438?w=800&auto=format&fit=crop&q=80",
+        imagen: acordeonSinfocarabobo,
         descripcion: "Acordeonista en vivo con acompañamiento de pistas musicales, cuya versatilidad permite la presentación de diferentes géneros musicales.",
         tiposEventos: "Repertorio adaptado para ceremonias eclesiásticas, recepciones, eventos sociales, de negocios, y cualquier otro tipo de actividad cultural y artística.",
         reverse: true
@@ -96,13 +105,13 @@ const agrupaciones = [
 ];
 ---
 
-<Layout>    
-    <MainHero 
-        title="Nuestras" 
-        titleHighlight="Agrupaciones" 
-        subtitle="Somos la música para tu evento" 
+<Layout>
+    <MainHero
+        title="Nuestras"
+        titleHighlight="Agrupaciones"
+        subtitle="Somos la música para tu evento"
     />
-    
+
     <!-- Agrupaciones -->
     <main class="bg-white">
         {agrupaciones.map((agrupacion, index) => (
@@ -111,7 +120,7 @@ const agrupaciones = [
                     <div class={`flex flex-col ${agrupacion.reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-8 md:gap-16`}>
                         <!-- Imagen -->
                         <div class="w-full md:w-1/2">
-                            <img
+                            <Image
                                 src={agrupacion.imagen}
                                 alt={agrupacion.nombre}
                                 class="w-full aspect-[4/3] object-cover rounded-xl"
@@ -121,20 +130,20 @@ const agrupaciones = [
                                 decoding="async"
                             />
                         </div>
-                        
+
                         <!-- Contenido -->
                         <div class="w-full md:w-1/2 space-y-6">
                             <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 relative">
                                 {agrupacion.nombre}
                                 <div class="absolute -bottom-2 left-0 w-20 h-1 bg-primary"></div>
                             </h2>
-                            
+
                             <div class="space-y-4">
                                 <div>
                                     <h3 class="text-lg font-bold text-secondary mb-2">Descripción:</h3>
                                     <p class="text-gray-700 leading-relaxed">{agrupacion.descripcion}</p>
                                 </div>
-                                
+
                                 <div>
                                     <h3 class="text-lg font-bold text-secondary mb-2">Tipos de eventos:</h3>
                                     <p class="text-gray-600 leading-relaxed">{agrupacion.tiposEventos}</p>
@@ -145,7 +154,7 @@ const agrupaciones = [
                 </div>
             </section>
         ))}
-        
+
         <!-- Nota importante -->
         <section class="py-16 bg-white">
             <div class="container mx-auto px-6 max-w-4xl">
@@ -156,14 +165,14 @@ const agrupaciones = [
                 </div>
             </div>
         </section>
-        
+
         <!-- Sección de contacto -->
         <section class="py-20 bg-gray-50 border-y border-gray-100">
             <div class="container mx-auto px-6 max-w-4xl text-center">
                 <h2 class="text-2xl md:text-3xl font-display font-bold text-gray-900 mb-8">
                     ¿Deseas contratar alguna de nuestras agrupaciones?
                 </h2>
-                
+
                 <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
                     <a href="mailto:gerencia@sinfocarabobo.com" class="group flex flex-col items-center gap-3 transition-all hover:scale-105">
                         <div class="w-14 h-14 rounded-full bg-gray-900 flex items-center justify-center text-white mb-2 shadow-lg group-hover:bg-primary transition-colors">

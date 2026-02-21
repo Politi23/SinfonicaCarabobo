@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import violinHeader from "@assets/images/orchestra/violin-header.webp";
 
 const { showVideo = true } = Astro.props;
@@ -18,8 +19,6 @@ const { showVideo = true } = Astro.props;
         poster={violinHeader.src}
         width={violinHeader.width}
         height={violinHeader.height}
-        loading="eager"
-        fetchpriority="high"
         transition:persist
       >
         <source src="/video-fondo.mp4" type="video/mp4" />
@@ -27,12 +26,12 @@ const { showVideo = true } = Astro.props;
     ) : (
       <!-- Imagen de fondo estática para cuando no hay video -->
       <div class="absolute inset-0 z-0">
-        <img
-          src={violinHeader.src}
+        <Image
+          src={violinHeader}
           alt="Orquesta Sinfónica"
           class="w-full h-full object-cover"
-          width={violinHeader.width}
-          height={violinHeader.height}
+          width="1920"
+          height="1080"
           loading="eager"
           fetchpriority="high"
           decoding="async"

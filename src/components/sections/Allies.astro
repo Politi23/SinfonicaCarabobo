@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import allyHesperia from "@assets/images/allies/ally-hesperia.webp";
 import allyUjap from "@assets/images/allies/ally-ujap.webp";
 import allyMultimax from "@assets/images/allies/ally-multimax.webp";
@@ -29,86 +30,274 @@ import allyScgc from "@assets/images/allies/ally-scgc.webp";
     <div class="flex items-center gap-16 animate-infinite-scroll">
       <!-- First set of logos -->
       <div class="logo-container">
-        <img src={allyHesperia.src} alt="HesperiaWTC" class="logo-image" width={allyHesperia.width} height={allyHesperia.height} loading="lazy" decoding="async" />
-      </div>
-      <div class="logo-container">
-        <img src={allyUjap.src} alt="UJAP" class="logo-image" width={allyUjap.width} height={allyUjap.height} loading="lazy" decoding="async" />
-      </div>
-      <div class="logo-container">
-        <img src={allyMultimax.src} alt="Multimax" class="logo-image" width={allyMultimax.width} height={allyMultimax.height} loading="lazy" decoding="async" />
-      </div>
-      <div class="logo-container">
-        <img src={allyClxSamsung.src} alt="CLXSamsung" class="logo-image" width={allyClxSamsung.width} height={allyClxSamsung.height} loading="lazy" decoding="async" />
-      </div>
-      <div class="logo-container">
-        <img src={allyAlcaldia.src} alt="Alcaldía de San Diego" class="logo-image" width={allyAlcaldia.width} height={allyAlcaldia.height} loading="lazy" decoding="async"
+        <Image
+          src={allyHesperia}
+          alt="HesperiaWTC"
+          class="logo-image"
+          width="112"
+          height="112"
+          loading="lazy"
+          decoding="async"
         />
       </div>
       <div class="logo-container">
-        <img src={allyScgc.src} alt="Secretaría de Cultura Gobernación de Carabobo" class="logo-image" width={allyScgc.width} height={allyScgc.height} loading="lazy" decoding="async" />
+        <Image
+          src={allyUjap}
+          alt="UJAP"
+          class="logo-image"
+          width="112"
+          height="112"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="logo-container">
+        <Image
+          src={allyMultimax}
+          alt="Multimax"
+          class="logo-image"
+          width="112"
+          height="112"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="logo-container">
+        <Image
+          src={allyClxSamsung}
+          alt="CLXSamsung"
+          class="logo-image"
+          width="112"
+          height="112"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="logo-container">
+        <img
+          src={allyAlcaldia.src}
+          alt="Alcaldía de San Diego"
+          class="logo-image"
+          width={allyAlcaldia.width}
+          height={allyAlcaldia.height}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="logo-container">
+        <Image
+          src={allyScgc}
+          alt="Secretaría de Cultura Gobernación de Carabobo"
+          class="logo-image"
+          width="112"
+          height="112"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
 
       <!-- Second set for seamless infinite scroll -->
       <div class="logo-container">
-        <img src={allyHesperia.src} alt="HesperiaWTC" class="logo-image" width={allyHesperia.width} height={allyHesperia.height} loading="lazy" decoding="async" />
-      </div>
-      <div class="logo-container">
-        <img src={allyUjap.src} alt="UJAP" class="logo-image" width={allyUjap.width} height={allyUjap.height} loading="lazy" decoding="async" />
-      </div>
-      <div class="logo-container">
-        <img src={allyMultimax.src} alt="Multimax" class="logo-image" width={allyMultimax.width} height={allyMultimax.height} loading="lazy" decoding="async" />
-      </div>
-      <div class="logo-container">
-        <img src={allyClxSamsung.src} alt="CLXSamsung" class="logo-image" width={allyClxSamsung.width} height={allyClxSamsung.height} loading="lazy" decoding="async" />
-      </div>
-      <div class="logo-container">
-        <img src={allyAlcaldia.src} alt="Alcaldía de San Diego" class="logo-image" width={allyAlcaldia.width} height={allyAlcaldia.height} loading="lazy" decoding="async"
+        <Image
+          src={allyHesperia}
+          alt="HesperiaWTC"
+          class="logo-image"
+          width="112"
+          height="112"
+          loading="lazy"
+          decoding="async"
         />
       </div>
       <div class="logo-container">
-        <img src={allyScgc.src} alt="Secretaría de Cultura Gobernación de Carabobo" class="logo-image" width={allyScgc.width} height={allyScgc.height} loading="lazy" decoding="async" />
+        <Image
+          src={allyUjap}
+          alt="UJAP"
+          class="logo-image"
+          width="112"
+          height="112"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="logo-container">
+        <Image
+          src={allyMultimax}
+          alt="Multimax"
+          class="logo-image"
+          width="112"
+          height="112"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="logo-container">
+        <Image
+          src={allyClxSamsung}
+          alt="CLXSamsung"
+          class="logo-image"
+          width="112"
+          height="112"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="logo-container">
+        <img
+          src={allyAlcaldia.src}
+          alt="Alcaldía de San Diego"
+          class="logo-image"
+          width={allyAlcaldia.width}
+          height={allyAlcaldia.height}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="logo-container">
+        <Image
+          src={allyScgc}
+          alt="Secretaría de Cultura Gobernación de Carabobo"
+          class="logo-image"
+          width="112"
+          height="112"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
 
       <!-- Third set for extended cycle -->
       <div class="logo-container">
-        <img src={allyHesperia.src} alt="HesperiaWTC" class="logo-image" width={allyHesperia.width} height={allyHesperia.height} loading="lazy" decoding="async" />
-      </div>
-      <div class="logo-container">
-        <img src={allyUjap.src} alt="UJAP" class="logo-image" width={allyUjap.width} height={allyUjap.height} loading="lazy" decoding="async" />
-      </div>
-      <div class="logo-container">
-        <img src={allyMultimax.src} alt="Multimax" class="logo-image" width={allyMultimax.width} height={allyMultimax.height} loading="lazy" decoding="async" />
-      </div>
-      <div class="logo-container">
-        <img src={allyClxSamsung.src} alt="CLXSamsung" class="logo-image" width={allyClxSamsung.width} height={allyClxSamsung.height} loading="lazy" decoding="async" />
-      </div>
-      <div class="logo-container">
-        <img src={allyAlcaldia.src} alt="Alcaldía de San Diego" class="logo-image" width={allyAlcaldia.width} height={allyAlcaldia.height} loading="lazy" decoding="async"
+        <Image
+          src={allyHesperia}
+          alt="HesperiaWTC"
+          class="logo-image"
+          width="112"
+          height="112"
+          loading="lazy"
+          decoding="async"
         />
       </div>
       <div class="logo-container">
-        <img src={allyScgc.src} alt="Secretaría de Cultura Gobernación de Carabobo" class="logo-image" width={allyScgc.width} height={allyScgc.height} loading="lazy" decoding="async" />
+        <Image
+          src={allyUjap}
+          alt="UJAP"
+          class="logo-image"
+          width="112"
+          height="112"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="logo-container">
+        <Image
+          src={allyMultimax}
+          alt="Multimax"
+          class="logo-image"
+          width="112"
+          height="112"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="logo-container">
+        <Image
+          src={allyClxSamsung}
+          alt="CLXSamsung"
+          class="logo-image"
+          width="112"
+          height="112"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="logo-container">
+        <img
+          src={allyAlcaldia.src}
+          alt="Alcaldía de San Diego"
+          class="logo-image"
+          width={allyAlcaldia.width}
+          height={allyAlcaldia.height}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="logo-container">
+        <Image
+          src={allyScgc}
+          alt="Secretaría de Cultura Gobernación de Carabobo"
+          class="logo-image"
+          width="112"
+          height="112"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
 
       <!-- Fourth set for extended cycle -->
       <div class="logo-container">
-        <img src={allyHesperia.src} alt="HesperiaWTC" class="logo-image" width={allyHesperia.width} height={allyHesperia.height} loading="lazy" decoding="async" />
-      </div>
-      <div class="logo-container">
-        <img src={allyUjap.src} alt="UJAP" class="logo-image" width={allyUjap.width} height={allyUjap.height} loading="lazy" decoding="async" />
-      </div>
-      <div class="logo-container">
-        <img src={allyMultimax.src} alt="Multimax" class="logo-image" width={allyMultimax.width} height={allyMultimax.height} loading="lazy" decoding="async" />
-      </div>
-      <div class="logo-container">
-        <img src={allyClxSamsung.src} alt="CLXSamsung" class="logo-image" width={allyClxSamsung.width} height={allyClxSamsung.height} loading="lazy" decoding="async" />
-      </div>
-      <div class="logo-container">
-        <img src={allyAlcaldia.src} alt="Alcaldía de San Diego" class="logo-image" width={allyAlcaldia.width} height={allyAlcaldia.height} loading="lazy" decoding="async"
+        <Image
+          src={allyHesperia}
+          alt="HesperiaWTC"
+          class="logo-image"
+          width="112"
+          height="112"
+          loading="lazy"
+          decoding="async"
         />
       </div>
       <div class="logo-container">
-        <img src={allyScgc.src} alt="Secretaría de Cultura Gobernación de Carabobo" class="logo-image" width={allyScgc.width} height={allyScgc.height} loading="lazy" decoding="async" />
+        <Image
+          src={allyUjap}
+          alt="UJAP"
+          class="logo-image"
+          width="112"
+          height="112"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="logo-container">
+        <Image
+          src={allyMultimax}
+          alt="Multimax"
+          class="logo-image"
+          width="112"
+          height="112"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="logo-container">
+        <Image
+          src={allyClxSamsung}
+          alt="CLXSamsung"
+          class="logo-image"
+          width="112"
+          height="112"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="logo-container">
+        <img
+          src={allyAlcaldia.src}
+          alt="Alcaldía de San Diego"
+          class="logo-image"
+          width={allyAlcaldia.width}
+          height={allyAlcaldia.height}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="logo-container">
+        <Image
+          src={allyScgc}
+          alt="Secretaría de Cultura Gobernación de Carabobo"
+          class="logo-image"
+          width="112"
+          height="112"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
     </div>
   </div>

@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import orchestraConcert from "@assets/images/orchestra/orchestra-concert.webp";
+
 // Sección de Agrupaciones para la página principal
 // Diseño profesional acorde al resto de la web
 ---
@@ -17,8 +20,8 @@
 
         <!-- Imagen destacada -->
         <div class="image-container">
-            <img
-                src="https://images.unsplash.com/photo-1551696785-927d4ac2d35b?w=800&auto=format&fit=crop&q=80"
+            <Image
+                src={orchestraConcert}
                 alt="Orquesta Sinfónica en concierto"
                 class="featured-image"
                 width="800"

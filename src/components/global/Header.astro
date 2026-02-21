@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import logoSimple from "@assets/images/logo/logosimple.webp";
 
 // Dynamically generate navigation from pages directory
@@ -204,12 +205,12 @@ const navLinks = navArray;
     <!-- Logo -->
     <a href="/" class="logo-link group">
       <div class="flex items-center gap-4">
-        <img
-          src={logoSimple.src}
+        <Image
+          src={logoSimple}
           alt="Logo de la Fundación Orquesta Sinfónica de Carabobo"
           class="logo-image drop-shadow-lg transition-transform duration-300 group-hover:scale-105"
-          width={logoSimple.width}
-          height={logoSimple.height}
+          width="150"
+          height="56"
           loading="eager"
           fetchpriority="high"
         />

@@ -1,5 +1,7 @@
 ---
-
+import { Image } from "astro:assets";
+import openBook from "@assets/images/book/OpenBook.webp";
+import gente from "@assets/images/book/Gente.webp";
 ---
 
 <div class="max-w-7xl mx-auto px-4 lg:px-8 my-8">
@@ -25,10 +27,10 @@
       <div
         class="md:col-span-2 row-span-2 group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
       >
-        <img
+        <Image
           alt="Libro abierto"
           class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-          src="OpenBook.webp"
+          src={openBook}
           width="800"
           height="600"
           loading="lazy"
@@ -62,10 +64,10 @@
       <div
         class="group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
       >
-        <img
+        <Image
           alt="Detalle de partituras antiguas"
           class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-          src="Gente.webp"
+          src={gente}
           width="800"
           height="600"
           loading="lazy"
