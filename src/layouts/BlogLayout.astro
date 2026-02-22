@@ -2,7 +2,14 @@
 import BaseLayout from "./BaseLayout.astro";
 ---
 
-<BaseLayout title="Blog">
+<BaseLayout title="Blog - Orquesta Sinfónica de Carabobo">
   <slot name="head" slot="head" />
+
+  <meta
+    name="description"
+    content="Blog de la Orquesta Sinfónica de Carabobo - Noticias, eventos, conciertos, y artículos sobre música clásica y cultura en Venezuela."
+    slot="head"
+  />
+
   <slot />
 </BaseLayout>
