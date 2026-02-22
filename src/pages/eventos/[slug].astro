@@ -80,80 +80,82 @@ const featuredImage = getImageUrl(evento);
     </div>
   </div>
 
-  <main class="container mx-auto px-4 py-16">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-      {/* Contenido Principal */}
-      <div class="lg:col-span-2">
-        <div class="prose prose-lg prose-indigo max-w-none text-white">
-          <div set:html={evento.content.rendered} />
-        </div>
-      </div>
-
-      {/* Barra Lateral */}
-      <aside class="space-y-8">
-        <div
-          class="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-100 sticky top-8"
-        >
-          <h3 class="text-xl font-bold text-gray-900 mb-6 border-b pb-2">
-            Detalles del Evento
-          </h3>
-
-          <ul class="space-y-4">
-            <li class="flex items-start">
-              <div class="bg-white p-2 rounded shadow-sm mr-4 text-primary">
-                📅
-              </div>
-              <div>
-                <p class="text-sm text-gray-500 font-semibold">Fecha</p>
-                <p class="text-gray-900 capitalize">
-                  {
-                    evento.acf?.event_date
-                      ? formatAcfDate(evento.acf.event_date)
-                      : "Por confirmar"
-                  }
-                </p>
-              </div>
-            </li>
-
-            <li class="flex items-start">
-              <div class="bg-white p-2 rounded shadow-sm mr-4 text-primary">
-                ⏰
-              </div>
-              <div>
-                <p class="text-sm text-gray-500 font-semibold">Hora</p>
-                <p class="text-gray-900">
-                  {
-                    evento.acf?.event_time
-                      ? evento.acf.event_time.slice(0, 5) + " hrs"
-                      : "Por confirmar"
-                  }
-                </p>
-              </div>
-            </li>
-
-            <li class="flex items-start">
-              <div class="bg-white p-2 rounded shadow-sm mr-4 text-primary">
-                📍
-              </div>
-              <div>
-                <p class="text-sm text-gray-500 font-semibold">Lugar</p>
-                <p class="text-gray-900">
-                  {evento.acf?.event_venue || "Por confirmar"}
-                </p>
-              </div>
-            </li>
-          </ul>
-
-          <div class="mt-8">
-            <a
-              href="/contacto"
-              class="block w-full text-center bg-gray-900 text-white py-3 rounded-lg hover:bg-gray-800 transition-colors font-medium"
-            >
-              Contáctanos
-            </a>
+  <div class="w-full bg-background-dark flex-grow">
+    <main class="container mx-auto px-4 py-16">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        {/* Contenido Principal */}
+        <div class="lg:col-span-2">
+          <div class="prose prose-lg prose-indigo max-w-none text-text-light">
+            <div set:html={evento.content.rendered} />
           </div>
         </div>
-      </aside>
-    </div>
-  </main>
+
+        {/* Barra Lateral */}
+        <aside class="space-y-8">
+          <div
+            class="bg-surface-dark p-6 rounded-xl shadow-sm border border-border-dark sticky top-8"
+          >
+            <h3 class="text-xl font-bold text-text-light mb-6 border-b border-border-dark pb-2">
+              Detalles del Evento
+            </h3>
+
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <div class="bg-background-dark p-2 rounded shadow-sm mr-4 text-primary">
+                  📅
+                </div>
+                <div>
+                  <p class="text-sm text-text-secondary font-semibold">Fecha</p>
+                  <p class="text-text-light capitalize">
+                    {
+                      evento.acf?.event_date
+                        ? formatAcfDate(evento.acf.event_date)
+                        : "Por confirmar"
+                    }
+                  </p>
+                </div>
+              </li>
+
+              <li class="flex items-start">
+                <div class="bg-background-dark p-2 rounded shadow-sm mr-4 text-primary">
+                  ⏰
+                </div>
+                <div>
+                  <p class="text-sm text-text-secondary font-semibold">Hora</p>
+                  <p class="text-text-light">
+                    {
+                      evento.acf?.event_time
+                        ? evento.acf.event_time.slice(0, 5) + " hrs"
+                        : "Por confirmar"
+                    }
+                  </p>
+                </div>
+              </li>
+
+              <li class="flex items-start">
+                <div class="bg-background-dark p-2 rounded shadow-sm mr-4 text-primary">
+                  📍
+                </div>
+                <div>
+                  <p class="text-sm text-text-secondary font-semibold">Lugar</p>
+                  <p class="text-text-light">
+                    {evento.acf?.event_venue || "Por confirmar"}
+                  </p>
+                </div>
+              </li>
+            </ul>
+
+            <div class="mt-8">
+              <a
+                href="/contacto"
+                class="block w-full text-center bg-background-dark text-text-light py-3 rounded-lg hover:bg-surface-dark transition-colors font-medium border border-border-dark"
+              >
+                Contáctanos
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
 </Layout>

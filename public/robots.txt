@@ -1,0 +1,10 @@
+# Allow all web crawlers to scan the site
+User-agent: *
+Allow: /
+
+# (Optional) Tell bots to ignore specific folders if you ever create them
+# Disallow: /admin/
+# Disallow: /private/
+
+# Point bots directly to your sitemap
+Sitemap: https://sinfocarabobo.com/sitemap-index.xml

@@ -1,45 +1,26 @@
 ---
-import Footer from "../components/global/Footer.astro";
-import Header from "../components/global/Header.astro";
+import BaseLayout from "./BaseLayout.astro";
 import LatestBlogPosts from "../components/global/LatestBlogPosts.astro";
-import "../styles/global.css";
 
 export interface Props {
   title?: string;
   is404?: boolean;
 }
 
-const { title = "Orquesta Sinfónica de Carabobo", is404 = false } = Astro.props;
+const { title, is404 = false } = Astro.props;
+
+// Helper to clean up the logic in the template
+const showLatestPosts =
+  Astro.url.pathname !== "/" &&
+  Astro.url.pathname !== "" &&
+  !Astro.url.pathname.startsWith("/blog/page/") &&
+  !is404;
 ---
 
-<!doctype html>
-<html lang="es" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <!-- Tipografía Merriweather y Playfair Display desde Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <title>{title}</title>
-  </head><body>
-    <Header />
-    <slot />
-    {
-      Astro.url.pathname !== "/" &&
-        Astro.url.pathname !== "" &&
-        !Astro.url.pathname.startsWith("/blog/page/") &&
-        !is404 && <LatestBlogPosts />
-    }
-    <Footer />
-  </body>
-</html>
+<BaseLayout title={title}>
+  <slot name="head" slot="head" />
+
+  <slot />
+
+  {showLatestPosts && <LatestBlogPosts />}
+</BaseLayout>

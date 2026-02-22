@@ -1,36 +1,11 @@
 ---
-import Header from "../components/global/Header.astro";
-import Footer from "../components/global/Footer.astro";
+import BaseLayout from "./BaseLayout.astro";
 const { title } = Astro.props;
 ---
 
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title} · Sinfónica</title>
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <slot name="head" />
-  </head>
-  <body
-    class="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-secondary transition-colors duration-200 font-display antialiased"
-  >
-    <Header />
-
-    <main class="layout-container flex h-full grow flex-col items-center">
-      <slot />
-    </main>
-
-    <Footer />
-  </body>
-</html>
+<BaseLayout title={`${title} · Sinfónica`} bodyClass="items-center">
+  <slot name="head" slot="head" />
+  <div class="layout-container flex h-full grow flex-col items-center w-full">
+    <slot />
+  </div>
+</BaseLayout>

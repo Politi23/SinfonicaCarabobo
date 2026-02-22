@@ -1,35 +1,8 @@
 ---
-import Footer from "../components/global/Footer.astro";
-import Header from "../components/global/Header.astro";
+import BaseLayout from "./BaseLayout.astro";
 ---
 
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog</title>
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <slot name="head" />
-  </head>
-  <body
-    class="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-secondary font-display transition-colors duration-300 min-h-screen"
-  >
-    <Header />
-
-    <main>
-      <slot />
-    </main>
-
-    <Footer />
-  </body>
-</html>
+<BaseLayout title="Blog">
+  <slot name="head" slot="head" />
+  <slot />
+</BaseLayout>
