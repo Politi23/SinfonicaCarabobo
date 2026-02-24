@@ -13,21 +13,7 @@ import LatestBlogPosts from "../components/global/LatestBlogPostsIndex.astro";
     <HeroHeader />
 
     <!-- Sección de Conciertos -->
-    <ConciertosSection server:defer>
-        <div slot="fallback" class="py-16 bg-gray-50 text-center">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                    Próximos Eventos
-                </h2>
-                <div class="flex justify-center items-center h-64">
-                    <div
-                        class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"
-                    >
-                    </div>
-                </div>
-            </div>
-        </div>
-    </ConciertosSection>
+    <ConciertosSection server:defer />
 
     <!-- Sección de últimas entradas del blog -->
     <LatestBlogPosts />

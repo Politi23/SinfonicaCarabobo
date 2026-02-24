@@ -41,33 +41,42 @@ const truncatedExcerpt = truncateExcerpt(excerpt, 25);
 const imageUrl = image || logoSimpleBbg.src;
 ---
 
-<article class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col h-full">
+<article
+  class="group bg-white rounded-lg shadow transition-all duration-300 overflow-hidden flex flex-col h-full relative"
+>
+  <a
+    href={`/eventos/${slug}`}
+    class="absolute inset-0 z-10"
+    aria-label={`Ver detalles de ${title}`}></a>
+
   {/* Imagen */}
-  <div class="relative h-48 w-full overflow-hidden bg-gray-200">
-    <a href={`/eventos/${slug}`} class="block w-full h-full">
-      <img
-        src={imageUrl}
-        alt={title}
-        class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-        width="800"
-        height="600"
-        loading="lazy"
-        decoding="async"
-      />
-    </a>
+  <div class="relative h-56 w-full overflow-hidden bg-gray-100">
+    <img
+      src={imageUrl}
+      alt={title}
+      class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+      width="800"
+      height="600"
+      loading="lazy"
+      decoding="async"
+    />
+    <div
+      class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300"
+    >
+    </div>
   </div>
 
-  <div class="p-6 flex flex-col flex-grow">
+  <div class="p-6 flex flex-col flex-grow relative z-20 pointer-events-none">
     <h3
-      class="text-xl font-bold text-gray-800 mb-2"
+      class="text-xl font-serif font-medium text-gray-900 mb-3 group-hover:text-primary transition-colors"
       set:html={title}
     />
 
-    <div class="space-y-2 mb-4 text-sm text-gray-600">
-      <div class="flex items-center gap-2">
+    <div class="space-y-3 mb-6 text-sm text-gray-600 flex-grow">
+      <div class="flex items-center gap-3">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5 text-primary-500"
+          class="h-4 w-4 text-primary"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -75,19 +84,19 @@ const imageUrl = image || logoSimpleBbg.src;
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
-            stroke-width="2"
+            stroke-width="1.5"
             d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-          />
+          ></path>
         </svg>
-        <span class="capitalize">
+        <span class="capitalize tracking-wide">
           {formattedDate}
         </span>
       </div>
 
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-3">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5 text-primary-500"
+          class="h-4 w-4 text-primary"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -95,17 +104,16 @@ const imageUrl = image || logoSimpleBbg.src;
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
-            stroke-width="2"
-            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
+            stroke-width="1.5"
+            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
         </svg>
-        <span>{time.slice(0, 5)} hrs</span>
+        <span class="tracking-wide">{time.slice(0, 5)} hrs</span>
       </div>
 
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-3">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5 text-primary-500"
+          class="h-4 w-4 text-primary"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -113,32 +121,42 @@ const imageUrl = image || logoSimpleBbg.src;
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
-            stroke-width="2"
+            stroke-width="1.5"
             d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-          />
+          ></path>
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
-            stroke-width="2"
-            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-          />
+            stroke-width="1.5"
+            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
         </svg>
-        <span>{venue}</span>
+        <span class="tracking-wide line-clamp-1">{venue}</span>
       </div>
     </div>
 
-    <hr class="border-gray-100 my-2" />
-    <p class="text-gray-600 text-sm flex-grow line-clamp-2">
-      {truncatedExcerpt}
-    </p>
-
-    <div class="mt-4 pt-4">
-      <a
-        href={`/eventos/${slug}`}
-        class="block w-full text-center bg-gray-900 text-white py-2 rounded hover:bg-gray-700 transition-colors text-sm font-medium"
+    <div
+      class="pt-4 border-t border-gray-100 flex justify-between items-center"
+    >
+      <span class="text-xs uppercase tracking-widest text-gray-500 font-medium"
+        >Más información</span
       >
-        Ver detalles
-      </a>
+      <!-- <span
+        class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors duration-300"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-4 w-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+        </svg>
+      </span> -->
     </div>
   </div>
 </article>

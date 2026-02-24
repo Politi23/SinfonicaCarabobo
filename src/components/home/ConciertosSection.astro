@@ -4,7 +4,7 @@ import logoSimpleBbg from "@assets/images/logo/logosimplebbg.webp";
 import { getEventos } from "src/config/wp-eventos";
 
 import Button from "../ui/GoldenButton.astro";
-import EventoCard from "../eventos/EventoCard.astro";
+import EventoCard from "@components/eventos/EventoCard.astro";
 
 interface Props {
   perPage?: number;
@@ -14,26 +14,72 @@ const { perPage = 9 } = Astro.props as Props;
 const eventos = await getEventos(perPage);
 ---
 
-<section class="py-16 bg-gray-50">
-  <div class="container mx-auto px-4">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
-        Próximos Eventos
-      </h2>
-      <p class="mt-4 text-gray-600">
-        Acompáñanos en nuestros próximos eventos.
-      </p>
+<section class="py-16 bg-white">
+  <div class="container mx-auto">
+    <div class="flex justify-between items-end mb-6">
+      <div class="text-left">
+        <h2
+          class="text-3xl md:text-4xl font-serif font-medium text-gray-900 tracking-tight"
+        >
+          Próximos Eventos
+        </h2>
+        <div class="h-1 w-20 bg-primary mt-4"></div>
+      </div>
+
+      <!-- Navigation Arrows (Top Right) -->
+      <div class="hidden md:flex gap-2">
+        <button
+          id="prev-btn"
+          class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:border-primary hover:text-primary transition-all duration-300 focus:outline-none"
+          aria-label="Previous"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+
+        <button
+          id="next-btn"
+          class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:border-primary hover:text-primary transition-all duration-300 focus:outline-none"
+          aria-label="Next"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
     </div>
 
-    <div class="relative group">
-      <div class="overflow-hidden">
+    <div class="relative">
+      <div class="overflow-hidden -mx-4 px-4 py-2">
+        <!-- Added padding for shadows -->
         <div
           id="concert-track"
-          class="flex transition-transform duration-500 ease-in-out"
+          class="flex transition-transform duration-700 ease-out"
         >
           {
             eventos.map((evento) => (
-              <div class="flex-none w-full md:w-1/2 lg:w-1/3 px-4 box-border pb-6">
+              <div class="flex-none w-full md:w-1/2 lg:w-1/3 px-4 box-border">
                 <EventoCard
                   title={evento.title.rendered}
                   excerpt={evento.acf.event_description}
@@ -52,47 +98,8 @@ const eventos = await getEventos(perPage);
         </div>
       </div>
 
-      <button
-        id="prev-btn"
-        class="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-1/3 md:-translate-x-1/4 bg-white text-gray-800 rounded-full p-3 shadow-lg hover:bg-gray-100 focus:outline-none z-10 border border-primary hidden md:block"
-        aria-label="Previous"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M15 19l-7-7 7-7"></path>
-        </svg>
-      </button>
-
-      <button
-        id="next-btn"
-        class="absolute top-1/2 right-0 transform -translate-y-1/2 translate-x-1/3 md:translate-x-1/4 bg-white text-gray-800 rounded-full p-3 shadow-lg hover:bg-gray-100 focus:outline-none z-10 border border-primary hidden md:block"
-        aria-label="Next"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M9 5l7 7-7 7"></path>
-        </svg>
-      </button>
-
-      <div id="carousel-dots" class="flex justify-center mt-8 space-x-2"></div>
+      <!-- Dots container for navigation -->
+      <div id="carousel-dots" class="flex justify-center mt-4 space-x-2"></div>
     </div>
 
     {
@@ -105,7 +112,7 @@ const eventos = await getEventos(perPage);
       )
     }
 
-    <div class="text-center mt-12">
+    <div class="text-center mt-6">
       <Button href="/eventos"> Ver todos los eventos </Button>
     </div>
   </div>
