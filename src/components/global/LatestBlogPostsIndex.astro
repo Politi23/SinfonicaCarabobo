@@ -2,6 +2,8 @@
 import { getBlogs } from "../../config/wp-blogs";
 import BlogCard from "../blog/BlogCard.astro";
 import Button from "../ui/GoldenButton.astro";
+import SectionTitle from "../ui/SectionTitle.astro";
+import NavigationArrows from "../ui/NavigationArrows.astro";
 
 export interface Props {
   title?: string;
@@ -13,7 +15,6 @@ export interface Props {
 
 const {
   title = "Últimas Entradas del Blog",
-  subtitle = "Mantente al día con nuestras últimas noticias y artículos.",
   numberOfPosts = 3,
   showViewAllButton = true,
   viewAllButtonText = "Ver todos los artículos",
@@ -23,21 +24,13 @@ const {
 const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
 ---
 
-<section class="py-16 bg-background-light">
-  <div class="container mx-auto px-4">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold text-text-dark">
-        {title}
-      </h2>
-      <p class="mt-4 text-text-dark/80">
-        {subtitle}
-      </p>
-    </div>
+<section class="pb-12 bg-white">
+  <div class="container mx-auto">
+    <SectionTitle title={title} />
 
     {
       latestPosts.length > 0 ? (
         <>
-          {/* Desktop Grid */}
           <div class="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {latestPosts.map((post) => (
               <BlogCard
@@ -51,9 +44,8 @@ const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
             ))}
           </div>
 
-          {/* Mobile Carousel */}
           <div class="md:hidden relative">
-            <div class="overflow-hidden">
+            <div class="overflow-hidden -mx-4 px-4 py-8">
               <div
                 id="blog-track-index"
                 class="flex transition-transform duration-500 ease-in-out"
@@ -75,13 +67,13 @@ const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
 
             <div
               id="blog-dots-index"
-              class="flex justify-center mt-8 space-x-2"
+              class="flex justify-center mt-4 space-x-2"
             />
           </div>
         </>
       ) : (
         <div class="text-center py-10">
-          <p class="text-text-dark/60 text-lg">
+          <p class="text-gray-500 text-lg">
             No hay entradas del blog disponibles por el momento.
           </p>
         </div>

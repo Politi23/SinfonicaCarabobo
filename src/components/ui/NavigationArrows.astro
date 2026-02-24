@@ -1,0 +1,51 @@
+---
+export interface Props {
+  prevId?: string;
+  nextId?: string;
+  className?: string;
+}
+
+const { prevId = "prev-btn", nextId = "next-btn", className = "" } = Astro.props;
+---
+
+<div class={`flex gap-2 ${className}`}>
+  <button
+    id={prevId}
+    class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:border-primary hover:text-primary transition-all duration-300 focus:outline-none"
+    aria-label="Previous"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-5 w-5"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.5"
+        d="M15 19l-7-7 7-7"></path>
+    </svg>
+  </button>
+
+  <button
+    id={nextId}
+    class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:border-primary hover:text-primary transition-all duration-300 focus:outline-none"
+    aria-label="Next"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-5 w-5"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.5"
+        d="M9 5l7 7-7 7"></path>
+    </svg>
+  </button>
+</div>
