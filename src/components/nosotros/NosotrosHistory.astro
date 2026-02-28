@@ -2,108 +2,122 @@
 import estudiantina from "@assets/images/orchestra/estudiantina.webp";
 ---
 
-<!-- HISTORY SECTION: TIMELINE ELEMENTS -->
-<section class="py-32 bg-gray-50 relative overflow-hidden">
-    <!-- Subtle Background watermark -->
-    <div
-        class="absolute top-10 right-10 text-[12rem] md:text-[18rem] font-display font-bold text-gray-200 pointer-events-none select-none leading-none opacity-50"
-    >
-        49
-    </div>
-
+<!-- HISTORY SECTION: TIMELINE -->
+<section class="py-16 md:py-24 bg-gray-50">
     <div class="container mx-auto px-6 max-w-6xl relative">
-        <div class="mb-24">
+        <div class="max-w-4xl mx-auto">
             <span
                 class="text-secondary text-xs font-bold tracking-[0.4em] uppercase mb-4 block italic"
                 >Nuestra Trayectoria</span
             >
             <h2
-                class="text-5xl md:text-8xl font-display font-medium text-black leading-none tracking-tighter uppercase"
+                class="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-12 leading-tight relative"
             >
-                Historia <br /><span class="text-secondary font-bold italic"
+                Historia <br /><span class="text-secondary italic"
                     >y Prestigio</span
                 >
             </h2>
         </div>
 
-        <div
-            class="grid md:grid-cols-2 gap-1 bg-gray-200 border border-gray-200 shadow-xl"
-        >
+        <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <div
-                class="bg-white p-12 border-l-4 border-transparent hover:border-secondary transition-colors duration-500"
+                class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-secondary hover:shadow-xl transition-shadow duration-300"
             >
                 <span
-                    class="text-primary font-display text-4xl mb-6 block font-bold"
+                    class="text-primary font-display text-3xl mb-4 block font-bold"
                     >1976</span
                 >
                 <h3
-                    class="text-2xl font-bold uppercase tracking-tight mb-4 text-black"
+                    class="text-xl font-bold uppercase tracking-tight mb-3 text-gray-900"
                 >
                     Fundación
                 </h3>
-                <p class="text-gray-500 leading-relaxed font-light">
+                <p class="text-gray-700 leading-relaxed">
                     Nacemos en octubre de 1976 para convertirnos en el eje
                     fundamental de la cultura carabobeña, iniciando un camino de
-                    excellence ininterrumpida.
+                    excelencia ininterrumpida.
                 </p>
             </div>
             <div
-                class="bg-white p-12 border-l-4 border-transparent hover:border-secondary transition-colors duration-500"
+                class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-secondary hover:shadow-xl transition-shadow duration-300"
             >
                 <span
-                    class="text-primary font-display text-4xl mb-6 block font-bold"
+                    class="text-primary font-display text-3xl mb-4 block font-bold"
                     >1998</span
                 >
                 <h3
-                    class="text-2xl font-bold uppercase tracking-tight mb-4 text-black"
+                    class="text-xl font-bold uppercase tracking-tight mb-3 text-gray-900"
                 >
                     Hito Universal
                 </h3>
-                <p class="text-gray-500 leading-relaxed font-light">
+                <p class="text-gray-700 leading-relaxed">
                     Acompañamos al legendario tenor Luciano Pavarotti en su
                     única presentación en Venezuela, consolidando nuestra
                     calidad interpretativa a nivel mundial.
                 </p>
             </div>
             <div
-                class="bg-white p-12 border-l-4 border-transparent hover:border-secondary transition-colors duration-500"
+                class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-secondary hover:shadow-xl transition-shadow duration-300"
             >
                 <span
-                    class="text-primary font-display text-4xl mb-6 block font-bold"
+                    class="text-primary font-display text-3xl mb-4 block font-bold"
                     >2021</span
                 >
                 <h3
-                    class="text-2xl font-bold uppercase tracking-tight mb-4 text-black"
+                    class="text-xl font-bold uppercase tracking-tight mb-3 text-gray-900"
                 >
                     UNESCO
                 </h3>
-                <p class="text-gray-500 leading-relaxed font-light">
+                <p class="text-gray-700 leading-relaxed">
                     Fuimos reconocidos por la UNESCO como "Embajadores de la
                     Paz", un honor que ratifica nuestra labor social y
                     compromiso con la humanidad.
                 </p>
             </div>
             <div
-                class="bg-white p-12 text-center flex flex-col justify-center items-center overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-700"
+                class="bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-200 flex flex-col justify-center items-center text-center overflow-hidden relative"
             >
                 <div
-                    class="absolute inset-0 z-0 opacity-10 bg-cover bg-center"
+                    class="absolute inset-0 z-0 opacity-10 bg-cover bg-center grayscale"
                     style={`background-image: url('${estudiantina.src}');`}
                 >
                 </div>
                 <div class="relative z-10">
                     <h3
-                        class="text-3xl font-display font-medium text-black uppercase italic mb-2 tracking-tighter"
+                        class="text-2xl font-display font-bold text-gray-900 uppercase italic mb-2 tracking-tight"
                     >
                         Patrimonio
                     </h3>
                     <p
-                        class="text-[10px] font-bold tracking-[0.3em] uppercase text-secondary"
+                        class="text-xs font-bold tracking-[0.3em] uppercase text-secondary"
                     >
                         Inmaterial de Carabobo
                     </p>
                 </div>
             </div>
+        </div>
+
+        <!-- Leer Historia Completa Button -->
+        <div class="text-center mt-12">
+            <a
+                href="/nosotros/historia"
+                class="inline-flex items-center gap-3 px-8 py-4 bg-secondary text-white text-sm font-bold uppercase tracking-[0.3em] rounded-lg shadow-lg hover:bg-primary transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 group"
+            >
+                <span>Leer historia completa</span>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 group-hover:translate-x-1 transition-transform"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+            </a>
         </div>
     </div>
 </section>
