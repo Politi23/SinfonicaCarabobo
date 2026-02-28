@@ -190,9 +190,22 @@ navArray.sort((a, b) => {
 // Sort dropdown items alphabetically
 navArray.forEach((item) => {
   if (item.dropdown) {
-    item.dropdown.sort((a: { label: string }, b: { label: any }) =>
-      a.label.localeCompare(b.label),
-    );
+    // Custom sort order for Nosotros dropdown
+    if (item.href === "/nosotros") {
+      const customOrder = ["Nosotros", "Reconocimientos", "Discografia"];
+      item.dropdown.sort((a: { label: string }, b: { label: any }) => {
+        const aIndex = customOrder.indexOf(a.label);
+        const bIndex = customOrder.indexOf(b.label);
+        if (aIndex !== -1 && bIndex !== -1) {
+          return aIndex - bIndex;
+        }
+        return a.label.localeCompare(b.label);
+      });
+    } else {
+      item.dropdown.sort((a: { label: string }, b: { label: any }) =>
+        a.label.localeCompare(b.label),
+      );
+    }
   }
 });
 
