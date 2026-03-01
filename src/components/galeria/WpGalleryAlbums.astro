@@ -1,0 +1,152 @@
+---
+import { getAllAlbums } from "../../config/wp-albums";
+
+export interface Props {
+  currentPage?: number;
+}
+
+const { currentPage = 1 } = Astro.props;
+const perPage = 6;
+
+let albums: any[] = [];
+let totalPages = 1;
+
+try {
+  // Obtenemos todos los álbumes
+  const allAlbums = await getAllAlbums();
+
+  // Calculamos el total de páginas
+  totalPages = Math.max(1, Math.ceil(allAlbums.length / perPage));
+
+  // Calculamos el índice de inicio y fin para la página actual
+  const startIndex = (currentPage - 1) * perPage;
+  const endIndex = startIndex + perPage;
+  albums = allAlbums.slice(startIndex, endIndex);
+} catch (error) {
+  console.error("Error cargando álbumes:", error);
+}
+---
+
+<section class="py-16 md:py-24 bg-gray-50">
+  <div class="container mx-auto px-6 max-w-7xl">
+    <div class="max-w-4xl mx-auto mb-12">
+      <span
+        class="text-secondary text-xs font-bold uppercase tracking-[0.4em] mb-4 block italic"
+      >
+        Eventos Musicales
+      </span>
+      <h2
+        class="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-4"
+      >
+        Álbumes de Eventos
+      </h2>
+      <div class="w-16 h-1 bg-secondary"></div>
+      <p class="text-gray-600 mt-6 text-lg leading-relaxed">
+        Explora nuestra colección de álbumes fotográficos de conciertos,
+        presentaciones y eventos musicales especiales.
+      </p>
+    </div>
+
+    {
+      albums.length > 0 ? (
+        <>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {albums.map((album) => (
+              <a
+                href={`/galeria/eventos/${album.slug}`}
+                class="group block bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl"
+              >
+                <div class="relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src={album.coverImage}
+                    alt={album.title}
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-300" />
+
+                  <div class="absolute bottom-3 right-3 bg-black/80 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg">
+                    <span class="material-icons text-sm">photo_library</span>
+                    {album.photos.length}
+                  </div>
+                </div>
+
+                <div class="p-6">
+                  <h3 class="text-xl font-bold text-gray-900 group-hover:text-primary transition-colors leading-tight mb-2">
+                    {album.title}
+                  </h3>
+                  <p class="text-gray-500 text-sm font-medium flex items-center gap-1">
+                    <span class="material-icons text-sm">event</span>
+                    {new Date(album.date).toLocaleDateString("es-VE", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <div class="mt-16 flex justify-center">
+            <nav
+              aria-label="Pagination"
+              class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
+            >
+              {/* Botón Anterior */}
+              <a
+                href={
+                  currentPage > 1
+                    ? `/galeria/eventos/page/${currentPage - 1}`
+                    : "#"
+                }
+                class={`relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 ${currentPage === 1 ? "pointer-events-none opacity-50" : ""}`}
+              >
+                <span class="sr-only">Anterior</span>
+                <span class="material-icons">chevron_left</span>
+              </a>
+
+              {/* Números */}
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (page) => (
+                  <a
+                    href={`/galeria/eventos/page/${page}`}
+                    class={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${
+                      currentPage === page
+                        ? "z-10 bg-primary/10 border-primary text-primary"
+                        : "bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
+                    } ${page > 3 && page < totalPages - 1 ? "hidden md:inline-flex" : ""}`}
+                  >
+                    {page}
+                  </a>
+                ),
+              )}
+
+              {/* Botón Siguiente */}
+              <a
+                href={
+                  currentPage < totalPages
+                    ? `/galeria/eventos/page/${currentPage + 1}`
+                    : "#"
+                }
+                class={`relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 ${currentPage === totalPages ? "pointer-events-none opacity-50" : ""}`}
+              >
+                <span class="sr-only">Siguiente</span>
+                <span class="material-icons">chevron_right</span>
+              </a>
+            </nav>
+          </div>
+        </>
+      ) : (
+        <div class="text-center py-16 bg-white rounded-xl border border-gray-200">
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+            No se pudieron cargar los álbumes
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Lo sentimos, hubo un problema al intentar acceder a los álbumes de
+            nuestra galería. Por favor, inténtalo más tarde.
+          </p>
+        </div>
+      )
+    }
+  </div>
+</section>

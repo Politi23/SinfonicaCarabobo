@@ -1,4 +1,4 @@
-import { fetchAPI } from "./wp-client";
+import { fetchAPI, domain } from "./wp-client";
 import { cleanText, extractImagesFromContent } from "./wp-utils";
 import logoSimpleBbg from "@assets/images/logo/logosimplebbg.webp";
 
@@ -37,10 +37,10 @@ export interface WPAlbum {
 	photos: string[];
 }
 
-export const getAlbums = async (): Promise<WPAlbum[]> => {
+export const getAlbums = async (page = 1, perPage = 9): Promise<WPAlbum[]> => {
 	try {
-		// Pedimos albumes, imagen destacada y pedimos 100 por página
-		const data = await fetchAPI("/album?_embed=1&per_page=100");
+		// Pedimos albumes, imagen destacada y paginación
+		const data = await fetchAPI(`/album?_embed=1&per_page=${perPage}&page=${page}`);
 
 		if (!data || !Array.isArray(data)) return [];
 
@@ -48,6 +48,38 @@ export const getAlbums = async (): Promise<WPAlbum[]> => {
 	} catch (error) {
 		console.error("Error obteniendo los álbumes:", error);
 		return [];
+	}
+};
+
+// Función para obtener todos los álbumes (sin paginación)
+export const getAllAlbums = async (): Promise<WPAlbum[]> => {
+	try {
+		const data = await fetchAPI(`/album?_embed=1&per_page=100`);
+
+		if (!data || !Array.isArray(data)) return [];
+
+		return data.map(processAlbum);
+	} catch (error) {
+		console.error("Error obteniendo los álbumes:", error);
+		return [];
+	}
+};
+
+// Función para obtener información de paginación
+export const getAlbumsInfo = async (): Promise<{ total: number; totalPages: number }> => {
+	try {
+		// Hacemos fetch manual (HEAD) para obtener los headers de paginación
+		const res = await fetch(`${domain}/wp-json/wp/v2/album?per_page=1`, {
+			method: "HEAD",
+		});
+
+		return {
+			total: Number(res.headers.get("X-WP-Total") || 0),
+			totalPages: Number(res.headers.get("X-WP-TotalPages") || 0),
+		};
+	} catch (error) {
+		console.error("Error obteniendo información de álbumes:", error);
+		return { total: 0, totalPages: 1 };
 	}
 };
 

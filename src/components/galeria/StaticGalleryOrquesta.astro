@@ -1,0 +1,30 @@
+---
+import StaticGallerySection from "./StaticGallerySection.astro";
+
+// Importar imágenes estáticas de orquesta
+const orquestaImages = import.meta.glob<{ default: ImageMetadata }>(
+  "../../assets/images/galeria/orquesta/*.{jpg,jpeg,png,webp,gif,JPG,JPEG,PNG,WEBP,GIF}",
+  { eager: true },
+);
+
+const processImages = (images: Record<string, { default: ImageMetadata }>) => {
+  return Object.values(images).map((img) => ({
+    src: img.default,
+    alt: "Foto de orquesta",
+  }));
+};
+
+const orquestaGallery = processImages(orquestaImages);
+---
+
+{
+  orquestaGallery.length > 0 && (
+    <StaticGallerySection
+      images={orquestaGallery}
+      columns={3}
+      title="Orquesta Sinfónica"
+      subtitle="Música en Escena"
+      sectionId="orquesta"
+    />
+  )
+}

@@ -1,0 +1,22 @@
+---
+import Layout from "@layouts/Layout.astro";
+import MainHero from "../../../components/sections/MainHero.astro";
+import StaticGalleryOrquesta from "../../../components/galeria/StaticGalleryOrquesta.astro";
+import StaticGalleryFundacion from "../../../components/galeria/StaticGalleryFundacion.astro";
+import StaticGalleryAcademia from "../../../components/galeria/StaticGalleryAcademia.astro";
+---
+
+<Layout title="Imágenes - Galería Estática">
+  <MainHero
+    title="Nuestras"
+    titleHighlight="Imágenes"
+    subtitle="Un vistazo a nuestros momentos"
+  />
+
+  <main class="bg-white text-gray-800 min-h-screen">
+    <!-- Static Gallery Sections -->
+    <StaticGalleryOrquesta />
+    <StaticGalleryFundacion />
+    <StaticGalleryAcademia />
+  </main>
+</Layout>

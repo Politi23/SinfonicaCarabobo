@@ -2,7 +2,7 @@
 const { institutionalRecognitions } = Astro.props;
 ---
 
-<!-- Timeline / List section (Minimalist) -->
+<!-- Timeline / List section -->
 <section class="py-32 bg-white">
     <div class="container mx-auto px-6 max-w-6xl">
         <div
@@ -10,7 +10,7 @@ const { institutionalRecognitions } = Astro.props;
         >
             <div class="max-w-2xl">
                 <h3
-                    class="text-4xl md:text-5xl font-display font-bold text-black uppercase tracking-tight"
+                    class="text-3xl md:text-5xl font-display font-bold text-gray-900"
                 >
                     Menciones y <br /><span class="text-secondary italic"
                         >Distinciones</span
@@ -19,7 +19,7 @@ const { institutionalRecognitions } = Astro.props;
             </div>
             <div class="h-px flex-grow bg-gray-100 mb-4 hidden md:block"></div>
             <span
-                class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.5em] mb-4"
+                class="text-secondary text-xs font-bold uppercase tracking-[0.4em] mb-4 italic"
                 >Registro Histórico</span
             >
         </div>
@@ -31,7 +31,7 @@ const { institutionalRecognitions } = Astro.props;
                         <span class="text-sm font-bold text-secondary uppercase tracking-widest min-w-[60px]">
                             {item.year}
                         </span>
-                        <p class="text-[15px] text-gray-700 font-medium leading-[1.6] group-hover:text-black transition-colors">
+                        <p class="text-[15px] text-gray-700 font-medium leading-[1.6] group-hover:text-gray-900 transition-colors">
                             {item.event}
                         </p>
                     </div>
