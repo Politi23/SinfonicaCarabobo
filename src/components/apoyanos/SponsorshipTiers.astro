@@ -62,9 +62,9 @@ const tiers = [
         <div
             class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8"
         >
-            <div class="max-w-2xl select-none">
+            <div class="max-w-2xl">
                 <h2
-                    class="text-4xl md:text-6xl font-display font-light leading-tight text-black"
+                    class="text-4xl md:text-6xl font-display font-bold leading-tight text-black"
                 >
                     Niveles de <br />
                     <span class="font-bold text-secondary italic"
@@ -73,10 +73,9 @@ const tiers = [
                 </h2>
             </div>
             <p
-                class="text-gray-600 text-lg max-w-sm font-light border-l border-secondary/30 pl-6 leading-relaxed select-none"
+                class="text-gray-600 text-lg max-w-sm font-light border-l-2 border-secondary/50 pl-6 leading-relaxed"
             >
-                Seleccione el alcance estratégico para su marca y forme parte de
-                nuestra historia.
+            Conozca nuestras opciones de patrocinio y elija el nivel de impacto que desea proyectar.
             </p>
         </div>
 
@@ -84,7 +83,7 @@ const tiers = [
             <div class="grid grid-cols-5">
                 <!-- Etiquetas de Beneficios -->
                 <div class="bg-gray-50/50 border-r border-gray-100 flex flex-col">
-                    <div class="h-48 p-10 flex flex-col justify-end">
+                    <div class="h-48 p-10 flex flex-col justify-evenly text-center">
                         <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary mb-2 italic">Estructura</span>
                         <h4 class="text-sm font-bold uppercase tracking-widest text-black">Beneficios</h4>
                     </div>
@@ -170,7 +169,7 @@ const tiers = [
                             <!-- Valores -->
                             {currentBenefits.map((benefit) => (
                                 <div class={`p-8 border-t flex items-center justify-center text-center h-[120px] ${isPlatinum ? 'border-gray-300/50' : 'border-gray-100'}`}>
-                                    <span class={`text-sm leading-relaxed ${benefit === "—" ? 'text-gray-300' : 'text-gray-600'} ${isGold || isPlatinum ? 'font-medium text-black' : ''}`}>
+                                    <span class={`text-sm leading-relaxed text-black ${benefit === "—" ? 'text-gray-300' : ''}`}>
                                         {benefit}
                                     </span>
                                 </div>
@@ -226,7 +225,7 @@ const tiers = [
             }
         </div>
 
-        <div class="mt-12 flex items-center gap-4 select-none">
+        <div class="mt-12 flex items-center gap-4">
             <div
                 class="h-[1px] flex-grow bg-gradient-to-r from-secondary/40 to-transparent"
             >
@@ -239,10 +238,3 @@ const tiers = [
         </div>
     </div>
 </section>
-
-<style>
-    .select-none {
-        user-select: none;
-        -webkit-user-select: none;
-    }
-</style>
