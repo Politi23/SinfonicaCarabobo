@@ -1,6 +1,14 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import MainHero from "../../components/sections/MainHero.astro";
+import docFundacion from "@assets/images/historia/Documento 7_25.webp";
+import docLegado from "@assets/images/historia/Documento 7_26.webp";
+import pfm from "@assets/images/historia/PFM 2.webp";
+import joseCarmelo from "@assets/images/historia/jose-carmelo-calabrese-7.webp";
+import nuevaEra from "@assets/images/historia/IMG_20231009_212924_714.webp";
+import versatilidad from "@assets/images/historia/OSC.webp";
+import pavarotti from "@assets/images/historia/cantata criolla 1999 Alfredo celis_2.webp";
+import beethoven from "@assets/images/historia/Documento 7_31.webp";
 ---
 
 <Layout title="Nuestra Historia - Orquesta Sinfónica de Carabobo">
@@ -95,6 +103,18 @@ import MainHero from "../../components/sections/MainHero.astro";
                         >, y fundando así la era dorada y profesional de la
                         institución.
                     </p>
+                    <div class="flex gap-4 my-6">
+                        <img
+                            src={docFundacion.src}
+                            alt="Documento histórico de la fundación de la Orquesta Sinfónica de Carabobo"
+                            class="w-1/2 max-w-md rounded-xl shadow-lg"
+                        />
+                        <img
+                            src={nuevaEra.src}
+                            alt="Orquesta Sinfónica de Carabobo en concierto"
+                            class="w-1/2 max-w-md rounded-xl shadow-lg"
+                        />
+                    </div>
                 </section>
 
                 <!-- El Legado Calabrese -->
@@ -119,6 +139,11 @@ import MainHero from "../../components/sections/MainHero.astro";
                         país y de Latinoamérica, asumiendo siempre proyectos exigentes
                         que llevó a cabo con gran éxito y marcando una pauta en Venezuela.
                     </p>
+                    <img
+                        src={docLegado.src}
+                        alt="Documento histórico del legado del Maestro José Calabrese"
+                        class="block mx-auto my-6 max-w-md rounded-xl shadow-lg"
+                    />
                 </section>
 
                 <!-- La Nueva Era -->
@@ -146,6 +171,18 @@ import MainHero from "../../components/sections/MainHero.astro";
                         nuevos proyectos y propósitos continúa llevando a la
                         agrupación por el camino de éxito que dejó su antecesor.
                     </p>
+                    <div class="flex gap-4 my-6">
+                        <img
+                            src={joseCarmelo.src}
+                            alt="Maestro José Carmelo Calabrese, Director Artístico desde 2019"
+                            class="w-1/2 max-w-md rounded-xl shadow-lg"
+                        />
+                        <img
+                            src={pfm.src}
+                            alt="Maestro José Carmelo Calabrese en concierto"
+                            class="w-1/2 max-w-md rounded-xl shadow-lg"
+                        />
+                    </div>
                 </section>
 
                 <!-- Versatilidad Artística -->
@@ -171,6 +208,11 @@ import MainHero from "../../components/sections/MainHero.astro";
                         por la mejor música venezolana y latinoamericana de
                         todos los tiempos.
                     </p>
+                    <img
+                        src={versatilidad.src}
+                        alt="Orquesta Sinfónica de Carabobo en presentación artística"
+                        class="block mx-auto my-6 max-w-md rounded-xl shadow-lg"
+                    />
                 </section>
 
                 <!-- Hitos Históricos -->
@@ -209,6 +251,11 @@ import MainHero from "../../components/sections/MainHero.astro";
                                 el memorable concierto realizado en la ciudad de
                                 Valencia en el año 1998.
                             </p>
+                            <img
+                                src={pavarotti.src}
+                                alt="Concierto con Luciano Pavarotti en Valencia, 1998"
+                                class="block mx-auto my-6 max-w-md rounded-xl shadow-lg"
+                            />
                         </div>
 
                         <div
@@ -224,6 +271,11 @@ import MainHero from "../../components/sections/MainHero.astro";
                                 en Venezuela en grabar en formato de CD las 9
                                 sinfonías de L. v. Beethoven.
                             </p>
+                            <img
+                                src={beethoven.src}
+                                alt="Documento histórico de la grabación de las 9 sinfonías de Beethoven"
+                                class="block mx-auto my-6 max-w-md rounded-xl shadow-lg"
+                            />
                         </div>
                     </div>
                 </section>

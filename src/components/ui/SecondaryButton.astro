@@ -1,0 +1,20 @@
+---
+interface Props {
+    href?: string;
+    class?: string;
+    [key: string]: any;
+}
+
+const { href = "/contacto", class: className, ...rest } = Astro.props;
+---
+
+<a
+    href={href}
+    class:list={[
+        "block w-full py-4 bg-secondary text-white text-center text-xs font-bold uppercase tracking-[0.3em] hover:bg-primary transition-colors rounded-lg",
+        className,
+    ]}
+    {...rest}
+>
+    <slot />
+</a>

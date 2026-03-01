@@ -1,5 +1,5 @@
 ---
-import estudiantina from "@assets/images/orchestra/estudiantina.webp";
+import oscTtc from "@assets/images/organizacion/OSC en TTC.webp";
 ---
 
 <!-- HISTORY SECTION: TIMELINE -->
@@ -75,46 +75,34 @@ import estudiantina from "@assets/images/orchestra/estudiantina.webp";
                 class="bg-gray-50 p-8 rounded-xl border border-gray-200 flex flex-col justify-center items-center text-center overflow-hidden relative"
             >
                 <div
-                    class="absolute inset-0 z-0 opacity-10 bg-cover bg-center grayscale"
-                    style={`background-image: url('${estudiantina.src}');`}
+                    class="absolute inset-0 z-0 bg-cover bg-center"
+                    style={`background-image: url('${oscTtc.src}');`}
                 >
-                </div>
-                <div class="relative z-10">
-                    <h3
-                        class="text-xl font-bold text-gray-900 uppercase italic mb-2 tracking-tight"
-                    >
-                        Patrimonio
-                    </h3>
-                    <p
-                        class="text-xs font-bold tracking-[0.3em] uppercase text-secondary"
-                    >
-                        Inmaterial de Carabobo
-                    </p>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Leer Historia Completa Button -->
-        <div class="text-center mt-12">
-            <a
-                href="/nosotros/historia"
-                class="inline-flex items-center gap-3 px-8 py-4 bg-secondary text-white text-sm font-bold uppercase tracking-[0.3em] rounded-lg hover:bg-primary transition-all duration-300 hover:-translate-y-0.5 group"
+    <!-- Leer Historia Completa Button -->
+    <div class="text-center mt-12">
+        <a
+            href="/nosotros/historia"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-secondary text-white text-sm font-bold uppercase tracking-[0.3em] rounded-lg hover:bg-primary transition-all duration-300 hover:-translate-y-0.5 group"
+        >
+            <span>Leer historia completa</span>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 group-hover:translate-x-1 transition-transform"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
             >
-                <span>Leer historia completa</span>
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 group-hover:translate-x-1 transition-transform"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                </svg>
-            </a>
-        </div>
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+        </a>
     </div>
 </section>
