@@ -1,16 +1,50 @@
 ---
 import imageGrid from "@assets/images/backgrounds/image-grid.webp";
+
+// Extraemos los beneficios a un arreglo para mantener el código HTML súper limpio
+const benefits = [
+    {
+        num: "01",
+        title: "Difusión Digital",
+        desc: "Presencia estratégica como patrocinante oficial en nuestro ecosistema de redes y medios digitales.",
+    },
+    {
+        num: "02",
+        title: "Exclusividad",
+        desc: "Ubicación preferencial y privilegios de acceso en nuestra cartelera de conciertos de temporada.",
+    },
+    {
+        num: "03",
+        title: "Activación",
+        desc: "Espacios de networking y stands de marca en los foyers de las salas de conciertos.",
+    },
+    {
+        num: "04",
+        title: "Multimedia",
+        desc: "Producción de contenido audiovisual de alta gama vinculando los valores de su marca.",
+    },
+    {
+        num: "05",
+        title: "Presencia en Vivo",
+        desc: "Reconocimiento público y menciones de honor durante el desarrollo de nuestras galas.",
+    },
+    {
+        num: "06",
+        title: "Identidad Aliada",
+        desc: "Material promocional físico de gran formato compartiendo la identidad visual de su empresa.",
+    },
+];
 ---
 
 <section class="relative py-24 bg-gray-950 text-white overflow-hidden">
     <div
-        class="absolute inset-0 z-0 opacity-45 bg-cover bg-fixed bg-center"
+        class="absolute inset-0 z-0 opacity-40 bg-cover bg-fixed bg-center"
         style={`background-image: url('${imageGrid.src}');`}
     >
     </div>
 
     <div
-        class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80 z-0"
+        class="absolute inset-0 bg-gradient-to-b from-black/95 via-black/70 to-black/95 z-0"
     >
     </div>
 
@@ -20,7 +54,7 @@ import imageGrid from "@assets/images/backgrounds/image-grid.webp";
         >
             <div class="max-w-2xl">
                 <h2
-                    class="text-4xl md:text-6xl font-display font-light leading-tight"
+                    class="text-4xl md:text-6xl font-display font-bold leading-tight"
                 >
                     Propuesta de <br />
                     <span class="font-bold text-primary italic"
@@ -29,138 +63,38 @@ import imageGrid from "@assets/images/backgrounds/image-grid.webp";
                 </h2>
             </div>
             <p
-                class="text-gray-300 text-lg max-w-sm font-light border-l border-primary/40 pl-6 leading-relaxed"
+                class="text-gray-300 text-lg max-w-sm font-light border-l-2 border-primary/50 pl-6 leading-relaxed"
             >
-                Potenciamos la visibilidad de su marca transformando la cultura
-                en un activo estratégico.
+                Una alianza donde el arte y la excelencia elevan el prestigio y
+                el alcance de su empresa.
             </p>
         </div>
 
         <div
-            class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 border border-white/10 overflow-hidden backdrop-blur-[2px]"
+            class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 border border-white/20 overflow-hidden backdrop-blur-md rounded-2xl shadow-2xl"
         >
-            <div
-                class="group p-10 bg-black/80 hover:bg-black/40 transition-all duration-500 border-b md:border-b-0 border-white/5"
-            >
-                <span
-                    class="block text-secondary/40 text-6xl font-display mb-10 group-hover:text-secondary transition-colors italic leading-none"
-                    >01</span
-                >
-                <h3
-                    class="text-xl font-bold mb-4 tracking-tighter uppercase text-white"
-                >
-                    Difusión Digital
-                </h3>
-                <p
-                    class="text-gray-400 leading-relaxed font-light group-hover:text-gray-200 transition-colors"
-                >
-                    Presencia estratégica como patrocinante oficial en nuestro
-                    ecosistema de redes y medios digitales.
-                </p>
-            </div>
+            {
+                benefits.map((item) => (
+                    <div class="group relative p-10 bg-black/85 hover:bg-black/40 transition-all duration-500 flex flex-col">
+                        <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-secondary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-            <div
-                class="group p-10 bg-black/80 hover:bg-black/40 transition-all duration-500 border-b md:border-b-0 border-white/5"
-            >
-                <span
-                    class="block text-secondary/40 text-6xl font-display mb-10 group-hover:text-secondary transition-colors italic leading-none"
-                    >02</span
-                >
-                <h3
-                    class="text-xl font-bold mb-4 tracking-tighter uppercase text-white"
-                >
-                    Exclusividad
-                </h3>
-                <p
-                    class="text-gray-400 leading-relaxed font-light group-hover:text-gray-200 transition-colors"
-                >
-                    Ubicación preferencial y privilegios de acceso en nuestra
-                    cartelera de conciertos de temporada.
-                </p>
-            </div>
+                        <span class="block text-secondary/30 text-6xl font-display mb-10 group-hover:text-secondary group-hover:-translate-y-2 transition-all duration-500 italic leading-none">
+                            {item.num}
+                        </span>
 
-            <div
-                class="group p-10 bg-black/80 hover:bg-black/40 transition-all duration-500 border-b md:border-b-0 border-white/5"
-            >
-                <span
-                    class="block text-secondary/40 text-6xl font-display mb-10 group-hover:text-secondary transition-colors italic leading-none"
-                    >03</span
-                >
-                <h3
-                    class="text-xl font-bold mb-4 tracking-tighter uppercase text-white"
-                >
-                    Activación
-                </h3>
-                <p
-                    class="text-gray-400 leading-relaxed font-light group-hover:text-gray-200 transition-colors"
-                >
-                    Espacios de networking y stands de marca en los foyers de
-                    las salas de conciertos.
-                </p>
-            </div>
+                        <h3 class="text-xl font-display font-bold mb-4 tracking-tighter uppercase text-white transition-colors">
+                            {item.title}
+                        </h3>
 
-            <div
-                class="group p-10 bg-black/80 hover:bg-black/40 transition-all duration-500 border-b md:border-b-0 border-white/5"
-            >
-                <span
-                    class="block text-secondary/40 text-6xl font-display mb-10 group-hover:text-secondary transition-colors italic leading-none"
-                    >04</span
-                >
-                <h3
-                    class="text-xl font-bold mb-4 tracking-tighter uppercase text-white"
-                >
-                    Multimedia
-                </h3>
-                <p
-                    class="text-gray-400 leading-relaxed font-light group-hover:text-gray-200 transition-colors"
-                >
-                    Producción de contenido audiovisual de alta gama vinculando
-                    los valores de su marca.
-                </p>
-            </div>
-
-            <div
-                class="group p-10 bg-black/80 hover:bg-black/40 transition-all duration-500 border-b md:border-b-0 border-white/5"
-            >
-                <span
-                    class="block text-secondary/40 text-6xl font-display mb-10 group-hover:text-secondary transition-colors italic leading-none"
-                    >05</span
-                >
-                <h3
-                    class="text-xl font-bold mb-4 tracking-tighter uppercase text-white"
-                >
-                    Presencia en Vivo
-                </h3>
-                <p
-                    class="text-gray-400 leading-relaxed font-light group-hover:text-gray-200 transition-colors"
-                >
-                    Reconocimiento público y menciones de honor durante el
-                    desarrollo de nuestras galas.
-                </p>
-            </div>
-
-            <div
-                class="group p-10 bg-black/80 hover:bg-black/40 transition-all duration-500"
-            >
-                <span
-                    class="block text-secondary/40 text-6xl font-display mb-10 group-hover:text-secondary transition-colors italic leading-none"
-                    >06</span
-                >
-                <h3
-                    class="text-xl font-bold mb-4 tracking-tighter uppercase text-white"
-                >
-                    Identidad Aliada
-                </h3>
-                <p
-                    class="text-gray-400 leading-relaxed font-light group-hover:text-gray-200 transition-colors"
-                >
-                    Material promocional físico de gran formato compartiendo la
-                    identidad visual de su empresa.
-                </p>
-            </div>
+                        <p class="text-gray-400 leading-relaxed font-light group-hover:text-gray-100 transition-colors">
+                            {item.desc}
+                        </p>
+                    </div>
+                ))
+            }
         </div>
 
-        <div class="mt-12 flex items-center gap-4">
+        <div class="mt-16 flex items-center gap-4">
             <div
                 class="h-[1px] flex-grow bg-gradient-to-r from-primary/50 to-transparent"
             >
