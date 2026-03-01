@@ -1,0 +1,21 @@
+---
+export const prerender = false;
+import Layout from "../../../../layouts/Layout.astro";
+import MainHero from "../../../../components/sections/MainHero.astro";
+import WpGalleryAlbums from "../../../../components/galeria/WpGalleryAlbums.astro";
+
+const { page } = Astro.params;
+const currentPage = page ? parseInt(page, 10) : 1;
+---
+
+<Layout title={`Eventos Galería - Página ${currentPage}`}>
+  <MainHero
+    title="Eventos"
+    titleHighlight="Galería"
+    subtitle="Álbumes fotográficos de nuestros conciertos y eventos musicales"
+  />
+
+  <main class="bg-white text-gray-800 min-h-screen">
+    <WpGalleryAlbums currentPage={currentPage} />
+  </main>
+</Layout>
