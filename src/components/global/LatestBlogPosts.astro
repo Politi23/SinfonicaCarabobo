@@ -1,7 +1,7 @@
 ---
 import { getBlogs } from "../../config/wp-blogs";
 import SimpleBlogCard from "../blog/SimpleBlogCard.astro";
-import Button from "../ui/GoldenButton.astro";
+import SecondaryButton from "../ui/SecondaryButton.astro";
 
 export interface Props {
   subtitle?: string;
@@ -85,9 +85,9 @@ const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
     {
       showViewAllButton && (
         <div class="text-center mt-12">
-          <Button href="/blog" class="px-6 py-2 text-sm">
+          <SecondaryButton href="/blog" class="px-6 py-2 text-sm">
             {viewAllButtonText}
-          </Button>
+          </SecondaryButton>
         </div>
       )
     }

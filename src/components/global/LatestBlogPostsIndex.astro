@@ -1,7 +1,7 @@
 ---
 import { getBlogs } from "../../config/wp-blogs";
 import BlogCard from "../blog/BlogCard.astro";
-import Button from "../ui/GoldenButton.astro";
+import SecondaryButton from "../ui/SecondaryButton.astro";
 import SectionTitle from "../ui/SectionTitle.astro";
 import NavigationArrows from "../ui/NavigationArrows.astro";
 
@@ -83,7 +83,7 @@ const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
     {
       showViewAllButton && (
         <div class="text-center mt-12">
-          <Button href="/blog">{viewAllButtonText}</Button>
+          <SecondaryButton href="/blog">{viewAllButtonText}</SecondaryButton>
         </div>
       )
     }

@@ -1,5 +1,6 @@
 ---
 import oscTtc2 from "@assets/images/organizacion/OSC en TTC 2.webp";
+import SecondaryButton from "../ui/SecondaryButton.astro";
 ---
 
 <section
@@ -122,31 +123,18 @@ import oscTtc2 from "@assets/images/organizacion/OSC en TTC 2.webp";
             <h3 class="text-2xl font-display font-bold mb-3 text-white">
                 Membresías Corporativas
             </h3>
-            <p class="text-base text-gray-300 mb-6 leading-relaxed font-serif font-light">
+            <p
+                class="text-base text-gray-300 mb-6 leading-relaxed font-serif font-light"
+            >
                 Transforme la cultura en un activo estratégico. Con nuestras
                 membresías, su empresa accederá a beneficios exclusivos como
                 asientos VIP, becas en la Academia "Maestro José Calabrese" y
                 presentaciones privadas, mientras impulsa el talento joven de
                 nuestra región.
             </p>
-            <a
-                href="/apoyanos/empresarial"
-                class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-secondary text-white font-bold py-3 px-6 rounded-xl transition-all duration-300"
-            >
+            <SecondaryButton href="/apoyanos/empresarial">
                 Conoce nuestro Programa de Aliados
-                <svg
-                    class="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                </svg>
-            </a>
+            </SecondaryButton>
         </div>
 
         <div class="inline-block relative">

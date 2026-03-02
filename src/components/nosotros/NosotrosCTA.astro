@@ -1,5 +1,6 @@
 ---
-
+import SecondaryButton from "../ui/SecondaryButton.astro";
+import PrimaryButton from "../ui/PrimaryButton.astro";
 ---
 
 <!-- CTAS -->
@@ -18,12 +19,9 @@
                     estudiante, tu presencia es vital para nuestra misión. Todo
                     apoyo es invaluable.
                 </p>
-                <a
-                    href="/contacto"
-                    class="block w-full py-4 bg-secondary text-white text-center text-xs font-bold uppercase tracking-[0.3em] hover:bg-primary transition-colors rounded-lg"
+                <SecondaryButton href="/contacto" fullWidth
+                    >Contactanos</SecondaryButton
                 >
-                    Contactanos
-                </a>
             </div>
             <div class="bg-white border border-gray-200 rounded-xl p-8 md:p-10">
                 <h3
@@ -36,12 +34,9 @@
                     Explora las oportunidades académicas y conviértete en parte
                     de la nueva generación de músicos de élite de nuestro país.
                 </p>
-                <a
-                    href="/academia"
-                    class="block w-full py-4 bg-primary text-white text-center text-xs font-bold uppercase tracking-[0.3em] hover:bg-secondary transition-colors rounded-lg"
+                <PrimaryButton href="/academia" fullWidth
+                    >Programas Académicos</PrimaryButton
                 >
-                    Programas Académicos
-                </a>
             </div>
         </div>
     </div>

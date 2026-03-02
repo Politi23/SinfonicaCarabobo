@@ -3,7 +3,7 @@ import logoSimpleBbg from "@assets/images/logo/logosimplebbg.webp";
 
 import { getEventos } from "src/config/wp-eventos";
 
-import Button from "../ui/GoldenButton.astro";
+import SecondaryButton from "../ui/SecondaryButton.astro";
 import EventoCard from "@components/eventos/EventoCard.astro";
 import SectionTitle from "@components/ui/SectionTitle.astro";
 
@@ -107,7 +107,7 @@ const eventos = await getEventos(perPage);
     }
 
     <div class="text-center mt-6">
-      <Button href="/eventos"> Ver todos los eventos </Button>
+      <SecondaryButton href="/eventos"> Ver todos los eventos </SecondaryButton>
     </div>
   </div>
 
