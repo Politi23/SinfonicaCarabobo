@@ -1,5 +1,6 @@
 ---
 import { getAllAlbums } from "../../config/wp-albums";
+import GaleriaSectionHeader from "./GaleriaSectionHeader.astro";
 
 export interface Props {
   currentPage?: number;
@@ -27,25 +28,9 @@ try {
 }
 ---
 
-<section class="py-16 md:py-24 bg-gray-50">
+<section class="pt-20 pb-8 md:pt-28 md:pb-12 bg-gray-50">
   <div class="container mx-auto px-6 max-w-7xl">
-    <div class="max-w-4xl mx-auto mb-12">
-      <span
-        class="text-secondary text-xs font-bold uppercase tracking-[0.4em] mb-4 block italic"
-      >
-        Eventos Musicales
-      </span>
-      <h2
-        class="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-4"
-      >
-        Álbumes de Eventos
-      </h2>
-      <div class="w-16 h-1 bg-secondary"></div>
-      <p class="text-gray-600 mt-6 text-lg leading-relaxed">
-        Explora nuestra colección de álbumes fotográficos de conciertos,
-        presentaciones y eventos musicales especiales.
-      </p>
-    </div>
+    <GaleriaSectionHeader />
 
     {
       albums.length > 0 ? (

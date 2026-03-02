@@ -3,6 +3,7 @@ export const prerender = false;
 import Layout from "../../../layouts/Layout.astro";
 import MainHero from "../../../components/sections/MainHero.astro";
 import EventoCard from "../../../components/eventos/EventoCard.astro"; // Usamos el componente que ya creamos anteriormente
+import EventosSectionHeader from "../../../components/eventos/EventosSectionHeader.astro";
 import Pagination from "../../../components/blog/Pagination.astro";
 import { getEventos } from "../../../config/wp-eventos"; // Usamos la función actualizada
 import logoSimpleBbg from "@assets/images/logo/logosimplebbg.webp";
@@ -50,8 +51,7 @@ try {
     title: e.title.rendered,
     excerpt: truncateExcerpt(e.acf.event_description, 25),
     image:
-      e._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
-      logoSimpleBbg.src,
+      e._embedded?.["wp:featuredmedia"]?.[0]?.source_url || logoSimpleBbg.src,
     date: e.acf.event_date,
     time: e.acf.event_time,
     venue: e.acf.event_venue,
@@ -63,14 +63,20 @@ try {
 ---
 
 <Layout title={`Eventos - Página ${currentPage}`}>
-  <main class="bg-white text-gray-800 min-h-screen">
-    <MainHero
-      title="Nuestros"
-      titleHighlight="Eventos"
-      subtitle="Explora nuestros próximos eventos, conciertos y actividades musicales"
-    />
+  <MainHero
+    title="Nuestros"
+    titleHighlight="Eventos"
+    subtitle="Explora nuestros próximos eventos, conciertos y actividades musicales"
+  />
 
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12">
+  <main class="bg-white text-gray-800 min-h-screen">
+    <section class="pt-20 pb-8 md:pt-28 md:pb-12 bg-white">
+      <div class="container mx-auto px-6 max-w-7xl">
+        <EventosSectionHeader />
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
       {
         eventos.length > 0 ? (
           <>

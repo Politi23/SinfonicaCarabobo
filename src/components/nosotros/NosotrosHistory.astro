@@ -73,13 +73,13 @@ import SecondaryButton from "../ui/SecondaryButton.astro";
                 </p>
             </div>
             <div
-                class="bg-gray-50 p-8 rounded-xl border border-gray-200 flex flex-col justify-center items-center text-center overflow-hidden relative"
+                class="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden relative shadow-md"
             >
-                <div
-                    class="absolute inset-0 z-0 bg-cover bg-center"
-                    style={`background-image: url('${oscTtc.src}');`}
-                >
-                </div>
+                <img
+                    src={oscTtc.src}
+                    alt="Orquesta Sinfónica de Carabobo en TTC"
+                    class="w-full h-auto object-cover"
+                />
             </div>
         </div>
     </div>

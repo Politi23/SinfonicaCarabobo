@@ -1,0 +1,25 @@
+---
+interface Props {
+  subtitle?: string;
+  title?: string;
+  description?: string;
+}
+
+const {
+  subtitle = "Noticias y Actualidad",
+  title = "Blog",
+  description = "Explora nuestras últimas noticias, eventos y experiencias musicales de la Orquesta Sinfónica de Carabobo.",
+} = Astro.props;
+---
+
+<div class="max-w-4xl mx-auto mb-12">
+  <span
+    class="text-secondary text-xs font-bold uppercase tracking-[0.4em] mb-4 block italic"
+  >
+    {subtitle}
+  </span>
+  <h2 class="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-4">
+    {title}
+  </h2>
+  <div class="w-16 h-1 bg-secondary"></div>
+</div>
