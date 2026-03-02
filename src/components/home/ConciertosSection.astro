@@ -16,8 +16,8 @@ const eventos = await getEventos(perPage);
 ---
 
 <section class="bg-white py-12">
-  <div class="container mx-auto">
-    <div class="flex justify-between items-end">
+  <div class="container mx-auto px-6">
+    <div class="flex justify-between items-center">
       <SectionTitle title="Próximos Eventos" />
 
       <!-- Navigation Arrows (Top Right) -->
@@ -65,8 +65,7 @@ const eventos = await getEventos(perPage);
     </div>
 
     <div class="relative">
-      <div class="overflow-hidden -mx-4 px-4 py-2">
-        <!-- Added padding for shadows -->
+      <div class="overflow-hidden py-2">
         <div
           id="concert-track"
           class="flex transition-transform duration-700 ease-out"

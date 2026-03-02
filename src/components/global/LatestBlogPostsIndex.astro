@@ -25,7 +25,7 @@ const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
 ---
 
 <section class="pb-12 bg-white">
-  <div class="container mx-auto">
+  <div class="container mx-auto px-6">
     <SectionTitle title={title} />
 
     {
@@ -45,7 +45,7 @@ const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
           </div>
 
           <div class="md:hidden relative">
-            <div class="overflow-hidden -mx-4 px-4 py-8">
+            <div class="overflow-hidden py-8">
               <div
                 id="blog-track-index"
                 class="flex transition-transform duration-500 ease-in-out"
