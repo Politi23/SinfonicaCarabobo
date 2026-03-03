@@ -1,4 +1,6 @@
 ---
+import SectionTitle from "@components/ui/SectionTitle.astro";
+
 interface Props {
   subtitle?: string;
   title?: string;
@@ -18,8 +20,11 @@ const {
   >
     {subtitle}
   </span>
-  <h2 class="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-4">
-    {title}
-  </h2>
-  <div class="w-16 h-1 bg-secondary"></div>
+  <SectionTitle
+    title={title}
+    variant="red"
+    class="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-4"
+    wrapperClass="text-left"
+    dividerClass="h-1 w-16"
+  />
 </div>

@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import MainHero from "../../components/sections/MainHero.astro";
 import SecondaryButton from "../../components/ui/SecondaryButton.astro";
 import PrimaryButton from "../../components/ui/PrimaryButton.astro";
+import SectionTitle from "@components/ui/SectionTitle.astro";
 
 const discography = [
     { year: "1998", title: "22 Aniversario" },
@@ -33,14 +34,17 @@ const discography = [
                         class="text-secondary text-xs font-bold uppercase tracking-[0.4em] mb-6 block italic"
                         >Legado Musical</span
                     >
-                    <h2
+                    <SectionTitle
+                        variant="red"
                         class="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-12 leading-tight"
+                        wrapperClass="text-left"
+                        dividerClass="h-1 w-16"
                     >
                         Grabaciones <br />
                         <span class="font-bold text-secondary italic"
                             >Históricas</span
                         >
-                    </h2>
+                    </SectionTitle>
                     <div class="border-l-4 border-secondary pl-6 py-2">
                         <p
                             class="text-xl text-gray-700 leading-relaxed font-serif italic mb-4"
@@ -69,13 +73,16 @@ const discography = [
                         class="text-secondary text-xs font-bold uppercase tracking-[0.4em] mb-4 block italic"
                         >Catálogo Musical</span
                     >
-                    <h3
+                    <SectionTitle
+                        variant="red"
                         class="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-12"
+                        wrapperClass="text-left"
+                        dividerClass="h-1 w-16"
                     >
                         Álbumes <br /><span class="text-secondary italic"
                             >Publicados</span
                         >
-                    </h3>
+                    </SectionTitle>
                 </div>
 
                 <div
@@ -87,7 +94,7 @@ const discography = [
                                 <span class="text-primary font-display text-3xl mb-4 block font-bold">
                                     {album.year}
                                 </span>
-                                <div class="w-16 h-1 bg-secondary mb-4" />
+                                <SectionTitle dividerClass="h-1 w-16 mb-4" wrapperClass="" variant="red" />
                                 <p class="text-gray-700 font-medium text-lg leading-relaxed">
                                     {album.title}
                                 </p>
@@ -101,11 +108,13 @@ const discography = [
         <!-- Back to Nosotros CTA -->
         <section class="py-16 md:py-24 bg-white">
             <div class="container mx-auto px-6 max-w-4xl text-center">
-                <h2
+                <SectionTitle
+                    title="Explora Más"
+                    variant="red"
                     class="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-8"
-                >
-                    Explora Más
-                </h2>
+                    wrapperClass="text-center"
+                    dividerClass="h-1 w-16 mx-auto mb-8"
+                />
                 <p
                     class="text-lg text-gray-700 mb-12 max-w-2xl mx-auto font-light leading-relaxed"
                 >

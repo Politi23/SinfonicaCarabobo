@@ -1,6 +1,7 @@
 ---
 import oscTtc from "@assets/images/organizacion/OSC en TTC.webp";
 import SecondaryButton from "../ui/SecondaryButton.astro";
+import SectionTitle from "@components/ui/SectionTitle.astro";
 ---
 
 <!-- HISTORY SECTION: TIMELINE -->
@@ -11,13 +12,16 @@ import SecondaryButton from "../ui/SecondaryButton.astro";
                 class="text-secondary text-xs font-bold tracking-[0.4em] uppercase mb-4 block italic"
                 >Nuestra Trayectoria</span
             >
-            <h2
-                class="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-12 leading-tight relative"
+            <SectionTitle
+                variant="red"
+                class="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-12 leading-tight"
+                wrapperClass="text-left"
+                dividerClass="h-1 w-16"
             >
                 Historia <br /><span class="text-secondary italic"
                     >y Prestigio</span
                 >
-            </h2>
+            </SectionTitle>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -26,7 +30,7 @@ import SecondaryButton from "../ui/SecondaryButton.astro";
                     class="text-primary font-display text-3xl mb-4 block font-bold"
                     >1976</span
                 >
-                <div class="w-16 h-1 bg-secondary mb-4"></div>
+                <SectionTitle dividerClass="h-1 w-16 mb-4" wrapperClass="" variant="red" />
                 <h3
                     class="text-xl font-bold uppercase tracking-tight mb-3 text-gray-900"
                 >
@@ -43,7 +47,7 @@ import SecondaryButton from "../ui/SecondaryButton.astro";
                     class="text-primary font-display text-3xl mb-4 block font-bold"
                     >1998</span
                 >
-                <div class="w-16 h-1 bg-secondary mb-4"></div>
+                <SectionTitle dividerClass="h-1 w-16 mb-4" wrapperClass="" variant="red" />
                 <h3
                     class="text-xl font-bold uppercase tracking-tight mb-3 text-gray-900"
                 >
@@ -60,7 +64,7 @@ import SecondaryButton from "../ui/SecondaryButton.astro";
                     class="text-primary font-display text-3xl mb-4 block font-bold"
                     >2021</span
                 >
-                <div class="w-16 h-1 bg-secondary mb-4"></div>
+                <SectionTitle dividerClass="h-1 w-16 mb-4" wrapperClass="" variant="red" />
                 <h3
                     class="text-xl font-bold uppercase tracking-tight mb-3 text-gray-900"
                 >

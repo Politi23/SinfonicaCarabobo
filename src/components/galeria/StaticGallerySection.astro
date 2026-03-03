@@ -1,5 +1,6 @@
 ---
 import { getImage } from "astro:assets";
+import SectionTitle from "@components/ui/SectionTitle.astro";
 
 interface Image {
   src: ImageMetadata;
@@ -58,9 +59,13 @@ const getColumnClass = (cols: number) => {
         )
       }
       <div class="flex items-center justify-between gap-4">
-        <h2 class="text-3xl md:text-5xl font-display font-bold text-gray-900">
-          {title}
-        </h2>
+        <SectionTitle
+          title={title}
+          variant="red"
+          class="text-3xl md:text-5xl font-display font-bold text-gray-900"
+          wrapperClass="flex flex-col text-left"
+          dividerClass="h-1 w-16 mt-4"
+        />
         <button
           class="toggle-gallery-btn flex items-center gap-2 px-4 py-2 bg-secondary text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-primary transition-colors shrink-0"
           aria-expanded="false"
@@ -74,7 +79,6 @@ const getColumnClass = (cols: number) => {
           </span>
         </button>
       </div>
-      <div class="w-16 h-1 bg-secondary mt-4"></div>
     </div>
 
     <!-- Gallery Grid (Collapsible) -->

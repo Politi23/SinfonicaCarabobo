@@ -1,4 +1,5 @@
 ---
+import SectionTitle from "@components/ui/SectionTitle.astro";
 const { institutionalRecognitions } = Astro.props;
 ---
 
@@ -9,13 +10,16 @@ const { institutionalRecognitions } = Astro.props;
             class="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8 px-4 overflow-hidden"
         >
             <div class="max-w-2xl">
-                <h3
+                <SectionTitle
+                    variant="red"
                     class="text-3xl md:text-5xl font-display font-bold text-gray-900"
+                    wrapperClass="text-left"
+                    dividerClass="h-1 w-16"
                 >
                     Menciones y <br /><span class="text-secondary italic"
                         >Distinciones</span
                     >
-                </h3>
+                </SectionTitle>
             </div>
             <div class="h-px flex-grow bg-gray-100 mb-4 hidden md:block"></div>
             <span
