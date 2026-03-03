@@ -2,6 +2,7 @@
 import Layout from "../../../layouts/Layout.astro";
 import MainHero from "../../../components/sections/MainHero.astro";
 import DonationCTA from "@components/apoyanos/DonationCTA.astro";
+import imagenDonaciones from "@assets/images/orchestra/cuarteto-cuerdas.webp";
 ---
 
 <Layout title="Donaciones - Fundación Orquesta Sinfónica de Carabobo">
@@ -10,6 +11,7 @@ import DonationCTA from "@components/apoyanos/DonationCTA.astro";
       title="Apoya con tus"
       titleHighlight="Donaciones"
       subtitle="Juntos podemos crear un legado musical mucho más grande"
+      bgImage={imagenDonaciones.src}
     />
     <DonationCTA />
   </main>

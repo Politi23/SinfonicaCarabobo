@@ -93,7 +93,7 @@ const getColumnClass = (cols: number) => {
                 quality: 80,
               });
               return (
-                <div class="relative group overflow-hidden rounded-xl aspect-square bg-gray-100 shadow-sm">
+                <div class="relative group overflow-hidden rounded aspect-square bg-gray-100 shadow-sm">
                   <img
                     data-src={optimizedImage.src}
                     alt={alt || "Imagen de galería"}
@@ -113,7 +113,7 @@ const getColumnClass = (cols: number) => {
             })}
           </div>
         ) : (
-          <div class="text-center py-12 border-2 border-dashed border-gray-300 rounded-xl bg-gray-50">
+          <div class="text-center py-12 border-2 border-dashed border-gray-300 rounded bg-gray-50">
             <p class="text-gray-500">No hay imágenes en esta galería.</p>
           </div>
         )
