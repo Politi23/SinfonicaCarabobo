@@ -68,8 +68,7 @@ const getColumnClass = (cols: number) => {
         >
           <span class="toggle-text">Mostrar</span>
           <span
-            class="material-icons toggle-icon transition-transform duration-300"
-            style="transform: rotate(180deg);"
+            class="material-icons toggle-icon transition-transform duration-300 rotated"
           >
             expand_less
           </span>
@@ -147,10 +146,6 @@ const getColumnClass = (cols: number) => {
     opacity: 1;
     visibility: visible;
   }
-
-  .toggle-icon[style*="rotate-180"] {
-    transform: rotate(180deg);
-  }
 </style>
 
 <script>
@@ -207,12 +202,12 @@ const getColumnClass = (cols: number) => {
           // Show gallery
           galleryContent.removeAttribute("hidden");
           if (toggleText) toggleText.textContent = "Ocultar";
-          if (toggleIcon) toggleIcon.style.transform = "rotate(0deg)";
+          if (toggleIcon) toggleIcon.classList.remove("rotated");
         } else {
           // Hide gallery
           galleryContent.setAttribute("hidden", "");
           if (toggleText) toggleText.textContent = "Mostrar";
-          if (toggleIcon) toggleIcon.style.transform = "rotate(180deg)";
+          if (toggleIcon) toggleIcon.classList.add("rotated");
         }
       });
     }

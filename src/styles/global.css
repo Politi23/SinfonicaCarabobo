@@ -178,3 +178,8 @@ body {
 .hover\:bg-secondary:hover {
    background-color: var(--color-secondary);
 }
+
+/* Gallery toggle icon rotation */
+.toggle-icon.rotated {
+   transform: rotate(180deg);
+}
