@@ -1,16 +1,28 @@
 ---
 export interface Props {
-  title: string;
+  title?: string;
+  variant?: "default" | "red";
+  class?: string;
+  wrapperClass?: string;
+  dividerClass?: string;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  variant = "default",
+  class: titleClass = "",
+  wrapperClass = "text-left mb-6",
+  dividerClass = "h-1 w-20 mt-4",
+} = Astro.props;
+const dividerColorClass = variant === "red" ? "bg-secondary" : "bg-primary";
+const hasSlot = Astro.slots.has("default");
 ---
 
-<div class="text-left mb-6">
+<div class={wrapperClass}>
   <h2
-    class="text-3xl md:text-4xl font-serif font-medium text-gray-900 tracking-tight"
+    class={`text-3xl md:text-4xl font-serif font-medium text-gray-900 tracking-tight ${titleClass}`}
   >
-    {title}
+    {hasSlot ? <slot /> : title}
   </h2>
-  <div class="h-1 w-20 bg-primary mt-4"></div>
+  <div class={`${dividerClass} ${dividerColorClass}`}></div>
 </div>

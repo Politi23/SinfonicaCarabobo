@@ -2,6 +2,7 @@
 import SecondaryButton from "@components/ui/SecondaryButton.astro";
 import Hero from "@components/libro/Hero.astro";
 import { getFoundationYears } from "../../utils/foundation";
+import PrimaryButton from "@components/ui/PrimaryButton.astro";
 
 getFoundationYears();
 ---
@@ -9,8 +10,8 @@ getFoundationYears();
 <section class="flex flex-col items-center pb-16 bg-background-dark">
   <Hero />
   <div class="flex-shrink-0">
-    <SecondaryButton href="/contacto">
+    <PrimaryButton variant="outline" href="/contacto">
       <span>Solicita una copia</span>
-    </SecondaryButton>
+    </PrimaryButton>
   </div>
 </section>
