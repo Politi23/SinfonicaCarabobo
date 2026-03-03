@@ -6,17 +6,17 @@ import allyMultimax from "@assets/images/allies/ally-multimax.webp";
 import allyClxSamsung from "@assets/images/allies/ally-clxsamsung.webp";
 import allyAlcaldia from "@assets/images/allies/ally-alcaldia-sandiego.webp";
 import allyScgc from "@assets/images/allies/ally-scgc.webp";
+import allyUnesco from "@assets/images/allies/ally-unesco.webp";
 
 const allies = [
-  { src: allyHesperia, alt: "HesperiaWTC" },
   { src: allyUjap, alt: "UJAP" },
+  { src: allyHesperia, alt: "HesperiaWTC" },
   { src: allyMultimax, alt: "Multimax" },
   { src: allyClxSamsung, alt: "CLXSamsung" },
   { src: allyAlcaldia, alt: "Alcaldía de San Diego" },
+  { src: allyUnesco, alt: "Unesco" },
   { src: allyScgc, alt: "Secretaría de Cultura Gobernación de Carabobo" },
 ];
-
-const displayAllies = [...allies, ...allies];
 ---
 
 <section class="py-24 bg-background-light overflow-hidden">
@@ -26,71 +26,25 @@ const displayAllies = [...allies, ...allies];
     </span>
   </div>
 
-  <div class="relative w-full overflow-hidden flex items-center">
+  <div class="w-full">
     <div
-      class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background-light to-transparent z-20 pointer-events-none"
+      class="w-full max-w-6xl mx-auto px-4 sm:px-4 lg:px-6 flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-12"
     >
-    </div>
-    <div
-      class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background-light to-transparent z-20 pointer-events-none"
-    >
-    </div>
-
-    <div class="scroller-track flex w-max">
-      <div class="flex gap-8 md:gap-16 pr-8 md:pr-16">
-        {
-          displayAllies.map((ally) => (
-            <div class="w-[72px] h-[72px] md:w-[112px] md:h-[112px] flex-shrink-0 flex items-center justify-center">
-              <Image
-                src={ally.src}
-                alt={ally.alt}
-                width="112"
-                height="112"
-                class="max-w-full max-h-full object-contain grayscale opacity-60 transition-all duration-300 hover:grayscale-0 hover:opacity-100 cursor-pointer"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          ))
-        }
-      </div>
-
-      <div class="flex gap-8 md:gap-16 pr-8 md:pr-16">
-        {
-          displayAllies.map((ally) => (
-            <div class="w-[72px] h-[72px] md:w-[112px] md:h-[112px] flex-shrink-0 flex items-center justify-center">
-              <Image
-                src={ally.src}
-                alt={ally.alt}
-                width="112"
-                height="112"
-                class="max-w-full max-h-full object-contain grayscale opacity-60 transition-all duration-300 hover:grayscale-0 hover:opacity-100 cursor-pointer"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          ))
-        }
-      </div>
+      {
+        allies.map((ally) => (
+          <div class="flex items-center justify-center">
+            <Image
+              src={ally.src}
+              alt={ally.alt}
+              width="112"
+              height="112"
+              class="max-w-full max-h-full object-contain grayscale opacity-60 transition-all duration-300 hover:grayscale-0 hover:opacity-100"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
-
-<style>
-  .scroller-track {
-    animation: scroll 90s linear infinite;
-  }
-
-  .scroller-track:hover {
-    animation-play-state: paused;
-  }
-
-  @keyframes scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-</style>
