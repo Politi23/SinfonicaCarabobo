@@ -7,41 +7,64 @@ const pathname = Astro.url.pathname;
 
 const navLinks = [
   {
-    href: "/nosotros",
-    label: "Nosotros",
-    dropdown: [
-      { href: "/nosotros", label: "Nosotros" },
-      { href: "/nosotros/reconocimientos", label: "Reconocimientos" },
-      { href: "/nosotros/discografia", label: "Discografía" },
-    ],
-  },
-  {
     href: "/agrupaciones",
     label: "Agrupaciones",
   },
   {
-    href: "/eventos",
-    label: "Eventos",
+    href: "#",
+    label: "Nosotros",
+    dropdown: [
+      { href: "/nosotros", label: "La Orquesta" },
+      { href: "/nosotros/historia", label: "Reseña Historica" },
+      { href: "/nosotros/academia", label: "Academia" },
+      { href: "/nosotros/reconocimientos", label: "Reconocimientos" },
+    ],
   },
   {
-    href: "/galeria",
+    href: "#",
     label: "Galería",
     dropdown: [
       { href: "/galeria/eventos", label: "Eventos" },
       { href: "/galeria/imagenes", label: "Imágenes" },
+      { href: "/nosotros/discografia", label: "Discografía" },
     ],
   },
   {
-    href: "/blog",
-    label: "Blog",
+    href: "#",
+    label: "Multimedia",
+    dropdown: [
+      { href: "/galeria/eventos", label: "Eventos" },
+      { href: "/galeria/imagenes", label: "Imágenes" },
+      { href: "/nosotros/discografia", label: "Discografía" },
+    ],
   },
   {
-    href: "/academia",
-    label: "Academia",
+    href: "#",
+    label: "Actualidad",
+    dropdown: [
+      {
+        href: "/blog",
+        label: "Blog",
+      },
+      {
+        href: "/eventos",
+        label: "Eventos",
+      },
+    ],
   },
   {
-    href: "/apoyanos",
+    href: "#",
     label: "Apóyanos",
+    dropdown: [
+      {
+        href: "/apoyanos/empresarial",
+        label: "Plan Empresarial",
+      },
+      {
+        href: "/apoyanos/donaciones",
+        label: "Donaciones",
+      },
+    ],
   },
   {
     href: "/contacto",
@@ -135,9 +158,6 @@ const submenuGroups = navLinks
                         ⟩
                       </span>
                     </div>
-                    <span
-                      class={`nav-link-underline absolute bottom-[6px] left-1/2 -translate-x-1/2 scale-x-0 w-[30px] h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent transition-transform duration-300 rounded-[2px] group-hover:scale-x-100 ${link.active ? "scale-x-0" : ""}`}
-                    />
                   </button>
 
                   {/* Mobile Dropdown (Accordion) */}
@@ -160,13 +180,13 @@ const submenuGroups = navLinks
               ) : (
                 <a
                   href={link.href}
-                  class={`nav-link group relative flex flex-col items-center px-[18px] py-[10px] no-underline text-text-secondary font-serif text-[0.9rem] font-normal tracking-[0.02em] transition-all duration-300 overflow-hidden hover:text-text-light max-lg:text-[1.1rem] max-lg:px-6 max-lg:py-4 max-lg:w-full max-lg:text-center ${link.active ? "text-primary nav-link-active" : ""}`}
+                  class={`nav-link group relative flex flex-col items-center px-[18px] py-[10px] no-underline text-text-secondary font-serif text-[0.9rem] font-normal tracking-[0.02em] transition-all duration-300 overflow-hidden hover:text-text-light max-lg:text-[1.1rem] max-lg:px-6 max-lg:py-4 max-lg:w-full max-lg:text-center`}
                 >
                   <span class="nav-link-text relative z-10 transition-all duration-300">
                     {link.label}
                   </span>
                   <span
-                    class={`nav-link-underline absolute bottom-[6px] left-1/2 -translate-x-1/2 scale-x-0 w-[30px] h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent transition-transform duration-300 rounded-[2px] group-hover:scale-x-100 ${link.active ? "scale-x-0" : ""}`}
+                    class={`nav-link-underline absolute bottom-[6px] left-1/2 -translate-x-1/2 scale-x-0 w-[30px] h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent transition-transform duration-300 rounded-[2px] group-hover:scale-x-100`}
                   />
                 </a>
               )}
@@ -176,7 +196,7 @@ const submenuGroups = navLinks
       </ul>
     </nav>
   </div>
-  
+
   <NavSubmenu groups={submenuGroups} />
 </header>
 
@@ -218,7 +238,7 @@ const submenuGroups = navLinks
 
   // Handle dropdown menus
   const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
-  
+
   // Desktop Global Submenu Logic
   const globalSubmenu = document.getElementById("global-submenu");
   const submenuContents = document.querySelectorAll(".submenu-content");
@@ -227,17 +247,26 @@ const submenuGroups = navLinks
   // Helper to close all desktop submenus
   const closeGlobalSubmenu = () => {
     if (globalSubmenu) {
-      globalSubmenu.classList.remove("visible", "opacity-100", "translate-y-0", "open");
+      globalSubmenu.classList.remove(
+        "visible",
+        "opacity-100",
+        "translate-y-0",
+        "open",
+      );
       globalSubmenu.classList.add("invisible", "opacity-0", "-translate-y-5");
-      
+
       // Reset contents
       submenuContents.forEach((content) => {
-        content.classList.remove("opacity-100", "pointer-events-auto", "scale-100");
+        content.classList.remove(
+          "opacity-100",
+          "pointer-events-auto",
+          "scale-100",
+        );
         content.classList.add("opacity-0", "pointer-events-none", "scale-95");
       });
       activeContentId = null;
     }
-    
+
     // Also reset aria-expanded on toggles
     dropdownToggles.forEach((toggle) => {
       if (window.innerWidth > 1024) {
@@ -249,44 +278,57 @@ const submenuGroups = navLinks
   const openSubmenu = (content: Element, toggle: Element) => {
     if (!globalSubmenu) return;
 
-    globalSubmenu.classList.add("visible", "opacity-100", "translate-y-0", "open");
+    globalSubmenu.classList.add(
+      "visible",
+      "opacity-100",
+      "translate-y-0",
+      "open",
+    );
     globalSubmenu.classList.remove("invisible", "opacity-0", "-translate-y-5");
 
     // Reset all contents first
-    submenuContents.forEach(el => {
-        el.classList.add("opacity-0", "pointer-events-none", "scale-95");
-        el.classList.remove("opacity-100", "pointer-events-auto", "scale-100");
+    submenuContents.forEach((el) => {
+      el.classList.add("opacity-0", "pointer-events-none", "scale-95");
+      el.classList.remove("opacity-100", "pointer-events-auto", "scale-100");
     });
 
     // Show target
     content.classList.remove("opacity-0", "pointer-events-none", "scale-95");
     content.classList.add("opacity-100", "pointer-events-auto", "scale-100");
-    
+
     activeContentId = content.id;
-    
+
     // Update toggle states
-    dropdownToggles.forEach(t => t.setAttribute("aria-expanded", "false"));
+    dropdownToggles.forEach((t) => t.setAttribute("aria-expanded", "false"));
     toggle.setAttribute("aria-expanded", "true");
   };
 
   const switchSubmenu = (newContent: Element, toggle: Element) => {
     if (!activeContentId) return;
-    
+
     const currentContent = document.getElementById(activeContentId);
-    
+
     // Animate current OUT
     if (currentContent) {
-        currentContent.classList.remove("opacity-100", "pointer-events-auto", "scale-100");
-        currentContent.classList.add("opacity-0", "pointer-events-none", "scale-95");
+      currentContent.classList.remove(
+        "opacity-100",
+        "pointer-events-auto",
+        "scale-100",
+      );
+      currentContent.classList.add(
+        "opacity-0",
+        "pointer-events-none",
+        "scale-95",
+      );
     }
-    
+
     // Animate new IN
     newContent.classList.remove("opacity-0", "pointer-events-none", "scale-95");
     newContent.classList.add("opacity-100", "pointer-events-auto", "scale-100");
 
     activeContentId = newContent.id;
-    
-    dropdownToggles.forEach(t => t.setAttribute("aria-expanded", "false"));
+
+    dropdownToggles.forEach((t) => t.setAttribute("aria-expanded", "false"));
     toggle.setAttribute("aria-expanded", "true");
   };
 
@@ -314,17 +356,17 @@ const submenuGroups = navLinks
         // Desktop Logic
         const targetContent = document.getElementById(targetId);
         if (!targetContent) return;
-        
+
         const isOpen = globalSubmenu?.classList.contains("open");
-        
+
         if (isOpen) {
-           if (activeContentId === targetId) {
-             // Closing current
-             closeGlobalSubmenu();
-           } else {
-             // Switching
-             switchSubmenu(targetContent, toggle);
-           }
+          if (activeContentId === targetId) {
+            // Closing current
+            closeGlobalSubmenu();
+          } else {
+            // Switching
+            switchSubmenu(targetContent, toggle);
+          }
         } else {
           // Opening new
           openSubmenu(targetContent, toggle);
@@ -338,7 +380,7 @@ const submenuGroups = navLinks
     const target = event.target as HTMLElement;
     if (
       !target.closest("[data-dropdown]") &&
-      !target.closest("[data-submenu]") && 
+      !target.closest("[data-submenu]") &&
       !target.closest(".submenu-container") // Add this to prevent closing when clicking inside submenu
     ) {
       closeGlobalSubmenu();

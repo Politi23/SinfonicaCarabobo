@@ -17,18 +17,18 @@ const { groups } = Astro.props;
   class="submenu-container fixed top-[var(--header-height)] left-0 w-full z-[900] invisible opacity-0 -translate-y-5 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
 >
   <div
-    class="absolute inset-0 bg-black/95 backdrop-blur-xl border-b border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+    class="absolute inset-0 bg-black backdrop-blur-xl border-b border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
   >
   </div>
-  
+
   <div class="relative max-w-[1280px] mx-auto h-[100px] overflow-hidden">
-    {groups.map((group) => (
-      <ul
-        id={group.id}
-        class="submenu-content absolute top-1/2 left-0 w-full -translate-y-1/2 flex justify-center gap-12 transition-all duration-300 ease-out opacity-0 pointer-events-none scale-95"
-      >
-        {
-          group.items.map((item) => (
+    {
+      groups.map((group) => (
+        <ul
+          id={group.id}
+          class="submenu-content absolute top-1/2 left-0 w-full -translate-y-1/2 flex justify-center gap-12 transition-all duration-300 ease-out opacity-0 pointer-events-none scale-95"
+        >
+          {group.items.map((item) => (
             <li>
               <a
                 href={item.href}
@@ -42,9 +42,9 @@ const { groups } = Astro.props;
                 />
               </a>
             </li>
-          ))
-        }
-      </ul>
-    ))}
+          ))}
+        </ul>
+      ))
+    }
   </div>
 </div>
