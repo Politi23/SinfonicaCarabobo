@@ -1,0 +1,38 @@
+---
+interface Props {
+  id: string;
+  items: {
+    href: string;
+    label: string;
+  }[];
+}
+
+const { id, items } = Astro.props;
+---
+
+<div
+  id={id}
+  class="submenu-container fixed top-[var(--header-height)] left-0 w-full z-[900] invisible opacity-0 -translate-y-5 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] data-[active=true]:visible data-[active=true]:opacity-100 data-[active=true]:translate-y-0"
+  data-submenu
+>
+  <div
+    class="absolute inset-0 bg-black/95 backdrop-blur-xl border-b border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+  >
+  </div>
+  <div class="relative max-w-[1280px] mx-auto px-8 py-8">
+    <ul class="flex justify-center gap-12">
+      {
+        items.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="relative block text-[0.95rem] text-text-secondary font-serif transition-colors duration-300 hover:text-white after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-px after:bg-primary after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>
