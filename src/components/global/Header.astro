@@ -267,7 +267,8 @@ const navLinks = navArray;
             <li class="nav-item">
               {link.dropdown && link.dropdown.length > 0 ? (
                 <div class="nav-dropdown" data-dropdown>
-                  <button
+                  <a
+                    href={link.href}
                     class={`nav-link dropdown-toggle ${link.active ? "nav-link-active" : ""}`}
                     aria-expanded="false"
                     aria-haspopup="true"
@@ -277,7 +278,7 @@ const navLinks = navArray;
                       <span class="nav-dropdown-arrow">⟩</span>
                     </div>
                     <span class="nav-link-underline" />
-                  </button>
+                  </a>
                   <ul class="nav-dropdown-menu" hidden>
                     {link.dropdown.map(
                       (subLink: {
@@ -369,6 +370,7 @@ const navLinks = navArray;
   .main-nav {
     display: flex;
     align-items: center;
+    height: 100%;
   }
 
   .nav-toggle {
@@ -419,11 +421,15 @@ const navLinks = navArray;
     padding: 0;
     display: flex;
     align-items: center;
+    height: 100%;
     gap: 8px;
   }
 
   .nav-item {
     position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
 
   .nav-link {
@@ -489,70 +495,126 @@ const navLinks = navArray;
 
   /* Dropdown menu styles */
   .nav-dropdown {
-    position: relative;
+    position: static; /* Allows the full-width menu to be positioned relative to header/viewport if needed, though fixed is better */
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
+
   .nav-dropdown-arrow {
     margin-left: 4px;
     font-size: 0.7rem;
     transition: transform 0.3s ease;
   }
-  .dropdown-toggle[aria-expanded="true"] .nav-dropdown-arrow {
-    transform: rotate(180deg);
-  }
-  .nav-dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    margin-top: 10px;
-    min-width: 200px;
-    background: #000000;
-    border: 1px solid #333333;
-    border-radius: 8px;
-    padding: 8px 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-    z-index: 1000;
-  }
-  .nav-dropdown-menu[data-visible="true"] {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-  .nav-dropdown-item {
-    list-style: none;
-  }
-  .nav-dropdown-link {
-    display: block;
-    padding: 12px 20px;
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    font-family: "Merriweather", serif;
-    font-size: 0.85rem;
-    font-weight: 400;
-    transition: all 0.3s ease;
-  }
-  .nav-dropdown-link:hover {
-    color: var(--color-primary);
-    background: var(--color-primary-10);
-  }
-  /* ============================================
-     DROPDOWN ANIMATION
-  ============================================ */
-  .nav-dropdown-menu {
-    max-height: 0;
-    overflow: hidden;
-    transition:
-      max-height 0.3s ease,
-      opacity 0.3s ease;
+
+  /* Desktop Styles (Default) */
+  @media (min-width: 1025px) {
+    .nav-dropdown-menu {
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1.5rem 0;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 999;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .nav-dropdown-item {
+      list-style: none;
+    }
+
+    .nav-dropdown-link {
+      display: block;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      font-family: "Merriweather", serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-dropdown-link:hover {
+      color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+
+    .nav-dropdown-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 20px;
+      height: 1px;
+      background: var(--color-primary);
+      transition: transform 0.3s ease;
+    }
+
+    .nav-dropdown-link:hover::after {
+      transform: translateX(-50%) scaleX(1);
+    }
   }
 
-  .nav-dropdown-menu[data-visible="true"] {
-    max-height: 300px; /* Adjust as needed based on content */
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+  /* Mobile/Tablet Styles */
+  @media (max-width: 1024px) {
+    .nav-dropdown {
+      position: relative;
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+
+    .nav-dropdown-menu {
+      display: none; /* Controlled by JS toggle */
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 8px;
+      margin-top: 5px;
+      padding: 5px 0;
+      overflow: hidden;
+    }
+
+    .nav-dropdown-menu[data-visible="true"] {
+      display: block;
+      animation: slideDown 0.3s ease forwards;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .nav-dropdown-link {
+      display: block;
+      padding: 12px 20px;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+    
+    .dropdown-toggle[aria-expanded="true"] .nav-dropdown-arrow {
+      transform: rotate(180deg);
+    }
   }
 
   /* ============================================
@@ -683,7 +745,12 @@ const navLinks = navArray;
   );
 
   dropdownToggles.forEach((toggle) => {
-    toggle.addEventListener("click", function (this: HTMLButtonElement, e) {
+    toggle.addEventListener("click", function (this: HTMLAnchorElement, e) {
+      // Only toggle on mobile/tablet
+      if (window.innerWidth > 1024) {
+        return;
+      }
+      
       e.preventDefault();
 
       // Close all other dropdowns
