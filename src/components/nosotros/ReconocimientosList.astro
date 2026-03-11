@@ -4,28 +4,28 @@ const { institutionalRecognitions } = Astro.props;
 ---
 
 <!-- Timeline / List section -->
-<section class="py-32 bg-white">
+<section class="py-16 bg-white">
     <div class="container mx-auto px-6 max-w-6xl">
         <div
-            class="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8 px-4 overflow-hidden"
+            class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8 px-4 overflow-hidden"
         >
-            <div class="max-w-2xl">
-                <SectionTitle
-                    variant="red"
-                    class="text-3xl md:text-5xl font-display font-bold text-gray-900"
-                    wrapperClass="text-left"
-                    dividerClass="h-1 w-16"
+            <!-- <div class="max-w-2xl"> -->
+            <SectionTitle
+                variant="red"
+                class="text-3xl md:text-5xl font-display font-bold text-gray-900"
+                wrapperClass="text-left"
+                dividerClass="h-1 w-16 mt-2"
+            >
+                Menciones y <span class="text-secondary italic"
+                    >Distinciones</span
                 >
-                    Menciones y <br /><span class="text-secondary italic"
-                        >Distinciones</span
-                    >
-                </SectionTitle>
-            </div>
-            <div class="h-px flex-grow bg-gray-100 mb-4 hidden md:block"></div>
+            </SectionTitle>
+            <!-- </div> -->
+            <!-- <div class="h-px flex-grow bg-gray-100 mb-4 hidden md:block"></div>
             <span
                 class="text-secondary text-xs font-bold uppercase tracking-[0.4em] mb-4 italic"
                 >Registro Histórico</span
-            >
+            > -->
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-0">
