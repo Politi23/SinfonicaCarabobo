@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import violinHeader from "@assets/images/orchestra/violin-header.webp";
 import videoFondo from "@assets/videos/video-fondo.mp4";
+import Logo from "@assets/images/logo/logosvg.svg";
 
 const { showVideo = true } = Astro.props;
 ---
@@ -48,7 +49,8 @@ const { showVideo = true } = Astro.props;
     </div>
 
     <div class="hero-content">
-      <h1 class="hero-title">Fundación Orquesta Sinfónica de Carabobo</h1>
+      <!-- <h1 class="hero-title">Fundación Orquesta Sinfónica de Carabobo</h1> -->
+       <Logo class="hero-logo" width={500} height={500} />
     </div>
   </section>
 </main>
@@ -71,6 +73,10 @@ const { showVideo = true } = Astro.props;
     line-height: 1.2;
     color: var(--color-text-light);
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  }
+
+  .hero-logo {
+    filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 1));
   }
 
   @media (max-width: 768px) {
