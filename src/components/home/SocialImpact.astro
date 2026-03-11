@@ -1,77 +1,218 @@
 ---
-import imageGrid from "@assets/images/backgrounds/image-grid.webp";
-import SecondaryButton from "../ui/SecondaryButton.astro";
+import { Image } from "astro:assets";
+import PrimaryButton from "@components/ui/PrimaryButton.astro";
+import SecondaryButton from "@components/ui/SecondaryButton.astro";
+import academiaMain from "@assets/images/organizacion/academia.webp";
+import academiaFiora from "@assets/images/galeria/academia/Fiora_OriginalSkin.webp";
+import violinStudent from "@assets/images/orchestra/violin.webp";
+import orchestraEducation from "@assets/images/orchestra/orquestaSinfonica.webp";
 ---
 
-<!-- Seccion de la academia -->
-<div class="relative py-24 bg-surface-dark text-text-light overflow-hidden">
-  <div
-    class="absolute inset-0 z-0 opacity-20 bg-cover bg-fixed bg-center"
-    style={`background-image: url('${imageGrid.src}');`}
-  >
-  </div>
-  <div class="absolute inset-0 bg-black/60 z-0"></div>
+<section class="py-20 md:py-24 bg-white">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+            <span
+                class="text-primary text-sm font-bold tracking-[0.2em] uppercase mb-4 block"
+            >
+                Formación Musical
+            </span>
+            <h2
+                class="text-3xl md:text-5xl font-display font-bold text-gray-900"
+            >
+                Academia Internacional <br />
+                <span class="text-primary italic">Maestro José Calabrese</span>
+            </h2>
+            <p
+                class="text-gray-600 max-w-2xl mx-auto mt-6 text-lg leading-relaxed"
+            >
+                Formando el futuro de la música con excelencia académica e
+                inclusión social
+            </p>
+        </div>
 
-  <div class="container mx-auto px-6 max-w-6xl relative z-10">
-    <div class="text-center mb-16">
-      <span
-        class="text-primary text-sm font-bold tracking-[0.2em] uppercase mb-4 block"
-        >Impacto Social</span
-      >
-      <h2 class="text-4xl md:text-5xl font-display font-bold text-text-light">
-        La Academia
-      </h2>
-    </div>
+        <!-- Bento Box Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16">
+            <!-- Main Large Image - Academia -->
+            <div
+                class="col-span-2 row-span-2 relative group overflow-hidden rounded-2xl"
+            >
+                <Image
+                    src={academiaMain}
+                    alt="Academia Internacional Maestro José Calabrese"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    width="800"
+                    height="600"
+                    loading="lazy"
+                />
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"
+                >
+                </div>
+                <div class="absolute bottom-0 left-0 p-6 md:p-8">
+                    <h3 class="text-white text-xl md:text-2xl font-bold mb-2">
+                        Educación Musical de Excelencia
+                    </h3>
+                    <p
+                        class="text-gray-200 text-sm md:text-base leading-relaxed"
+                    >
+                        Más de 500 estudiantes formados con el aval de la UNESCO
+                    </p>
+                </div>
+            </div>
 
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h3 class="text-3xl font-bold mb-6 text-primary">
-          Academia "Internacional Maestro José Calabrese"
-        </h3>
-        <p class="text-gray-300 text-lg mb-8 leading-relaxed">
-          Desde 2019, formamos a más de 500 estudiantes, incluyendo niños con
-          Síndrome de Down, con el aval de la UNESCO. Una verdadera escuela de
-          vida.
-        </p>
-        <a
-          href="http://www.academiajosecalabrese.com"
-          target="_blank"
-          class="inline-flex items-center gap-2 text-white border-b border-primary pb-1 hover:text-primary transition-colors"
+            <!-- Stats Card -->
+            <div
+                class="col-span-1 row-span-1 bg-gradient-to-br from-primary to-primary-dark rounded-2xl p-6 flex flex-col justify-center text-white"
+            >
+                <span class="text-4xl md:text-5xl font-bold mb-2">300+</span>
+                <span class="text-sm md:text-base text-white/90">
+                    Estudiantes <br />activos
+                </span>
+            </div>
+
+            <!-- UNESCO Badge -->
+            <div
+                class="col-span-1 row-span-1 bg-gray-50 rounded-2xl p-6 flex flex-col justify-center border border-gray-100"
+            >
+                <div
+                    class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-3"
+                >
+                    <svg
+                        class="w-6 h-6 text-primary"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            d="M12 2L1 21h22L12 2zm0 3.83L19.17 19H4.83L12 5.83zM12 9v6m-3-3h6"
+                        ></path>
+                    </svg>
+                </div>
+                <span
+                    class="text-xs font-bold text-gray-700 uppercase tracking-wide"
+                >
+                    Aval UNESCO
+                </span>
+                <span class="text-xs text-gray-500 mt-1">
+                    Certificación internacional
+                </span>
+            </div>
+
+            <!-- Student Image 1 -->
+            <div
+                class="col-span-1 row-span-1 relative group overflow-hidden rounded-2xl"
+            >
+                <Image
+                    src={violinStudent}
+                    alt="Estudiante de violín"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    width="400"
+                    height="400"
+                    loading="lazy"
+                />
+                <div
+                    class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                >
+                    <span class="text-white font-bold text-sm"
+                        >Cátedras Especializadas</span
+                    >
+                </div>
+            </div>
+
+            <!-- Student Image 2 -->
+            <div
+                class="col-span-1 row-span-1 relative group overflow-hidden rounded-2xl"
+            >
+                <Image
+                    src={academiaFiora}
+                    alt="Clase magistral"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    width="400"
+                    height="400"
+                    loading="lazy"
+                />
+                <div
+                    class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                >
+                    <span class="text-white font-bold text-sm"
+                        >Clases Magistrales</span
+                    >
+                </div>
+            </div>
+
+            <!-- Wide Image - Orchestra Education -->
+            <div
+                class="col-span-2 row-span-1 relative group overflow-hidden rounded-2xl"
+            >
+                <Image
+                    src={orchestraEducation}
+                    alt="Orquesta juvenil en formación"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    width="800"
+                    height="400"
+                    loading="lazy"
+                />
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
+                >
+                </div>
+                <div class="absolute bottom-0 left-0 p-6">
+                    <h3 class="text-white text-lg font-bold">
+                        Inclusión Social
+                    </h3>
+                    <p class="text-gray-200 text-sm">
+                        Programa para niños con Síndrome de Down
+                    </p>
+                </div>
+            </div>
+
+            <!-- Second Stats Card -->
+            <div
+                class="col-span-1 row-span-1 bg-gray-900 rounded-2xl p-6 flex flex-col justify-center text-white"
+            >
+                <span class="text-4xl md:text-5xl font-bold mb-2">30+</span>
+                <span class="text-sm md:text-base text-gray-300">
+                    Cátedras <br />especializadas
+                </span>
+            </div>
+
+            <!-- CTA Card -->
+            <div
+                class="col-span-1 row-span-1 bg-gray-100 rounded-2xl p-6 flex flex-col justify-center border border-gray-100"
+            >
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 bg-primary rounded-full"></span>
+                        <span class="text-xs font-medium text-gray-700"
+                            >Niños y jóvenes</span
+                        >
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 bg-primary rounded-full"></span>
+                        <span class="text-xs font-medium text-gray-700"
+                            >Capacidades especiales</span
+                        >
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 bg-primary rounded-full"></span>
+                        <span class="text-xs font-medium text-gray-700"
+                            >Becas disponibles</span
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div
+            class="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          Visitar sitio oficial
-          <svg
-            class="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            ><path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
-          >
-        </a>
-        <div class="mt-6">
-          <SecondaryButton href="/academia">CONOCE LA ACADEMIA</SecondaryButton>
+            <PrimaryButton href="/nosotros/academia">
+                Conoce la Academia
+            </PrimaryButton>
+            <SecondaryButton href="/contacto">
+                Solicitar Información
+            </SecondaryButton>
         </div>
-      </div>
-      <div
-        class="bg-white/10 p-8 rounded-2xl backdrop-blur-sm border border-white/10"
-      >
-        <div class="flex items-center gap-6 mb-6">
-          <span class="text-5xl font-bold text-white">1.500+</span>
-          <span class="text-gray-300 leading-tight"
-            >Personas impactadas<br />por concierto</span
-          >
-        </div>
-        <div class="h-px w-full bg-white/20 mb-6"></div>
-        <div class="flex items-center gap-6">
-          <span class="text-5xl font-bold text-white">80+</span>
-          <span class="text-gray-300 leading-tight"
-            >Becas otorgadas<br />anualmente</span
-          >
-        </div>
-      </div>
     </div>
-  </div>
-</div>
+</section>
