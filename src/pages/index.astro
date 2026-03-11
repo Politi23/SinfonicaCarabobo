@@ -6,6 +6,8 @@ import Allies from "../components/sections/Allies.astro";
 import SocialImpact from "../components/home/SocialImpact.astro";
 import BookLink from "../components/home/BookLink.astro";
 import LatestBlogPosts from "../components/global/LatestBlogPostsIndex.astro";
+import ReconocimientosCTA from "@components/nosotros/ReconocimientosCTA.astro";
+import EnsemblesSection from "../components/home/EnsemblesSection.astro";
 ---
 
 <Layout>
@@ -21,9 +23,15 @@ import LatestBlogPosts from "../components/global/LatestBlogPostsIndex.astro";
     <!-- Seccion de la academia -->
     <SocialImpact />
 
+    <!-- Sección de agrupaciones -->
+    <EnsemblesSection />
+
     <!-- Sección del libro conmemorativo -->
     <BookLink />
 
     <!-- Sección de Aliados -->
     <Allies />
+
+    <!-- Sección de reconocimientos -->
+    <ReconocimientosCTA />
 </Layout>
