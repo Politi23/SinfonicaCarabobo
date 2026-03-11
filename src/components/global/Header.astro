@@ -1,243 +1,98 @@
 ---
 import { Image } from "astro:assets";
 import logoSimple from "@assets/images/logo/logosvg.svg";
+import NavSubmenu from "./NavSubmenu.astro";
 
-// Dynamically generate navigation from pages directory
-const allPages = import.meta.glob("/src/pages/**/*.astro", { eager: true });
+const pathname = Astro.url.pathname;
 
-// Define files to exclude
-const excludeFiles = [
-  "/src/pages/404.astro",
-  "/src/pages/blog/[slug].astro",
-  "/src/pages/blog/page/[page].astro",
-  "/src/pages/libro/index.astro",
-  "/src/pages/galeria/[slug].astro",
-  "/src/pages/galeria/eventos/[slug].astro",
-  "/src/pages/galeria/eventos/page/[page].astro",
-  "/src/pages/eventos/[slug].astro",
-  "/src/pages/eventos/page/[page].astro",
-  "/src/pages/nosotros/historia.astro",
-];
+const navLinks = [
+  {
+    href: "/agrupaciones",
+    label: "Agrupaciones",
+  },
+  {
+    href: "#",
+    label: "Nosotros",
+    dropdown: [
+      { href: "/nosotros", label: "La Orquesta" },
+      { href: "/nosotros/historia", label: "Reseña Historica" },
+      { href: "/nosotros/academia", label: "Academia" },
+      { href: "/nosotros/reconocimientos", label: "Reconocimientos" },
+    ],
+  },
+  {
+    href: "#",
+    label: "Actualidad",
+    dropdown: [
+      {
+        href: "/blog",
+        label: "Blog",
+      },
+      {
+        href: "/eventos",
+        label: "Eventos",
+      },
+    ],
+  },
+  {
+    href: "#",
+    label: "Multimedia",
+    dropdown: [
+      { href: "/galeria/eventos", label: "Eventos" },
+      { href: "/galeria/imagenes", label: "Imágenes" },
+      { href: "/nosotros/discografia", label: "Discografía" },
+    ],
+  },
+  {
+    href: "#",
+    label: "Apóyanos",
+    dropdown: [
+      {
+        href: "/apoyanos/empresarial",
+        label: "Plan Empresarial",
+      },
+      {
+        href: "/apoyanos/donaciones",
+        label: "Donaciones",
+      },
+    ],
+  },
+  {
+    href: "/contacto",
+    label: "Contacto",
+  },
+].map((link) => ({
+  ...link,
+  active: link.href === "/" ? pathname === "/" : pathname.startsWith(link.href),
+}));
 
-// Create a map to store the navigation structure
-const topLevelNav = new Map();
-
-// Process each page
-for (const [path] of Object.entries(allPages)) {
-  // Skip excluded files
-  if (excludeFiles.includes(path)) {
-    continue;
-  }
-
-  // Convert file path to URL path
-  let urlPath = path
-    .replace("/src/pages", "") // Remove base path
-    .replace(/\/index\.astro$/, "/") // Convert index files to directory
-    .replace(/\.astro$/, "") // Remove .astro extension
-    .replace(/\/$/, ""); // Remove trailing slash except for root
-
-  // Special handling for root index
-  if (urlPath === "") {
-    urlPath = "/";
-  }
-
-  // Split path into segments
-  const segments = urlPath.split("/").filter((segment) => segment !== "");
-
-  if (segments.length === 0) {
-    // This is the home page - skip adding it to the navigation menu
-    // The logo already serves as a link to the homepage
-    // Do nothing here to exclude the home page from the menu
-  } else if (segments.length === 1) {
-    // This is a top-level page or directory
-    const dirName = segments[0];
-
-    // Convert directory name to readable label
-    let dirLabel = dirName
-      .replace(/-/g, " ")
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-
-    // Special case handling for known directories
-    switch (dirName) {
-      case "nosotros":
-        dirLabel = "Nosotros";
-        break;
-      case "agrupaciones":
-        dirLabel = "Agrupaciones";
-        break;
-      case "academia":
-        dirLabel = "Academia";
-        break;
-      case "blog":
-        dirLabel = "Blog";
-        break;
-      case "libro":
-        dirLabel = "Libro";
-        break;
-      case "apoyanos":
-        dirLabel = "Apóyanos";
-        break;
-      case "contacto":
-        dirLabel = "Contacto";
-        break;
-    }
-
-    // Initialize the top-level entry if it doesn't exist
-    if (!topLevelNav.has(`/${dirName}`)) {
-      topLevelNav.set(`/${dirName}`, {
-        href: `/${dirName}`,
-        label: dirLabel,
-        dropdown: [],
-      });
-    }
-  } else if (segments.length >= 2) {
-    // This is a sub-page, create or update the parent's dropdown
-    const parentDir = segments[0];
-    const subPath = segments.slice(1).join("/");
-
-    // Convert sub-path to readable label
-    let subLabel = subPath
-      .replace(/-/g, " ")
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-
-    // Special case handling for known sub-pages
-    if (parentDir === "nosotros" && subPath === "reconocimientos") {
-      subLabel = "Reconocimientos";
-    } else if (parentDir === "nosotros" && subPath === "discografia") {
-      subLabel = "Discografia";
-    } else if (parentDir === "galeria" && subPath === "eventos") {
-      subLabel = "Eventos";
-    } else if (parentDir === "galeria" && subPath === "imagenes") {
-      subLabel = "Imágenes";
-    }
-
-    // Initialize the parent if it doesn't exist
-    if (!topLevelNav.has(`/${parentDir}`)) {
-      let parentLabel = parentDir
-        .replace(/-/g, " ")
-        .split(" ")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
-
-      switch (parentDir) {
-        case "nosotros":
-          parentLabel = "Nosotros";
-          break;
-        case "agrupaciones":
-          parentLabel = "Agrupaciones";
-          break;
-        case "academia":
-          parentLabel = "Academia";
-          break;
-        case "blog":
-          parentLabel = "Blog";
-          break;
-        case "libro":
-          parentLabel = "Libro";
-          break;
-        case "apoyanos":
-          parentLabel = "Apóyanos";
-          break;
-        case "contacto":
-          parentLabel = "Contacto";
-          break;
-      }
-
-      topLevelNav.set(`/${parentDir}`, {
-        href: `/${parentDir}`,
-        label: parentLabel,
-        dropdown: [],
-      });
-    }
-
-    // Add the sub-page to the parent's dropdown
-    const parentEntry = topLevelNav.get(`/${parentDir}`);
-    parentEntry.dropdown.push({
-      href: urlPath,
-      label: subLabel,
-    });
-  }
-}
-
-// Convert map to array and sort
-const navArray = Array.from(topLevelNav.values());
-
-// Define custom sort order for top-level items
-const order = [
-  "/nosotros",
-  "/agrupaciones",
-  "/eventos",
-  "/galeria",
-  "/blog",
-  "/academia",
-  "/apoyanos",
-  "/contacto",
-];
-navArray.sort((a, b) => {
-  const aIndex = order.indexOf(a.href);
-  const bIndex = order.indexOf(b.href);
-
-  if (aIndex !== -1 && bIndex !== -1) {
-    return aIndex - bIndex;
-  } else if (aIndex !== -1) {
-    return -1;
-  } else if (bIndex !== -1) {
-    return 1;
-  } else {
-    return a.href.localeCompare(b.href);
-  }
-});
-
-// Sort dropdown items alphabetically
-navArray.forEach((item) => {
-  if (item.dropdown) {
-    // Custom sort order for Nosotros dropdown
-    if (item.href === "/nosotros") {
-      const customOrder = ["Nosotros", "Reconocimientos", "Discografia"];
-      item.dropdown.sort((a: { label: string }, b: { label: any }) => {
-        const aIndex = customOrder.indexOf(a.label);
-        const bIndex = customOrder.indexOf(b.label);
-        if (aIndex !== -1 && bIndex !== -1) {
-          return aIndex - bIndex;
-        }
-        return a.label.localeCompare(b.label);
-      });
-    } else if (item.href === "/galeria") {
-      const customOrder = ["Eventos", "Imágenes"];
-      item.dropdown.sort((a: { label: string }, b: { label: any }) => {
-        const aIndex = customOrder.indexOf(a.label);
-        const bIndex = customOrder.indexOf(b.label);
-        if (aIndex !== -1 && bIndex !== -1) {
-          return aIndex - bIndex;
-        }
-        return a.label.localeCompare(b.label);
-      });
-    } else {
-      item.dropdown.sort((a: { label: string }, b: { label: any }) =>
-        a.label.localeCompare(b.label),
-      );
-    }
-  }
-});
-
-const navLinks = navArray;
+const submenuGroups = navLinks
+  .filter((link) => link.dropdown)
+  .map((link) => ({
+    id: `submenu-${link.label}`,
+    items: link.dropdown!,
+  }));
 ---
 
 <!-- Header con efecto glassmorphism -->
-<header class="header" id="main-header">
-  <div class="header-backdrop"></div>
-  <div class="header-container">
+<header
+  class="fixed top-0 left-0 right-0 ] max-md:h-[var(--header-height-mobile)] z-[1000] transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)]"
+  id="main-header"
+>
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-black via-black to-black backdrop-blur-[20px] transition-all duration-400 ease-out"
+  >
+  </div>
+  <div
+    class="relative min-h-[var(--header-height)] max-w-[1280px] mx-auto px-8 h-full flex items-center justify-between"
+  >
     <!-- Logo -->
-    <a href="/" class="logo-link group">
+    <a href="/" class="relative flex items-center no-underline z-10 group">
       <div class="flex items-center gap-4">
         <Image
           src={logoSimple}
           alt="Logo de la Fundación Orquesta Sinfónica de Carabobo"
-          class="logo-image drop-shadow-lg transition-transform duration-300 group-hover:scale-105"
+          class="h-14 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]"
           width="150"
           height="56"
           loading="eager"
@@ -247,59 +102,83 @@ const navLinks = navArray;
     </a>
 
     <!-- Navegación principal -->
-    <nav class="main-nav" id="main-nav">
+    <nav class="flex items-center h-full" id="main-nav">
       <!-- Botón hamburguesa para móvil -->
       <button
-        class="nav-toggle"
+        class="nav-toggle flex lg:hidden flex-col justify-center gap-[5px] w-10 h-10 bg-transparent border border-white/20 rounded-lg p-2 cursor-pointer transition-all duration-300 z-[100] hover:border-primary hover:bg-primary/10"
         id="nav-toggle"
         aria-label="Abrir menú de navegación"
         aria-expanded="false"
       >
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
+        <span
+          class="hamburger-line block w-full h-[2px] bg-text-light rounded-[2px] transition-all duration-300"
+        ></span>
+        <span
+          class="hamburger-line block w-full h-[2px] bg-text-light rounded-[2px] transition-all duration-300"
+        ></span>
+        <span
+          class="hamburger-line block w-full h-[2px] bg-text-light rounded-[2px] transition-all duration-300"
+        ></span>
       </button>
 
       <!-- Enlaces de navegación -->
-      <ul class="nav-list" id="nav-list">
+      <ul
+        class="nav-list list-none m-0 p-0 flex items-center h-full gap-2 lg:gap-2 max-lg:fixed max-lg:top-[var(--header-height-mobile)] max-lg:left-0 max-lg:right-0 max-lg:bottom-0 max-lg:flex-col max-lg:items-center max-lg:justify-start max-lg:pt-5 max-lg:gap-3 max-lg:bg-black max-lg:opacity-0 max-lg:invisible max-lg:-translate-y-5 max-lg:transition-all max-lg:duration-400 max-lg:overflow-y-auto [&.active]:max-lg:opacity-100 [&.active]:max-lg:visible [&.active]:max-lg:translate-y-0"
+        id="nav-list"
+      >
         {
           navLinks.map((link) => (
-            <li class="nav-item">
+            <li class="nav-item relative h-full flex items-center max-lg:h-auto max-lg:w-full max-lg:flex-col">
               {link.dropdown && link.dropdown.length > 0 ? (
-                <div class="nav-dropdown" data-dropdown>
+                <div
+                  class="nav-dropdown group static h-full flex items-center max-lg:relative max-lg:w-full max-lg:block max-lg:h-auto"
+                  data-dropdown
+                >
                   <button
-                    class={`nav-link dropdown-toggle ${link.active ? "nav-link-active" : ""}`}
+                    class={`nav-link dropdown-toggle group relative flex flex-col items-center px-[18px] py-[10px] bg-transparent border-none cursor-pointer text-text-secondary font-serif text-[0.9rem] font-normal tracking-[0.02em] transition-all duration-300 overflow-hidden hover:text-text-light max-lg:text-[1.1rem] max-lg:px-6 max-lg:py-4 max-lg:w-full max-lg:text-center ${link.active ? "text-primary nav-link-active" : ""}`}
                     aria-expanded="false"
                     aria-haspopup="true"
+                    aria-controls={`submenu-${link.label}`}
+                    data-target={`submenu-${link.label}`}
                   >
-                    <div class="nav-link-content">
-                      <span class="nav-link-text">{link.label}</span>
-                      <span class="nav-dropdown-arrow">⟩</span>
+                    <div class="nav-link-content flex items-center gap-1 pointer-events-none">
+                      <span class="nav-link-text relative z-10 transition-all duration-300">
+                        {link.label}
+                      </span>
+                      <span class="nav-dropdown-arrow ml-1 text-[0.7rem] transition-transform duration-300 group-aria-[expanded=true]:rotate-180">
+                        ⟩
+                      </span>
                     </div>
-                    <span class="nav-link-underline" />
                   </button>
-                  <ul class="nav-dropdown-menu" hidden>
-                    {link.dropdown.map(
-                      (subLink: {
-                        href: string | URL | null | undefined;
-                        label: unknown;
-                      }) => (
-                        <li class="nav-dropdown-item">
-                          <a href={subLink.href} class="nav-dropdown-link">
-                            {subLink.label}
-                          </a>
-                        </li>
-                      ),
-                    )}
+
+                  {/* Mobile Dropdown (Accordion) */}
+                  <ul
+                    class="mobile-dropdown hidden flex-col w-full bg-white/5 overflow-hidden transition-all duration-300 max-lg:relative"
+                    id={`mobile-submenu-${link.label}`}
+                  >
+                    {link.dropdown.map((subItem) => (
+                      <li>
+                        <a
+                          href={subItem.href}
+                          class="block px-8 py-3 text-text-secondary text-[0.95rem] transition-colors duration-300 hover:text-primary hover:bg-white/5"
+                        >
+                          {subItem.label}
+                        </a>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               ) : (
                 <a
                   href={link.href}
-                  class={`nav-link ${link.active ? "nav-link-active" : ""}`}
+                  class={`nav-link group relative flex flex-col items-center px-[18px] py-[10px] no-underline text-text-secondary font-serif text-[0.9rem] font-normal tracking-[0.02em] transition-all duration-300 overflow-hidden hover:text-text-light max-lg:text-[1.1rem] max-lg:px-6 max-lg:py-4 max-lg:w-full max-lg:text-center`}
                 >
-                  <span class="nav-link-text">{link.label}</span>
-                  <span class="nav-link-underline" />
+                  <span class="nav-link-text relative z-10 transition-all duration-300">
+                    {link.label}
+                  </span>
+                  <span
+                    class={`nav-link-underline absolute bottom-[6px] left-1/2 -translate-x-1/2 scale-x-0 w-[30px] h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent transition-transform duration-300 rounded-[2px] group-hover:scale-x-100`}
+                  />
                 </a>
               )}
             </li>
@@ -308,341 +187,15 @@ const navLinks = navArray;
       </ul>
     </nav>
   </div>
+
+  <NavSubmenu groups={submenuGroups} />
 </header>
 
 <style>
-  /* ============================================
-     HEADER STYLES
-  ============================================ */
-  .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: var(--header-height);
-    z-index: 1000;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .header-backdrop {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 1) 50%,
-      rgba(0, 0, 0, 1) 100%
-    );
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    transition: all 0.4s ease;
-  }
-
-  .header-container {
-    position: relative;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 32px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  /* Logo styles */
-  .logo-link {
-    position: relative;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    z-index: 10;
-  }
-
-  .logo-image {
-    height: 56px;
-    width: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
-  }
-
-  /* Navigation */
-  .main-nav {
-    display: flex;
-    align-items: center;
-  }
-
-  .nav-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    padding: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    z-index: 100;
-  }
-
-  .nav-toggle:hover {
-    border-color: var(--color-primary);
-    background: var(--color-primary-10);
-  }
-
-  .hamburger-line {
-    display: block;
-    width: 100%;
-    height: 2px;
-    background: var(--color-text-light);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-  }
-
-  .nav-toggle.active .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-
-  .nav-toggle.active .hamburger-line:nth-child(2) {
-    opacity: 0;
-  }
-
-  .nav-toggle.active .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-  }
-
-  .nav-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .nav-item {
-    position: relative;
-  }
-
-  .nav-link {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 18px;
-    text-decoration: none;
-    color: var(--color-text-secondary);
-    font-family: "Merriweather", serif;
-    font-size: 0.9rem;
-    font-weight: 400;
-    letter-spacing: 0.02em;
-    transition: all 0.3s ease;
+  /* Keep mobile menu open styles that affect body */
+  :global(.mobile-menu-open) {
     overflow: hidden;
-  }
-
-  .nav-link-text {
-    position: relative;
-    z-index: 1;
-    transition: all 0.3s ease;
-  }
-
-  .nav-link-underline {
-    position: absolute;
-    bottom: 6px;
-    left: 50%;
-    transform: translateX(-50%) scaleX(0);
-    width: 30px;
-    height: 2px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      var(--color-primary),
-      transparent
-    );
-    transition: transform 0.3s ease;
-    border-radius: 2px;
-  }
-
-  .nav-link:hover {
-    color: var(--color-text-light);
-  }
-
-  .nav-link:hover .nav-link-underline {
-    transform: translateX(-50%) scaleX(1);
-  }
-
-  .nav-link-active {
-    color: var(--color-primary);
-  }
-
-  .nav-link-active .nav-link-underline {
-    transform: translateX(-50%) scaleX(0);
-  }
-
-  .nav-link-content {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-
-  /* Dropdown menu styles */
-  .nav-dropdown {
-    position: relative;
-  }
-  .nav-dropdown-arrow {
-    margin-left: 4px;
-    font-size: 0.7rem;
-    transition: transform 0.3s ease;
-  }
-  .dropdown-toggle[aria-expanded="true"] .nav-dropdown-arrow {
-    transform: rotate(180deg);
-  }
-  .nav-dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    margin-top: 10px;
-    min-width: 200px;
-    background: #000000;
-    border: 1px solid #333333;
-    border-radius: 8px;
-    padding: 8px 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-    z-index: 1000;
-  }
-  .nav-dropdown-menu[data-visible="true"] {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-  .nav-dropdown-item {
-    list-style: none;
-  }
-  .nav-dropdown-link {
-    display: block;
-    padding: 12px 20px;
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    font-family: "Merriweather", serif;
-    font-size: 0.85rem;
-    font-weight: 400;
-    transition: all 0.3s ease;
-  }
-  .nav-dropdown-link:hover {
-    color: var(--color-primary);
-    background: var(--color-primary-10);
-  }
-  /* ============================================
-     DROPDOWN ANIMATION
-  ============================================ */
-  .nav-dropdown-menu {
-    max-height: 0;
-    overflow: hidden;
-    transition:
-      max-height 0.3s ease,
-      opacity 0.3s ease;
-  }
-
-  .nav-dropdown-menu[data-visible="true"] {
-    max-height: 300px; /* Adjust as needed based on content */
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  /* ============================================
-     RESPONSIVE STYLES
-  ============================================ */
-  @media (max-width: 1024px) {
-    .nav-list {
-      gap: 4px;
-    }
-
-    .nav-link {
-      padding: 10px 14px;
-      font-size: 0.85rem;
-    }
-
-    .nav-dropdown-menu {
-      position: static;
-      margin-top: 0;
-      min-width: 160px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .header {
-      height: var(--header-height-mobile);
-    }
-
-    .header-container {
-      padding: 0 20px;
-    }
-
-    .logo-image {
-      height: 44px;
-    }
-
-    .nav-toggle {
-      display: flex;
-    }
-
-    .nav-list {
-      position: fixed;
-      top: var(--header-height-mobile);
-      left: 0;
-      right: 0;
-      bottom: 0;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding-top: 20px;
-      gap: 12px;
-      background: #000000;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-20px);
-      transition: all 0.4s ease;
-      overflow-y: auto;
-    }
-
-    .mobile-menu-open {
-      overflow: hidden;
-      height: 100vh;
-    }
-
-    .nav-list.active {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .nav-link {
-      font-size: 1.1rem;
-      padding: 16px 24px;
-    }
-
-    .nav-dropdown {
-      width: 100%;
-      text-align: center;
-    }
-
-    .nav-dropdown-menu {
-      position: static;
-      background: #000000;
-      width: 80%;
-      margin: 10px auto;
-      max-width: 300px;
-    }
-
-    .nav-dropdown-menu[data-visible="true"] {
-      max-height: 200px;
-    }
+    height: 100vh;
   }
 </style>
 
@@ -657,8 +210,6 @@ const navLinks = navArray;
       navList.classList.toggle("active");
       const isExpanded = navToggle.getAttribute("aria-expanded") === "true";
       navToggle.setAttribute("aria-expanded", (!isExpanded).toString());
-
-      // Toggle body scroll lock
       document.body.classList.toggle("mobile-menu-open");
     });
 
@@ -678,62 +229,181 @@ const navLinks = navArray;
 
   // Handle dropdown menus
   const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
-  const dropdownMenus = document.querySelectorAll(
-    "[data-dropdown] .nav-dropdown-menu",
-  );
+
+  // Desktop Global Submenu Logic
+  const globalSubmenu = document.getElementById("global-submenu");
+  const submenuContents = document.querySelectorAll(".submenu-content");
+  let activeContentId: string | null = null;
+
+  // Helper to close all desktop submenus
+  const closeGlobalSubmenu = () => {
+    if (globalSubmenu) {
+      globalSubmenu.classList.remove(
+        "visible",
+        "opacity-100",
+        "translate-y-0",
+        "open",
+      );
+      globalSubmenu.classList.add("invisible", "opacity-0", "-translate-y-5");
+
+      // Reset contents
+      submenuContents.forEach((content) => {
+        content.classList.remove(
+          "opacity-100",
+          "pointer-events-auto",
+          "scale-100",
+        );
+        content.classList.add("opacity-0", "pointer-events-none", "scale-95");
+      });
+      activeContentId = null;
+    }
+
+    // Also reset aria-expanded on toggles
+    dropdownToggles.forEach((toggle) => {
+      if (window.innerWidth > 1024) {
+        toggle.setAttribute("aria-expanded", "false");
+      }
+    });
+  };
+
+  const openSubmenu = (content: Element, toggle: Element) => {
+    if (!globalSubmenu) return;
+
+    globalSubmenu.classList.add(
+      "visible",
+      "opacity-100",
+      "translate-y-0",
+      "open",
+    );
+    globalSubmenu.classList.remove("invisible", "opacity-0", "-translate-y-5");
+
+    // Reset all contents first
+    submenuContents.forEach((el) => {
+      el.classList.add("opacity-0", "pointer-events-none", "scale-95");
+      el.classList.remove("opacity-100", "pointer-events-auto", "scale-100");
+    });
+
+    // Show target
+    content.classList.remove("opacity-0", "pointer-events-none", "scale-95");
+    content.classList.add("opacity-100", "pointer-events-auto", "scale-100");
+
+    activeContentId = content.id;
+
+    // Update toggle states
+    dropdownToggles.forEach((t) => t.setAttribute("aria-expanded", "false"));
+    toggle.setAttribute("aria-expanded", "true");
+  };
+
+  const switchSubmenu = (newContent: Element, toggle: Element) => {
+    if (!activeContentId) return;
+
+    const currentContent = document.getElementById(activeContentId);
+
+    // Animate current OUT
+    if (currentContent) {
+      currentContent.classList.remove(
+        "opacity-100",
+        "pointer-events-auto",
+        "scale-100",
+      );
+      currentContent.classList.add(
+        "opacity-0",
+        "pointer-events-none",
+        "scale-95",
+      );
+    }
+
+    // Animate new IN
+    newContent.classList.remove("opacity-0", "pointer-events-none", "scale-95");
+    newContent.classList.add("opacity-100", "pointer-events-auto", "scale-100");
+
+    activeContentId = newContent.id;
+
+    dropdownToggles.forEach((t) => t.setAttribute("aria-expanded", "false"));
+    toggle.setAttribute("aria-expanded", "true");
+  };
 
   dropdownToggles.forEach((toggle) => {
-    toggle.addEventListener("click", function (this: HTMLButtonElement, e) {
-      e.preventDefault();
+    const targetId = toggle.getAttribute("data-target");
+    if (!targetId) return;
 
-      // Close all other dropdowns
-      dropdownToggles.forEach((otherToggle) => {
-        if (otherToggle !== toggle) {
-          otherToggle.setAttribute("aria-expanded", "false");
+    // Unified Click Handler
+    toggle.addEventListener("click", (e) => {
+      e.preventDefault(); // Prevent default action
+
+      if (window.innerWidth <= 1024) {
+        // Mobile Logic
+        const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", (!isExpanded).toString());
+
+        // Find the inline mobile list (sibling)
+        const mobileList =
+          toggle.parentElement?.querySelector(".mobile-dropdown");
+        if (mobileList) {
+          mobileList.classList.toggle("hidden");
+          mobileList.classList.toggle("flex");
         }
-      });
+      } else {
+        // Desktop Logic
+        const targetContent = document.getElementById(targetId);
+        if (!targetContent) return;
 
-      dropdownMenus.forEach((menu) => {
-        if (menu !== this.nextElementSibling) {
-          menu.setAttribute("data-visible", "false");
-          menu.setAttribute("hidden", "");
-        }
-      });
+        const isOpen = globalSubmenu?.classList.contains("open");
 
-      // Toggle current dropdown
-      const isExpanded = this.getAttribute("aria-expanded") === "true";
-      this.setAttribute("aria-expanded", (!isExpanded).toString());
-
-      const dropdownMenu = this.nextElementSibling;
-      if (dropdownMenu) {
-        const isVisible = dropdownMenu.getAttribute("data-visible") === "true";
-        dropdownMenu.setAttribute("data-visible", (!isVisible).toString());
-
-        if (isVisible) {
-          dropdownMenu.setAttribute("hidden", "");
+        if (isOpen) {
+          if (activeContentId === targetId) {
+            // Closing current
+            closeGlobalSubmenu();
+          } else {
+            // Switching
+            switchSubmenu(targetContent, toggle);
+          }
         } else {
-          dropdownMenu.removeAttribute("hidden");
+          // Opening new
+          openSubmenu(targetContent, toggle);
         }
       }
     });
   });
 
-  // Close dropdowns when clicking elsewhere
-  document.addEventListener("click", function (event) {
-    const target = event.target;
+  // Close dropdowns when clicking elsewhere (global)
+  document.addEventListener("click", (event) => {
+    const target = event.target as HTMLElement;
     if (
-      !target ||
-      !(target instanceof Element) ||
-      !target.closest("[data-dropdown]")
+      !target.closest("[data-dropdown]") &&
+      !target.closest("[data-submenu]") &&
+      !target.closest(".submenu-container") // Add this to prevent closing when clicking inside submenu
     ) {
-      dropdownToggles.forEach((toggle) => {
-        toggle.setAttribute("aria-expanded", "false");
-      });
+      closeGlobalSubmenu();
+    }
+  });
 
-      dropdownMenus.forEach((menu) => {
-        menu.setAttribute("data-visible", "false");
-        menu.setAttribute("hidden", "");
+  // Handle window resize
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 1024) {
+      // Reset mobile styles/states if switching to desktop
+      document.querySelectorAll(".mobile-dropdown").forEach((el) => {
+        el.classList.add("hidden");
+        el.classList.remove("flex");
       });
+    } else {
+      // Reset desktop submenus
+      closeGlobalSubmenu();
     }
   });
 </script>
+
+<style>
+  /* Handle hamburger animation */
+  .nav-toggle.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .nav-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+</style>
