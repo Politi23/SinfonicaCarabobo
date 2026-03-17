@@ -5,6 +5,7 @@ import MainHero from "../../../components/sections/MainHero.astro";
 import BlogSectionHeader from "../../../components/blog/BlogSectionHeader.astro";
 import BlogCard from "../../../components/blog/BlogCard.astro";
 import Pagination from "../../../components/blog/Pagination.astro";
+import WpOfflineError from "../../../components/ui/WpOfflineError.astro";
 import { getBlogs, getBlogsInfo } from "../../../config/wp-blogs";
 
 const { page } = Astro.params;
@@ -72,16 +73,10 @@ try {
             />
           </>
         ) : (
-          <div class="text-center py-20">
-            <p class="text-xl text-gray-500 italic">
-              No hay publicaciones disponibles en este momento.
-            </p>
-            <div class="mt-8">
-              <a href="/" class="text-primary font-bold hover:underline">
-                Volver al inicio
-              </a>
-            </div>
-          </div>
+          <WpOfflineError
+            title="No hay publicaciones disponibles"
+            message="Lo sentimos, no hay publicaciones disponibles en este momento. Por favor, inténtalo más tarde."
+          />
         )
       }
     </section>
