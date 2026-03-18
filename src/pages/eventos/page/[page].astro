@@ -2,10 +2,11 @@
 export const prerender = false;
 import Layout from "../../../layouts/Layout.astro";
 import MainHero from "../../../components/sections/MainHero.astro";
-import EventoCard from "../../../components/eventos/EventoCard.astro"; // Usamos el componente que ya creamos anteriormente
+import EventoCard from "../../../components/eventos/EventoCard.astro";
 import EventosSectionHeader from "../../../components/eventos/EventosSectionHeader.astro";
 import Pagination from "../../../components/blog/Pagination.astro";
-import { getEventos } from "../../../config/wp-eventos"; // Usamos la función actualizada
+import WpOfflineError from "../../../components/ui/WpOfflineError.astro";
+import { getEventos } from "../../../config/wp-eventos";
 import logoSimpleBbg from "@assets/images/logo/logosimplebbg.webp";
 
 // Función para calcular el total de páginas -> Removed for SSR
@@ -101,16 +102,10 @@ try {
             />
           </>
         ) : (
-          <div class="text-center py-20">
-            <p class="text-xl text-gray-500 italic">
-              No hay eventos disponibles en este momento.
-            </p>
-            <div class="mt-8">
-              <a href="/" class="text-primary font-bold hover:underline">
-                Volver al inicio
-              </a>
-            </div>
-          </div>
+          <WpOfflineError
+            title="No hay eventos disponibles"
+            message="Lo sentimos, no hay eventos disponibles en este momento. Por favor, inténtalo más tarde."
+          />
         )
       }
     </section>

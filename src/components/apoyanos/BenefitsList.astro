@@ -4,32 +4,26 @@ import imageGrid from "@assets/images/organizacion/OSC en TTC 3.webp";
 // Extraemos los beneficios a un arreglo para mantener el código HTML súper limpio
 const benefits = [
     {
-        num: "01",
         title: "Difusión Digital",
         desc: "Presencia estratégica como patrocinante oficial en nuestro ecosistema de redes y medios digitales.",
     },
     {
-        num: "02",
         title: "Exclusividad",
         desc: "Ubicación preferencial y privilegios de acceso en nuestra cartelera de conciertos de temporada.",
     },
     {
-        num: "03",
         title: "Activación",
         desc: "Espacios de networking y stands de marca en los foyers de las salas de conciertos.",
     },
     {
-        num: "04",
         title: "Multimedia",
         desc: "Producción de contenido audiovisual de alta gama vinculando los valores de su marca.",
     },
     {
-        num: "05",
         title: "Presencia en Vivo",
         desc: "Reconocimiento público y menciones de honor durante el desarrollo de nuestras galas.",
     },
     {
-        num: "06",
         title: "Identidad Aliada",
         desc: "Material promocional físico de gran formato compartiendo la identidad visual de su empresa.",
     },
@@ -74,12 +68,12 @@ const benefits = [
             class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200 border border-gray-200 overflow-hidden backdrop-blur-md rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-500"
         >
             {
-                benefits.map((item) => (
+                benefits.map((item, index) => (
                     <div class="group relative p-10 bg-white hover:bg-gray-50 transition-all duration-500 flex flex-col">
                         <div class="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-secondary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                         <span class="block text-secondary/30 text-7xl font-display mb-8 group-hover:text-secondary group-hover:-translate-y-2 transition-all duration-500 italic leading-none">
-                            {item.num}
+                            {String(index + 1).padStart(2, "0")}
                         </span>
 
                         <h3 class="text-2xl font-display font-bold mb-4 tracking-tight uppercase text-gray-900 group-hover:text-secondary-light transition-colors">

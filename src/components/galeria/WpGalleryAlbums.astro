@@ -1,6 +1,7 @@
 ---
 import { getAllAlbums } from "../../config/wp-albums";
 import GaleriaSectionHeader from "./GaleriaSectionHeader.astro";
+import WpOfflineError from "../ui/WpOfflineError.astro";
 
 export interface Props {
   currentPage?: number;
@@ -122,15 +123,10 @@ try {
           </div>
         </>
       ) : (
-        <div class="text-center py-16 bg-white rounded border border-gray-200">
-          <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
-            No se pudieron cargar los álbumes
-          </h2>
-          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-            Lo sentimos, hubo un problema al intentar acceder a los álbumes de
-            nuestra galería. Por favor, inténtalo más tarde.
-          </p>
-        </div>
+        <WpOfflineError
+          title="No se pudieron cargar los álbumes"
+          message="Lo sentimos, hubo un problema al intentar acceder a los álbumes de nuestra galería. Por favor, inténtalo más tarde."
+        />
       )
     }
   </div>
