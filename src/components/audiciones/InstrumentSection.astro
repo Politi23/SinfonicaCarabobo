@@ -18,6 +18,10 @@ export interface Props {
 }
 
 const { instrument, levels, consolidatedPdf } = Astro.props;
+
+// Calculate how many empty squares are needed to fill the 3-column grid
+const fillerCount = levels.length % 3 === 0 ? 0 : 3 - (levels.length % 3);
+const fillers = Array(fillerCount).fill(null);
 ---
 
 <div class="instrument-section">
@@ -73,7 +77,7 @@ const { instrument, levels, consolidatedPdf } = Astro.props;
 
     <!-- Collapsible content -->
     <div
-        id="instrument-content-{instrument}"
+        id={`instrument-content-${instrument}`}
         class="instrument-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-gray-50"
     >
         <div class="p-10">
@@ -149,6 +153,7 @@ const { instrument, levels, consolidatedPdf } = Astro.props;
                         </div>
                     ))
                 }
+                {fillers.map(() => <div class="bg-white min-h-[100px]" />)}
             </div>
         </div>
     </div>
