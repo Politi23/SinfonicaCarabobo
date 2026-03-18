@@ -1,6 +1,6 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import HeroAudiciones from "@components/audiciones/HeroAudiciones.astro";
+import MainHero from "@components/sections/MainHero.astro";
 import AuditionInfo from "@components/audiciones/AuditionInfo.astro";
 import InstrumentSection from "@components/audiciones/InstrumentSection.astro";
 import DownloadPlanilla from "@components/audiciones/DownloadPlanilla.astro";
@@ -811,10 +811,10 @@ const percusionLevels: Level[] = [
 
 <Layout title="Audiciones | Orquesta Sinfónica de Carabobo">
     <main class="bg-background-dark text-text-light">
-        <HeroAudiciones
+        <MainHero
             title="Únete a"
             titleHighlight="Nuestra Orquesta"
-            subtitle="Audiciones abiertas para músicos talentosos que deseen formar parte de la Orquesta Sinfónica de Carabobo"
+            subtitle="Audiciones abiertas para músicos talentosos"
         />
 
         <AuditionInfo />
@@ -850,7 +850,7 @@ const percusionLevels: Level[] = [
                             <h3
                                 class="text-2xl font-display font-bold text-white uppercase tracking-wider"
                             >
-                                🎻 Instrumentos de Cuerda
+                                Instrumentos de Cuerda
                             </h3>
                             <div
                                 class="h-px flex-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent"
@@ -860,28 +860,24 @@ const percusionLevels: Level[] = [
 
                         <InstrumentSection
                             instrument="Violín"
-                            icon="🎻"
                             levels={violinLevels}
                             consolidatedPdf={`${basePath}/Violín /Repertorio de Audición OSC _ Violín.pdf`}
                         />
 
                         <InstrumentSection
                             instrument="Viola"
-                            icon="🎻"
                             levels={violaLevels}
                             consolidatedPdf={`${basePath}/Viola/Repertorio de Audición OSC _ Viola.pdf`}
                         />
 
                         <InstrumentSection
                             instrument="Violoncello"
-                            icon="🎻"
                             levels={violoncelloLevels}
                             consolidatedPdf={`${basePath}/Violoncello /Repertorio de Audición OSC _ Violoncello.pdf`}
                         />
 
                         <InstrumentSection
                             instrument="Contrabajo"
-                            icon="🎻"
                             levels={contrabajoLevels}
                             consolidatedPdf={`${basePath}/Contrabajo /Repertorio de Audición OSC _ Contrabajo.pdf`}
                         />
@@ -897,7 +893,7 @@ const percusionLevels: Level[] = [
                             <h3
                                 class="text-2xl font-display font-bold text-white uppercase tracking-wider"
                             >
-                                🎷 Vientos Madera
+                                Vientos Madera
                             </h3>
                             <div
                                 class="h-px flex-1 bg-gradient-to-r from-transparent via-secondary/50 to-transparent"
@@ -907,20 +903,17 @@ const percusionLevels: Level[] = [
 
                         <InstrumentSection
                             instrument="Flauta"
-                            icon="🎶"
                             levels={flautaLevels}
                         />
 
                         <InstrumentSection
                             instrument="Oboe"
-                            icon="🎶"
                             levels={oboeLevels}
                             consolidatedPdf={`${basePath}/Oboe/Repertorio de Audición OSC _ Oboe.pdf`}
                         />
 
                         <InstrumentSection
                             instrument="Clarinete"
-                            icon="🎶"
                             levels={clarineteLevels}
                             consolidatedPdf={`${basePath}/Clarinete/Repertorio de Audición OSC _ Clarinete.pdf`}
                         />
@@ -936,7 +929,7 @@ const percusionLevels: Level[] = [
                             <h3
                                 class="text-2xl font-display font-bold text-white uppercase tracking-wider"
                             >
-                                🎺 Vientos Metal
+                                Vientos Metal
                             </h3>
                             <div
                                 class="h-px flex-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent"
@@ -946,26 +939,22 @@ const percusionLevels: Level[] = [
 
                         <InstrumentSection
                             instrument="Corno Francés"
-                            icon="🎺"
                             levels={cornoLevels}
                         />
 
                         <InstrumentSection
                             instrument="Trompeta"
-                            icon="🎺"
                             levels={trompetaLevels}
                             consolidatedPdf={`${basePath}/Trompeta /Repertorio de Audición OSC _ Trompeta.pdf`}
                         />
 
                         <InstrumentSection
                             instrument="Trombón"
-                            icon="🎺"
                             levels={trombonLevels}
                         />
 
                         <InstrumentSection
                             instrument="Tuba"
-                            icon="🎺"
                             levels={tubaLevels}
                         />
                     </div>
@@ -980,7 +969,7 @@ const percusionLevels: Level[] = [
                             <h3
                                 class="text-2xl font-display font-bold text-white uppercase tracking-wider"
                             >
-                                🥁 Percusión
+                                Percusión
                             </h3>
                             <div
                                 class="h-px flex-1 bg-gradient-to-r from-transparent via-secondary/50 to-transparent"
@@ -990,7 +979,6 @@ const percusionLevels: Level[] = [
 
                         <InstrumentSection
                             instrument="Percusión"
-                            icon="🥁"
                             levels={percusionLevels}
                         />
                     </div>

@@ -13,132 +13,172 @@ export interface Level {
 
 export interface Props {
     instrument: string;
-    icon?: string;
     levels: Level[];
     consolidatedPdf?: string;
-    isOpen?: boolean;
 }
 
-const {
-    instrument,
-    icon = "🎵",
-    levels,
-    consolidatedPdf,
-    isOpen = false,
-} = Astro.props;
-
-// Helper function to format PDF filename from path
-function formatPdfName(path: string): string {
-    const fileName = path.split("/").pop()?.replace(".pdf", "") || "Descargar";
-    return decodeURIComponent(fileName);
-}
+const { instrument, levels, consolidatedPdf } = Astro.props;
 ---
 
 <div
     class="instrument-section bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700"
 >
-    <!-- Header del instrumento -->
-    <div
-        class="bg-gradient-to-r from-primary/10 to-secondary/10 dark:from-primary/20 dark:to-secondary/20 px-6 py-4"
+    <!-- Header del instrumento - Clickable to toggle -->
+    <button
+        type="button"
+        class="instrument-header w-full bg-gradient-to-r from-primary/10 to-secondary/10 dark:from-primary/20 dark:to-secondary/20 px-6 py-4 flex items-center gap-4 hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 dark:hover:from-primary/30 dark:hover:to-secondary/30 transition-colors cursor-pointer"
+        aria-expanded="false"
+        aria-controls="instrument-content-{instrument}"
     >
-        <div class="flex items-center gap-4">
-            <span class="text-3xl">{icon}</span>
-            <h3
-                class="text-2xl font-display font-bold text-gray-900 dark:text-white"
-            >
-                {instrument}
-            </h3>
-            {
-                consolidatedPdf && (
-                    <a
-                        href={consolidatedPdf}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="ml-auto inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors"
+        <h3
+            class="text-2xl font-display font-bold text-gray-900 dark:text-white flex-grow text-left"
+        >
+            {instrument}
+        </h3>
+        {
+            consolidatedPdf && (
+                <a
+                    href={consolidatedPdf}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors mr-4"
+                    onclick={(e) => e.stopPropagation()}
+                >
+                    <svg
+                        class="w-4 h-4"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
                     >
-                        <svg
-                            class="w-4 h-4"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
-                        </svg>
-                        Repertorio Completo
-                    </a>
-                )
-            }
-        </div>
-    </div>
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+                    </svg>
+                    Repertorio Completo
+                </a>
+            )
+        }
+        <svg
+            class="toggle-icon w-6 h-6 text-gray-600 dark:text-gray-300 transition-transform duration-300"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"></path>
+        </svg>
+    </button>
 
-    <!-- Niveles y repertorio -->
-    <div class="p-6">
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {
-                levels.map((level) => (
-                    <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-5 border border-gray-200 dark:border-gray-700">
-                        <h4 class="text-lg font-bold text-primary dark:text-primary mb-4 pb-2 border-b border-gray-200 dark:border-gray-700">
-                            {level.name}
-                        </h4>
-                        {level.pieces.length > 0 ? (
-                            <ul class="space-y-3">
-                                {level.pieces.map((piece) => (
-                                    <li class="group">
-                                        {piece.pdfPath ? (
-                                            <a
-                                                href={piece.pdfPath}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                class="flex items-start gap-3 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
-                                            >
-                                                <svg
-                                                    class="w-5 h-5 text-gray-400 group-hover:text-primary flex-shrink-0 mt-0.5"
-                                                    fill="currentColor"
-                                                    viewBox="0 0 24 24"
+    <!-- Collapsible content -->
+    <div
+        id="instrument-content-{instrument}"
+        class="instrument-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+    >
+        <div class="p-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {
+                    levels.map((level) => (
+                        <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-5 border border-gray-200 dark:border-gray-700">
+                            <h4 class="text-lg font-bold text-primary dark:text-primary mb-4 pb-2 border-b border-gray-200 dark:border-gray-700">
+                                {level.name}
+                            </h4>
+                            {level.pieces.length > 0 ? (
+                                <ul class="space-y-3">
+                                    {level.pieces.map((piece) => (
+                                        <li class="group">
+                                            {piece.pdfPath ? (
+                                                <a
+                                                    href={piece.pdfPath}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    class="flex items-start gap-3 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
                                                 >
-                                                    <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
-                                                </svg>
-                                                <span class="text-sm">
-                                                    {piece.composer && (
-                                                        <span class="font-semibold text-gray-900 dark:text-white">
-                                                            {piece.composer}{" "}
-                                                            -{" "}
-                                                        </span>
-                                                    )}
-                                                    {piece.title}
-                                                </span>
-                                            </a>
-                                        ) : (
-                                            <div class="flex items-start gap-3 text-gray-700 dark:text-gray-300">
-                                                <svg
-                                                    class="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5"
-                                                    fill="currentColor"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
-                                                </svg>
-                                                <span class="text-sm">
-                                                    {piece.composer && (
-                                                        <span class="font-semibold text-gray-900 dark:text-white">
-                                                            {piece.composer}{" "}
-                                                            -{" "}
-                                                        </span>
-                                                    )}
-                                                    {piece.title}
-                                                </span>
-                                            </div>
-                                        )}
-                                    </li>
-                                ))}
-                            </ul>
-                        ) : (
-                            <p class="text-gray-500 dark:text-gray-400 text-sm italic">
-                                Consulta el repertorio completo en el PDF
-                                principal
-                            </p>
-                        )}
-                    </div>
-                ))
-            }
+                                                    <svg
+                                                        class="w-5 h-5 text-gray-400 group-hover:text-primary flex-shrink-0 mt-0.5"
+                                                        fill="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+                                                    </svg>
+                                                    <span class="text-sm">
+                                                        {piece.composer && (
+                                                            <span class="font-semibold text-gray-900 dark:text-white">
+                                                                {piece.composer}{" "}
+                                                                -{" "}
+                                                            </span>
+                                                        )}
+                                                        {piece.title}
+                                                    </span>
+                                                </a>
+                                            ) : (
+                                                <div class="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+                                                    <svg
+                                                        class="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5"
+                                                        fill="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+                                                    </svg>
+                                                    <span class="text-sm">
+                                                        {piece.composer && (
+                                                            <span class="font-semibold text-gray-900 dark:text-white">
+                                                                {piece.composer}{" "}
+                                                                -{" "}
+                                                            </span>
+                                                        )}
+                                                        {piece.title}
+                                                    </span>
+                                                </div>
+                                            )}
+                                        </li>
+                                    ))}
+                                </ul>
+                            ) : (
+                                <p class="text-gray-500 dark:text-gray-400 text-sm italic">
+                                    Consulta el repertorio completo en el PDF
+                                    principal
+                                </p>
+                            )}
+                        </div>
+                    ))
+                }
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    // Collapsible functionality - handle multiple instances
+    const headers = document.querySelectorAll(".instrument-header");
+
+    headers.forEach((header) => {
+        const content = header.nextElementSibling;
+        const icon = header.querySelector(".toggle-icon");
+
+        if (content && icon) {
+            header.addEventListener("click", () => {
+                const isExpanded =
+                    header.getAttribute("aria-expanded") === "true";
+
+                if (isExpanded) {
+                    // Collapse
+                    content.style.maxHeight = "0";
+                    icon.style.transform = "rotate(0deg)";
+                    header.setAttribute("aria-expanded", "false");
+                } else {
+                    // Expand
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    icon.style.transform = "rotate(180deg)";
+                    header.setAttribute("aria-expanded", "true");
+                }
+            });
+        }
+    });
+</script>
+
+<style>
+    .instrument-content {
+        max-height: 0;
+        overflow: hidden;
+    }
+</style>
