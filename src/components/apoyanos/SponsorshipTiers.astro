@@ -58,7 +58,7 @@ const tiers = [
 
 <section
     id="niveles"
-    class="py-24 bg-gray-50 text-black overflow-hidden font-light"
+    class="py-24 bg-gray-50 text-gray-900 overflow-hidden"
 >
     <div class="container mx-auto px-6 max-w-7xl relative z-10">
         <div
@@ -66,7 +66,7 @@ const tiers = [
         >
             <div class="max-w-2xl">
                 <h2
-                    class="text-4xl md:text-6xl font-display font-bold leading-tight text-black"
+                    class="text-4xl md:text-6xl font-display font-bold leading-tight text-gray-900"
                 >
                     Niveles de <br />
                     <span class="font-bold text-secondary italic"
@@ -75,7 +75,7 @@ const tiers = [
                 </h2>
             </div>
             <p
-                class="text-gray-600 text-lg max-w-sm font-light border-l-2 border-secondary/50 pl-6 leading-relaxed"
+                class="text-gray-600 text-xl max-w-sm font-medium border-l-2 border-secondary/50 pl-6 leading-relaxed"
             >
             Conozca nuestras opciones de patrocinio y elija el nivel de impacto que desea proyectar.
             </p>
@@ -86,8 +86,8 @@ const tiers = [
                 <!-- Etiquetas de Beneficios -->
                 <div class="bg-gray-50/50 border-r border-gray-100 flex flex-col">
                     <div class="h-48 p-10 flex flex-col justify-evenly text-center">
-                        <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary mb-2 italic">Estructura</span>
-                        <h4 class="text-sm font-bold uppercase tracking-widest text-black">Beneficios</h4>
+                        <span class="text-xs font-bold uppercase tracking-[0.3em] text-secondary mb-2 italic">Estructura</span>
+                        <h4 class="text-base font-bold uppercase tracking-widest text-gray-900">Beneficios</h4>
                     </div>
                     {[
                         "Redes Sociales",
@@ -99,7 +99,7 @@ const tiers = [
                         "Beneficios Exclusivos"
                     ].map((label) => (
                         <div class="p-8 border-t border-gray-100 flex items-center h-[120px]">
-                            <span class="text-sm font-medium text-gray-700 leading-tight">{label}</span>
+                            <span class="text-base font-medium text-gray-800 leading-tight">{label}</span>
                         </div>
                     ))}
                     <div class="p-10 border-t border-gray-100 flex items-center h-[140px]"></div>
@@ -157,13 +157,13 @@ const tiers = [
                         <div class={`relative border-r border-gray-100 last:border-r-0 flex flex-col bg-white`}>
                             <!-- Header -->
                             <div class="h-48 p-10 flex flex-col items-center text-center justify-center">
-                                <span class={`text-[10px] font-bold uppercase tracking-widest mb-3 text-secondary`}>
+                                <span class={`text-xs font-bold uppercase tracking-widest mb-3 text-secondary`}>
                                     {tier.id}
                                 </span>
-                                <h3 class="text-xl font-display font-bold uppercase mb-2 tracking-wide text-black">
+                                <h3 class="text-2xl font-display font-bold uppercase mb-2 tracking-wide text-gray-900">
                                     {tier.title.replace("Patrocinio ", "")}
                                 </h3>
-                                <div class={`text-4xl font-display italic font-medium text-secondary`}>
+                                <div class={`text-4xl font-display italic font-bold text-secondary`}>
                                     {tier.price}
                                 </div>
                             </div>
@@ -171,7 +171,7 @@ const tiers = [
                             <!-- Valores -->
                             {currentBenefits.map((benefit) => (
                                 <div class={`p-8 border-t flex items-center justify-center text-center h-[120px] ${isPlatinum ? 'border-gray-300/50' : 'border-gray-100'}`}>
-                                    <span class={`text-sm leading-relaxed text-black ${benefit === "—" ? 'text-gray-300' : ''}`}>
+                                    <span class={`text-base font-medium leading-relaxed ${benefit === "—" ? 'text-gray-300' : 'text-gray-700'}`}>
                                         {benefit}
                                     </span>
                                 </div>
@@ -197,10 +197,10 @@ const tiers = [
                 tiers.map((tier) => (
                     <div class={`relative border border-gray-300 bg-white`}>
                         <div class="p-8 text-center border-b border-gray-300">
-                            <p class={`text-[10px] font-bold uppercase tracking-[0.2em] mb-2 text-secondary`}>
+                            <p class={`text-xs font-bold uppercase tracking-[0.2em] mb-2 text-secondary`}>
                                 {tier.title}
                             </p>
-                            <p class="text-4xl font-display italic mb-2 text-black">
+                            <p class="text-5xl font-display font-bold italic mb-2 text-gray-900">
                                 {tier.price}
                             </p>
                         </div>
@@ -208,8 +208,8 @@ const tiers = [
                             <ul class="space-y-4">
                                 {tier.features.map((feature) => (
                                     <li class="flex items-start gap-4">
-                                        <div class={`w-2 h-2 mt-2 flex-shrink-0 bg-secondary`} />
-                                        <span class={`text-sm font-light leading-relaxed text-gray-600`}>
+                                        <div class={`w-2 h-2 mt-2.5 flex-shrink-0 bg-secondary`} />
+                                        <span class={`text-lg font-medium leading-relaxed text-gray-700`}>
                                             {feature}
                                         </span>
                                     </li>
@@ -229,11 +229,11 @@ const tiers = [
 
         <div class="mt-12 flex items-center gap-4">
             <div
-                class="h-[1px] flex-grow bg-gradient-to-r from-secondary/40 to-transparent"
+                class="h-[1px] flex-grow bg-gradient-to-r from-secondary/50 to-transparent"
             >
             </div>
             <p
-                class="text-gray-400 text-[10px] tracking-[0.3em] uppercase italic font-light"
+                class="text-gray-500 text-xs tracking-[0.2em] uppercase italic font-semibold"
             >
                 * Todos los beneficios están sujetos a términos de convenio
             </p>
