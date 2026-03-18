@@ -20,18 +20,20 @@ export interface Props {
 const { instrument, levels, consolidatedPdf } = Astro.props;
 ---
 
-<div
-    class="instrument-section bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700"
->
+<div class="instrument-section">
     <!-- Header del instrumento - Clickable to toggle -->
     <button
         type="button"
-        class="instrument-header w-full bg-gradient-to-r from-primary/10 to-secondary/10 dark:from-primary/20 dark:to-secondary/20 px-6 py-4 flex items-center gap-4 hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 dark:hover:from-primary/30 dark:hover:to-secondary/30 transition-colors cursor-pointer"
+        class="instrument-header w-full px-10 py-6 bg-white hover:bg-gray-50 transition-all duration-500 flex items-center gap-4 cursor-pointer group relative border border-gray-200 overflow-hidden"
         aria-expanded="false"
-        aria-controls="instrument-content-{instrument}"
     >
+        <div
+            class="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-secondary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        >
+        </div>
+
         <h3
-            class="text-2xl font-display font-bold text-gray-900 dark:text-white flex-grow text-left"
+            class="text-2xl font-display font-bold tracking-tight uppercase text-gray-900 group-hover:text-secondary-light transition-colors flex-grow text-left"
         >
             {instrument}
         </h3>
@@ -56,7 +58,7 @@ const { instrument, levels, consolidatedPdf } = Astro.props;
             )
         }
         <svg
-            class="toggle-icon w-6 h-6 text-gray-600 dark:text-gray-300 transition-transform duration-300"
+            class="toggle-icon w-6 h-6 text-gray-400 group-hover:text-secondary transition-transform duration-300"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -72,37 +74,42 @@ const { instrument, levels, consolidatedPdf } = Astro.props;
     <!-- Collapsible content -->
     <div
         id="instrument-content-{instrument}"
-        class="instrument-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+        class="instrument-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-gray-50"
     >
-        <div class="p-6">
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="p-10">
+            <div
+                class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200 border border-gray-200 overflow-hidden rounded-2xl shadow-xl"
+            >
                 {
                     levels.map((level) => (
-                        <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-5 border border-gray-200 dark:border-gray-700">
-                            <h4 class="text-lg font-bold text-primary dark:text-primary mb-4 pb-2 border-b border-gray-200 dark:border-gray-700">
+                        <div class="group relative p-10 bg-white hover:bg-gray-50 transition-all duration-500 flex flex-col">
+                            <div class="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-secondary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                            <h4 class="text-xl font-display font-bold mb-4 tracking-tight uppercase text-gray-900 group-hover:text-secondary-light transition-colors">
                                 {level.name}
                             </h4>
+
                             {level.pieces.length > 0 ? (
-                                <ul class="space-y-3">
+                                <ul class="space-y-3 flex-grow">
                                     {level.pieces.map((piece) => (
-                                        <li class="group">
+                                        <li class="group/item">
                                             {piece.pdfPath ? (
                                                 <a
                                                     href={piece.pdfPath}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    class="flex items-start gap-3 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+                                                    class="flex items-start gap-3 text-gray-600 hover:text-secondary transition-colors"
                                                 >
                                                     <svg
-                                                        class="w-5 h-5 text-gray-400 group-hover:text-primary flex-shrink-0 mt-0.5"
+                                                        class="w-5 h-5 text-gray-400 group-hover/item:text-secondary flex-shrink-0 mt-0.5"
                                                         fill="currentColor"
                                                         viewBox="0 0 24 24"
                                                     >
                                                         <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
                                                     </svg>
-                                                    <span class="text-sm">
+                                                    <span class="text-base leading-relaxed">
                                                         {piece.composer && (
-                                                            <span class="font-semibold text-gray-900 dark:text-white">
+                                                            <span class="font-semibold text-gray-900">
                                                                 {piece.composer}{" "}
                                                                 -{" "}
                                                             </span>
@@ -111,7 +118,7 @@ const { instrument, levels, consolidatedPdf } = Astro.props;
                                                     </span>
                                                 </a>
                                             ) : (
-                                                <div class="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+                                                <div class="flex items-start gap-3 text-gray-600">
                                                     <svg
                                                         class="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5"
                                                         fill="currentColor"
@@ -119,9 +126,9 @@ const { instrument, levels, consolidatedPdf } = Astro.props;
                                                     >
                                                         <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
                                                     </svg>
-                                                    <span class="text-sm">
+                                                    <span class="text-base leading-relaxed">
                                                         {piece.composer && (
-                                                            <span class="font-semibold text-gray-900 dark:text-white">
+                                                            <span class="font-semibold text-gray-900">
                                                                 {piece.composer}{" "}
                                                                 -{" "}
                                                             </span>
@@ -134,7 +141,7 @@ const { instrument, levels, consolidatedPdf } = Astro.props;
                                     ))}
                                 </ul>
                             ) : (
-                                <p class="text-gray-500 dark:text-gray-400 text-sm italic">
+                                <p class="text-gray-500 text-base italic">
                                     Consulta el repertorio completo en el PDF
                                     principal
                                 </p>
