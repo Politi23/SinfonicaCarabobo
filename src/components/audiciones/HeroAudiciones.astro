@@ -1,0 +1,76 @@
+---
+export interface Props {
+    title?: string;
+    titleHighlight?: string;
+    subtitle?: string;
+}
+
+const {
+    title = "Únete a",
+    titleHighlight = "Nuestra Orquesta",
+    subtitle = "Audiciones abiertas para músicos talentosos",
+} = Astro.props;
+---
+
+<section
+    class="relative min-h-[60vh] md:min-h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black"
+>
+    <!-- Background decorative elements -->
+    <div class="absolute inset-0 opacity-20">
+        <div
+            class="absolute top-20 left-10 w-72 h-72 bg-primary rounded-full blur-[128px]"
+        >
+        </div>
+        <div
+            class="absolute bottom-20 right-10 w-96 h-96 bg-secondary rounded-full blur-[128px]"
+        >
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 container mx-auto px-6 text-center">
+        <h1
+            class="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6"
+        >
+            {title}
+            <span class="text-primary">{titleHighlight}</span>
+        </h1>
+        <p
+            class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8 font-serif"
+        >
+            {subtitle}
+        </p>
+        <div
+            class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+        >
+            <a
+                href="#descargar-planilla"
+                class="px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-primary/50"
+            >
+                Descargar Planilla
+            </a>
+            <a
+                href="#instrumentos"
+                class="px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 hover:border-white/50 transition-all duration-300"
+            >
+                Ver Repertorio
+            </a>
+        </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <svg
+            class="w-6 h-6 text-white/50"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+    </div>
+</section>
