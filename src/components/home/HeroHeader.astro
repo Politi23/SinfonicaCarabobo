@@ -1,56 +1,57 @@
 ---
-import { Image } from 'astro:assets';
-import violinHeader from "@assets/images/orchestra/violin-header.webp";
-import videoFondo from "@assets/videos/video-fondo.mp4";
+import { Image } from "astro:assets";
+import slide1 from "@assets/images/orchestra/OSC gala Puccini 2.webp";
+import slide2 from "@assets/images/orchestra/DSC_1140.webp";
+import slide3 from "@assets/images/orchestra/DSC_0471.webp";
+import slide4 from "@assets/images/orchestra/coro.webp";
 import Logo from "@assets/images/logo/logosvg.svg";
 
-const { showVideo = true } = Astro.props;
+const images = [slide1, slide2, slide3, slide4];
 ---
+
 <main>
-  <!-- Sección de hero -->
   <section
-    class="relative h-screen flex flex-col justify-center items-center text-center overflow-hidden"
+    class="relative h-screen flex flex-col justify-center items-center text-center"
   >
-    {showVideo ? (
-      <video
-        autoplay
-        loop
-        muted
-        playsinline
-        class="absolute inset-0 w-full h-full object-cover z-0"
-        poster={violinHeader.src}
-        width={violinHeader.width}
-        height={violinHeader.height}
-        transition:persist
-      >
-        <source src={videoFondo} type="video/mp4" />
-      </video>
-    ) : (
-      <!-- Imagen de fondo estática para cuando no hay video -->
-      <div class="absolute inset-0 z-0">
+    <div class="absolute inset-0 opacity-100">
+      <div class="absolute inset-0">
         <Image
-          src={violinHeader}
+          src={images[0]}
           alt="Orquesta Sinfónica"
-          class="w-full h-full object-cover"
-          width="1920"
-          height="1080"
+          class="c-slide w-full h-full object-cover"
           loading="eager"
           fetchpriority="high"
           decoding="async"
         />
       </div>
-    )}
 
+      {
+        images.map((item, index) => (
+          <div
+            class="c-slide absolute inset-0 animate-pulse z-1"
+            style={`--i: ${index}`}
+          >
+            <Image
+              src={item}
+              alt="Orquesta Sinfónica"
+              class="c-slide w-full h-full object-cover"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
+        ))
+      }
+    </div>
 
-    <!-- Overlay con gradiente suave hacia el color crema -->
     <div
-      class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background-light z-0"
+      class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background-light/20 z-0"
     >
     </div>
 
     <div class="hero-content">
       <!-- <h1 class="hero-title">Fundación Orquesta Sinfónica de Carabobo</h1> -->
-       <Logo class="hero-logo" width={500} height={500} />
+      <Logo class="hero-logo" width={500} height={500} />
     </div>
   </section>
 </main>
@@ -76,12 +77,41 @@ const { showVideo = true } = Astro.props;
   }
 
   .hero-logo {
-    filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 1));
+    filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 1));
   }
 
   @media (max-width: 768px) {
     .hero-title {
       font-size: 2.1rem;
     }
+  }
+
+  @keyframes fade-in-out {
+    0% {
+      opacity: 0;
+    }
+
+    15% {
+      opacity: 1;
+    }
+
+    25% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .c-slide {
+    opacity: 0;
+    animation: fade-in-out 20s ease infinite;
+    /* animation-iteration-count: infinite; */
+    animation-delay: calc(var(--i) * 5s);
   }
 </style>
