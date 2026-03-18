@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import MainHero from "../../components/sections/MainHero.astro";
+import { Image } from "astro:assets";
 import docFundacion from "@assets/images/historia/Documento 7_25.webp";
 import docLegado from "@assets/images/historia/Documento 7_26.webp";
 import pfm from "@assets/images/historia/PFM 2.webp";
@@ -22,7 +23,7 @@ import beethoven from "@assets/images/historia/Documento 7_31.webp";
         <!-- Back Button -->
         <div class="container mx-auto px-6 max-w-4xl py-8">
             <a
-                href="/nosotros/nosotros"
+                href="/nosotros"
                 class="inline-flex items-center gap-2 text-gray-600 hover:text-secondary transition-colors group"
             >
                 <svg
@@ -143,11 +144,14 @@ import beethoven from "@assets/images/historia/Documento 7_31.webp";
                         país y de Latinoamérica, asumiendo siempre proyectos exigentes
                         que llevó a cabo con gran éxito y marcando una pauta en Venezuela.
                     </p>
-                    <div class="w-full overflow-hidden">
-                        <img
-                            src={docLegado.src}
+                    <div class="w-full max-w-md mx-auto overflow-hidden">
+                        <Image
+                            src={docLegado}
                             alt="Documento histórico del legado del Maestro José Calabrese"
                             class="w-full h-auto rounded shadow-lg"
+                            width="800"
+                            height="1200"
+                            loading="lazy"
                         />
                     </div>
                 </section>
@@ -285,11 +289,16 @@ import beethoven from "@assets/images/historia/Documento 7_31.webp";
                                 en Venezuela en grabar en formato de CD las 9
                                 sinfonías de L. v. Beethoven.
                             </p>
-                            <div class="w-full overflow-hidden">
-                                <img
-                                    src={beethoven.src}
+                            <div
+                                class="w-full max-w-md mx-auto overflow-hidden"
+                            >
+                                <Image
+                                    src={beethoven}
                                     alt="Documento histórico de la grabación de las 9 sinfonías de Beethoven"
                                     class="w-full h-auto rounded shadow-lg"
+                                    width="800"
+                                    height="1200"
+                                    loading="lazy"
                                 />
                             </div>
                         </div>
