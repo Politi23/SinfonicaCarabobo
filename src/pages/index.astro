@@ -10,38 +10,26 @@ import LatestBlogPosts from "../components/global/LatestBlogPostsIndex.astro";
 import LatestBlogPostsIndexFallback from "../components/global/LatestBlogPostsIndexFallback.astro";
 import ReconocimientosCTA from "@components/nosotros/ReconocimientosCTA.astro";
 import EnsemblesSection from "../components/home/EnsemblesSection.astro";
-import DonationCTA from "../components/apoyanos/DonationCTA.astro";
 ---
 
 <Layout>
-    <!-- Sección de Conciertos -->
-    <HeroHeader />
+  <HeroHeader />
 
-    <!-- Sección de Conciertos -->
-    <ConciertosSection server:defer>
-      <ConciertosSectionFallback slot="fallback" />
-    </ConciertosSection>
+  <ConciertosSection server:defer>
+    <ConciertosSectionFallback slot="fallback" />
+  </ConciertosSection>
 
-    <!-- Sección de últimas entradas del blog -->
-    <LatestBlogPosts server:defer>
-      <LatestBlogPostsIndexFallback slot="fallback" />
-    </LatestBlogPosts>
+  <LatestBlogPosts server:defer>
+    <LatestBlogPostsIndexFallback slot="fallback" />
+  </LatestBlogPosts>
 
-    <!-- Seccion de la academia -->
-    <SocialImpact />
+  <SocialImpact />
 
-    <!-- Sección de agrupaciones -->
-    <EnsemblesSection />
+  <EnsemblesSection />
 
-    <!-- Sección de donaciones -->
-    <!-- <DonationCTA /> -->
+  <BookLink />
 
-    <!-- Sección del libro conmemorativo -->
-    <BookLink />
+  <Allies />
 
-    <!-- Sección de Aliados -->
-    <Allies />
-
-    <!-- Sección de reconocimientos -->
-    <ReconocimientosCTA />
+  <ReconocimientosCTA />
 </Layout>
