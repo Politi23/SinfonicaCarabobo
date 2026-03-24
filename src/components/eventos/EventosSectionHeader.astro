@@ -2,24 +2,15 @@
 import SectionTitle from "@components/ui/SectionTitle.astro";
 
 interface Props {
-  subtitle?: string;
   title?: string;
-  description?: string;
 }
 
 const {
-  subtitle = "Actividades Musicales",
   title = "Eventos",
-  description = "Descubre nuestros próximos conciertos, presentaciones y actividades musicales de la Orquesta Sinfónica de Carabobo.",
 } = Astro.props;
 ---
 
 <div class="max-w-4xl mx-auto mb-12">
-  <span
-    class="text-secondary text-xs font-bold uppercase tracking-[0.4em] mb-4 block italic"
-  >
-    {subtitle}
-  </span>
   <SectionTitle
     title={title}
     variant="red"

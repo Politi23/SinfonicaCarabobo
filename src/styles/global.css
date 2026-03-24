@@ -50,7 +50,7 @@
 
    /* 📝 TIPOGRAFÍAS */
    --font-serif: 'Merriweather', serif;
-   --font-display: 'Playfair Display', serif;
+   --font-display: var(--font-cinzel), 'Playfair Display', serif;
 
    /* 📐 LAYOUT */
    --header-height: 80px;
@@ -73,6 +73,19 @@ body {
 /* UTILIDADES DE TIPOGRAFÍA */
 .font-display {
    font-family: var(--font-display);
+}
+
+.font-titles {
+   font-family: var(--font-cinzel), var(--font-display), serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   font-family: var(--font-cinzel), var(--font-display), serif;
 }
 
 .font-serif {
