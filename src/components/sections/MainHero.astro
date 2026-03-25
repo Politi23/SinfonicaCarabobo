@@ -17,7 +17,7 @@ const {
 ---
 
 <section
-    class="relative h-[40vh] flex items-center justify-center bg-gray-900 overflow-hidden"
+    class="relative h-[30vh] flex items-center justify-center bg-gray-900 overflow-hidden"
 >
     <div
         class="absolute inset-0 z-0 opacity-30 bg-cover bg-center"
@@ -25,28 +25,24 @@ const {
     >
     </div>
     <div
-        class="absolute inset-0 bg-gradient-to-b from-black/90 via-gray-black/60 to-gray-900/80 z-0"
+        class="absolute inset-0 bg-gradient-to-b from-black/90 via-gray-black/60 to-zinc-500/50 z-0"
     >
     </div>
 
     <div class="container mx-auto px-6 relative z-10 text-center flex-column">
-        {
+        <!-- {
             subtitle && (
-                <p class="text-2xl md:text-3xl italic text-zinc-300 font-display font-light mt-10">
+                <p class="text-2xl md:text-3xl italic text-zinc-300 font-display font-light">
                     "{subtitle}"
                 </p>
             )
-        }
+        } -->
 
         <h1
-            class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mt-2"
+            class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white"
         >
             {title}
-            {
-                titleHighlight && (
-                    <span class="text-primary">{titleHighlight}</span>
-                )
-            }
+            {titleHighlight && <span>{titleHighlight}</span>}
         </h1>
     </div>
 </section>
