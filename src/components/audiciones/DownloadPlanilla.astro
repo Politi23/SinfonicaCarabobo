@@ -6,15 +6,12 @@ export interface Props {
 const { planillaPath } = Astro.props;
 ---
 
-<section
-    id="descargar-planilla"
-    class="py-16 md:py-24 bg-gradient-to-br from-primary/20 via-primary/10 to-secondary/10 dark:from-primary/30 dark:via-primary/20 dark:to-secondary/20"
->
+<section id="descargar-planilla" class="py-16 md:py-24 bg-background-dark">
     <div class="container mx-auto px-6">
         <div
             class="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-3xl shadow-2xl overflow-hidden"
         >
-            <div class="grid md:grid-cols-2">
+            <div class="grid">
                 <!-- Contenido izquierdo -->
                 <div class="p-8 md:p-12 flex flex-col justify-center">
                     <span
@@ -31,8 +28,8 @@ const { planillaPath } = Astro.props;
                         class="text-gray-600 dark:text-gray-300 mb-8 font-serif leading-relaxed"
                     >
                         Para participar en el proceso de audición, es necesario
-                        completar este formulario con tus datos personales y
-                        información musical.
+                        completar este formulario con tus datos personales e
+                        información sobre tu formación musical.
                     </p>
 
                     <div class="space-y-4 mb-8">
@@ -101,29 +98,6 @@ const { planillaPath } = Astro.props;
                         </svg>
                         Descargar Planilla PDF
                     </a>
-                </div>
-
-                <!-- Lado derecho con decoración -->
-                <div
-                    class="bg-gradient-to-br from-primary to-secondary p-8 md:p-12 flex flex-col justify-center items-center text-white"
-                >
-                    <div
-                        class="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center mb-6 backdrop-blur-sm"
-                    >
-                        <svg
-                            class="w-16 h-16"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"
-                            ></path>
-                        </svg>
-                    </div>
-                    <p class="text-center text-white/90 font-serif italic">
-                        "La música es el lenguaje universal que nos une en
-                        armonía"
-                    </p>
                 </div>
             </div>
         </div>

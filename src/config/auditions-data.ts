@@ -820,7 +820,7 @@ const percusionLevels: Level[] = [
 
 export const auditionsData: Category[] = [
     {
-        name: "Instrumentos de Cuerda",
+        name: "Cuerdas",
         variant: "secondary",
         instruments: [
             {
@@ -867,7 +867,7 @@ export const auditionsData: Category[] = [
     },
     {
         name: "Vientos Metal",
-        variant: "primary",
+        variant: "secondary",
         instruments: [
             {
                 name: "Corno Francés",

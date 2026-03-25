@@ -138,8 +138,13 @@ const { showContact = true } = Astro.props;
                                 </div>
                             </a>
 
-                            <div class="flex items-center gap-4 p-4 rounded-lg bg-gray-700/50">
-                                <div class="w-12 h-12 flex items-center justify-center bg-primary/20 rounded-full">
+                            <a
+                                href="https://maps.app.goo.gl/SJNfCHHdVyTuy3hL6"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="flex items-center gap-4 p-4 rounded-lg bg-gray-700/50 hover:bg-gray-700 transition-colors group"
+                            >
+                                <div class="w-12 h-12 flex items-center justify-center bg-primary/20 rounded-full group-hover:bg-primary/30 transition-colors">
                                     <svg
                                         class="w-6 h-6 text-primary"
                                         fill="none"
@@ -168,7 +173,7 @@ const { showContact = true } = Astro.props;
                                         Valencia, Estado Carabobo
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 )
