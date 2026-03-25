@@ -1,0 +1,39 @@
+---
+import InstrumentSection from "./InstrumentSection.astro";
+import type { Instrument } from "../../config/auditions-data";
+
+interface Props {
+    categoryName: string;
+    instruments: Instrument[];
+    variant?: "secondary" | "primary";
+}
+
+const { categoryName, instruments, variant = "secondary" } = Astro.props;
+
+const gradientClass =
+    variant === "primary"
+        ? "bg-gradient-to-r from-transparent via-primary/50 to-transparent"
+        : "bg-gradient-to-r from-transparent via-secondary/50 to-transparent";
+---
+
+<div class="space-y-8 pt-8 first:pt-0">
+    <div class="flex items-center gap-4 mb-8">
+        <div class={`h-px flex-1 ${gradientClass}`}></div>
+        <h3
+            class="text-2xl font-display font-bold text-gray-900 uppercase tracking-wider"
+        >
+            {categoryName}
+        </h3>
+        <div class={`h-px flex-1 ${gradientClass}`}></div>
+    </div>
+
+    {
+        instruments.map((inst) => (
+            <InstrumentSection
+                instrument={inst.name}
+                levels={inst.levels}
+                consolidatedPdf={inst.consolidatedPdf}
+            />
+        ))
+    }
+</div>

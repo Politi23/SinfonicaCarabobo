@@ -1,0 +1,77 @@
+---
+import SecondaryButton from "../ui/SecondaryButton.astro";
+import SectionTitle from "../ui/SectionTitle.astro";
+
+interface Props {
+  title?: string;
+  showViewAllButton?: boolean;
+  viewAllButtonText?: string;
+}
+
+const {
+  title = "Últimas Entradas del Blog",
+  showViewAllButton = true,
+  viewAllButtonText = "Ver todos",
+} = Astro.props as Props;
+
+const placeholderItems = Array.from({ length: 3 });
+---
+
+<section class="bg-white py-10 md:py-14" aria-busy="true">
+  <div class="container mx-auto px-6">
+    <div class="flex justify-between items-center">
+      <SectionTitle title={title} />
+    </div>
+
+    <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-7">
+      {
+        placeholderItems.map(() => (
+          <div class="h-full" aria-hidden="true">
+            <article class="border border-zinc-200 bg-white rounded shadow-sm overflow-hidden flex flex-col h-full animate-pulse">
+              <div class="h-56 w-full bg-gray-200" />
+              <div class="p-4 flex flex-col flex-grow">
+                <div class="h-6 w-4/5 bg-gray-200 rounded mb-3" />
+                <div class="h-3 w-full bg-gray-200 rounded mb-2" />
+                <div class="h-3 w-11/12 bg-gray-200 rounded mb-2" />
+                <div class="h-3 w-3/4 bg-gray-200 rounded mb-6" />
+                <div class="h-4 w-2/3 bg-gray-200 rounded mb-3" />
+              </div>
+            </article>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="md:hidden relative mt-7">
+      <div class="overflow-x-auto py-2">
+        <div class="grid grid-flow-col auto-cols-[minmax(17rem,1fr)] gap-4 snap-x snap-mandatory">
+          {
+            placeholderItems.map(() => (
+              <div class="snap-start h-full" aria-hidden="true">
+                <article class="border border-zinc-200 bg-white rounded shadow-sm overflow-hidden flex flex-col h-full animate-pulse">
+                  <div class="h-56 w-full bg-gray-200" />
+                  <div class="p-4 flex flex-col flex-grow">
+                    <div class="h-6 w-4/5 bg-gray-200 rounded mb-3" />
+                    <div class="h-3 w-full bg-gray-200 rounded mb-2" />
+                    <div class="h-3 w-11/12 bg-gray-200 rounded mb-2" />
+                    <div class="h-3 w-3/4 bg-gray-200 rounded mb-6" />
+                    <div class="h-4 w-2/3 bg-gray-200 rounded mb-3" />
+                  </div>
+                </article>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+    </div>
+
+    {
+      showViewAllButton && (
+        <div class="text-center mt-5">
+          <SecondaryButton href="/blog">{viewAllButtonText}</SecondaryButton>
+        </div>
+      )
+    }
+  </div>
+</section>

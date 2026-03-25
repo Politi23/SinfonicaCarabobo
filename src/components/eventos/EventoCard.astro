@@ -1,5 +1,6 @@
 ---
 import logoSimpleBbg from "@assets/images/logo/logosimplebbg.webp";
+import { formatDateToDMY } from "../../utils/date";
 
 export interface Props {
   title: string;
@@ -11,45 +12,20 @@ export interface Props {
   slug: string;
 }
 
-const { title, excerpt, image, date, time, venue, slug } = Astro.props;
+const { title, excerpt, image, date, venue, slug } = Astro.props as Props;
 
-// Formateo de fecha seguro
-const formatAcfDate = (dateString: string) => {
-  if (!dateString || dateString.length !== 8) return dateString;
-  const year = dateString.substring(0, 4);
-  const month = dateString.substring(4, 6);
-  const day = dateString.substring(6, 8);
-  const dateObj = new Date(Number(year), Number(month) - 1, Number(day));
-  return dateObj.toLocaleDateString("es-VE", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-};
-
-// Limitar el excerpt a 25 palabras
-const truncateExcerpt = (text: string, wordLimit: number = 25): string => {
-  if (!text) return "";
-  const words = text.split(" ");
-  if (words.length <= wordLimit) return text;
-  return words.slice(0, wordLimit).join(" ") + "...";
-};
-
-const formattedDate = formatAcfDate(date);
-const truncatedExcerpt = truncateExcerpt(excerpt, 25);
+const formattedDate = formatDateToDMY(date);
 const imageUrl = image || logoSimpleBbg.src;
 ---
 
 <article
-  class="group bg-white rounded-lg shadow transition-all duration-300 overflow-hidden flex flex-col h-full relative"
+  class="group relative border border-zinc-200 hover:border-primary/50 bg-white rounded shadow-sm transition-all duration-300 overflow-hidden flex flex-col h-full"
 >
   <a
     href={`/eventos/${slug}`}
     class="absolute inset-0 z-10"
     aria-label={`Ver detalles de ${title}`}></a>
 
-  {/* Imagen */}
   <div class="relative h-56 w-full overflow-hidden bg-gray-100">
     <img
       src={imageUrl}
@@ -66,36 +42,35 @@ const imageUrl = image || logoSimpleBbg.src;
     </div>
   </div>
 
-  <div class="p-6 flex flex-col flex-grow relative z-20 pointer-events-none">
+  <div class="p-4 flex flex-col flex-grow relative z-20 pointer-events-none">
     <h3
-      class="text-xl font-serif font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors"
-      set:html={title}
-    />
+      class="text-xl font-serif font-semibold text-gray-900 mb-3 group-hover:text-primary transition-colors"
+    >
+      {title}
+    </h3>
 
-    <p class="text-zinc-800 text-md text-justify leading-relaxed pb-3">
-      <!-- {excerpt} -->
-
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint, odio. Vero
-      reiciendis ullam blanditiis, nostrum quia excepturi veniam voluptatem
-      voluptatum quos, debitis quae modi ipsam omnis dolorum, ab neque sed?
+    <p
+      class="text-zinc-600 text-sm text-justify leading-relaxed line-clamp-4 mb-6"
+    >
+      {excerpt}
     </p>
 
-    <div class="mb-3 text-sm text-gray-600 flex items-center gap-2">
-      <div class="flex items-center gap-3">
-        <i class="ph ph-clock text-primary"></i>
-        <span class="capitalize tracking-wide font-bold">
+    <div class="mb-3 text-sm text-gray-800 flex items-center gap-2">
+      <div class="flex items-center justify-center gap-1">
+        <i class="ph ph-calendar-blank text-primary"></i>
+        <span class="capitalize tracking-wide">
           {formattedDate}
         </span>
       </div>
 
-      <div class="flex items-center gap-3">
-        <i class="ph ph-navigation-arrow text-primary"></i>
-        <span class="tracking-wide line-clamp-1 font-bold">{venue}</span>
+      <div class="flex items-center gap-1">
+        <i class="ph ph-map-pin-simple text-primary"></i>
+        <span class="tracking-wide line-clamp-1">{venue}</span>
       </div>
     </div>
 
     <div
-      class="pt-4 border-t border-gray-100 flex justify-between items-center"
+      class="pt-4 p-2 border-t border-gray-100 flex justify-between items-center mt-auto"
     >
       <span class="text-xs uppercase tracking-widest text-gray-500 font-medium"
         >Más información</span

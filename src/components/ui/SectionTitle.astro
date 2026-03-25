@@ -14,15 +14,17 @@ const {
   wrapperClass = "text-left mb-6",
   dividerClass = "h-1 w-20 mt-4",
 } = Astro.props;
-const dividerColorClass = variant === "red" ? "bg-secondary" : "bg-primary";
 const hasSlot = Astro.slots.has("default");
 ---
 
 <div class={wrapperClass}>
   <h2
-    class={`text-3xl md:text-4xl font-serif font-medium text-gray-900 tracking-tight ${titleClass}`}
+    class={`text-3xl md:text-4xl font-titles font-semibold text-gray-900 tracking-tight ${titleClass}`}
   >
     {hasSlot ? <slot /> : title}
   </h2>
-  <div class={`${dividerClass} ${dividerColorClass}`}></div>
+  <div
+    class={`${dividerClass} ${variant === "red" ? "bg-secondary" : "bg-primary"}`}
+  >
+  </div>
 </div>

@@ -1,0 +1,50 @@
+---
+import sinfonica from "@assets/images/orchestra/sinfonica.webp";
+import SectionTitle from "@components/ui/SectionTitle.astro";
+import PrimaryButton from "@components/ui/PrimaryButton.astro";
+import SecondaryButton from "@components/ui/SecondaryButton.astro";
+
+interface Props {
+    basePath: string;
+}
+
+const { basePath } = Astro.props;
+---
+
+<!-- CTA Final -->
+<section class="py-16 md:py-24 bg-black text-white relative">
+    <div
+        class="absolute inset-0 opacity-10 bg-cover bg-fixed bg-center filter grayscale contrast-150"
+        style={`background-image: url('${sinfonica.src}');`}
+    >
+    </div>
+
+    <div class="container mx-auto px-6 max-w-4xl relative z-10 text-center">
+        <SectionTitle
+            variant="red"
+            class="text-3xl md:text-5xl font-display font-bold leading-tight text-white"
+            wrapperClass="text-center"
+            dividerClass="hidden"
+        >
+            ¿Listo para formar parte de la orquesta?
+        </SectionTitle>
+        <p
+            class="text-xl text-gray-300 mt-4 mb-12 max-w-2xl mx-auto font-light leading-relaxed italic"
+        >
+            Completa tu planilla de inscripción y contáctanos para agendar tu
+            audición
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <SecondaryButton
+                href={`${basePath}/planilla de Audición OSC.pdf`}
+                download
+            >
+                Descargar Planilla
+            </SecondaryButton>
+            <PrimaryButton href="mailto:audiciones@sinfocarabobo.com">
+                Contactar por Email
+            </PrimaryButton>
+        </div>
+    </div>
+</section>

@@ -35,20 +35,14 @@ try {
 }
 ---
 
-<Layout title={`Blog - Página ${currentPage}`}>
+<Layout title={`Blog - Página ${currentPage}`} showLatestPosts={false}>
   <MainHero
     title="Noticias y"
     titleHighlight="Actualidad"
     subtitle="Explora nuestras últimas noticias, eventos y experiencias musicales"
   />
 
-  <main class="bg-white text-gray-800 min-h-screen">
-    <section class="pt-20 pb-8 md:pt-28 md:pb-12 bg-white">
-      <div class="container mx-auto px-6 max-w-7xl">
-        <BlogSectionHeader />
-      </div>
-    </section>
-
+  <main class="bg-white text-gray-800 min-h-screen py-12">
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
       {
         blogs.length > 0 ? (

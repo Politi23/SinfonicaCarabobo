@@ -68,8 +68,7 @@ const tiers = [
                 <h2
                     class="text-4xl md:text-6xl font-display font-bold leading-tight text-gray-900"
                 >
-                    Niveles de <br />
-                    <span class="font-bold text-secondary italic"
+                    Niveles de <span class="font-bold text-secondary"
                         >Patrocinio</span
                     >
                 </h2>
@@ -107,7 +106,6 @@ const tiers = [
 
                 <!-- Columnas de Tiers -->
                 {tiers.map((tier) => {
-                    const isGold = tier.id === "gold";
                     const isPlatinum = tier.id === "platinum";
 
                     // Mapeo manual de beneficios para la tabla basado en los datos originales

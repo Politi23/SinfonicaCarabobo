@@ -49,6 +49,7 @@ export default {
             fontFamily: {
                 serif: ['Merriweather', 'serif'],      // Fuente para textos generales
                 display: ['Playfair Display', 'serif'], // Fuente para títulos hero
+                titles: ['var(--font-cinzel)', 'serif']
             },
         },
     },

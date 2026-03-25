@@ -1,0 +1,66 @@
+---
+import SectionTitle from "@components/ui/SectionTitle.astro";
+import SecondaryButton from "../ui/SecondaryButton.astro";
+
+const placeholderItems = Array.from({ length: 6 });
+---
+
+<section class="bg-white py-10 md:py-14" aria-busy="true">
+  <div class="container mx-auto px-6">
+    <div class="flex justify-between items-center">
+      <SectionTitle title="Próximos Eventos" />
+
+      <div class="hidden md:flex gap-2" aria-hidden="true">
+        <button
+          class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-600"
+          aria-label="Previous"
+          disabled
+        >
+          <i class="ph ph-caret-left text-xl" aria-hidden="true"></i>
+        </button>
+
+        <button
+          class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-600"
+          aria-label="Next"
+          disabled
+        >
+          <i class="ph ph-caret-right text-xl" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="relative mt-7">
+      <div class="overflow-x-auto md:overflow-hidden py-2">
+        <div class="grid grid-flow-col auto-cols-[minmax(17rem,1fr)] md:auto-cols-[minmax(20rem,1fr)] lg:auto-cols-[minmax(22rem,1fr)] gap-4 md:gap-6 snap-x snap-mandatory md:snap-none">
+          {
+            placeholderItems.map(() => (
+              <div
+                class="snap-start h-full"
+                aria-hidden="true"
+              >
+                <article class="border border-zinc-200 bg-white rounded shadow-sm overflow-hidden flex flex-col h-full animate-pulse">
+                  <div class="h-56 w-full bg-gray-200" />
+                  <div class="p-4 flex flex-col flex-grow">
+                    <div class="h-6 w-4/5 bg-gray-200 rounded mb-3" />
+                    <div class="h-3 w-full bg-gray-200 rounded mb-2" />
+                    <div class="h-3 w-11/12 bg-gray-200 rounded mb-2" />
+                    <div class="h-3 w-3/4 bg-gray-200 rounded mb-6" />
+                    <div class="h-4 w-2/3 bg-gray-200 rounded mb-3" />
+                    <div class="pt-4 p-2 border-t border-gray-100 mt-auto">
+                      <div class="h-3 w-1/3 bg-gray-200 rounded" />
+                    </div>
+                  </div>
+                </article>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-5">
+      <SecondaryButton href="/eventos"> Ver todos </SecondaryButton>
+    </div>
+  </div>
+</section>

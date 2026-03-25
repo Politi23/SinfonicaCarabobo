@@ -1,0 +1,44 @@
+---
+import Layout from "@layouts/Layout.astro";
+import MainHero from "@components/sections/MainHero.astro";
+import AuditionInfo from "@components/audiciones/AuditionInfo.astro";
+import DownloadPlanilla from "@components/audiciones/DownloadPlanilla.astro";
+import CategorySection from "@components/audiciones/CategorySection.astro";
+import AuditionsCTA from "@components/audiciones/AuditionsCTA.astro";
+import { auditionsData, basePath } from "../../config/auditions";
+---
+
+<Layout title="Audiciones | Orquesta Sinfónica de Carabobo">
+    <main class="bg-background-dark text-text-light">
+        <MainHero
+            title="Únete a"
+            titleHighlight="Nuestra Orquesta"
+            subtitle="Audiciones abiertas para todos"
+        />
+
+        <AuditionInfo />
+
+        <DownloadPlanilla
+            planillaPath={`${basePath}/planilla de Audición OSC.pdf`}
+        />
+
+        <!-- Sección de Instrumentos -->
+        <section id="instrumentos" class="py-24 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="space-y-12">
+                    {
+                        auditionsData.map((category) => (
+                            <CategorySection
+                                categoryName={category.name}
+                                instruments={category.instruments}
+                                variant={category.variant}
+                            />
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+
+        <AuditionsCTA basePath={basePath} />
+    </main>
+</Layout>

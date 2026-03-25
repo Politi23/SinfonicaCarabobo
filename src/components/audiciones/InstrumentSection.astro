@@ -1,0 +1,191 @@
+---
+import type { Level } from "../../config/auditions/types";
+
+interface Props {
+    instrument: string;
+    levels: Level[];
+    consolidatedPdf?: string;
+}
+
+const { instrument, levels, consolidatedPdf } = Astro.props;
+
+// Calculate how many empty squares are needed to fill the 3-column grid
+const fillerCount = levels.length % 3 === 0 ? 0 : 3 - (levels.length % 3);
+const fillers = Array(fillerCount).fill(null);
+---
+
+<div class="instrument-section">
+    <!-- Header del instrumento - Clickable to toggle -->
+    <button
+        type="button"
+        class="instrument-header w-full px-10 py-6 bg-white hover:bg-gray-50 transition-all duration-500 flex items-center gap-4 cursor-pointer group relative border border-gray-200 overflow-hidden"
+        aria-expanded="false"
+    >
+        <div
+            class="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-secondary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        >
+        </div>
+
+        <h3
+            class="text-2xl font-display font-bold tracking-tight uppercase text-gray-900 flex-grow text-left"
+        >
+            {instrument}
+        </h3>
+        {
+            consolidatedPdf && (
+                <a
+                    href={consolidatedPdf}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="repertory-link inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors mr-4"
+                >
+                    <svg
+                        class="w-4 h-4"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+                    </svg>
+                    <span class="hidden md:inline">Repertorio Completo</span>
+                </a>
+            )
+        }
+        <svg
+            class="toggle-icon w-6 h-6 text-gray-400 group-hover:text-secondary transition-transform duration-300"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"></path>
+        </svg>
+    </button>
+
+    <!-- Collapsible content -->
+    <div
+        id={`instrument-content-${instrument}`}
+        class="instrument-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-gray-50"
+    >
+        <div class="p-10">
+            <div
+                class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200 border border-gray-200 overflow-hidden rounded-2xl shadow-xl"
+            >
+                {
+                    levels.map((level) => (
+                        <div class="group relative p-10 bg-white hover:bg-gray-50 transition-all duration-500 flex flex-col">
+                            <div class="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-secondary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                            <h4 class="text-xl font-display font-bold mb-4 tracking-tight uppercase text-gray-900 group-hover:text-secondary-light transition-colors">
+                                {level.name}
+                            </h4>
+
+                            {level.pieces.length > 0 ? (
+                                <ul class="space-y-3 flex-grow">
+                                    {level.pieces.map((piece) => (
+                                        <li class="group/item">
+                                            {piece.pdfPath ? (
+                                                <a
+                                                    href={piece.pdfPath}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    class="flex items-start gap-3 text-gray-600 hover:text-secondary transition-colors"
+                                                >
+                                                    <svg
+                                                        class="w-5 h-5 text-gray-400 group-hover/item:text-secondary flex-shrink-0 mt-0.5"
+                                                        fill="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+                                                    </svg>
+                                                    <span class="text-base leading-relaxed">
+                                                        {piece.composer && (
+                                                            <span class="font-semibold text-gray-900">
+                                                                {piece.composer}{" "}
+                                                                -{" "}
+                                                            </span>
+                                                        )}
+                                                        {piece.title}
+                                                    </span>
+                                                </a>
+                                            ) : (
+                                                <div class="flex items-start gap-3 text-gray-600">
+                                                    <svg
+                                                        class="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5"
+                                                        fill="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+                                                    </svg>
+                                                    <span class="text-base leading-relaxed">
+                                                        {piece.composer && (
+                                                            <span class="font-semibold text-gray-900">
+                                                                {piece.composer}{" "}
+                                                                -{" "}
+                                                            </span>
+                                                        )}
+                                                        {piece.title}
+                                                    </span>
+                                                </div>
+                                            )}
+                                        </li>
+                                    ))}
+                                </ul>
+                            ) : (
+                                <p class="text-gray-500 text-base italic">
+                                    Consulta el repertorio completo en el PDF
+                                    principal
+                                </p>
+                            )}
+                        </div>
+                    ))
+                }
+                {fillers.map(() => <div class="bg-white min-h-[100px]" />)}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Collapsible functionality - handle multiple instances
+    const headers = document.querySelectorAll(".instrument-header");
+
+    headers.forEach((header) => {
+        const content = header.nextElementSibling as HTMLElement | null;
+        const icon = header.querySelector(".toggle-icon") as HTMLElement | null;
+        const repertoryLink = header.querySelector(".repertory-link");
+
+        if (content && icon) {
+            // Prevent repertory link click from triggering accordion toggle
+            repertoryLink?.addEventListener("click", (e) => {
+                e.stopPropagation();
+            });
+
+            header.addEventListener("click", () => {
+                const isExpanded =
+                    header.getAttribute("aria-expanded") === "true";
+
+                if (isExpanded) {
+                    // Collapse
+                    content.style.maxHeight = "0";
+                    icon.style.transform = "rotate(0deg)";
+                    header.setAttribute("aria-expanded", "false");
+                } else {
+                    // Expand
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    icon.style.transform = "rotate(180deg)";
+                    header.setAttribute("aria-expanded", "true");
+                }
+            });
+        }
+    });
+</script>
+
+<style>
+    .instrument-content {
+        max-height: 0;
+        overflow: hidden;
+    }
+</style>
