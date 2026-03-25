@@ -1,14 +1,12 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import MainHero from "@components/sections/MainHero.astro";
-import SecondaryButton from "@components/ui/SecondaryButton.astro";
-import PrimaryButton from "@components/ui/PrimaryButton.astro";
-import SectionTitle from "@components/ui/SectionTitle.astro";
 
 import disc1 from "@assets/images/discs/22_aniversario.png";
 import disc2 from "@assets/images/discs/los_melodicos.png";
 import disc3 from "@assets/images/discs/obras_para_violas.png";
 import disc4 from "@assets/images/discs/simon_diaz.png";
+import disc5 from "@assets/images/discs/mi_banda.png";
 import { Image } from "astro:assets";
 
 const discography = [
@@ -19,7 +17,7 @@ const discography = [
         title: "Simón Díaz y la Orquesta Sinfónica de Carabobo",
         src: disc4,
     },
-    // { year: "2004", title: "Mi Banda; Big Band Jazz", src: "" },
+    { year: "2004", title: "Mi Banda; Big Band Jazz", src: disc5 },
     {
         year: "2008",
         title: "Los Melódicos y la Orquesta Sinfónica de Carabobo",
@@ -39,14 +37,16 @@ const discography = [
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8">
                     {
                         discography.map((album) => (
-                            <div class="bg-white rounded-sm shadow">
+                            <div class="bg-white rounded shadow flex flex-col">
                                 <Image
                                     src={album.src}
                                     alt={album.title}
-                                    sizes={"800px, 1200px"}
+                                    width={"1000"}
+                                    height={"1000"}
+                                    format={"webp"}
                                 />
 
-                                <p class="flex items-center h-fit text-zinc-900 p-8 border-y-[0.1rem] border-black font-display font-semibold text-lg leading-relaxed">
+                                <p class="flex items-center h-full text-zinc-900 p-8 border-y-[0.1rem] border-black font-display font-semibold text-lg leading-relaxed">
                                     {album.title}{" "}
                                     <span class="text-zinc-600">
                                         ({album.year}){" "}
