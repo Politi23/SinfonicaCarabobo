@@ -1,98 +1,56 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import MainHero from "../../components/sections/MainHero.astro";
-import SecondaryButton from "../../components/ui/SecondaryButton.astro";
-import PrimaryButton from "../../components/ui/PrimaryButton.astro";
+import Layout from "@layouts/Layout.astro";
+import MainHero from "@components/sections/MainHero.astro";
+import SecondaryButton from "@components/ui/SecondaryButton.astro";
+import PrimaryButton from "@components/ui/PrimaryButton.astro";
 import SectionTitle from "@components/ui/SectionTitle.astro";
 
+import disc1 from "@assets/images/discs/22_aniversario.png";
+import disc2 from "@assets/images/discs/los_melodicos.png";
+import disc3 from "@assets/images/discs/obras_para_violas.png";
+import disc4 from "@assets/images/discs/simon_diaz.png";
+import { Image } from "astro:assets";
+
 const discography = [
-    { year: "1998", title: "22 Aniversario" },
-    { year: "1999", title: "9 Sinfonías de Beethoven" },
-    { year: "2001", title: "Simón Díaz y la Orquesta Sinfónica de Carabobo" },
-    { year: "2004", title: "Mi Banda; Big Band Jazz" },
+    { year: "1998", title: "22 Aniversario", src: disc1 },
+    // { year: "1999", title: "9 Sinfonías de Beethoven", src: "" },
+    {
+        year: "2001",
+        title: "Simón Díaz y la Orquesta Sinfónica de Carabobo",
+        src: disc4,
+    },
+    // { year: "2004", title: "Mi Banda; Big Band Jazz", src: "" },
     {
         year: "2008",
         title: "Los Melódicos y la Orquesta Sinfónica de Carabobo",
+        src: disc2,
     },
-    { year: "2012", title: "Obras para Viola" },
+    { year: "2012", title: "Obras para Viola", src: disc3 },
 ];
 ---
 
 <Layout title="Nuestra Discografía - Orquesta Sinfónica de Carabobo">
     <main class="bg-white text-gray-800 min-h-screen">
-        <MainHero
-            title="Nuestra"
-            titleHighlight="Discografía"
-            subtitle="Cinco décadas de música inmortalizadas"
-        />
-
-        <!-- Intro Section -->
-        <section class="py-16 md:py-24 relative overflow-hidden bg-white">
-            <div class="container mx-auto px-6 max-w-5xl relative z-10">
-                <div class="max-w-3xl">
-                    <SectionTitle
-                        variant="red"
-                        class="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-12 leading-tight"
-                        wrapperClass="text-left"
-                        dividerClass="h-1 w-16"
-                    >
-                        Grabaciones <br />
-                        <span class="font-bold text-secondary italic"
-                            >Históricas</span
-                        >
-                    </SectionTitle>
-                    <div class="border-l-4 border-secondary pl-6 py-2">
-                        <p
-                            class="text-xl text-gray-700 leading-relaxed font-serif italic mb-4"
-                        >
-                            "Nuestro legado artístico queda plasmado en cada
-                            nota, en cada interpretación, en cada grabación."
-                        </p>
-                        <p
-                            class="text-gray-600 font-light leading-relaxed max-w-2xl"
-                        >
-                            A lo largo de nuestra trayectoria, hemos tenido el
-                            privilegio de capturar en formato discográfico obras
-                            que van desde lo clásico universal hasta lo más
-                            representativo de nuestra música venezolana.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <MainHero title="Nuestra" titleHighlight="Discografía" />
 
         <!-- Discography List Section -->
-        <section class="py-16 md:py-24 bg-gray-50">
+        <section class="py-8 md:py-12">
             <div class="container mx-auto px-6 max-w-6xl">
-                <div class="max-w-4xl mx-auto">
-                    <SectionTitle
-                        variant="red"
-                        class="text-3xl md:text-5xl font-display font-bold text-gray-900 leading-tight"
-                        wrapperClass="text-left"
-                        dividerClass="h-1 w-16 mt-2"
-                    >
-                        Álbumes <br /><span class="text-secondary italic"
-                            >Publicados</span
-                        >
-                    </SectionTitle>
-                </div>
-
-                <div
-                    class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto pt-8"
-                >
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8">
                     {
                         discography.map((album) => (
-                            <div class="bg-white p-8 rounded shadow-md">
-                                <span class="text-primary font-display text-3xl mb-4 block font-bold">
-                                    {album.year}
-                                </span>
-                                <SectionTitle
-                                    dividerClass="h-1 w-16 mb-4"
-                                    wrapperClass=""
-                                    variant="red"
+                            <div class="bg-white rounded-sm shadow">
+                                <Image
+                                    src={album.src}
+                                    alt={album.title}
+                                    sizes={"800px, 1200px"}
                                 />
-                                <p class="text-gray-700 font-medium text-lg leading-relaxed">
-                                    {album.title}
+
+                                <p class="flex items-center h-fit text-zinc-900 p-8 border-y-[0.1rem] border-black font-display font-semibold text-lg leading-relaxed">
+                                    {album.title}{" "}
+                                    <span class="text-zinc-600">
+                                        ({album.year}){" "}
+                                    </span>
                                 </p>
                             </div>
                         ))
@@ -102,7 +60,7 @@ const discography = [
         </section>
 
         <!-- Back to Nosotros CTA -->
-        <section class="py-16 md:py-24 bg-white">
+        <!-- <section class="py-16 md:py-24 bg-white">
             <div class="container mx-auto px-6 max-w-4xl text-center">
                 <SectionTitle
                     title="Explora Más"
@@ -127,6 +85,6 @@ const discography = [
                     </PrimaryButton>
                 </div>
             </div>
-        </section>
+        </section> -->
     </main>
 </Layout>
