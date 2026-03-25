@@ -5,16 +5,10 @@ import LatestBlogPosts from "../components/global/LatestBlogPosts.astro";
 export interface Props {
   title?: string;
   is404?: boolean;
+  showLatestPosts?: boolean;
 }
 
-const { title, is404 = false } = Astro.props;
-
-// Helper to clean up the logic in the template
-const showLatestPosts =
-  Astro.url.pathname !== "/" &&
-  Astro.url.pathname !== "" &&
-  !Astro.url.pathname.startsWith("/blog/page/") &&
-  !is404;
+const { title, is404 = false, showLatestPosts = true } = Astro.props;
 ---
 
 <BaseLayout title={title}>
