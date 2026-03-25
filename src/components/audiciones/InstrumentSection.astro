@@ -1,17 +1,7 @@
 ---
-export interface Piece {
-    composer?: string;
-    title: string;
-    pdfPath?: string;
-}
+import type { Level } from "../../config/auditions/types";
 
-export interface Level {
-    name: string;
-    pieces: Piece[];
-    consolidatedPdf?: string;
-}
-
-export interface Props {
+interface Props {
     instrument: string;
     levels: Level[];
     consolidatedPdf?: string;
