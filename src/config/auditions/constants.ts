@@ -1,1 +1,1 @@
-export const basePath = "/src/assets/documents/RepertorioAudiciones";
+export const basePath = "/documents/RepertorioAudiciones";

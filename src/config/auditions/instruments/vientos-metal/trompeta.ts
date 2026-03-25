@@ -1,80 +1,65 @@
 import type { Level } from "../types";
 
-const basePath = "/src/assets/documents/RepertorioAudiciones";
+const basePath = "/documents/RepertorioAudiciones";
 
 const trompetaLevels: Level[] = [
     {
-        name: "Nivel Fila",
+        name: "Fila A",
         pieces: [
             {
+                composer: "Dvorak",
+                title: "Sinfonía Nuevo Mundo",
+                pdfPath: `${basePath}/Trompeta /Fila/Fila A/Dvorak/Sinfonía Nuevo Mundo.pdf`,
+            },
+            {
+                composer: "M. Mussorgsky",
+                title: "Promenade - Cuadros de una Exposición",
+                pdfPath: `${basePath}/Trompeta /Fila/Fila A/M. Mussorgsky/promenade Cuadros de una Exposición.pdf`,
+            },
+            {
+                composer: "Rimski-Korsakov",
+                title: "Scherezade",
+                pdfPath: `${basePath}/Trompeta /Fila/Fila A/Rimski-Korsakov/Scherezade.pdf`,
+            },
+            {
+                composer: "Shostakovich",
+                title: "5ta Sinfonía",
+                pdfPath: `${basePath}/Trompeta /Fila/Fila A/Shostakovich/5ta Sinfonía.pdf`,
+            },
+        ],
+    },
+    {
+        name: "Fila B",
+        pieces: [
+            {
+                composer: "A. Márquez",
+                title: "Danzón No.2 (solo)",
+                pdfPath: `${basePath}/Trompeta /Fila/Fila B/A. Márquez/Danzón No.2 (solo) .pdf`,
+            },
+            {
                 composer: "Beethoven",
-                title: "Sinfonía Nº 5",
-                pdfPath: `${basePath}/Trompeta /Nivel Fila/Beethoven/Sinfonía Nº 5.pdf`,
+                title: "Leonore Nº 2 y 3",
+                pdfPath: `${basePath}/Trompeta /Fila/Fila B/Beethoven/Leonore Nº 2 y 3.pdf`,
             },
             {
                 composer: "G. Rossini",
-                title: "Obertura La Italiana en Argel",
-                pdfPath: `${basePath}/Trompeta /Nivel Fila/G. Rossini/Obertura La Italiana en Argel.pdf`,
-            },
-            {
-                composer: "J. Calabrese",
-                title: "Obertura Festiva",
-                pdfPath: `${basePath}/Trompeta /Nivel Fila/J. Calabrese/Obertura Festiva.pdf`,
-            },
-            {
-                composer: "P. I. Tchaikovsky",
-                title: "Sinfonía Nº 4",
-                pdfPath: `${basePath}/Trompeta /Nivel Fila/P. I. Tchaikovsky/Sinfonía Nº 4.pdf`,
-            },
-            {
-                composer: "W.A. Mozart",
-                title: "Sinfonía Nº 40",
-                pdfPath: `${basePath}/Trompeta /Nivel Fila/W.A. Mozart/Sinfonía Nº 40.pdf`,
-            },
-        ],
-    },
-    {
-        name: "Nivel Pasante",
-        pieces: [
-            {
-                composer: "Beethoven",
-                title: "Sinfonía Nº 7",
-                pdfPath: `${basePath}/Trompeta /Nivel Pasante/Beethoven/Sinfonía Nº 7.pdf`,
-            },
-            {
-                composer: "Brahms",
-                title: "Sinfonía Nº 2",
-                pdfPath: `${basePath}/Trompeta /Nivel Pasante/Brahms/Sinfonía Nº 2.pdf`,
-            },
-            {
-                composer: "M. Ravel",
-                title: "Bolero",
-                pdfPath: `${basePath}/Trompeta /Nivel Pasante/M. Ravel/Bolero.pdf`,
-            },
-        ],
-    },
-    {
-        name: "Nivel Principal",
-        pieces: [
-            {
-                composer: "Beethoven",
-                title: "Sinfonía Nº 9",
-                pdfPath: `${basePath}/Trompeta /Nivel Principal/Beethoven/Sinfonía Nº 9.pdf`,
-            },
-            {
-                composer: "Brahms",
-                title: "Sinfonía Nº 4",
-                pdfPath: `${basePath}/Trompeta /Nivel Principal/Brahms/Sinfonía Nº 4.pdf`,
-            },
-            {
-                composer: "Stravinsky",
-                title: "Petrushka",
-                pdfPath: `${basePath}/Trompeta /Nivel Principal/Stravinsky/Petrushka.pdf`,
+                title: "Obertura Guillermo Tell",
+                pdfPath: `${basePath}/Trompeta /Fila/Fila B/G. Rossini/Obertura Guillermo Tell.pdf`,
             },
             {
                 composer: "Tchaikovsky",
-                title: "Sinfonía Nº 6",
-                pdfPath: `${basePath}/Trompeta /Nivel Principal/Tchaikovsky/Sinfonía Nº 6.pdf`,
+                title: "Cascanueces - Le Chocolat Allegro Brillante",
+                pdfPath: `${basePath}/Trompeta /Fila/Fila B/Tchaikovsky/Cascanueces Le Chocolat Allegro Brillante.pdf`,
+            },
+        ],
+    },
+    {
+        name: "Pasante",
+        pieces: [
+            {
+                composer: "Beethoven",
+                title: "Leonore Nº 2 y 3",
+                pdfPath: `${basePath}/Trompeta /Pasante/Beethoven/Leonore Nº 2 y 3.pdf`,
             },
         ],
     },
@@ -83,5 +68,5 @@ const trompetaLevels: Level[] = [
 export const trompeta = {
     name: "Trompeta",
     levels: trompetaLevels,
-    consolidatedPdf: `${basePath}/Trompeta /Repertorio de Audición OSC _ Trompeta.pdf`,
+    consolidatedPdf: `${basePath}/Trompeta /Programa de Audición para Trompeta.pdf`,
 };

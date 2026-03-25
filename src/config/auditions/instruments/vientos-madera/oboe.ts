@@ -1,6 +1,6 @@
 import type { Level } from "../types";
 
-const basePath = "/src/assets/documents/RepertorioAudiciones";
+const basePath = "/documents/RepertorioAudiciones";
 
 const oboeLevels: Level[] = [
     {

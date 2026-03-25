@@ -1,6 +1,6 @@
 import type { Level } from "../types";
 
-const basePath = "/src/assets/documents/RepertorioAudiciones";
+const basePath = "/documents/RepertorioAudiciones";
 
 const violaLevels: Level[] = [
     {
@@ -8,18 +8,28 @@ const violaLevels: Level[] = [
         pieces: [
             {
                 composer: "Beethoven",
-                title: "Sinfonía Nº 5",
-                pdfPath: `${basePath}/Viola/Nivel Fila/Beethoven/Sinfonía Nº 5.pdf`,
+                title: "Novena Sinfonía",
+                pdfPath: `${basePath}/Viola/Nivel Fila/Beethoven/Novena Sinfonia.pdf`,
             },
             {
-                composer: "Brahms",
-                title: "Sinfonía Nº 2",
-                pdfPath: `${basePath}/Viola/Nivel Fila/Brahms/Sinfonía Nº 2.pdf`,
+                composer: "Beethoven",
+                title: "Quinta Sinfonía - 2do mov.",
+                pdfPath: `${basePath}/Viola/Nivel Fila/Beethoven/Quinta Sinfonia 2mov.pdf`,
+            },
+            {
+                composer: "José Calabrese",
+                title: "Barroco Blues",
+                pdfPath: `${basePath}/Viola/Nivel Fila/José Calabrese/Barroco Blues.pdf`,
+            },
+            {
+                composer: "Strauss",
+                title: "Don Juan",
+                pdfPath: `${basePath}/Viola/Nivel Fila/Strauss/Don Juan.pdf`,
             },
             {
                 composer: "Tchaikovsky",
-                title: "Sinfonía Nº 4",
-                pdfPath: `${basePath}/Viola/Nivel Fila/Tchaikovsky/Sinfonía Nº 4.pdf`,
+                title: "Sexta Sinfonía",
+                pdfPath: `${basePath}/Viola/Nivel Fila/Tchaikovsky/Sexta Sinfonia.pdf`,
             },
         ],
     },
@@ -28,38 +38,63 @@ const violaLevels: Level[] = [
         pieces: [
             {
                 composer: "Beethoven",
-                title: "Sinfonía Nº 7",
-                pdfPath: `${basePath}/Viola/Nivel Pasante/Beethoven/Sinfonía Nº 7.pdf`,
+                title: "Primera Sinfonía",
+                pdfPath: `${basePath}/Viola/Nivel Pasante/Beethoven/Primera sinfonia.pdf`,
             },
             {
-                composer: "Dvořák",
-                title: "Sinfonía Nº 9",
-                pdfPath: `${basePath}/Viola/Nivel Pasante/Dvořák/Sinfonía Nº 9.pdf`,
+                composer: "J. Calabrese",
+                title: "Concierto para orquesta - 3er mov. Barroco Blues",
+                pdfPath: `${basePath}/Viola/Nivel Pasante/J. Calabrese/Concierto para orquesta, 3er mov. Barroco Blues.pdf`,
             },
             {
-                composer: "Ravel",
-                title: "Bolero",
-                pdfPath: `${basePath}/Viola/Nivel Pasante/Ravel/Bolero.pdf`,
+                composer: "Rossini",
+                title: "Obertura Gazza Ladra",
+                pdfPath: `${basePath}/Viola/Nivel Pasante/Rossini/Obertura Gazza Ladra.pdf`,
             },
         ],
     },
     {
-        name: "Nivel Principal",
+        name: "Nivel Principal o Asistente",
         pieces: [
             {
                 composer: "Beethoven",
-                title: "Sinfonía Nº 9",
-                pdfPath: `${basePath}/Viola/Nivel Principal/Beethoven/Sinfonía Nº 9.pdf`,
+                title: "Novena Sinfonía",
+                pdfPath: `${basePath}/Viola/Nivel Principal o Asistente/Beethoven/ Novena Sinfonia.pdf`,
             },
             {
-                composer: "Brahms",
-                title: "Sinfonía Nº 4",
-                pdfPath: `${basePath}/Viola/Nivel Principal/Brahms/Sinfonía Nº 4.pdf`,
+                composer: "Beethoven",
+                title: "Quinta Sinfonía - 2do mov.",
+                pdfPath: `${basePath}/Viola/Nivel Principal o Asistente/Beethoven/Quinta Sinfonia 2mov.pdf`,
             },
             {
-                composer: "Stravinsky",
-                title: "La Consagración de la Primavera",
-                pdfPath: `${basePath}/Viola/Nivel Principal/Stravinsky/La Consagración de la Primavera.pdf`,
+                composer: "Mozart",
+                title: "Sinfonía Nº 40",
+                pdfPath: `${basePath}/Viola/Nivel Principal o Asistente/Mozart/Sinfonía Nº 40.pdf`,
+            },
+            {
+                composer: "Strauss",
+                title: "Don Juan",
+                pdfPath: `${basePath}/Viola/Nivel Principal o Asistente/Strauss/ Don Juan.pdf`,
+            },
+            {
+                composer: "Tchaikovsky",
+                title: "Sexta Sinfonía",
+                pdfPath: `${basePath}/Viola/Nivel Principal o Asistente/Tchaikovsky/Copia de Sexta Sinfonia.pdf`,
+            },
+            {
+                composer: "Berlioz (Solo)",
+                title: "Harold in Italy",
+                pdfPath: `${basePath}/Viola/Nivel Principal o Asistente/Solos/Berlioz/IMSLP42123-PMLP11245-Berlioz-HeroldinItaly.Viola.pdf`,
+            },
+            {
+                composer: "J. Calabrese (Solo)",
+                title: "Copia de Barroco Blues",
+                pdfPath: `${basePath}/Viola/Nivel Principal o Asistente/Solos/J. Calabrese/Copia de Barroco Blues.pdf`,
+            },
+            {
+                composer: "Puccini (Solo)",
+                title: "Intermezzo - Manon Lescaut",
+                pdfPath: `${basePath}/Viola/Nivel Principal o Asistente/Solos/Puccini/Intermezzo Manon Lescaut.pdf`,
             },
         ],
     },

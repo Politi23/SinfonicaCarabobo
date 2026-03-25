@@ -1,6 +1,6 @@
 import type { Level } from "../types";
 
-const basePath = "/src/assets/documents/RepertorioAudiciones";
+const basePath = "/documents/RepertorioAudiciones";
 
 const violoncelloLevels: Level[] = [
     {
@@ -83,6 +83,11 @@ const violoncelloLevels: Level[] = [
         pieces: [
             {
                 composer: "D. Shostakovich",
+                title: "Quinta Sinfonía - 1er mov",
+                pdfPath: `${basePath}/Violoncello /Asistente/D. Shostakovich/Quinta Sinfonia 1mov.pdf`,
+            },
+            {
+                composer: "D. Shostakovich",
                 title: "Quinta Sinfonía - Cuarto movimiento",
                 pdfPath: `${basePath}/Violoncello /Asistente/D. Shostakovich/Quinta Sinfonia _ Cuarto movimiento.pdf`,
             },
@@ -92,8 +97,8 @@ const violoncelloLevels: Level[] = [
                 pdfPath: `${basePath}/Violoncello /Asistente/L. V. Beethoven/Novena sinfonía 4to mov..pdf`,
             },
             {
-                composer: "J. Brahms",
-                title: "Sinfonía N.2 (Solos)",
+                composer: "J. Brahms (Solo)",
+                title: "Sinfonía N.2",
                 pdfPath: `${basePath}/Violoncello /Asistente/Solos/J. Brahms/Sinfonía N.2.pdf`,
             },
             {
