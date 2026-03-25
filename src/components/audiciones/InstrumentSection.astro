@@ -47,8 +47,7 @@ const fillers = Array(fillerCount).fill(null);
                     href={consolidatedPdf}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors mr-4"
-                    onclick={(e) => e.stopPropagation()}
+                    class="repertory-link inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors mr-4"
                 >
                     <svg
                         class="w-4 h-4"
@@ -164,10 +163,16 @@ const fillers = Array(fillerCount).fill(null);
     const headers = document.querySelectorAll(".instrument-header");
 
     headers.forEach((header) => {
-        const content = header.nextElementSibling;
-        const icon = header.querySelector(".toggle-icon");
+        const content = header.nextElementSibling as HTMLElement | null;
+        const icon = header.querySelector(".toggle-icon") as HTMLElement | null;
+        const repertoryLink = header.querySelector(".repertory-link");
 
         if (content && icon) {
+            // Prevent repertory link click from triggering accordion toggle
+            repertoryLink?.addEventListener("click", (e) => {
+                e.stopPropagation();
+            });
+
             header.addEventListener("click", () => {
                 const isExpanded =
                     header.getAttribute("aria-expanded") === "true";
