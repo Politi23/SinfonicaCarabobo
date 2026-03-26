@@ -5,41 +5,33 @@ import ContactInfoBar from "@components/contact/ContactInfoBar.astro";
 import Schedule from "@components/contact/Schedule.astro";
 import Locations from "@components/contact/Locations.astro";
 import SocialMedia from "@components/contact/SocialMedia.astro";
+import SectionTitle from "@components/contact/SectionTitle.astro";
 
 const contactInfo = {
     addresses: [
         {
             name: "Sede Central",
             location:
-                "Salón MZ-08, Hotel Hesperia WTC, Naguanagua, Estado Carabobo",
+                "Salón MZ-08, Hotel Hesperia WTC, Naguanagua, Estado Carabobo.",
             mapLink: "https://maps.app.goo.gl/SJNfCHHdVyTuy3hL6",
         },
         {
-            name: "Sede Cultural",
-            location: "Universidad Jose Antonio Paez",
-            mapLink: "https://maps.app.goo.gl/NwgPrxQ2Gd4qRjKZ8",
+            name: "Extensión",
+            location:
+                "Universidad José Antonio Páez, Edif. 4, Piso 1, Ofic. 4164.",
+            mapLink: "https://maps.app.goo.gl/WvifFzfKyH92J3xf7",
         },
     ],
     phones: [
         {
             name: "Gerencia",
-            number: "+58 0414-341-0642",
+            number: "+58 0414-424-8861",
             link: "tel:04143410642",
         },
         {
             name: "Administración",
-            number: "+58 0241-832-5678",
+            number: "+58 0414-341-0642",
             link: "tel:02418325678",
-        },
-        {
-            name: "Audiciones",
-            number: "+58 0241-832-9876",
-            link: "tel:02418329876",
-        },
-        {
-            name: "Relaciones Públicas",
-            number: "+58 0412-123-4567",
-            link: "tel:04121234567",
         },
     ],
     emails: [
@@ -52,16 +44,6 @@ const contactInfo = {
             name: "Administración",
             email: "admin@sinfocarabobo.com",
             link: "mailto:admin@sinfocarabobo.com",
-        },
-        {
-            name: "Audiciones",
-            email: "audiciones@sinfocarabobo.com",
-            link: "mailto:audiciones@sinfocarabobo.com",
-        },
-        {
-            name: "Relaciones Públicas",
-            email: "relaciones@sinfocarabobo.com",
-            link: "mailto:relaciones@sinfocarabobo.com",
         },
     ],
 };
@@ -98,30 +80,56 @@ const socialLinks = [
             subtitle="Para mayor información, dudas o sugerencias"
         />
 
-        <!-- INFORMACIÓN DE CONTACTO - BARRA HORIZONTAL -->
-        <ContactInfoBar
-            phones={contactInfo.phones}
-            emails={contactInfo.emails}
-            addresses={contactInfo.addresses}
-        />
-
-        <!-- CONTENIDO PRINCIPAL -->
         <section class="py-20 md:py-28 bg-background-dark">
             <div class="container mx-auto px-6 max-w-5xl">
                 <div class="space-y-16">
-                    <!-- Schedule & Social Media (2 columns) -->
-                    <div class="grid md:grid-cols-2 gap-16">
-                        <Schedule />
-                        <!-- <SocialMedia socialLinks={socialLinks} /> -->
-                    </div>
-
-                    <!-- Locations (2 columns) -->
                     <Locations addresses={contactInfo.addresses} />
 
-                    <!-- Social Media -->
+                    <div class="grid md:grid-cols-2 gap-16">
+                        <Schedule />
+                    </div>
+
+                    <div>
+                        <SectionTitle title="Teléfonos" />
+
+                        <div class="flex flex-col">
+                            {
+                                contactInfo.phones.map((phone: any) => (
+                                    <div>
+                                        <h4 class="text-white font-medium mb-2">
+                                            {phone.name}
+                                        </h4>
+                                        <p class="text-gray-400 text-sm mb-3 leading-relaxed">
+                                            {phone.number}
+                                        </p>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
+
+                    <div>
+                        <SectionTitle title="Correos Electrónicos" />
+
+                        <div class="flex flex-col">
+                            {
+                                contactInfo.emails.map((mail: any) => (
+                                    <div>
+                                        <h4 class="text-white font-medium mb-2">
+                                            {mail.name}
+                                        </h4>
+                                        <p class="text-gray-400 text-sm mb-3 leading-relaxed">
+                                            {mail.email}
+                                        </p>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
+
                     <SocialMedia socialLinks={socialLinks} />
                 </div>
             </div>
         </section>
-    </main>
-</Layout>
+    </main></Layout
+>
