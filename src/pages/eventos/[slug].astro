@@ -93,14 +93,14 @@ const eventVenue = evento.acf?.event_venue || "Por confirmar";
           </ArticleContentDark>
         </div>
 
-        <aside class="space-y-8 lg:-mt-28 relative z-20">
+        <div class="space-y-8 z-20 lg:sticky lg:top-28 lg:self-start">
           <EventDetailsCard
             date={eventDate}
             time={eventTime}
             venue={eventVenue}
             contactHref="/contacto"
           />
-        </aside>
+        </div>
       </div>
     </main>
   </div>
