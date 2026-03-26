@@ -1,7 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import MainHero from "../../../components/sections/MainHero.astro";
-import { getLatestMedia } from "../../../config/wp-media";
+import MainHero from "@components/sections/MainHero.astro";
+import { getLatestMedia } from "@config/wp-media";
 import { Image } from "astro:assets";
 
 const galleryImages = await getLatestMedia(60);
