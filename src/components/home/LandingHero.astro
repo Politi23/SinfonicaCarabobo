@@ -1,0 +1,125 @@
+---
+import { Image } from "astro:assets";
+import slide1 from "@assets/images/orchestra/OSC gala Puccini 2.webp";
+import slide2 from "@assets/images/orchestra/DSC_1140.webp";
+import slide3 from "@assets/images/organizacion/OSC en TTC 3.webp";
+import slide4 from "@assets/images/orchestra/DSC_0471.webp";
+import slide5 from "@assets/images/galeria/orquesta/DSC_0818.webp";
+import Logo from "@assets/images/logo/logosvg.svg";
+
+const images = [slide1, slide2, slide3, slide4, slide5];
+---
+
+<main>
+  <section
+    class="relative h-[90vh] flex flex-col justify-center text-center bg-white"
+  >
+    <div class="absolute inset-0 opacity-100">
+      <div class="absolute inset-0">
+        <Image
+          src={images[0]}
+          alt="Orquesta Sinfónica"
+          class="c-slide w-full h-full object-cover"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </div>
+
+      {
+        images.map((item, index) => (
+          <div
+            class="c-slide absolute inset-0 animate-pulse z-1"
+            style={`--i: ${index}`}
+          >
+            <Image
+              src={item}
+              alt="Orquesta Sinfónica"
+              class="c-slide w-full h-full object-cover"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
+        ))
+      }
+    </div>
+
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-white/20 z-0"
+    >
+    </div>
+
+    <div class="hero-content flex justify-between items-center mx-10">
+      <!-- <h1
+        class="font-titles text-left text-4xl font-semibold text-shadow-lg shadow-black ml-10 bg-blend-screen"
+      >
+        ¡Sómos el Alma Músical de Carabobo!
+      </h1> -->
+      <Logo
+        class="hero-logo mask-clip-border bg-blend-normal"
+        width={500}
+        height={500}
+      />
+    </div>
+  </section>
+</main>
+
+<style>
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    /* max-width: 800px; */
+    padding: 80px 24px;
+  }
+
+  .hero-title {
+    margin: 0 0 32px;
+    font-family: var(--font-cinzel), serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-text-light);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  }
+
+  .hero-logo {
+    filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 1));
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.1rem;
+    }
+  }
+
+  @keyframes fade-in-out {
+    0% {
+      opacity: 0;
+    }
+
+    12% {
+      opacity: 1;
+    }
+
+    20% {
+      opacity: 1;
+    }
+
+    35% {
+      opacity: 0.2;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .c-slide {
+    opacity: 0;
+    animation: fade-in-out 25s ease infinite;
+    /* animation-iteration-count: infinite; */
+    animation-delay: calc(var(--i) * 5s);
+  }
+</style>
