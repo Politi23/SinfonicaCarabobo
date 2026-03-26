@@ -4,6 +4,9 @@ import Layout from "../../layouts/Layout.astro";
 import { getEventoBySlug } from "../../config/wp-eventos"; // Importamos desde el archivo modificado
 import type { WPEvento } from "../../config/wp-eventos"; // Importamos desde el archivo modificado
 import logoSimpleBbg from "@assets/images/logo/logosimplebbg.webp";
+import { Image } from "astro:assets";
+import ArticleContentDark from "@components/blog/ArticleContentDark.astro";
+import EventDetailsCard from "@components/eventos/EventDetailsCard.astro";
 
 const { slug } = Astro.params;
 
@@ -43,38 +46,39 @@ const getImageUrl = (e: WPEvento) => {
 };
 
 const featuredImage = getImageUrl(evento);
+const eventDate = evento.acf?.event_date
+  ? formatAcfDate(evento.acf.event_date)
+  : "Por confirmar";
+const eventTime = evento.acf?.event_time
+  ? `${evento.acf.event_time.slice(0, 5)} hrs`
+  : "Por confirmar";
+const eventVenue = evento.acf?.event_venue || "Por confirmar";
 ---
 
 <Layout title={evento.title.rendered}>
-  {/* Cabecera */}
   <div
-    class="relative w-full h-[50vh] min-h-[400px] bg-gray-900 flex items-end"
+    class="relative w-full h-[70vh] min-h-[400px] bg-gray-900 flex items-end"
   >
     <div class="absolute inset-0">
-      <img
+      <Image
         src={featuredImage}
         alt={evento.title.rendered}
-        class="w-full h-full object-cover opacity-60"
+        class="w-full h-full object-cover bg-cover opacity-60"
         transition:name={`image-${evento.slug}`}
+        width={1000}
+        height={500}
       />
       <div
-        class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"
+        class="absolute inset-0 bg-gradient-to-tr from-zinc-200/20 via-transparent to-transparent"
       >
       </div>
     </div>
 
-    <div class="container mx-auto px-4 pb-12 relative z-10">
-      <span
-        class="inline-block bg-black text-primary px-3 py-1 rounded-full text-sm font-semibold mb-4 uppercase tracking-wider border border-primary"
-      >
-        {evento.acf?.event_price || "Entrada Libre"}
-      </span>
-      <h1
-        class="text-4xl md:text-6xl font-bold text-white mb-4"
-        set:html={evento.title.rendered}
-      />
-      {/* Usamos ?. por si la descripción viene vacía */}
-      <p class="text-xl text-gray-200 max-w-2xl">
+    <div class="container mx-auto px-4 pb-12 relative z-10 outlined-text">
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">
+        {evento.title.rendered}
+      </h1>
+      <p class="text-2xl font-titles font-light text-zinc-200 max-w-2xl ml-4">
         {evento.acf?.event_description}
       </p>
     </div>
@@ -83,87 +87,28 @@ const featuredImage = getImageUrl(evento);
   <div class="w-full bg-background-dark flex-grow">
     <main class="container mx-auto px-4 py-16">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        {/* Contenido Principal */}
         <div class="lg:col-span-2">
-          <div class="prose prose-lg prose-indigo max-w-none text-text-light">
+          <ArticleContentDark>
             <div set:html={evento.content.rendered} />
-          </div>
+          </ArticleContentDark>
         </div>
 
-        {/* Barra Lateral */}
-        <aside class="space-y-8">
-          <div
-            class="bg-surface-dark p-6 rounded shadow-sm border border-border-dark sticky top-8"
-          >
-            <h3
-              class="text-xl font-bold text-text-light mb-6 border-b border-border-dark pb-2"
-            >
-              Detalles del Evento
-            </h3>
-
-            <ul class="space-y-4">
-              <li class="flex items-start">
-                <div
-                  class="bg-background-dark p-2 rounded shadow-sm mr-4 text-primary"
-                >
-                  📅
-                </div>
-                <div>
-                  <p class="text-sm text-text-secondary font-semibold">Fecha</p>
-                  <p class="text-text-light capitalize">
-                    {
-                      evento.acf?.event_date
-                        ? formatAcfDate(evento.acf.event_date)
-                        : "Por confirmar"
-                    }
-                  </p>
-                </div>
-              </li>
-
-              <li class="flex items-start">
-                <div
-                  class="bg-background-dark p-2 rounded shadow-sm mr-4 text-primary"
-                >
-                  ⏰
-                </div>
-                <div>
-                  <p class="text-sm text-text-secondary font-semibold">Hora</p>
-                  <p class="text-text-light">
-                    {
-                      evento.acf?.event_time
-                        ? evento.acf.event_time.slice(0, 5) + " hrs"
-                        : "Por confirmar"
-                    }
-                  </p>
-                </div>
-              </li>
-
-              <li class="flex items-start">
-                <div
-                  class="bg-background-dark p-2 rounded shadow-sm mr-4 text-primary"
-                >
-                  📍
-                </div>
-                <div>
-                  <p class="text-sm text-text-secondary font-semibold">Lugar</p>
-                  <p class="text-text-light">
-                    {evento.acf?.event_venue || "Por confirmar"}
-                  </p>
-                </div>
-              </li>
-            </ul>
-
-            <div class="mt-8">
-              <a
-                href="/contacto"
-                class="block w-full text-center bg-background-dark text-text-light py-3 rounded-lg hover:bg-surface-dark transition-colors font-medium border border-border-dark"
-              >
-                Contáctanos
-              </a>
-            </div>
-          </div>
+        <aside class="space-y-8 lg:-mt-28 relative z-20">
+          <EventDetailsCard
+            date={eventDate}
+            time={eventTime}
+            venue={eventVenue}
+            contactHref="/contacto"
+          />
         </aside>
       </div>
     </main>
   </div>
+
+  <style>
+    .outlined-text {
+      color: white;
+      text-shadow: -1px -1px 10px black;
+    }
+  </style>
 </Layout>

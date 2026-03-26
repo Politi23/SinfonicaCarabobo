@@ -1,0 +1,84 @@
+<div class="article-content-dark" {...Astro.props}>
+  <slot />
+</div>
+
+<style is:global>
+  .article-content-dark {
+    @apply text-lg font-light leading-relaxed text-text-light;
+  }
+
+  /* Estilos unificados para contenido sobre fondo oscuro */
+  .article-content-dark
+    :where(h1, h2, h3, h4, h5, h6, p, li, blockquote p, cite, summary) {
+    color: var(--color-text-light) !important;
+  }
+
+  /* Encabezados */
+  .article-content-dark h1 {
+    @apply text-4xl lg:text-5xl font-bold my-6 text-white;
+  }
+  .article-content-dark h2 {
+    @apply text-3xl lg:text-4xl font-bold mt-12 mb-6 text-white;
+  }
+  .article-content-dark h3 {
+    @apply text-2xl lg:text-3xl font-bold mt-10 mb-6 text-white;
+  }
+  .article-content-dark h4 {
+    @apply text-xl lg:text-2xl font-bold mt-8 mb-6 text-white;
+  }
+
+  /* Elementos generales */
+  .article-content-dark a {
+    @apply text-primary-light hover:underline;
+  }
+  .article-content-dark ul {
+    @apply list-disc my-6 pl-8;
+  }
+  .article-content-dark ol {
+    @apply list-decimal my-6 pl-8;
+  }
+  .article-content-dark li {
+    @apply my-2;
+  }
+
+  /* Citas */
+  .article-content-dark blockquote {
+    @apply my-8 relative py-4 px-6 border-l-4 border-primary bg-white/5;
+  }
+  .article-content-dark blockquote cite {
+    @apply block text-right text-base font-semibold mt-4 not-italic text-text-muted;
+  }
+
+  /* Tablas */
+  .article-content-dark table {
+    @apply w-full border-collapse my-8;
+  }
+  .article-content-dark th,
+  .article-content-dark td {
+    @apply border border-white/20 p-3 text-center text-text-light;
+  }
+  .article-content-dark th {
+    @apply font-bold bg-white/10 text-white;
+  }
+
+  /* Medios */
+  .article-content-dark img,
+  .article-content-dark video {
+    @apply rounded-lg shadow-md max-w-full h-auto my-8;
+  }
+  .article-content-dark figure {
+    @apply my-8;
+  }
+  .article-content-dark figcaption {
+    @apply text-center text-sm mt-2 text-text-muted !important;
+  }
+
+  /* WordPress Blocks */
+  .article-content-dark .wp-block-verse {
+    @apply max-w-full overflow-x-auto text-center;
+  }
+
+  .article-content-dark .wp-block-code {
+    @apply max-w-full overflow-x-auto bg-white/10 border border-white/15 p-4 rounded text-text-light;
+  }
+</style>

@@ -1,0 +1,72 @@
+---
+import PrimaryButton from "@components/ui/PrimaryButton.astro";
+
+export interface Props {
+  date?: string;
+  time?: string;
+  venue?: string;
+  contactHref?: string;
+  class?: string;
+}
+
+const {
+  date = "Por confirmar",
+  time = "Por confirmar",
+  venue = "Por confirmar",
+  contactHref = "/contacto",
+  class: className,
+} = Astro.props as Props;
+---
+
+<div
+  class:list={[
+    "bg-black p-6 rounded shadow-sm border border-primary sticky top-8",
+    className,
+  ]}
+>
+  <h3
+    class="text-xl font-bold text-text-light mb-6 border-b border-primary/40 pb-2"
+  >
+    Detalles del Evento
+  </h3>
+
+  <ul class="space-y-4">
+    <li class="flex items-start">
+      <div class="bg-background-dark p-2 rounded shadow-sm mr-4 text-primary">
+        <i class="ph ph-calendar-blank text-lg" aria-hidden="true"></i>
+      </div>
+      <div>
+        <p class="text-sm text-text-secondary font-semibold">Fecha</p>
+        <p class="text-text-light capitalize">{date}</p>
+      </div>
+    </li>
+
+    <li class="flex items-start">
+      <div class="bg-background-dark p-2 rounded shadow-sm mr-4 text-primary">
+        <i class="ph ph-clock text-lg" aria-hidden="true"></i>
+      </div>
+      <div>
+        <p class="text-sm text-text-secondary font-semibold">Hora</p>
+        <p class="text-text-light">{time}</p>
+      </div>
+    </li>
+
+    <li class="flex items-start">
+      <div class="bg-background-dark p-2 rounded shadow-sm mr-4 text-primary">
+        <i class="ph ph-map-pin-simple text-lg" aria-hidden="true"></i>
+      </div>
+      <div>
+        <p class="text-sm text-text-secondary font-semibold">Lugar</p>
+        <p class="text-text-light">{venue}</p>
+      </div>
+    </li>
+  </ul>
+
+  <div class="mt-8">
+    <a href={contactHref}>
+      <PrimaryButton class="w-full" variant="outline" href="/contacto">
+        <span>Contáctanos</span>
+      </PrimaryButton>
+    </a>
+  </div>
+</div>
