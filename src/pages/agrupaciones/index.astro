@@ -2,38 +2,38 @@
 import { Image } from 'astro:assets';
 import Layout from "@layouts/Layout.astro";
 import MainHero from "@components/sections/MainHero.astro";
-import orquestaSinfonica from "@assets/images/orchestra/orquestaSinfonica.webp";
-import orquestaCamara from "@assets/images/orchestra/DSC_1140.webp";
-import bailable from "@assets/images/orchestra/OSC gala Puccini 2.webp";
-import estudiantina from "@assets/images/orchestra/DSC_0196.webp";
-import jazzEnsamble from "@assets/images/orchestra/DSC_0471.webp";
-import coro from "@assets/images/orchestra/coro.webp";
-import camara from "@assets/images/orchestra/DSC_0495.webp";
-import cuartetoCuerdas from "@assets/images/orchestra/cuarteto-cuerdas.webp";
-import trioSinfocarabobo from "@assets/images/orchestra/violin.webp";
-import duoSinfocarabobo from "@assets/images/orchestra/violin-header.webp";
-import saxoSinfocarabobo from "@assets/images/orchestra/saxo-sinfocarabobo.webp";
-import acordeonSinfocarabobo from "@assets/images/orchestra/Calabrese 3.webp";
+import orquestaSinfocarabobo from "@assets/images/agrupaciones/orquesta.webp";
+import camaraSinfocarabobo from "@assets/images/agrupaciones/camara.webp";
+import bailableSinfocarabobo from "@assets/images/agrupaciones/bailable.png";
+import estudiantina from "@assets/images/agrupaciones/estudiantina.webp";
+import jazzEnsamble from "@assets/images/agrupaciones/jazz-ensamble.webp";
+import coro from "@assets/images/agrupaciones/coro.webp";
+import agrupacionCamara from "@assets/images/agrupaciones/agrupacion-camara.webp"
+import cuartetoCuerdas from "@assets/images/agrupaciones/cuarteto.webp";
+import trioSinfocarabobo from "@assets/images/agrupaciones/trio.webp";
+import duoSinfocarabobo from "@assets/images/agrupaciones/duo.webp";
+import saxoSinfocarabobo from "@assets/images/agrupaciones/saxo.webp";
+import violinSinfocarabobo from "@assets/images/agrupaciones/violin.webp";
 
 // Datos de las agrupaciones
 const agrupaciones = [
     {
         nombre: "Orquesta Sinfónica de Carabobo",
-        imagen: orquestaSinfonica,
+        imagen: orquestaSinfocarabobo,
         descripcion: "Orquesta Sinfónica conformada por músicos profesionales, para repertorios y eventos que requieran este formato musical.",
         tiposEventos: "Para conciertos de artistas académicos y populares, eventos sociales y/o culturales, sesiones de grabación, documentales, piezas publicitarias, entre otros. Cubre todo el repertorio de los grandes compositores y obras de estreno por encargo.",
         reverse: false
     },
     {
         nombre: "Orquesta de Cámara Sinfocarabobo",
-        imagen: orquestaCamara,
+        imagen: camaraSinfocarabobo,
         descripcion: "Agrupación musical conformada entre 15 y 25 músicos, de las secciones de cuerdas, vientos, percusión, bajo eléctrico y voz, para repertorios que requieran este formato musical.",
         tiposEventos: "Para todo tipo de eventos artísticos, sociales, eclesiásticos, culturales y personales, con un amplio repertorio sacro, popular y académico, adaptado a la naturaleza del evento o actividad.",
         reverse: true
     },
     {
         nombre: "Orquesta Bailable Sinfocarabobo",
-        imagen: bailable,
+        imagen: bailableSinfocarabobo,
         descripcion: "Conformada por 11 músicos con amplia trayectoria musical latina caribeña.",
         tiposEventos: "Eventos sociales tales como: matrimonios, 15 años, graduaciones, anniversarios y empresariales.",
         reverse: false
@@ -61,7 +61,7 @@ const agrupaciones = [
     },
     {
         nombre: "Agrupaciones de Cámara",
-        imagen: camara,
+        imagen: agrupacionCamara,
         descripcion: "Agrupaciones de entre 5 y 14 músicos de instrumentos de cuerdas, vientos o combinados, con amplia experiencia musical y artística.",
         tiposEventos: "Para ceremonias eclesiásticas, apertura de eventos sociales, de negocios y cualquier otro tipo de actividad cultural o artística que requiera este formato musical, con un amplio repertorio académico, popular universal, latinoamericano y venezolano.",
         reverse: false
@@ -69,8 +69,8 @@ const agrupaciones = [
     {
         nombre: "Cuarteto Sinfocarabobo",
         imagen: cuartetoCuerdas,
-        descripcion: "Cuarteto de cuerdas conformado por dos violines, viola y violonchelo, con amplia experiencia musical y artística.",
-        tiposEventos: "Para ceremonias eclesiásticas, recepciones, apertura de eventos sociales, de negocios y cualquier otro tipo de actividad cultural y artística que requiera este formato musical, con un amplio repertorio académico y popular universal, latinoamericano y venezolano.",
+        descripcion: "Agrupación musical con amplia experiencia musical y artística, conformada por instrumentos de cuerdas, vientos o combinados.",
+        tiposEventos: "Para actividades eclesiásticas, recepciones, apertura de eventos sociales, de negocios y cualquier otro tipo de actividad cultural o artística que requiera este formato musical, con un amplio repertorio académico, popular universal, latinoamericano y venezolano.",
         reverse: true
     },
     {
@@ -95,8 +95,8 @@ const agrupaciones = [
         reverse: false
     },
     {
-        nombre: "Acordeón Sinfocarabobo",
-        imagen: acordeonSinfocarabobo,
+        nombre: "Violín, Saxofón o Acordeón Sinfocarabobo",
+        imagen: violinSinfocarabobo,
         descripcion: "Acordeonista en vivo con acompañamiento de pistas musicales, cuya versatilidad permite la presentación de diferentes géneros musicales.",
         tiposEventos: "Repertorio adaptado para ceremonias eclesiásticas, recepciones, eventos sociales, de negocios, y cualquier otro tipo de actividad cultural y artística.",
         reverse: true
