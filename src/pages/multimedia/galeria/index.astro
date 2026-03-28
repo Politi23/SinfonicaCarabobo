@@ -1,0 +1,66 @@
+---
+import Layout from "@layouts/Layout.astro";
+import MainHero from "@components/sections/MainHero.astro";
+import { fetchImageMedia } from "@config/wp-media";
+import { Image } from "astro:assets";
+
+const images = await fetchImageMedia(1);
+---
+
+<Layout title="Imágenes - Galería Estática">
+  <MainHero
+    title="Galería"
+    titleHighlight=""
+    subtitle="Un vistazo a nuestros momentos"
+  />
+
+  <main class="bg-white p-16">
+    <div class="masonry">
+      {
+        images.map(({ source_url, alt_text, media_details }, index) => {
+          return (
+            <div class="masonry-item rounded-sm bg-gray-100">
+              <Image
+                src={source_url}
+                alt={alt_text ?? index.toString()}
+                width={media_details?.width ?? 100}
+                height={media_details?.height ?? 100}
+                class="w-full object-cover rounded-sm"
+              />
+            </div>
+          );
+        })
+      }
+    </div>
+  </main>
+
+  <style>
+    .masonry {
+      column-count: 1;
+      column-gap: 0.5rem;
+    }
+
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 0.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .masonry {
+        column-count: 2;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .masonry {
+        column-count: 3;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .masonry {
+        column-count: 4;
+      }
+    }
+  </style>
+</Layout>
