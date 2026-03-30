@@ -1,44 +1,198 @@
 ---
-import Layout from "@layouts/Layout.astro";
 import MainHero from "@components/sections/MainHero.astro";
-import AuditionInfo from "@components/audiciones/AuditionInfo.astro";
-import DownloadPlanilla from "@components/audiciones/DownloadPlanilla.astro";
-import CategorySection from "@components/audiciones/CategorySection.astro";
-import AuditionsCTA from "@components/audiciones/AuditionsCTA.astro";
-import { auditionsData, basePath } from "../../config/auditions";
+import Layout from "@layouts/Layout.astro";
+
+type InstrumentSeed = {
+    folder: string;
+    files: string[];
+};
+
+type InstrumentFile = {
+    name: string;
+    href: string;
+};
+
+type InstrumentItem = {
+    name: string;
+    files: InstrumentFile[];
+};
+
+const instrumentsSeed: InstrumentSeed[] = [
+    {
+        folder: "Clarinete",
+        files: [
+            "fila_clarinete.zip",
+            "pasante_clarinete.zip",
+            "principal_asistente_clarinete.zip",
+        ],
+    },
+    {
+        folder: "Contrabajo ",
+        files: [
+            "fila_contrabajo.zip",
+            "pasante_contrabajo.zip",
+            "principal_contrabajo.zip",
+        ],
+    },
+    { folder: "Corno", files: ["audiciones_corno.zip"] },
+    { folder: "Flauta", files: ["audiciones_flauta.zip"] },
+    {
+        folder: "Oboe",
+        files: [
+            "fila_oboe.zip",
+            "pasante_oboe.zip",
+            "principal_asistente_oboe.zip",
+        ],
+    },
+    { folder: "Percusión", files: ["tutti_percusion.zip"] },
+    { folder: "Trombón", files: ["audiciones_trombon.zip"] },
+    {
+        folder: "Trompeta ",
+        files: ["fila_trompeta.zip", "pasante_trompeta.zip"],
+    },
+    { folder: "Tuba", files: ["audiciones_tuba.zip"] },
+    {
+        folder: "Viola",
+        files: [
+            "fila_viola.zip",
+            "pasante_viola.zip",
+            "principal_asistente_viola.zip",
+        ],
+    },
+    {
+        folder: "Violín ",
+        files: [
+            "fila_a_violin.zip",
+            "fila_b_violin.zip",
+            "pasante_violin.zip",
+            "principal_asistente_violin.zip",
+        ],
+    },
+    {
+        folder: "Violoncello ",
+        files: [
+            "asistente_violoncello.zip",
+            "fila_a_violoncello.zip",
+            "fila_b_violoncello.zip",
+            "pasante_violoncello.zip",
+            "principal_violoncello.zip",
+        ],
+    },
+];
+
+const groupedInstruments = new Map<string, InstrumentFile[]>();
+
+for (const instrument of instrumentsSeed) {
+    const key = instrument.folder.trim();
+    const existing = groupedInstruments.get(key) ?? [];
+    const files = instrument.files.map((fileName) => ({
+        name: fileName,
+        href: encodeURI(`/audiciones/${instrument.folder}/${fileName}`),
+    }));
+
+    groupedInstruments.set(key, [...existing, ...files]);
+}
+
+const instruments: InstrumentItem[] = [...groupedInstruments.entries()]
+    .map(([name, files]) => ({
+        name,
+        files: files.sort((a, b) => a.name.localeCompare(b.name, "es")),
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name, "es"));
+
+const planillaHref = encodeURI("/audiciones/planilla de Audición OSC.pdf");
 ---
 
 <Layout title="Audiciones | Orquesta Sinfónica de Carabobo">
-    <main class="bg-background-dark text-text-light">
-        <MainHero
-            title="Únete a"
-            titleHighlight="Nuestra Orquesta"
-            subtitle="Audiciones abiertas para todos"
-        />
+    <MainHero title="Audiciones" />
 
-        <AuditionInfo />
+    <main class="py-16">
+        <section class="container mx-auto max-w-3xl px-6 space-y-8">
+            <h1 class="text-3xl font-semibold tracking-tight">
+                Proceso de audición
+            </h1>
 
-        <DownloadPlanilla
-            planillaPath={`${basePath}/planilla de Audición OSC.pdf`}
-        />
+            <ol class="list-decimal space-y-2 pl-5">
+                <li>
+                    Revisa las obras requeridas para el instrumento y nivel de
+                    interés.
+                </li>
+                <li>Descarga y completa la planilla de audicion.</li>
+                <li>Prepara y entrega los materiales solicitados.</li>
+            </ol>
 
-        <!-- Sección de Instrumentos -->
-        <section id="instrumentos" class="py-24 bg-gray-50">
-            <div class="container mx-auto px-6">
-                <div class="space-y-12">
+            <p>
+                <a
+                    class="underline hover:no-underline"
+                    href={planillaHref}
+                    download
+                >
+                    Descargar planilla de audicion
+                </a>
+            </p>
+
+            <div class="space-y-4">
+                <label class="block font-medium" for="instrumento-select"
+                    >Instrumento</label
+                >
+                <select
+                    id="instrumento-select"
+                    class="w-full rounded border border-black/20 px-3 py-2"
+                >
+                    <option value="">Selecciona un instrumento</option>
                     {
-                        auditionsData.map((category) => (
-                            <CategorySection
-                                categoryName={category.name}
-                                instruments={category.instruments}
-                                variant={category.variant}
-                            />
+                        instruments.map((instrument) => (
+                            <option value={instrument.name}>
+                                {instrument.name}
+                            </option>
                         ))
                     }
-                </div>
+                </select>
+            </div>
+
+            <div id="instrument-files" class="space-y-2" aria-live="polite">
             </div>
         </section>
-
-        <AuditionsCTA basePath={basePath} />
     </main>
+
+    <script is:inline define:vars={{ instruments }}>
+        const select = document.getElementById("instrumento-select");
+        const filesContainer = document.getElementById("instrument-files");
+        const filesByInstrument = new Map(
+            instruments.map((instrument) => [
+                instrument.name,
+                instrument.files,
+            ]),
+        );
+
+        const renderFiles = (instrumentName) => {
+            if (!filesContainer) return;
+
+            const files = filesByInstrument.get(instrumentName) ?? [];
+
+            if (!instrumentName) {
+                filesContainer.innerHTML = "";
+                return;
+            }
+
+            if (files.length === 0) {
+                filesContainer.innerHTML =
+                    "<p>No hay archivos disponibles para este instrumento.</p>";
+                return;
+            }
+
+            filesContainer.innerHTML = files
+                .map(
+                    (file) =>
+                        `<p><a class="underline hover:no-underline" href="${file.href}" download>${file.name}</a></p>`,
+                )
+                .join("");
+        };
+
+        if (select) {
+            select.addEventListener("change", (event) => {
+                renderFiles(event.target.value);
+            });
+        }
+    </script>
 </Layout>
