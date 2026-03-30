@@ -54,6 +54,7 @@ const processAlbum = (item: any): WPAlbum => {
 		excerpt: cleanText(item.excerpt?.rendered || ""),
 		content: item.content?.rendered || "",
 		date: item.date,
+		dateTaken: item.acf?.date_taken || "",
 		coverImage: cover || logoSimpleBbg.src,
 		imageCaption: item._embedded?.["wp:featuredmedia"]?.[0]?.caption?.rendered || "",
 		category: item._embedded?.["wp:term"]?.[0]?.[0]?.name || "",
@@ -67,6 +68,7 @@ export interface WPAlbum {
 	slug: string;
 	title: string;
 	date: string;
+	dateTaken: string;
 	excerpt: string;
 	content: string;
 	coverImage: string;
