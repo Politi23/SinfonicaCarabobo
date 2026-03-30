@@ -8,8 +8,8 @@ type InstrumentSeed = {
 };
 
 type InstrumentFile = {
-    name: string;
-    href: string;
+    title: string;
+    link: string;
 };
 
 type InstrumentItem = {
@@ -80,14 +80,50 @@ const instrumentsSeed: InstrumentSeed[] = [
     },
 ];
 
+const normalizeFileName = (fileName: string) =>
+    fileName
+        .replace(/\.[^.]+$/, "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[_\-\s]+/g, "");
+
+const toReadableLabel = (fileName: string) =>
+    fileName
+        .replace(/\.[^.]+$/, "")
+        .replace(/[_\-]+/g, " ")
+        .trim()
+        .replace(/\s+/g, " ")
+        .replace(/\b\w/g, (char) => char.toUpperCase());
+
+const levelMappings: Array<[string, string]> = [
+    ["principalasistente", "Nivel Principal Asistente"],
+    ["filaa", "Nivel Fila A"],
+    ["filab", "Nivel Fila B"],
+    ["filac", "Nivel Fila C"],
+    ["pasante", "Nivel Pasante"],
+    ["principal", "Nivel Principal"],
+    ["asistente", "Nivel Asistente"],
+    ["tutti", "Nivel Tutti"],
+    ["fila", "Nivel Fila"],
+];
+
+const getFileTitle = (fileName: string) => {
+    const normalizedName = normalizeFileName(fileName);
+    const match = levelMappings.find(([pattern]) =>
+        normalizedName.includes(pattern),
+    );
+    return match?.[1] ?? toReadableLabel(fileName);
+};
+
 const groupedInstruments = new Map<string, InstrumentFile[]>();
 
 for (const instrument of instrumentsSeed) {
     const key = instrument.folder.trim();
     const existing = groupedInstruments.get(key) ?? [];
     const files = instrument.files.map((fileName) => ({
-        name: fileName,
-        href: encodeURI(`/audiciones/${instrument.folder}/${fileName}`),
+        title: getFileTitle(fileName),
+        link: encodeURI(`/audiciones/${instrument.folder}/${fileName}`),
     }));
 
     groupedInstruments.set(key, [...existing, ...files]);
@@ -96,7 +132,7 @@ for (const instrument of instrumentsSeed) {
 const instruments: InstrumentItem[] = [...groupedInstruments.entries()]
     .map(([name, files]) => ({
         name,
-        files: files.sort((a, b) => a.name.localeCompare(b.name, "es")),
+        files: files.sort((a, b) => a.title.localeCompare(b.title, "es")),
     }))
     .sort((a, b) => a.name.localeCompare(b.name, "es"));
 
@@ -135,19 +171,32 @@ const planillaHref = encodeURI("/audiciones/planilla de Audición OSC.pdf");
                 <label class="block font-medium" for="instrumento-select"
                     >Instrumento</label
                 >
-                <select
-                    id="instrumento-select"
-                    class="w-full rounded border border-black/20 px-3 py-2"
-                >
-                    <option value="">Selecciona un instrumento</option>
-                    {
-                        instruments.map((instrument) => (
-                            <option value={instrument.name}>
-                                {instrument.name}
-                            </option>
-                        ))
-                    }
-                </select>
+                <div class="relative">
+                    <select
+                        id="instrumento-select"
+                        class="w-full appearance-none rounded border border-white bg-transparent px-3 py-2 pr-10 text-white focus:outline-none focus:ring-2 focus:ring-white/60"
+                    >
+                        <option value="">Selecciona un instrumento</option>
+                        {
+                            instruments.map((instrument) => (
+                                <option value={instrument.name}>
+                                    {instrument.name}
+                                </option>
+                            ))
+                        }
+                    </select>
+                    <svg
+                        class="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-white"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.173l3.71-3.944a.75.75 0 111.08 1.04l-4.25 4.518a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </div>
             </div>
 
             <div id="instrument-files" class="space-y-2" aria-live="polite">
@@ -181,12 +230,21 @@ const planillaHref = encodeURI("/audiciones/planilla de Audición OSC.pdf");
                 return;
             }
 
-            filesContainer.innerHTML = files
-                .map(
-                    (file) =>
-                        `<p><a class="underline hover:no-underline" href="${file.href}" download>${file.name}</a></p>`,
-                )
-                .join("");
+            const fragment = document.createDocumentFragment();
+
+            for (const file of files) {
+                const paragraph = document.createElement("p");
+                const link = document.createElement("a");
+                link.className = "no-underline hover:underline";
+                link.href = file.link;
+                link.download = "";
+                link.title = file.title;
+                link.textContent = file.title;
+                paragraph.append(link);
+                fragment.append(paragraph);
+            }
+
+            filesContainer.replaceChildren(fragment);
         };
 
         if (select) {
