@@ -2,9 +2,9 @@
 export const prerender = false;
 
 import Layout from "@layouts/Layout.astro";
+import ArticleContent from "@components/blog/ArticleContent.astro";
 import WpOfflineError from "@components/ui/WpOfflineError.astro";
 import { getAlbumBySlug } from "@config/wp-albums";
-import { fetchAlbumImageMedia } from "@config/wp-media";
 import { Image } from "astro:assets";
 
 const { slug } = Astro.params;
@@ -18,16 +18,6 @@ const album = await getAlbumBySlug(slug);
 if (!album) {
 	return Astro.redirect("/404");
 }
-
-const albumMedia = await fetchAlbumImageMedia(album.id);
-
-const images = albumMedia.map((item) => ({
-	id: item.id,
-	src: item.source_url,
-	alt: item.alt_text?.trim() || album.title,
-	width: item.media_details?.width ?? 100,
-	height: item.media_details?.height ?? 100,
-}));
 ---
 
 <Layout title={album.title} showLatestPosts={true}>
@@ -79,57 +69,105 @@ const images = albumMedia.map((item) => ({
 			}
 
 			{
-				images.length > 0 ? (
-					<div class="masonry">
-						{images.map((image, index) => (
-							<div class="masonry-item rounded-sm bg-gray-100">
-								<Image
-									src={image.src}
-									alt={image.alt || index.toString()}
-									width={image.width}
-									height={image.height}
-									loading={index < 20 ? "eager" : "lazy"}
-									class="w-full object-cover rounded-sm"
-								/>
-							</div>
-						))}
-					</div>
+				album.content ? (
+					<ArticleContent
+						class="album-content"
+						set:html={album.content}
+					/>
 				) : (
 					<WpOfflineError
-						title="No hay imagenes disponibles"
-						message="Este album no tiene imagenes publicadas por ahora."
+						title="No hay contenido disponible"
+						message="Este album no tiene contenido publicado por ahora."
 					/>
 				)
 			}
 		</article>
 	</main>
 
-	<style>
-		.masonry {
-			column-count: 1;
-			column-gap: 0.5rem;
+	<style is:global>
+		.article-content.album-content
+			:is(.wp-block-gallery, .blocks-gallery-grid) {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 0.6rem;
+			list-style: none;
+			padding: 0;
+			margin: 0;
 		}
 
-		.masonry-item {
-			break-inside: avoid;
-			margin-bottom: 0.5rem;
+		.article-content.album-content
+			:is(.wp-block-gallery, .blocks-gallery-grid)
+			:is(.blocks-gallery-item, .wp-block-image, .wp-caption, figure) {
+			margin: 0;
+			width: 100% !important;
 		}
 
-		@media (min-width: 640px) {
-			.masonry {
-				column-count: 2;
-			}
+		.article-content.album-content
+			:is(.blocks-gallery-item, .wp-block-image, .wp-caption, figure) {
+			max-width: 100% !important;
 		}
 
-		@media (min-width: 768px) {
-			.masonry {
-				column-count: 3;
-			}
+		.article-content.album-content
+			:is(
+				.blocks-gallery-item,
+				.wp-block-image,
+				.wp-caption,
+				figure.wp-block-image
+			) {
+			position: relative;
+			overflow: hidden;
+			border-radius: 2px;
 		}
 
-		@media (min-width: 1024px) {
-			.masonry {
-				column-count: 3;
+		.article-content.album-content
+			:is(
+				.blocks-gallery-item img,
+				.wp-block-image img,
+				.wp-caption img,
+				figure img
+			) {
+			display: block;
+			width: 100% !important;
+			height: 350px !important;
+			object-fit: cover;
+			max-width: 100% !important;
+			margin: 0 !important;
+			border-radius: 0px;
+		}
+
+		.article-content.album-content
+			:is(
+				.wp-caption figcaption,
+				.wp-block-image figcaption,
+				.blocks-gallery-item figcaption,
+				figcaption.wp-element-caption,
+				.wp-caption-text
+			) {
+			display: block !important;
+			visibility: visible !important;
+			opacity: 1 !important;
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 1;
+			margin: 0 !important;
+			padding: 0.75rem 0.1rem;
+			color: #fff !important;
+			font-size: 0.875rem;
+			line-height: 1.35;
+			text-align: left;
+			background: linear-gradient(
+				to top,
+				rgba(0, 0, 0, 0.72),
+				rgba(0, 0, 0, 0)
+			);
+		}
+
+		@media (max-width: 600px) {
+			.article-content.album-content
+				:is(.wp-block-gallery, .blocks-gallery-grid) {
+				grid-template-columns: 1fr;
 			}
 		}
 	</style>

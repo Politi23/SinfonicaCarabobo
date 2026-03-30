@@ -35,7 +35,7 @@ try {
 }
 ---
 
-<Layout title={`Albums - Pagina ${currentPage}`} showLatestPosts={false}>
+<Layout title={`Albumes - Pagina ${currentPage}`} showLatestPosts={false}>
 	<MainHero
 		title="Galeria de"
 		titleHighlight="Albums"
@@ -44,35 +44,37 @@ try {
 
 	<main class="bg-white text-gray-800 min-h-screen py-12">
 		<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-			{albums.length > 0 ? (
-				<>
-					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-						{albums.map((album) => (
-							<AlbumCard
-								title={album.title}
-								excerpt={album.excerpt}
-							coverImage={album.coverImage}
-							date={album.date}
-							dateTaken={album.dateTaken}
-							category={album.category}
-							slug={album.slug}
-							photoCount={album.photos.length}
-						/>
-						))}
-					</div>
+			{
+				albums.length > 0 ? (
+					<>
+						<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+							{albums.map((album) => (
+								<AlbumCard
+									title={album.title}
+									excerpt={album.excerpt}
+									coverImage={album.coverImage}
+									date={album.dateTaken}
+									dateTaken={album.dateTaken}
+									category={album.category}
+									slug={album.slug}
+									photoCount={album.photos.length}
+								/>
+							))}
+						</div>
 
-					<Pagination
-						currentPage={currentPage}
-						totalPages={totalPages}
-						baseUrl="/multimedia/albumes/page"
+						<Pagination
+							currentPage={currentPage}
+							totalPages={totalPages}
+							baseUrl="/multimedia/albumes/page"
+						/>
+					</>
+				) : (
+					<WpOfflineError
+						title="No hay albums disponibles"
+						message="Lo sentimos, no hay albums disponibles en este momento. Por favor, intentalo mas tarde."
 					/>
-				</>
-			) : (
-				<WpOfflineError
-					title="No hay albums disponibles"
-					message="Lo sentimos, no hay albums disponibles en este momento. Por favor, intentalo mas tarde."
-				/>
-			)}
+				)
+			}
 		</section>
 	</main>
 </Layout>

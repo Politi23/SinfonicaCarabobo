@@ -1,4 +1,8 @@
-<div class="article-content" {...Astro.props}>
+---
+const { class: className, ...props } = Astro.props;
+---
+
+<div {...props} class:list={["article-content", className]}>
   <slot />
 </div>
 
