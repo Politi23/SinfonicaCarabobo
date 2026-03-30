@@ -3,8 +3,19 @@ export interface Props {
   currentPage?: number;
   totalPages?: number;
   baseUrl?: string;
+  queryParamName?: string;
+  useQueryPagination?: boolean;
 }
-const { currentPage = 1, totalPages = 1, baseUrl = "" } = Astro.props;
+const {
+  currentPage = 1,
+  totalPages = 1,
+  baseUrl = "",
+  queryParamName = "page",
+  useQueryPagination = false,
+} = Astro.props;
+
+const makePageHref = (page: number) =>
+  useQueryPagination ? `${baseUrl}?${queryParamName}=${page}` : `${baseUrl}/${page}`;
 ---
 
 <div class="mt-16 flex justify-center">
@@ -12,20 +23,18 @@ const { currentPage = 1, totalPages = 1, baseUrl = "" } = Astro.props;
     aria-label="Pagination"
     class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
   >
-    {/* Botón Anterior */}
     <a
-      href={currentPage > 1 ? `${baseUrl}/${currentPage - 1}` : "#"}
+      href={currentPage > 1 ? makePageHref(currentPage - 1) : "#"}
       class={`relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 ${currentPage === 1 ? "pointer-events-none opacity-50" : ""}`}
     >
       <span class="sr-only">Anterior</span>
       <span class="material-icons">chevron_left</span>
     </a>
 
-    {/* Números */}
     {
       Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
         <a
-          href={`${baseUrl}/${page}`}
+          href={makePageHref(page)}
           class={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${
             currentPage === page
               ? "z-10 bg-primary/10 border-primary text-primary"
@@ -37,9 +46,8 @@ const { currentPage = 1, totalPages = 1, baseUrl = "" } = Astro.props;
       ))
     }
 
-    {/* Botón Siguiente */}
     <a
-      href={currentPage < totalPages ? `${baseUrl}/${currentPage + 1}` : "#"}
+      href={currentPage < totalPages ? makePageHref(currentPage + 1) : "#"}
       class={`relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 ${currentPage === totalPages ? "pointer-events-none opacity-50" : ""}`}
     >
       <span class="sr-only">Siguiente</span>

@@ -78,6 +78,15 @@ export interface WPAlbum {
 	photos: string[];
 }
 
+export interface AlbumsPagination {
+	currentPage: number;
+	totalPages: number;
+	hasPrev: boolean;
+	hasNext: boolean;
+	prevPage: number | null;
+	nextPage: number | null;
+}
+
 export const getAlbums = async (page = 1, perPage = 9): Promise<WPAlbum[]> => {
 	try {
 		const safePerPage = Math.min(Math.max(1, perPage), MAX_ALBUMS_PER_PAGE);
@@ -109,6 +118,45 @@ export const getAlbumsInfo = async (): Promise<{ total: number; totalPages: numb
 	} catch (error) {
 		console.error("Error obteniendo información de álbumes:", error);
 		return { total: 0, totalPages: 1 };
+	}
+};
+
+export const getAlbumsPagination = async (
+	page = 1,
+	perPage = 9,
+): Promise<AlbumsPagination> => {
+	const safePage = Math.max(1, Number.isFinite(page) ? Math.floor(page) : 1);
+	const safePerPage = Math.min(Math.max(1, perPage), MAX_ALBUMS_PER_PAGE);
+
+	try {
+		const info = await headAlbumsInfoWithFallback();
+		const totalPagesFromHeader = Number.isFinite(info.totalPages)
+			? Math.floor(info.totalPages)
+			: 0;
+		const totalFromHeader = Number.isFinite(info.total) ? Math.floor(info.total) : 0;
+		const totalPagesFromTotal =
+			totalFromHeader > 0 ? Math.ceil(totalFromHeader / safePerPage) : 0;
+		const totalPages = Math.max(1, totalPagesFromHeader || totalPagesFromTotal || 1);
+		const currentPage = Math.min(safePage, totalPages);
+
+		return {
+			currentPage,
+			totalPages,
+			hasPrev: currentPage > 1,
+			hasNext: currentPage < totalPages,
+			prevPage: currentPage > 1 ? currentPage - 1 : null,
+			nextPage: currentPage < totalPages ? currentPage + 1 : null,
+		};
+	} catch (error) {
+		console.error("Error obteniendo paginación de álbumes:", error);
+		return {
+			currentPage: 1,
+			totalPages: 1,
+			hasPrev: false,
+			hasNext: false,
+			prevPage: null,
+			nextPage: null,
+		};
 	}
 };
 
