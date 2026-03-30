@@ -2,6 +2,37 @@ import { fetchAPI, domain } from "./wp-client";
 import { cleanText, extractImagesFromContent } from "./wp-utils";
 import logoSimpleBbg from "@assets/images/logo/logosimplebbg.webp";
 
+const ALBUM_ENDPOINTS = ["/album", "/albums"] as const;
+const MAX_ALBUMS_PER_PAGE = 9;
+
+const fetchAlbumsWithFallback = async (query: string) => {
+	for (const endpoint of ALBUM_ENDPOINTS) {
+		const data = await fetchAPI(`${endpoint}${query}`);
+		if (Array.isArray(data)) {
+			return data;
+		}
+	}
+
+	return [];
+};
+
+const headAlbumsInfoWithFallback = async () => {
+	for (const endpoint of ALBUM_ENDPOINTS) {
+		const res = await fetch(`${domain}/wp-json/wp/v2${endpoint}?per_page=1`, {
+			method: "HEAD",
+		});
+
+		if (res.ok) {
+			return {
+				total: Number(res.headers.get("X-WP-Total") || 0),
+				totalPages: Number(res.headers.get("X-WP-TotalPages") || 0),
+			};
+		}
+	}
+
+	return { total: 0, totalPages: 1 };
+};
+
 // Helper para procesar la respuesta de la API y convertirla en un objeto WPAlbum
 const processAlbum = (item: any): WPAlbum => {
 	// 1. Extraer Portada (Featured Media)
@@ -21,8 +52,12 @@ const processAlbum = (item: any): WPAlbum => {
 		slug: item.slug,
 		title: cleanText(item.title?.rendered),
 		excerpt: cleanText(item.excerpt?.rendered || ""),
+		content: item.content?.rendered || "",
 		date: item.date,
 		coverImage: cover || logoSimpleBbg.src,
+		imageCaption: item._embedded?.["wp:featuredmedia"]?.[0]?.caption?.rendered || "",
+		category: item._embedded?.["wp:term"]?.[0]?.[0]?.name || "",
+		author: item._embedded?.author?.[0]?.name || "",
 		photos: allPhotos,
 	};
 };
@@ -33,17 +68,20 @@ export interface WPAlbum {
 	title: string;
 	date: string;
 	excerpt: string;
+	content: string;
 	coverImage: string;
+	imageCaption: string;
+	category: string;
+	author: string;
 	photos: string[];
 }
 
 export const getAlbums = async (page = 1, perPage = 9): Promise<WPAlbum[]> => {
 	try {
-		// Pedimos albumes, imagen destacada y paginación
-		const data = await fetchAPI(`/album?_embed=1&per_page=${perPage}&page=${page}`);
-
-		if (!data || !Array.isArray(data)) return [];
-
+		const safePerPage = Math.min(Math.max(1, perPage), MAX_ALBUMS_PER_PAGE);
+		const data = await fetchAlbumsWithFallback(
+			`?_embed=1&per_page=${safePerPage}&page=${page}`,
+		);
 		return data.map(processAlbum);
 	} catch (error) {
 		console.error("Error obteniendo los álbumes:", error);
@@ -54,10 +92,7 @@ export const getAlbums = async (page = 1, perPage = 9): Promise<WPAlbum[]> => {
 // Función para obtener todos los álbumes (sin paginación)
 export const getAllAlbums = async (): Promise<WPAlbum[]> => {
 	try {
-		const data = await fetchAPI(`/album?_embed=1&per_page=100`);
-
-		if (!data || !Array.isArray(data)) return [];
-
+		const data = await fetchAlbumsWithFallback("?_embed=1&per_page=100");
 		return data.map(processAlbum);
 	} catch (error) {
 		console.error("Error obteniendo los álbumes:", error);
@@ -68,15 +103,7 @@ export const getAllAlbums = async (): Promise<WPAlbum[]> => {
 // Función para obtener información de paginación
 export const getAlbumsInfo = async (): Promise<{ total: number; totalPages: number }> => {
 	try {
-		// Hacemos fetch manual (HEAD) para obtener los headers de paginación
-		const res = await fetch(`${domain}/wp-json/wp/v2/album?per_page=1`, {
-			method: "HEAD",
-		});
-
-		return {
-			total: Number(res.headers.get("X-WP-Total") || 0),
-			totalPages: Number(res.headers.get("X-WP-TotalPages") || 0),
-		};
+		return await headAlbumsInfoWithFallback();
 	} catch (error) {
 		console.error("Error obteniendo información de álbumes:", error);
 		return { total: 0, totalPages: 1 };
@@ -86,8 +113,8 @@ export const getAlbumsInfo = async (): Promise<{ total: number; totalPages: numb
 // Función para obtener un álbum específico
 export const getAlbumBySlug = async (slug: string): Promise<WPAlbum | null> => {
 	try {
-		const data = await fetchAPI(`/album?slug=${slug}&_embed=1`);
-		if (!data || !Array.isArray(data) || data.length === 0) return null;
+		const data = await fetchAlbumsWithFallback(`?slug=${slug}&_embed=1`);
+		if (data.length === 0) return null;
 		return processAlbum(data[0]);
 	} catch (error) {
 		console.error(`Error obteniendo el álbum ${slug}:`, error);

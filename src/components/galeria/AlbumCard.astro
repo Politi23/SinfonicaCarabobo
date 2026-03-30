@@ -1,0 +1,103 @@
+---
+import logoSimpleBbg from "@assets/images/logo/logosimplebbg.webp";
+import { formatDateToDMY } from "../../utils/date";
+
+export interface Props {
+	title: string;
+	excerpt: string;
+	coverImage: string;
+	date: string;
+	category?: string;
+	slug: string;
+	basePath?: string;
+	photoCount?: number;
+}
+
+const {
+	title,
+	excerpt,
+	coverImage,
+	date,
+	category = "",
+	slug,
+	basePath = "/multimedia/albumes",
+	photoCount = 0,
+} = Astro.props;
+
+const formattedDate = formatDateToDMY(date);
+const EXCERPT_MAX_CHARS = 170;
+const normalizedExcerpt = (excerpt || "").replace(/\s+/g, " ").trim();
+const excerptWithFallback =
+	normalizedExcerpt.length > EXCERPT_MAX_CHARS
+		? `${normalizedExcerpt
+				.slice(0, EXCERPT_MAX_CHARS)
+				.replace(/\s+\S*$/, "")
+				.trim()} (...)`
+		: normalizedExcerpt;
+---
+
+<article
+	class="group relative border border-zinc-200 hover:border-primary/50 bg-white rounded shadow-sm transition-all duration-300 overflow-hidden flex flex-col h-full"
+>
+	<a
+		href={`${basePath}/${slug}`}
+		class="absolute inset-0 z-10"
+		aria-label={`Ver album ${title}`}
+	></a>
+
+	<div class="relative h-56 w-full overflow-hidden bg-gray-100">
+		<img
+			src={coverImage || logoSimpleBbg.src}
+			alt={title}
+			class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+			width="800"
+			height="600"
+			loading="lazy"
+			decoding="async"
+		/>
+		<div
+			class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300"
+		>
+		</div>
+
+		{category && (
+			<span class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-bold uppercase tracking-widest text-primary shadow-sm z-20 rounded-sm">
+				{category}
+			</span>
+		)}
+
+		<div class="absolute bottom-4 right-4 bg-black/75 text-white text-xs font-bold px-3 py-1 rounded-sm z-20 flex items-center gap-1">
+			<span class="material-icons text-sm">photo_library</span>
+			{photoCount}
+		</div>
+	</div>
+
+	<div class="p-4 flex flex-col flex-grow relative z-20 pointer-events-none">
+		<h3
+			class="text-xl font-serif font-semibold text-gray-900 mb-3 group-hover:text-primary transition-colors line-clamp-2"
+		>
+			{title}
+		</h3>
+
+		<p
+			class="text-zinc-700 text-sm line-clamp-3 mb-6 leading-relaxed h-[calc(1.625em*3)] overflow-hidden"
+		>
+			{excerptWithFallback}
+		</p>
+
+		<div
+			class="flex items-center gap-2 mb-3 text-xs text-gray-500 uppercase tracking-wide font-medium"
+		>
+			<i class="ph ph-calendar-blank"></i>
+			{formattedDate}
+		</div>
+
+		<div
+			class="pt-4 p-2 border-t border-gray-100 flex justify-between items-center mt-auto"
+		>
+			<span class="text-xs uppercase tracking-widest text-gray-500 font-medium"
+				>Ver album</span
+			>
+		</div>
+	</div>
+</article>

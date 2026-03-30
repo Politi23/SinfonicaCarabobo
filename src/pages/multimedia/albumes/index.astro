@@ -1,0 +1,68 @@
+---
+export const prerender = false;
+
+import Layout from "@layouts/Layout.astro";
+import MainHero from "@components/sections/MainHero.astro";
+import Pagination from "@components/blog/Pagination.astro";
+import WpOfflineError from "@components/ui/WpOfflineError.astro";
+import AlbumCard from "@components/galeria/AlbumCard.astro";
+import { getAlbums, getAlbumsInfo, type WPAlbum } from "@config/wp-albums";
+
+const currentPage = 1;
+
+let albums: WPAlbum[] = [];
+let totalPages = 1;
+
+try {
+	const info = await getAlbumsInfo();
+	totalPages = Math.max(1, info.totalPages || 1);
+	albums = await getAlbums(currentPage, 9);
+} catch (error) {
+	console.error("Error cargando albums:", error);
+}
+---
+
+<Layout title="Albums de Eventos" showLatestPosts={false}>
+	<MainHero
+		title="Albums de"
+		titleHighlight="Eventos"
+		subtitle="Explora los momentos destacados de nuestra historia musical"
+	/>
+
+	<main class="bg-white text-gray-800 min-h-screen py-12">
+		<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+			{
+				albums.length > 0 ? (
+					<>
+						<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+							{albums.map((album) => (
+								<AlbumCard
+									title={album.title}
+									excerpt={album.excerpt}
+									coverImage={album.coverImage}
+									date={album.date}
+									category={album.category}
+									slug={album.slug}
+									photoCount={album.photos.length}
+								/>
+							))}
+						</div>
+
+						{totalPages > 1 && (
+							<Pagination
+								currentPage={currentPage}
+								totalPages={totalPages}
+								baseUrl="/multimedia/albumes/page"
+							/>
+						)}
+					</>
+				) : (
+					<WpOfflineError
+						title="No hay albums disponibles"
+						message="Lo sentimos, no hay albums disponibles en este momento. Por favor, intentalo mas tarde."
+					/>
+				)
+			}
+		</section>
+	</main>
+</Layout>

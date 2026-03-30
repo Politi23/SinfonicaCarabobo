@@ -1,0 +1,136 @@
+---
+export const prerender = false;
+
+import Layout from "@layouts/Layout.astro";
+import WpOfflineError from "@components/ui/WpOfflineError.astro";
+import { getAlbumBySlug } from "@config/wp-albums";
+import { fetchAlbumImageMedia } from "@config/wp-media";
+import { Image } from "astro:assets";
+
+const { slug } = Astro.params;
+
+if (!slug) {
+	return Astro.redirect("/404");
+}
+
+const album = await getAlbumBySlug(slug);
+
+if (!album) {
+	return Astro.redirect("/404");
+}
+
+const albumMedia = await fetchAlbumImageMedia(album.id);
+
+const images = albumMedia.map((item) => ({
+	id: item.id,
+	src: item.source_url,
+	alt: item.alt_text?.trim() || album.title,
+	width: item.media_details?.width ?? 100,
+	height: item.media_details?.height ?? 100,
+}));
+---
+
+<Layout title={album.title} showLatestPosts={true}>
+	<main class="bg-background-light min-h-screen">
+		<div class="w-full h-[50vh]">
+			<Image
+				src={album.coverImage}
+				alt={album.excerpt}
+				loading={"eager"}
+				width={1000}
+				height={1000}
+				class={"w-full h-full object-top object-cover"}
+			/>
+			<div
+				class="absolute inset-0 bg-gradient-to- from-red-800 via-transparent to-transparent h-[50vh]"
+			>
+			</div>
+		</div>
+
+		<article
+			class="layout-content-container flex flex-col w-full flex-1 px-4 lg:px-20 lg:py-16"
+		>
+			<div class="flex gap-3 mb-6">
+				{
+					album.category && (
+						<div class="flex h-7 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary/20 pl-3 pr-3">
+							<p class="text-black text-xs font-bold uppercase tracking-wide leading-normal">
+								{album.category}
+							</p>
+						</div>
+					)
+				}
+			</div>
+
+			<h1
+				class="text-3xl md:text-5xl lg:text-6xl font-black text-text-dark mb-8 leading-tight"
+			>
+				{album.title}
+			</h1>
+
+			{
+				album.excerpt && (
+					<div class="flex flex-col gap-4 mb-10">
+						<div class="text-xl text-text-dark/80 leading-relaxed italic border-l-4 border-primary pl-4">
+							{album.excerpt}
+						</div>
+					</div>
+				)
+			}
+
+			{
+				images.length > 0 ? (
+					<div class="masonry">
+						{images.map((image, index) => (
+							<div class="masonry-item rounded-sm bg-gray-100">
+								<Image
+									src={image.src}
+									alt={image.alt || index.toString()}
+									width={image.width}
+									height={image.height}
+									loading={index < 20 ? "eager" : "lazy"}
+									class="w-full object-cover rounded-sm"
+								/>
+							</div>
+						))}
+					</div>
+				) : (
+					<WpOfflineError
+						title="No hay imagenes disponibles"
+						message="Este album no tiene imagenes publicadas por ahora."
+					/>
+				)
+			}
+		</article>
+	</main>
+
+	<style>
+		.masonry {
+			column-count: 1;
+			column-gap: 0.5rem;
+		}
+
+		.masonry-item {
+			break-inside: avoid;
+			margin-bottom: 0.5rem;
+		}
+
+		@media (min-width: 640px) {
+			.masonry {
+				column-count: 2;
+			}
+		}
+
+		@media (min-width: 768px) {
+			.masonry {
+				column-count: 3;
+			}
+		}
+
+		@media (min-width: 1024px) {
+			.masonry {
+				column-count: 3;
+			}
+		}
+	</style>
+</Layout>
