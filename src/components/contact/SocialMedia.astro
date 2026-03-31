@@ -25,7 +25,7 @@ const { title = "Redes Sociales", socialLinks } = Astro.props;
                     rel="noopener noreferrer"
                     class="w-10 h-10 border border-gray-700 rounded flex items-center justify-center text-gray-400 hover:border-primary hover:text-primary transition-all duration-300"
                 >
-                    <span set:html={social.icon} />
+                    <i class={`text-2xl ph ${social.icon}`} />
                 </a>
             ))
         }
