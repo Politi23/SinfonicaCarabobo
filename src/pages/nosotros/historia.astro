@@ -2,68 +2,52 @@
 import Layout from "../../layouts/Layout.astro";
 import MainHero from "../../components/sections/MainHero.astro";
 import { Image } from "astro:assets";
-import docFundacion from "@assets/images/historia/Documento 7_25.webp";
-import docLegado from "@assets/images/historia/Documento 7_26.webp";
-import pfm from "@assets/images/historia/PFM 2.webp";
-import joseCarmelo from "@assets/images/historia/jose-carmelo-calabrese-7.webp";
-import nuevaEra from "@assets/images/historia/IMG_20231009_212924_714.webp";
-import versatilidad from "@assets/images/historia/OSC.webp";
-import pavarotti from "@assets/images/historia/cantata criolla 1999 Alfredo celis_2.webp";
-import beethoven from "@assets/images/historia/Documento 7_31.webp";
+import eneroOrquesta from "@assets/images/historia/23_enero_osc.png";
+import cantataCriolla1999AlfredoCelis2 from "@assets/images/historia/cantata criolla 1999 Alfredo celis_2.jpg";
+import cantataCriolla1999AlfredoCelis5 from "@assets/images/historia/cantata criolla 1999 Alfredo celis_5.jpg";
+import docFundacion from "@assets/images/historia/Documento 6_8.jpg";
+import documento811 from "@assets/images/historia/Documento 8_11.jpg";
+import documento89 from "@assets/images/historia/Documento 8_9.jpg";
+import joseCarmelo from "@assets/images/historia/jose_carmelo_1.jpg";
+import joseCarmelo2 from "@assets/images/historia/jose_carmelo_2.png";
+import joseCarmelo4 from "@assets/images/historia/jose_carmelo_4.jpg";
+import joseCarmelo5 from "@assets/images/historia/jose_carmelo_5.jpg";
+import joseCarmelo6 from "@assets/images/historia/jose_carmelo_6.jpg";
+import joseCarmelo7 from "@assets/images/historia/jose_carmelo_7.jpg";
+import joseCarmeloAccion1 from "@assets/images/historia/jose_carmelo_accion_1.jpg";
+import joseCarmeloAccion2 from "@assets/images/historia/jose_carmelo_accion_2.jpg";
+import joseCarmeloAccion3 from "@assets/images/historia/jose_carmelo_accion_3.jpg";
+import joseCarmeloAccion4 from "@assets/images/historia/jose_carmelo_accion_4.jpg";
+import joseCarmeloHijo1 from "@assets/images/historia/jose_carmelo_hijo_1.png";
+import joseCarmeloHijo2 from "@assets/images/historia/jose_carmelo_hijo_2.jpg";
+import pavarotti from "@assets/images/historia/pavarotti.png";
 ---
 
 <Layout title="Nuestra Historia - Orquesta Sinfónica de Carabobo">
     <main class="bg-white text-gray-800 min-h-screen">
         <MainHero
-            title="Nuestra"
-            titleHighlight="Historia"
+            title="Reseña Histórica"
+            titleHighlight=""
             subtitle="Cinco décadas construyendo el alma musical de Carabobo"
         />
 
-        <!-- Back Button -->
-        <div class="container mx-auto px-6 max-w-4xl py-8">
-            <a
-                href="/nosotros"
-                class="inline-flex items-center gap-2 text-gray-600 hover:text-secondary transition-colors group"
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 group-hover:-translate-x-1 transition-transform"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                </svg>
-                <span class="text-sm font-medium uppercase tracking-wider">
-                    Volver a Nosotros
-                </span>
-            </a>
-        </div>
-
-        <!-- History Content -->
-        <article class="container mx-auto px-6 max-w-4xl pb-20">
+        <article class="container mx-auto px-6 max-w-4xl py-20">
             <div class="prose prose-lg max-w-none">
-                <!-- Introduction -->
                 <div
-                    class="mb-12 p-8 bg-gray-50 rounded border-l-4 border-secondary"
+                    class="mb-12 p-8 bg-gray-50 rounded-sm border-l-4 border-secondary"
                 >
                     <p
                         class="text-xl text-gray-700 leading-relaxed italic font-serif"
                     >
                         Fundada en octubre de 1976, la Orquesta Sinfónica de
                         Carabobo (OSC), posee una trayectoria ininterrumpida en
-                        su labor cultural y educativa. Se ha convertido en un
-                        referente necesario tanto en el estado Carabobo y en
-                        toda Venezuela, cuando de música y arte se trata.
+                        su labor musical, cultural, social y educativa. Se ha
+                        convertido en un referente necesario tanto en el estado
+                        Carabobo y en toda Venezuela, cuando de música y arte se
+                        trata.
                     </p>
                 </div>
 
-                <!-- Era Fundacional -->
                 <section class="mb-12">
                     <div class="flex items-center gap-4 mb-6">
                         <span
@@ -106,23 +90,26 @@ import beethoven from "@assets/images/historia/Documento 7_31.webp";
                     </p>
                     <div class="flex flex-col md:flex-row gap-4 my-6">
                         <div class="w-full md:w-1/2 overflow-hidden">
-                            <img
-                                src={docFundacion.src}
+                            <Image
+                                src={joseCarmelo}
+                                width={1000}
+                                height={1000}
                                 alt="Documento histórico de la fundación de la Orquesta Sinfónica de Carabobo"
-                                class="w-full h-auto rounded shadow-lg"
+                                class="w-full h-auto rounded-sm shadow-lg"
                             />
                         </div>
                         <div class="w-full md:w-1/2 overflow-hidden">
-                            <img
-                                src={nuevaEra.src}
+                            <Image
+                                src={joseCarmelo2}
+                                width={1000}
+                                height={1000}
                                 alt="Orquesta Sinfónica de Carabobo en concierto"
-                                class="w-full h-auto rounded shadow-lg"
+                                class="w-full h-auto rounded-sm shadow-lg"
                             />
                         </div>
                     </div>
                 </section>
 
-                <!-- El Legado Calabrese -->
                 <section class="mb-12">
                     <div class="flex items-center gap-4 mb-6">
                         <span
@@ -144,11 +131,19 @@ import beethoven from "@assets/images/historia/Documento 7_31.webp";
                         país y de Latinoamérica, asumiendo siempre proyectos exigentes
                         que llevó a cabo con gran éxito y marcando una pauta en Venezuela.
                     </p>
-                    <div class="w-full max-w-md mx-auto overflow-hidden">
+                    <div class="w-full mx-auto grid grid-cols-2 gap-4">
                         <Image
-                            src={docLegado}
+                            src={joseCarmeloAccion3}
                             alt="Documento histórico del legado del Maestro José Calabrese"
-                            class="w-full h-auto rounded shadow-lg"
+                            class="h-auto rounded-sm shadow-lg"
+                            width="800"
+                            height="1200"
+                            loading="lazy"
+                        />
+                        <Image
+                            src={joseCarmelo4}
+                            alt="Documento histórico del legado del Maestro José Calabrese"
+                            class="h-auto rounded-sm shadow-lg"
                             width="800"
                             height="1200"
                             loading="lazy"
@@ -156,7 +151,6 @@ import beethoven from "@assets/images/historia/Documento 7_31.webp";
                     </div>
                 </section>
 
-                <!-- La Nueva Era -->
                 <section class="mb-12">
                     <div class="flex items-center gap-4 mb-6">
                         <span
@@ -183,17 +177,21 @@ import beethoven from "@assets/images/historia/Documento 7_31.webp";
                     </p>
                     <div class="flex flex-col md:flex-row gap-4 my-6">
                         <div class="w-full md:w-1/2 overflow-hidden">
-                            <img
-                                src={joseCarmelo.src}
+                            <Image
+                                src={joseCarmeloHijo1}
+                                width={1000}
+                                height={1000}
                                 alt="Maestro José Carmelo Calabrese, Director Artístico desde 2019"
-                                class="w-full h-auto rounded shadow-lg"
+                                class="w-full h-auto rounded-sm shadow-lg"
                             />
                         </div>
                         <div class="w-full md:w-1/2 overflow-hidden">
-                            <img
-                                src={pfm.src}
+                            <Image
+                                src={joseCarmeloHijo2}
+                                width={1000}
+                                height={1000}
                                 alt="Maestro José Carmelo Calabrese en concierto"
-                                class="w-full h-auto rounded shadow-lg"
+                                class="w-full h-auto rounded-sm shadow-lg"
                             />
                         </div>
                     </div>
@@ -223,15 +221,16 @@ import beethoven from "@assets/images/historia/Documento 7_31.webp";
                         todos los tiempos.
                     </p>
                     <div class="w-full overflow-hidden">
-                        <img
-                            src={versatilidad.src}
-                            alt="Orquesta Sinfónica de Carabobo en presentación artística"
-                            class="w-full h-auto rounded shadow-lg"
+                        <Image
+                            src={documento89}
+                            width={1000}
+                            height={1000}
+                            alt="Maestro José Carmelo Calabrese en concierto"
+                            class="w-full h-auto rounded-sm shadow-lg"
                         />
                     </div>
                 </section>
 
-                <!-- Hitos Históricos -->
                 <section class="mb-12">
                     <div class="flex items-center gap-4 mb-6">
                         <span
@@ -249,7 +248,7 @@ import beethoven from "@assets/images/historia/Documento 7_31.webp";
 
                     <div class="space-y-6">
                         <div
-                            class="bg-gray-50 p-6 rounded border-l-4 border-primary"
+                            class="bg-gray-50 p-6 rounded-sm border-l-4 border-primary"
                         >
                             <h3
                                 class="text-lg font-bold text-gray-900 mb-2 flex items-center gap-3"
@@ -268,16 +267,18 @@ import beethoven from "@assets/images/historia/Documento 7_31.webp";
                                 Valencia en el año 1998.
                             </p>
                             <div class="w-full overflow-hidden">
-                                <img
-                                    src={pavarotti.src}
+                                <Image
+                                    src={pavarotti}
+                                    width={1000}
+                                    height={1000}
                                     alt="Concierto con Luciano Pavarotti en Valencia, 1998"
-                                    class="w-full h-auto rounded shadow-lg"
+                                    class="w-full h-auto rounded-sm shadow-lg"
                                 />
                             </div>
                         </div>
 
                         <div
-                            class="bg-gray-50 p-6 rounded border-l-4 border-secondary"
+                            class="bg-gray-50 p-6 rounded-sm border-l-4 border-secondary"
                         >
                             <h3
                                 class="text-lg font-bold text-gray-900 mb-2 flex items-center gap-3"
@@ -289,13 +290,11 @@ import beethoven from "@assets/images/historia/Documento 7_31.webp";
                                 en Venezuela en grabar en formato de CD las 9
                                 sinfonías de L. v. Beethoven.
                             </p>
-                            <div
-                                class="w-full max-w-md mx-auto overflow-hidden"
-                            >
+                            <div class="w-full mx-auto overflow-hidden">
                                 <Image
-                                    src={beethoven}
+                                    src={eneroOrquesta}
                                     alt="Documento histórico de la grabación de las 9 sinfonías de Beethoven"
-                                    class="w-full h-auto rounded shadow-lg"
+                                    class="w-full h-auto rounded-sm shadow-lg"
                                     width="800"
                                     height="1200"
                                     loading="lazy"
@@ -308,7 +307,7 @@ import beethoven from "@assets/images/historia/Documento 7_31.webp";
                 <!-- Cierre -->
                 <section class="mb-12">
                     <div
-                        class="mb-12 p-8 bg-gray-50 rounded border-l-4 border-secondary"
+                        class="mb-12 p-8 bg-gray-50 rounded-sm border-l-4 border-secondary"
                     >
                         <p
                             class="text-xl text-gray-700 leading-relaxed italic font-serif"
