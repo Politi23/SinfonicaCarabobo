@@ -3,7 +3,7 @@ import BaseLayout from "./BaseLayout.astro";
 const { title } = Astro.props;
 ---
 
-<BaseLayout title={`${title} · Sinfónica`} bodyClass="items-center">
+<BaseLayout title={title} bodyClass="items-center">
   <slot name="head" slot="head" />
   <div class="layout-container flex h-full grow flex-col items-center w-full">
     <slot />
