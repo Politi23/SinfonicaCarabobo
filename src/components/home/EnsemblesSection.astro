@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import SecondaryButton from "@components/ui/SecondaryButton.astro";
 import orquestaSinfonica from "@assets/images/orquesta/OSC en TTC.jpg";
 import orquestaCamara from "@assets/images/orquesta/DSC_1676.jpg";
@@ -56,12 +56,14 @@ const ensembles = [
                 ensembles.map((ensemble) => (
                     <div class="group bg-gray-100 rounded-xl overflow-hidden border border-gray-100 hover:border-primary/50 transition-all duration-300">
                         <div class="aspect-[4/3] overflow-hidden">
-                            <Image
+                            <Picture
                                 src={ensemble.imagen}
                                 alt={ensemble.nombre}
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 width="400"
                                 height="300"
+                                formats={["webp"]}
+                                fallbackFormat="webp"
                                 loading="lazy"
                                 decoding="async"
                             />

@@ -1,5 +1,5 @@
 ---
-import { getImage } from "astro:assets";
+import { Picture } from "astro:assets";
 import SectionTitle from "@components/ui/SectionTitle.astro";
 
 interface Image {
@@ -80,32 +80,23 @@ const getColumnClass = (cols: number) => {
       {
         images.length > 0 ? (
           <div class={`grid ${getColumnClass(columns)} gap-6`}>
-            {images.map(async ({ src, alt }) => {
-              const optimizedImage = await getImage({
-                src,
-                width: 800,
-                format: "webp",
-                quality: 80,
-              });
-              return (
-                <div class="relative group overflow-hidden rounded aspect-square bg-gray-100 shadow-sm">
-                  <img
-                    data-src={optimizedImage.src}
-                    alt={alt || "Imagen de galería"}
-                    width={optimizedImage.attributes.width}
-                    height={optimizedImage.attributes.height}
-                    class="gallery-img w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110 opacity-0"
-                    loading="lazy"
-                  />
-                  <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                  <div class="absolute inset-0 flex items-center justify-center pointer-events-none loading-spinner transition-opacity duration-300">
-                    <span class="material-icons animate-spin text-primary/30">
-                      sync
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
+            {images.map(({ src, alt }) => (
+              <div class="relative group overflow-hidden rounded aspect-square bg-gray-100 shadow-sm">
+                <Picture
+                  src={src}
+                  formats={["webp"]}
+                  fallbackFormat="webp"
+                  alt={alt || "Imagen de galería"}
+                  width={800}
+                  height={800}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                  class="gallery-img w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+              </div>
+            ))}
           </div>
         ) : (
           <div class="text-center py-12 border-2 border-dashed border-gray-300 rounded bg-gray-50">
@@ -144,32 +135,12 @@ const getColumnClass = (cols: number) => {
 </style>
 
 <script>
-  // Find all gallery sections and load their images independently
   const sections = document.querySelectorAll(".static-gallery-section");
 
-  const loadImages = (section: Element) => {
-    const images = section.querySelectorAll(".gallery-img");
-    images.forEach((img) => {
-      if (img instanceof HTMLImageElement && img.dataset.src) {
-        img.src = img.dataset.src;
-        img.removeAttribute("data-src");
-        img.onload = () => {
-          img.classList.remove("opacity-0");
-          img.classList.add("opacity-100");
-          // Hide spinner
-          const spinner = img.parentElement?.querySelector(".loading-spinner");
-          if (spinner) spinner.classList.add("opacity-0");
-        };
-      }
-    });
-  };
-
-  // Use Intersection Observer to load images when each section is visible
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          loadImages(entry.target);
           observer.unobserve(entry.target);
         }
       });
@@ -180,7 +151,6 @@ const getColumnClass = (cols: number) => {
   sections.forEach((section) => {
     observer.observe(section);
 
-    // Add toggle functionality
     const toggleBtn = section.querySelector(".toggle-gallery-btn");
     const galleryContent = section.querySelector(".gallery-content");
     const toggleText = toggleBtn?.querySelector(".toggle-text");
@@ -194,12 +164,10 @@ const getColumnClass = (cols: number) => {
         toggleBtn.setAttribute("aria-expanded", newExpandedState.toString());
 
         if (newExpandedState) {
-          // Show gallery
           galleryContent.removeAttribute("hidden");
           if (toggleText) toggleText.textContent = "Ocultar";
           if (toggleIcon) toggleIcon.classList.remove("rotated");
         } else {
-          // Hide gallery
           galleryContent.setAttribute("hidden", "");
           if (toggleText) toggleText.textContent = "Mostrar";
           if (toggleIcon) toggleIcon.classList.add("rotated");

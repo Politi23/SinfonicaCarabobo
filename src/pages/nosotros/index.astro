@@ -1,9 +1,10 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import MainHero from "../../components/sections/MainHero.astro";
-import SectionTitle from "../../components/ui/SectionTitle.astro";
-import SecondaryButton from "../../components/ui/SecondaryButton.astro";
-import PrimaryButton from "../../components/ui/PrimaryButton.astro";
+import Layout from "@layouts/Layout.astro";
+import MainHero from "@components/sections/MainHero.astro";
+import SectionTitle from "@components/ui/SectionTitle.astro";
+import SecondaryButton from "@components/ui/SecondaryButton.astro";
+import PrimaryButton from "@components/ui/PrimaryButton.astro";
+import { Picture } from "astro:assets";
 import orchestra1 from "@assets/images/orquesta/OSC en TTC.jpg";
 import oscTtc from "@assets/images/organizacion/OSC en TTC.webp";
 ---
@@ -60,9 +61,7 @@ import oscTtc from "@assets/images/organizacion/OSC en TTC.webp";
                         wrapperClass="text-left"
                         dividerClass="h-1 w-16 mt-2"
                     >
-                        Historia <span class="text-secondary"
-                            >y Prestigio</span
-                        >
+                        Historia <span class="text-secondary">y Prestigio</span>
                     </SectionTitle>
                 </div>
 
@@ -133,10 +132,15 @@ import oscTtc from "@assets/images/organizacion/OSC en TTC.webp";
                     <div
                         class="bg-gray-50 rounded border border-gray-200 overflow-hidden relative shadow-md"
                     >
-                        <img
-                            src={oscTtc.src}
+                        <Picture
+                            src={oscTtc}
+                            formats={["webp"]}
+                            fallbackFormat="webp"
                             alt="Orquesta Sinfónica de Carabobo en TTC"
                             class="w-full h-auto object-cover"
+                            width={oscTtc.width}
+                            height={oscTtc.height}
+                            sizes="(max-width: 768px) 100vw, 50vw"
                         />
                     </div>
                 </div>
@@ -197,18 +201,15 @@ import oscTtc from "@assets/images/organizacion/OSC en TTC.webp";
                                 [
                                     {
                                         title: "Becas Directas",
-                                        desc:
-                                            "Más de 80 niños y jóvenes beneficiados",
+                                        desc: "Más de 80 niños y jóvenes beneficiados",
                                     },
                                     {
                                         title: "Dotación",
-                                        desc:
-                                            "Asignación de instrumentos para iniciación",
+                                        desc: "Asignación de instrumentos para iniciación",
                                     },
                                     {
                                         title: "Inclusión",
-                                        desc:
-                                            "Programas especializados para Síndrome de Down",
+                                        desc: "Programas especializados para Síndrome de Down",
                                     },
                                     {
                                         title: "Acreditación",
@@ -250,7 +251,9 @@ import oscTtc from "@assets/images/organizacion/OSC en TTC.webp";
                         <p
                             class="text-gray-700 font-medium mb-6 italic leading-relaxed"
                         >
-                            Eventos de impacto <br /><span class="text-gray-900">
+                            Eventos de impacto <br /><span
+                                class="text-gray-900"
+                            >
                                 masivo y profesional</span
                             >
                         </p>
@@ -259,23 +262,19 @@ import oscTtc from "@assets/images/organizacion/OSC en TTC.webp";
                                 [
                                     {
                                         title: "Historial",
-                                        desc:
-                                            "Más de 2.400 músicos formados en 49 años",
+                                        desc: "Más de 2.400 músicos formados en 49 años",
                                     },
                                     {
                                         title: "Afluencia",
-                                        desc:
-                                            "1.500 personas por concierto en promedio",
+                                        desc: "1.500 personas por concierto en promedio",
                                     },
                                     {
                                         title: "Repertorio",
-                                        desc:
-                                            "Galas sinfónicas y eventos de alto nivel",
+                                        desc: "Galas sinfónicas y eventos de alto nivel",
                                     },
                                     {
                                         title: "Continuidad",
-                                        desc:
-                                            "Múltiples eventos temáticos anuales",
+                                        desc: "Múltiples eventos temáticos anuales",
                                     },
                                 ].map((item) => (
                                     <li class="flex items-start gap-3">
@@ -312,7 +311,9 @@ import oscTtc from "@assets/images/organizacion/OSC en TTC.webp";
                     </h2>
                 </div>
 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <div
+                    class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto"
+                >
                     <div class="bg-white p-6 md:p-8 rounded text-center">
                         <div
                             class="text-3xl md:text-5xl font-display font-bold text-primary mb-2"
@@ -368,7 +369,9 @@ import oscTtc from "@assets/images/organizacion/OSC en TTC.webp";
         <section class="py-16 md:py-24 bg-white">
             <div class="container mx-auto px-6 max-w-5xl">
                 <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white border border-gray-200 rounded p-8 md:p-10">
+                    <div
+                        class="bg-white border border-gray-200 rounded p-8 md:p-10"
+                    >
                         <SectionTitle
                             title="Únete"
                             variant="red"
@@ -385,7 +388,9 @@ import oscTtc from "@assets/images/organizacion/OSC en TTC.webp";
                             >Contactanos</SecondaryButton
                         >
                     </div>
-                    <div class="bg-white border border-gray-200 rounded p-8 md:p-10">
+                    <div
+                        class="bg-white border border-gray-200 rounded p-8 md:p-10"
+                    >
                         <SectionTitle
                             title="Academia"
                             class="text-2xl font-display font-bold mb-4 text-gray-900 uppercase tracking-tight"
@@ -393,9 +398,9 @@ import oscTtc from "@assets/images/organizacion/OSC en TTC.webp";
                             dividerClass="h-1 w-16 mb-6"
                         />
                         <p class="text-gray-700 mb-8 leading-relaxed">
-                            Explora las oportunidades académicas y conviértete en
-                            parte de la nueva generación de músicos de élite de
-                            nuestro país.
+                            Explora las oportunidades académicas y conviértete
+                            en parte de la nueva generación de músicos de élite
+                            de nuestro país.
                         </p>
                         <PrimaryButton href="/nosotros/academia" fullWidth
                             >Programas Académicos</PrimaryButton

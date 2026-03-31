@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import logo from "@assets/images/logo/logo.webp";
 ---
@@ -9,13 +9,15 @@ import logo from "@assets/images/logo/logo.webp";
     class="min-h-screen bg-background-dark flex items-center justify-center"
   >
     <div class="text-center">
-      <Image
+      <Picture
         src={logo}
         alt="Logo de la Orquesta Sinfónica de Carabobo"
         class="mx-auto"
         style="width: 26rem; height: auto;"
         width="416"
         height="166"
+        formats={["webp"]}
+        fallbackFormat="webp"
         loading="eager"
         fetchpriority="high"
       />

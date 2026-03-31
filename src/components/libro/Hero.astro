@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import portadaLibro from "@assets/images/book/PortadaLibro.webp";
 ---
 
@@ -48,12 +48,14 @@ import portadaLibro from "@assets/images/book/PortadaLibro.webp";
             class="absolute inset-0 bg-black/20 rounded-r-xl transform translate-x-4 translate-y-4 blur-md"
           >
           </div>
-          <Image
+          <Picture
             alt="Portada del libro 45 Años de Historia"
             class="rounded-r-xl shadow-2xl w-[320px] md:w-[400px] object-cover aspect-[4/5] relative z-20 border-l-4 border-border-dark dark:border-gray-700"
             src={portadaLibro}
             width="400"
             height="500"
+            formats={["webp"]}
+            fallbackFormat="webp"
             loading="lazy"
             decoding="async"
           />

@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import MainHero from "../../components/sections/MainHero.astro";
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import eneroOrquesta from "@assets/images/historia/23_enero_osc.png";
 import cantataCriolla1999AlfredoCelis2 from "@assets/images/historia/cantata criolla 1999 Alfredo celis_2.jpg";
 import cantataCriolla1999AlfredoCelis5 from "@assets/images/historia/cantata criolla 1999 Alfredo celis_5.jpg";
@@ -90,21 +90,25 @@ import pavarotti from "@assets/images/historia/pavarotti.png";
                     </p>
                     <div class="flex flex-col md:flex-row gap-4 my-6">
                         <div class="w-full md:w-1/2 overflow-hidden">
-                            <Image
+                            <Picture
                                 src={joseCarmelo}
                                 width={1000}
                                 height={1000}
                                 alt="Documento histórico de la fundación de la Orquesta Sinfónica de Carabobo"
                                 class="w-full h-auto rounded-sm shadow-lg"
+                                formats={["webp"]}
+                                fallbackFormat="webp"
                             />
                         </div>
                         <div class="w-full md:w-1/2 overflow-hidden">
-                            <Image
+                            <Picture
                                 src={joseCarmelo2}
                                 width={1000}
                                 height={1000}
                                 alt="Orquesta Sinfónica de Carabobo en concierto"
                                 class="w-full h-auto rounded-sm shadow-lg"
+                                formats={["webp"]}
+                                fallbackFormat="webp"
                             />
                         </div>
                     </div>
@@ -132,20 +136,24 @@ import pavarotti from "@assets/images/historia/pavarotti.png";
                         que llevó a cabo con gran éxito y marcando una pauta en Venezuela.
                     </p>
                     <div class="w-full mx-auto grid grid-cols-2 gap-4">
-                        <Image
+                        <Picture
                             src={joseCarmeloAccion3}
                             alt="Documento histórico del legado del Maestro José Calabrese"
                             class="h-auto rounded-sm shadow-lg"
                             width="800"
                             height="1200"
+                            formats={["webp"]}
+                            fallbackFormat="webp"
                             loading="lazy"
                         />
-                        <Image
+                        <Picture
                             src={joseCarmelo4}
                             alt="Documento histórico del legado del Maestro José Calabrese"
                             class="h-auto rounded-sm shadow-lg"
                             width="800"
                             height="1200"
+                            formats={["webp"]}
+                            fallbackFormat="webp"
                             loading="lazy"
                         />
                     </div>
@@ -177,21 +185,25 @@ import pavarotti from "@assets/images/historia/pavarotti.png";
                     </p>
                     <div class="flex flex-col md:flex-row gap-4 my-6">
                         <div class="w-full md:w-1/2 overflow-hidden">
-                            <Image
+                            <Picture
                                 src={joseCarmeloHijo1}
                                 width={1000}
                                 height={1000}
                                 alt="Maestro José Carmelo Calabrese, Director Artístico desde 2019"
                                 class="w-full h-auto rounded-sm shadow-lg"
+                                formats={["webp"]}
+                                fallbackFormat="webp"
                             />
                         </div>
                         <div class="w-full md:w-1/2 overflow-hidden">
-                            <Image
+                            <Picture
                                 src={joseCarmeloHijo2}
                                 width={1000}
                                 height={1000}
                                 alt="Maestro José Carmelo Calabrese en concierto"
                                 class="w-full h-auto rounded-sm shadow-lg"
+                                formats={["webp"]}
+                                fallbackFormat="webp"
                             />
                         </div>
                     </div>
@@ -221,12 +233,14 @@ import pavarotti from "@assets/images/historia/pavarotti.png";
                         todos los tiempos.
                     </p>
                     <div class="w-full overflow-hidden">
-                        <Image
+                        <Picture
                             src={documento89}
                             width={1000}
                             height={1000}
                             alt="Maestro José Carmelo Calabrese en concierto"
                             class="w-full h-auto rounded-sm shadow-lg"
+                            formats={["webp"]}
+                            fallbackFormat="webp"
                         />
                     </div>
                 </section>
@@ -267,12 +281,14 @@ import pavarotti from "@assets/images/historia/pavarotti.png";
                                 Valencia en el año 1998.
                             </p>
                             <div class="w-full overflow-hidden">
-                                <Image
+                                <Picture
                                     src={pavarotti}
                                     width={1000}
                                     height={1000}
                                     alt="Concierto con Luciano Pavarotti en Valencia, 1998"
                                     class="w-full h-auto rounded-sm shadow-lg"
+                                    formats={["webp"]}
+                                    fallbackFormat="webp"
                                 />
                             </div>
                         </div>
@@ -291,12 +307,14 @@ import pavarotti from "@assets/images/historia/pavarotti.png";
                                 sinfonías de L. v. Beethoven.
                             </p>
                             <div class="w-full mx-auto overflow-hidden">
-                                <Image
+                                <Picture
                                     src={eneroOrquesta}
                                     alt="Documento histórico de la grabación de las 9 sinfonías de Beethoven"
                                     class="w-full h-auto rounded-sm shadow-lg"
                                     width="800"
                                     height="1200"
+                                    formats={["webp"]}
+                                    fallbackFormat="webp"
                                     loading="lazy"
                                 />
                             </div>

@@ -1,5 +1,6 @@
 ---
 import { formatDateToDMY } from "../../utils/date";
+import { Image } from "astro:assets";
 
 export interface Props {
     title: string;
@@ -12,6 +13,7 @@ export interface Props {
 const { title, excerpt, image, date, category, slug } = Astro.props;
 
 const formattedDate = formatDateToDMY(date);
+const hasImage = typeof image === "string" && image.length > 0;
 
 const EXCERPT_FALLBACK_MAX_CHARS = 110;
 const normalizedExcerpt = (excerpt || "").replace(/\s+/g, " ").trim();
@@ -29,15 +31,20 @@ const excerptWithFallback =
         class="flex flex-col bg-white rounded-sm overflow-hidden shadow-sm border border-border-light h-full"
     >
         <div class="relative w-full aspect-video overflow-hidden">
-            <img
-                src={image}
-                alt={title}
-                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 ease-out"
-                width={100}
-                height={100}
-                loading="lazy"
-                decoding="async"
-            />
+            {
+                hasImage && (
+                    <Image
+                        src={image}
+                        alt={title}
+                        class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 ease-out"
+                        width={640}
+                        height={360}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                        loading="lazy"
+                        decoding="async"
+                    />
+                )
+            }
         </div>
 
         <div class="p-3 flex flex-col flex-grow">

@@ -1,5 +1,6 @@
 ---
 import academiaImg from "@assets/images/organizacion/academia.webp";
+import { Picture } from "astro:assets";
 import SecondaryButton from "@components/ui/SecondaryButton.astro";
 ---
 
@@ -52,12 +53,15 @@ import SecondaryButton from "@components/ui/SecondaryButton.astro";
         </SecondaryButton>
       </div>
       <div class="relative">
-        <img
-          src={academiaImg.src}
+        <Picture
+          src={academiaImg}
+          formats={["webp"]}
+          fallbackFormat="webp"
           alt="Estudiantes de la Academia Internacional de Música Maestro José Calabrese"
           class="w-full h-96 object-cover rounded shadow-xl"
           width={academiaImg.width}
           height={academiaImg.height}
+          sizes="(max-width: 1024px) 100vw, 50vw"
         />
       </div>
     </div>

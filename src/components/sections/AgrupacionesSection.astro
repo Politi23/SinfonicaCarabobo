@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import orchestraConcert from "@assets/images/orchestra/orchestra-concert.webp";
 
 // Sección de Agrupaciones para la página principal
@@ -19,12 +19,14 @@ import orchestraConcert from "@assets/images/orchestra/orchestra-concert.webp";
 
         <!-- Imagen destacada -->
         <div class="image-container">
-            <Image
+            <Picture
                 src={orchestraConcert}
                 alt="Orquesta Sinfónica en concierto"
                 class="featured-image"
                 width="800"
                 height="533"
+                formats={["webp"]}
+                fallbackFormat="webp"
                 loading="lazy"
                 decoding="async"
             />

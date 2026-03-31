@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import PrimaryButton from "@components/ui/PrimaryButton.astro";
 import background from "@assets/images/academia/recitales_finales1.webp";
 ---
@@ -45,12 +45,14 @@ import background from "@assets/images/academia/recitales_finales1.webp";
                     <div
                         class="aspect-[4/3] overflow-hidden rounded-xl bg-surface-light transition-transform duration-500"
                     >
-                        <Image
+                        <Picture
                             src={background}
                             alt="Estudiantes de música en recital final"
                             class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
                             width="600"
                             height="450"
+                            formats={["webp"]}
+                            fallbackFormat="webp"
                             loading="lazy"
                             decoding="async"
                         />

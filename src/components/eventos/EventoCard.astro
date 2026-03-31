@@ -1,5 +1,6 @@
 ---
 import { formatDateToDMY } from "../../utils/date";
+import { Image } from "astro:assets";
 
 export interface Props {
   title: string;
@@ -14,6 +15,7 @@ export interface Props {
 const { title, excerpt, image, date, venue, slug } = Astro.props as Props;
 
 const formattedDate = formatDateToDMY(date);
+const hasImage = typeof image === "string" && image.length > 0;
 ---
 
 <article
@@ -25,15 +27,20 @@ const formattedDate = formatDateToDMY(date);
     aria-label={`Ver detalles de ${title}`}></a>
 
   <div class="relative h-56 w-full overflow-hidden bg-gray-100">
-    <img
-      src={image}
-      alt={title}
-      class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-      width="800"
-      height="600"
-      loading="lazy"
-      decoding="async"
-    />
+    {
+      hasImage && (
+        <Image
+          src={image}
+          alt={title}
+          class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          width={800}
+          height={600}
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          loading="lazy"
+          decoding="async"
+        />
+      )
+    }
     <div
       class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300"
     >

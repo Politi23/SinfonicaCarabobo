@@ -1,15 +1,20 @@
 ---
 export const prerender = false;
 
-import Layout from "../../layouts/Layout.astro";
-import MainHero from "../../components/sections/MainHero.astro";
-import EventoCard from "../../components/eventos/EventoCard.astro";
-import Pagination from "../../components/blog/Pagination.astro";
-import WpOfflineError from "../../components/ui/WpOfflineError.astro";
-import { getEventos, getEventosPagination } from "../../config/wp-eventos";
+import Layout from "@layouts/Layout.astro";
+import MainHero from "@components/sections/MainHero.astro";
+import EventoCard from "@components/eventos/EventoCard.astro";
+import Pagination from "@components/blog/Pagination.astro";
+import WpOfflineError from "@components/ui/WpOfflineError.astro";
+import { getEventos, getEventosPagination } from "@config/wp-eventos";
+import { Image } from "astro:assets";
 
-const parsedPage = Number.parseInt(Astro.url.searchParams.get("page") ?? "1", 10);
-const requestedPage = Number.isFinite(parsedPage) && parsedPage > 0 ? parsedPage : 1;
+const parsedPage = Number.parseInt(
+  Astro.url.searchParams.get("page") ?? "1",
+  10,
+);
+const requestedPage =
+  Number.isFinite(parsedPage) && parsedPage > 0 ? parsedPage : 1;
 const perPage = 6;
 
 const truncateExcerpt = (text: string, wordLimit: number = 25): string => {
