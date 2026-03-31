@@ -1,6 +1,5 @@
 import { fetchAPI, domain } from "./wp-client";
 import { cleanText, extractImagesFromContent } from "./wp-utils";
-import logoSimpleBbg from "@assets/images/logo/logosimplebbg.webp";
 
 const ALBUM_ENDPOINTS = ["/album", "/albums"] as const;
 const MAX_ALBUMS_PER_PAGE = 9;
@@ -16,9 +15,11 @@ const fetchAlbumsWithFallback = async (query: string) => {
 	return [];
 };
 
-const headAlbumsInfoWithFallback = async () => {
+const headAlbumsInfoWithFallback = async (perPage: number) => {
+	const safePerPage = Math.min(Math.max(1, perPage), MAX_ALBUMS_PER_PAGE);
+
 	for (const endpoint of ALBUM_ENDPOINTS) {
-		const res = await fetch(`${domain}/wp-json/wp/v2${endpoint}?per_page=1`, {
+		const res = await fetch(`${domain}/wp-json/wp/v2${endpoint}?per_page=${safePerPage}`, {
 			method: "HEAD",
 		});
 
@@ -55,7 +56,7 @@ const processAlbum = (item: any): WPAlbum => {
 		content: item.content?.rendered || "",
 		date: item.date,
 		dateTaken: item.acf?.date_taken || "",
-		coverImage: cover || logoSimpleBbg.src,
+		coverImage: cover,
 		imageCaption: item._embedded?.["wp:featuredmedia"]?.[0]?.caption?.rendered || "",
 		category: item._embedded?.["wp:term"]?.[0]?.[0]?.name || "",
 		author: item._embedded?.author?.[0]?.name || "",
@@ -114,7 +115,7 @@ export const getAllAlbums = async (): Promise<WPAlbum[]> => {
 // Función para obtener información de paginación
 export const getAlbumsInfo = async (): Promise<{ total: number; totalPages: number }> => {
 	try {
-		return await headAlbumsInfoWithFallback();
+		return await headAlbumsInfoWithFallback(MAX_ALBUMS_PER_PAGE);
 	} catch (error) {
 		console.error("Error obteniendo información de álbumes:", error);
 		return { total: 0, totalPages: 1 };
@@ -129,14 +130,17 @@ export const getAlbumsPagination = async (
 	const safePerPage = Math.min(Math.max(1, perPage), MAX_ALBUMS_PER_PAGE);
 
 	try {
-		const info = await headAlbumsInfoWithFallback();
+		const info = await headAlbumsInfoWithFallback(safePerPage);
 		const totalPagesFromHeader = Number.isFinite(info.totalPages)
 			? Math.floor(info.totalPages)
 			: 0;
 		const totalFromHeader = Number.isFinite(info.total) ? Math.floor(info.total) : 0;
 		const totalPagesFromTotal =
 			totalFromHeader > 0 ? Math.ceil(totalFromHeader / safePerPage) : 0;
-		const totalPages = Math.max(1, totalPagesFromHeader || totalPagesFromTotal || 1);
+		const totalPages = Math.max(
+			1,
+			totalPagesFromTotal > 0 ? totalPagesFromTotal : totalPagesFromHeader || 1,
+		);
 		const currentPage = Math.min(safePage, totalPages);
 
 		return {

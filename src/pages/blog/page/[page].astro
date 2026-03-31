@@ -1,78 +1,10 @@
 ---
 export const prerender = false;
-import Layout from "../../../layouts/Layout.astro";
-import MainHero from "../../../components/sections/MainHero.astro";
-import BlogSectionHeader from "../../../components/blog/BlogSectionHeader.astro";
-import BlogCard from "../../../components/blog/BlogCard.astro";
-import Pagination from "../../../components/blog/Pagination.astro";
-import WpOfflineError from "../../../components/ui/WpOfflineError.astro";
-import { getBlogs, getBlogsInfo } from "../../../config/wp-blogs";
 
-const { page } = Astro.params;
-const currentPage = page ? parseInt(page, 10) : 1;
+const parsedPage = Number.parseInt(Astro.params.page ?? "1", 10);
 
-// Define the type for a blog post
-type Blog = {
-  title: string;
-  excerpt: string;
-  image: string;
-  date: string;
-  category: string;
-  slug: string;
-};
-
-let blogs: Blog[] = [];
-let totalPages = 1;
-
-try {
-  const info = await getBlogsInfo();
-  totalPages = info.totalPages;
-
-  // Solicitamos los blogs de la página actual
-  blogs = await getBlogs({ page: currentPage });
-} catch (error) {
-  console.error("Error cargando blogs:", error);
-}
+return Astro.redirect(
+  `/blog?page=${Number.isFinite(parsedPage) && parsedPage > 0 ? parsedPage : 1}`,
+  301,
+);
 ---
-
-<Layout title={`Blog - Página ${currentPage}`} showLatestPosts={false}>
-  <MainHero
-    title="Noticias y"
-    titleHighlight="Actualidad"
-    subtitle="Explora nuestras últimas noticias, eventos y experiencias musicales"
-  />
-
-  <main class="bg-white text-gray-800 min-h-screen py-12">
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-      {
-        blogs.length > 0 ? (
-          <>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-              {blogs.map((b) => (
-                <BlogCard
-                  title={b.title}
-                  excerpt={b.excerpt}
-                  image={b.image}
-                  date={b.date}
-                  category={b.category}
-                  slug={b.slug}
-                />
-              ))}
-            </div>
-
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              baseUrl="/blog/page"
-            />
-          </>
-        ) : (
-          <WpOfflineError
-            title="No hay publicaciones disponibles"
-            message="Lo sentimos, no hay publicaciones disponibles en este momento. Por favor, inténtalo más tarde."
-          />
-        )
-      }
-    </section>
-  </main>
-</Layout>

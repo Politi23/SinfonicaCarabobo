@@ -1,4 +1,6 @@
-import { fetchAPI } from "./wp-client";
+import { fetchAPI, domain } from "./wp-client";
+
+const MAX_EVENTOS_PER_PAGE = 100;
 
 export interface EventoACF {
 	event_date: string; // Formato que devuelve ACF: "20260226" (YYYYMMDD)
@@ -27,12 +29,35 @@ export interface WPEvento {
 	};
 }
 
+export interface EventosPagination {
+	currentPage: number;
+	totalPages: number;
+	hasPrev: boolean;
+	hasNext: boolean;
+	prevPage: number | null;
+	nextPage: number | null;
+}
+
+const headEventosInfo = async (perPage: number) => {
+	const res = await fetch(`${domain}/wp-json/wp/v2/evento?status=publish&per_page=${perPage}`, {
+		method: "HEAD",
+	});
+
+	return {
+		total: Number(res.headers.get("X-WP-Total") || 0),
+		totalPages: Number(res.headers.get("X-WP-TotalPages") || 0),
+	};
+};
+
 export const getEventos = async (
 	perPage: number = 9,
+	page: number = 1,
 ): Promise<WPEvento[]> => {
 	try {
+		const safePerPage = Math.min(Math.max(1, perPage), MAX_EVENTOS_PER_PAGE);
+		const safePage = Math.max(1, Number.isFinite(page) ? Math.floor(page) : 1);
 		const data = await fetchAPI(
-			`/evento?_embed&status=publish&per_page=${perPage}`,
+			`/evento?_embed&status=publish&per_page=${safePerPage}&page=${safePage}`,
 		);
 
 		if (!data || !Array.isArray(data)) return [];
@@ -41,6 +66,44 @@ export const getEventos = async (
 	} catch (error) {
 		console.error("Error obteniendo los eventos:", error);
 		return [];
+	}
+};
+
+export const getEventosPagination = async (
+	page: number = 1,
+	perPage: number = 9,
+): Promise<EventosPagination> => {
+	const safePage = Math.max(1, Number.isFinite(page) ? Math.floor(page) : 1);
+	const safePerPage = Math.min(Math.max(1, perPage), MAX_EVENTOS_PER_PAGE);
+
+	try {
+		const info = await headEventosInfo(safePerPage);
+		const totalPagesFromHeader = Number.isFinite(info.totalPages)
+			? Math.floor(info.totalPages)
+			: 0;
+		const totalFromHeader = Number.isFinite(info.total) ? Math.floor(info.total) : 0;
+		const totalPagesFromTotal = totalFromHeader > 0 ? Math.ceil(totalFromHeader / safePerPage) : 0;
+		const totalPages = Math.max(1, totalPagesFromHeader || totalPagesFromTotal || 1);
+		const currentPage = Math.min(safePage, totalPages);
+
+		return {
+			currentPage,
+			totalPages,
+			hasPrev: currentPage > 1,
+			hasNext: currentPage < totalPages,
+			prevPage: currentPage > 1 ? currentPage - 1 : null,
+			nextPage: currentPage < totalPages ? currentPage + 1 : null,
+		};
+	} catch (error) {
+		console.error("Error obteniendo paginación de eventos:", error);
+		return {
+			currentPage: 1,
+			totalPages: 1,
+			hasPrev: false,
+			hasNext: false,
+			prevPage: null,
+			nextPage: null,
+		};
 	}
 };
 
