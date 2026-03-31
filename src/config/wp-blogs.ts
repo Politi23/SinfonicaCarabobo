@@ -23,7 +23,7 @@ export const getBlogsInfo = async ({
   category?: string;
 } = {}) => {
   try {
-    let url = `/blog?per_page=${perPage}`;
+    let url = `/posts?per_page=${perPage}`;
 
     // Lógica para filtrar por categoría, ACF soporta categorías estándar
     if (category) {
@@ -66,7 +66,7 @@ export const getBlogs = async ({
   category?: string;
 } = {}): Promise<WPBlog[]> => {
   try {
-    let endpoint = `/blog?per_page=${perPage}&page=${page}&_embed=1`;
+    let endpoint = `/posts?per_page=${perPage}&page=${page}&_embed=1`;
 
     if (category) {
       const catRes = await fetch(
@@ -79,7 +79,7 @@ export const getBlogs = async ({
     }
 
     const data = await fetchAPI(endpoint);
-    
+
     if (!data || !Array.isArray(data)) return [];
 
     return data.map((post: any) => ({
@@ -115,23 +115,23 @@ export const getAllBlogsRecursive = async () => {
 
 // Obtener un solo blog por slug (útil para el detalle [slug].astro)
 export const getBlogBySlug = async (slug: string): Promise<WPBlog | null> => {
-  const data = await fetchAPI(`/blog?slug=${slug}&_embed=1`);
-  
+  const data = await fetchAPI(`/posts?slug=${slug}&_embed=1`);
+
   if (!data || !Array.isArray(data) || data.length === 0) return null;
-  
+
   const post = data[0];
-  
+
   return {
-      id: post.id,
-      date: post.date,
-      slug: post.slug,
-      title: cleanText(post.title?.rendered),
-      excerpt: cleanText(post.excerpt?.rendered),
-      image: post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "",
-      imageCaption:
-        post._embedded?.["wp:featuredmedia"]?.[0]?.caption?.rendered || "",
-      category: post._embedded?.["wp:term"]?.[0]?.[0]?.name || "",
-      author: post._embedded?.["author"]?.[0]?.name || "",
-      content: post.content?.rendered || "",
+    id: post.id,
+    date: post.date,
+    slug: post.slug,
+    title: cleanText(post.title?.rendered),
+    excerpt: cleanText(post.excerpt?.rendered),
+    image: post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "",
+    imageCaption:
+      post._embedded?.["wp:featuredmedia"]?.[0]?.caption?.rendered || "",
+    category: post._embedded?.["wp:term"]?.[0]?.[0]?.name || "",
+    author: post._embedded?.["author"]?.[0]?.name || "",
+    content: post.content?.rendered || "",
   };
 };

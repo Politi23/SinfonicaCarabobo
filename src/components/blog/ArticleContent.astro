@@ -12,22 +12,40 @@ const { class: className, ...props } = Astro.props;
   }
 
   /* Estilos unificados para el contenido del artículo */
-  .article-content :where(h1, h2, h3, h4, h5, h6, p, li, blockquote p, cite, summary) {
+  .article-content
+    :where(h1, h2, h3, h4, h5, h6, p, li, blockquote p, cite, summary) {
     color: var(--color-text-dark) !important;
+    margin-bottom: 20px;
   }
 
   /* Encabezados */
-  .article-content h1 { @apply text-4xl lg:text-5xl font-bold my-6; }
-  .article-content h2 { @apply text-3xl lg:text-4xl font-bold mt-12 mb-6; }
-  .article-content h3 { @apply text-2xl lg:text-3xl font-bold mt-10 mb-6; }
-  .article-content h4 { @apply text-xl lg:text-2xl font-bold mt-8 mb-6; }
+  .article-content h1 {
+    @apply text-4xl lg:text-5xl font-bold my-6;
+  }
+  .article-content h2 {
+    @apply text-3xl lg:text-4xl font-bold mt-12 mb-6;
+  }
+  .article-content h3 {
+    @apply text-2xl lg:text-3xl font-bold mt-10 mb-6;
+  }
+  .article-content h4 {
+    @apply text-xl lg:text-2xl font-bold mt-8 mb-6;
+  }
 
   /* Elementos generales */
-  .article-content a { @apply text-primary hover:underline; }
-  .article-content ul { @apply list-disc my-6 pl-8; }
-  .article-content ol { @apply list-decimal my-6 pl-8; }
-  .article-content li { @apply my-2; }
-  
+  .article-content a {
+    @apply text-primary hover:underline;
+  }
+  .article-content ul {
+    @apply list-disc my-6 pl-8;
+  }
+  .article-content ol {
+    @apply list-decimal my-6 pl-8;
+  }
+  .article-content li {
+    @apply my-2;
+  }
+
   /* Citas */
   .article-content blockquote {
     @apply my-8 relative py-4 px-6 border-l-4 border-primary bg-gray-50;
@@ -37,8 +55,11 @@ const { class: className, ...props } = Astro.props;
   }
 
   /* Tablas */
-  .article-content table { @apply w-full border-collapse my-8; }
-  .article-content th, .article-content td {
+  .article-content table {
+    @apply w-full border-collapse my-8;
+  }
+  .article-content th,
+  .article-content td {
     @apply border border-gray-300 p-3 text-center text-text-dark;
   }
   .article-content th {
@@ -46,9 +67,16 @@ const { class: className, ...props } = Astro.props;
   }
 
   /* Medios */
-  .article-content img, .article-content video { @apply rounded-lg shadow-md max-w-full h-auto my-8; }
-  .article-content figure { @apply my-8; }
-  .article-content figcaption { @apply text-center text-sm mt-2 text-text-muted !important; }
+  .article-content img,
+  .article-content video {
+    @apply rounded-lg shadow-md max-w-full h-auto my-8;
+  }
+  .article-content figure {
+    @apply my-8;
+  }
+  .article-content figcaption {
+    @apply text-center text-sm mt-2 text-text-muted !important;
+  }
 
   /* WordPress Blocks */
   .wp-block-verse {
