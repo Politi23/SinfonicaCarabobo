@@ -6,10 +6,6 @@ const pathname = Astro.url.pathname;
 
 const navLinks = [
   {
-    href: "/agrupaciones",
-    label: "Agrupaciones",
-  },
-  {
     href: "#",
     label: "Nosotros",
     dropdown: [
@@ -18,6 +14,10 @@ const navLinks = [
       { href: "/nosotros/academia", label: "Academia" },
       { href: "/nosotros/reconocimientos", label: "Reconocimientos" },
     ],
+  },
+  {
+    href: "/agrupaciones",
+    label: "Agrupaciones",
   },
   {
     href: "#",
@@ -88,15 +88,15 @@ const submenuGroups = navLinks
   <div
     class="relative min-h-[var(--header-height)] max-w-[1280px] mx-auto px-8 h-full flex items-center justify-between"
   >
-    <a href="/" class="relative flex items-center no-underline z-10 group">
-      <div class="flex items-center gap-4">
-        <Logo width={100} height={80} />
-      </div>
+    <a
+      href="/"
+      class="relative flex items-center no-underline z-10 group"
+      aria-label="Ir al inicio"
+    >
+      <Logo width={120} height={80} aria-hidden="true" focusable="false" />
     </a>
 
-    <!-- Navegación principal -->
     <nav class="flex items-center h-full" id="main-nav">
-      <!-- Botón hamburguesa para móvil -->
       <button
         class="nav-toggle flex lg:hidden flex-col justify-center gap-[5px] w-10 h-10 bg-transparent border border-white/20 rounded-lg p-2 cursor-pointer transition-all duration-300 z-[100] hover:border-primary hover:bg-primary/10"
         id="nav-toggle"
@@ -114,7 +114,6 @@ const submenuGroups = navLinks
         ></span>
       </button>
 
-      <!-- Enlaces de navegación -->
       <ul
         class="nav-list list-none m-0 p-0 flex items-center h-full gap-2 lg:gap-2 max-lg:fixed max-lg:top-[var(--header-height-mobile)] max-lg:left-0 max-lg:right-0 max-lg:bottom-0 max-lg:flex-col max-lg:items-center max-lg:justify-start max-lg:pt-5 max-lg:gap-3 max-lg:bg-black max-lg:opacity-0 max-lg:invisible max-lg:-translate-y-5 max-lg:transition-all max-lg:duration-400 max-lg:overflow-y-auto [&.active]:max-lg:opacity-100 [&.active]:max-lg:visible [&.active]:max-lg:translate-y-0"
         id="nav-list"
@@ -144,7 +143,6 @@ const submenuGroups = navLinks
                     </div>
                   </button>
 
-                  {/* Mobile Dropdown (Accordion) */}
                   <ul
                     class="mobile-dropdown hidden flex-col w-full bg-white/5 overflow-hidden transition-all duration-300 max-lg:relative"
                     id={`mobile-submenu-${link.label}`}
@@ -152,6 +150,7 @@ const submenuGroups = navLinks
                     {link.dropdown.map((subItem) => (
                       <li>
                         <a
+                          aria-label={subItem.label}
                           href={subItem.href}
                           class="block px-8 py-3 text-text-secondary text-[0.95rem] transition-colors duration-300 hover:text-primary hover:bg-white/5"
                         >
@@ -163,6 +162,7 @@ const submenuGroups = navLinks
                 </div>
               ) : (
                 <a
+                  aria-label={link.label}
                   href={link.href}
                   class={`nav-link group relative flex flex-col items-center px-[18px] py-[10px] no-underline text-text-secondary font-serif text-[0.9rem] font-normal tracking-[0.02em] transition-all duration-300 overflow-hidden hover:text-text-light max-lg:text-[1.1rem] max-lg:px-6 max-lg:py-4 max-lg:w-full max-lg:text-center`}
                 >
@@ -185,7 +185,6 @@ const submenuGroups = navLinks
 </header>
 
 <style>
-  /* Keep mobile menu open styles that affect body */
   :global(.mobile-menu-open) {
     overflow: hidden;
     height: 100vh;
@@ -193,7 +192,6 @@ const submenuGroups = navLinks
 </style>
 
 <script>
-  // Toggle mobile navigation
   const navToggle = document.getElementById("nav-toggle");
   const navList = document.getElementById("nav-list");
 
@@ -206,7 +204,6 @@ const submenuGroups = navLinks
       document.body.classList.toggle("mobile-menu-open");
     });
 
-    // Close menu when clicking a link
     const navLinks = navList.querySelectorAll(
       ".nav-link:not(.dropdown-toggle)",
     );
@@ -220,15 +217,12 @@ const submenuGroups = navLinks
     });
   }
 
-  // Handle dropdown menus
   const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
 
-  // Desktop Global Submenu Logic
   const globalSubmenu = document.getElementById("global-submenu");
   const submenuContents = document.querySelectorAll(".submenu-content");
   let activeContentId: string | null = null;
 
-  // Helper to close all desktop submenus
   const closeGlobalSubmenu = () => {
     if (globalSubmenu) {
       globalSubmenu.classList.remove(
@@ -239,7 +233,6 @@ const submenuGroups = navLinks
       );
       globalSubmenu.classList.add("invisible", "opacity-0", "-translate-y-5");
 
-      // Reset contents
       submenuContents.forEach((content) => {
         content.classList.remove(
           "opacity-100",
@@ -251,7 +244,6 @@ const submenuGroups = navLinks
       activeContentId = null;
     }
 
-    // Also reset aria-expanded on toggles
     dropdownToggles.forEach((toggle) => {
       if (window.innerWidth > 1024) {
         toggle.setAttribute("aria-expanded", "false");
@@ -270,19 +262,16 @@ const submenuGroups = navLinks
     );
     globalSubmenu.classList.remove("invisible", "opacity-0", "-translate-y-5");
 
-    // Reset all contents first
     submenuContents.forEach((el) => {
       el.classList.add("opacity-0", "pointer-events-none", "scale-95");
       el.classList.remove("opacity-100", "pointer-events-auto", "scale-100");
     });
 
-    // Show target
     content.classList.remove("opacity-0", "pointer-events-none", "scale-95");
     content.classList.add("opacity-100", "pointer-events-auto", "scale-100");
 
     activeContentId = content.id;
 
-    // Update toggle states
     dropdownToggles.forEach((t) => t.setAttribute("aria-expanded", "false"));
     toggle.setAttribute("aria-expanded", "true");
   };
@@ -292,7 +281,6 @@ const submenuGroups = navLinks
 
     const currentContent = document.getElementById(activeContentId);
 
-    // Animate current OUT
     if (currentContent) {
       currentContent.classList.remove(
         "opacity-100",
@@ -306,7 +294,6 @@ const submenuGroups = navLinks
       );
     }
 
-    // Animate new IN
     newContent.classList.remove("opacity-0", "pointer-events-none", "scale-95");
     newContent.classList.add("opacity-100", "pointer-events-auto", "scale-100");
 
@@ -320,16 +307,13 @@ const submenuGroups = navLinks
     const targetId = toggle.getAttribute("data-target");
     if (!targetId) return;
 
-    // Unified Click Handler
     toggle.addEventListener("click", (e) => {
-      e.preventDefault(); // Prevent default action
+      e.preventDefault();
 
       if (window.innerWidth <= 1024) {
-        // Mobile Logic
         const isExpanded = toggle.getAttribute("aria-expanded") === "true";
         toggle.setAttribute("aria-expanded", (!isExpanded).toString());
 
-        // Find the inline mobile list (sibling)
         const mobileList =
           toggle.parentElement?.querySelector(".mobile-dropdown");
         if (mobileList) {
@@ -337,7 +321,6 @@ const submenuGroups = navLinks
           mobileList.classList.toggle("flex");
         }
       } else {
-        // Desktop Logic
         const targetContent = document.getElementById(targetId);
         if (!targetContent) return;
 
@@ -345,49 +328,41 @@ const submenuGroups = navLinks
 
         if (isOpen) {
           if (activeContentId === targetId) {
-            // Closing current
             closeGlobalSubmenu();
           } else {
-            // Switching
             switchSubmenu(targetContent, toggle);
           }
         } else {
-          // Opening new
           openSubmenu(targetContent, toggle);
         }
       }
     });
   });
 
-  // Close dropdowns when clicking elsewhere (global)
   document.addEventListener("click", (event) => {
     const target = event.target as HTMLElement;
     if (
       !target.closest("[data-dropdown]") &&
       !target.closest("[data-submenu]") &&
-      !target.closest(".submenu-container") // Add this to prevent closing when clicking inside submenu
+      !target.closest(".submenu-container")
     ) {
       closeGlobalSubmenu();
     }
   });
 
-  // Handle window resize
   window.addEventListener("resize", () => {
     if (window.innerWidth > 1024) {
-      // Reset mobile styles/states if switching to desktop
       document.querySelectorAll(".mobile-dropdown").forEach((el) => {
         el.classList.add("hidden");
         el.classList.remove("flex");
       });
     } else {
-      // Reset desktop submenus
       closeGlobalSubmenu();
     }
   });
 </script>
 
 <style>
-  /* Handle hamburger animation */
   .nav-toggle.active .hamburger-line:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
   }
