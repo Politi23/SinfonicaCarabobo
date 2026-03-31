@@ -1,9 +1,10 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import MainHero from "../../components/sections/MainHero.astro";
-import ReconocimientosMilestones from "../../components/nosotros/ReconocimientosMilestones.astro";
-import ReconocimientosList from "../../components/nosotros/ReconocimientosList.astro";
-import orquesta from "@assets/images/organizacion/OSC en TTC 3.webp";
+import SectionTitle from "../../components/ui/SectionTitle.astro";
+import orquesta from "@assets/images/orquesta/OSC en TTC 2.jpg";
+import orchestra1 from "@assets/images/orquesta/orchestra1.webp";
+import orchestra2 from "@assets/images/academia/coro6.webp";
 
 const institutionalRecognitions = [
     { year: "2021", event: "Institución UNESCO; Embajadores de la Paz" },
@@ -60,18 +61,117 @@ const institutionalRecognitions = [
             bgImage={orquesta.src}
         />
 
-        <!-- <ReconocimientosIntro /> -->
-        <ReconocimientosMilestones />
+        <section class="py-8 md:py-12">
+            <div class="container mx-auto px-6 max-w-7xl">
+                <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+                    <div
+                        class="group relative overflow-hidden bg-black text-white w-full min-h-[600px] lg:min-h-[700px] flex flex-col justify-end p-8 md:p-14 lg:p-20"
+                    >
+                        <div
+                            class="absolute inset-0 z-0 opacity-40 bg-cover bg-center grayscale filter contrast-125 transition-transform duration-1000 group-hover:scale-105"
+                            style={`background-image: url('${orchestra1.src}');`}
+                        >
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent z-10"
+                        >
+                        </div>
 
-        <ReconocimientosList
-            institutionalRecognitions={institutionalRecognitions}
-        />
-        <!-- <ReconocimientosCTA /> -->
+                        <div class="relative z-20 mt-auto flex flex-col gap-6">
+                            <h3
+                                class="text-4xl md:text-5xl lg:text-5xl font-display font-bold uppercase tracking-wider leading-tight"
+                            >
+                                <span class="block text-primary mb-2"
+                                    >Pavarotti</span
+                                >
+                                <span class="block text-white">en Valencia</span
+                                >
+                            </h3>
+
+                            <p
+                                class="text-gray-300 leading-relaxed text-base md:text-lg font-light max-w-md mt-4"
+                            >
+                                Seleccionados como la orquesta acompañante
+                                oficial para el concierto único del tenor
+                                Luciano Pavarotti en Venezuela.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="group relative overflow-hidden bg-secondary text-white w-full min-h-[600px] lg:min-h-[700px] flex flex-col justify-end p-8 md:p-14 lg:p-20"
+                    >
+                        <div
+                            class="absolute inset-0 z-0 opacity-90 bg-cover bg-center mix-blend-overlay transition-transform duration-1000 group-hover:scale-105"
+                            style={`background-image: url('${orchestra2.src}');`}
+                        >
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/80 to-transparent z-10"
+                        >
+                        </div>
+
+                        <div class="relative z-20 mt-auto flex flex-col gap-6">
+                            <h3
+                                class="text-4xl md:text-5xl lg:text-5xl font-display font-bold uppercase tracking-wider leading-tight"
+                            >
+                                <span class="block text-white mb-2">UNESCO</span
+                                >
+                                <span class="block text-primary"
+                                    >Paz y Cultura</span
+                                >
+                            </h3>
+
+                            <p
+                                class="text-white/90 leading-relaxed text-base md:text-lg font-light max-w-md mt-4"
+                            >
+                                Designación como Embajadores de la Paz por
+                                nuestra contribución ininterrumpida al
+                                desarrollo cultural latinoamericano.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <div
+                    class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8 px-4 overflow-hidden"
+                >
+                    <SectionTitle
+                        variant="red"
+                        class="text-3xl md:text-5xl font-display font-bold text-gray-900"
+                        wrapperClass="text-left"
+                        dividerClass="h-1 w-16 mt-2"
+                    >
+                        Menciones y <span class="text-secondary"
+                            >Distinciones</span
+                        >
+                    </SectionTitle>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-0">
+                    {
+                        institutionalRecognitions.map((item: any) => (
+                            <div class="group flex items-baseline gap-6 py-6 border-b border-gray-100 hover:border-secondary transition-all duration-300">
+                                <span class="text-lg font-bold text-secondary uppercase tracking-widest min-w-[60px]">
+                                    {item.year}
+                                </span>
+                                <p class="text-[15px] text-gray-700 font-medium leading-[1.6] group-hover:text-gray-900 transition-colors">
+                                    {item.event}
+                                </p>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
     </main>
 </Layout>
 
 <style>
-    /* Focus on crisp, architectural lines handled in components where applicable */
     main {
         text-rendering: optimizeLegibility;
     }
