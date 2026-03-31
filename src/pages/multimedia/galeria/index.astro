@@ -1,13 +1,31 @@
 ---
+export const prerender = false;
+
 import Layout from "@layouts/Layout.astro";
 import MainHero from "@components/sections/MainHero.astro";
-import { fetchImageMedia } from "@config/wp-media";
+import Pagination from "@components/blog/Pagination.astro";
+import { fetchImageMedia, getImageMediaPagination } from "@config/wp-media";
+import type { WPMediaImage } from "@config/wp-media";
 import { Image } from "astro:assets";
 
-const images = await fetchImageMedia(1);
+const parsedPage = Number.parseInt(Astro.url.searchParams.get("page") ?? "1", 10);
+const requestedPage = Number.isFinite(parsedPage) && parsedPage > 0 ? parsedPage : 1;
+
+let images: WPMediaImage[] = [];
+let totalPages = 1;
+let currentPage = 1;
+
+try {
+  const pagination = await getImageMediaPagination(requestedPage);
+  currentPage = pagination.currentPage;
+  totalPages = pagination.totalPages;
+  images = await fetchImageMedia(currentPage);
+} catch (error) {
+  console.error("Error cargando galeria:", error);
+}
 ---
 
-<Layout title="Imágenes - Galería Estática">
+<Layout title={`Imagenes - Galeria - Pagina ${currentPage}`}>
   <MainHero
     title="Galería"
     titleHighlight=""
@@ -32,6 +50,17 @@ const images = await fetchImageMedia(1);
         })
       }
     </div>
+
+    {
+      totalPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          baseUrl="/multimedia/galeria"
+          useQueryPagination={true}
+        />
+      )
+    }
   </main>
 
   <style>
