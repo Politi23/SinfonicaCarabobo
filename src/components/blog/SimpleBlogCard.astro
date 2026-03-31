@@ -18,13 +18,16 @@ const EXCERPT_FALLBACK_MAX_CHARS = 110;
 const normalizedExcerpt = (excerpt || "").replace(/\s+/g, " ").trim();
 const excerptWithFallback =
     normalizedExcerpt.length > EXCERPT_FALLBACK_MAX_CHARS
-        ? `${normalizedExcerpt.slice(0, EXCERPT_FALLBACK_MAX_CHARS).replace(/\s+\S*$/, "").trim()} (...)`
+        ? `${normalizedExcerpt
+              .slice(0, EXCERPT_FALLBACK_MAX_CHARS)
+              .replace(/\s+\S*$/, "")
+              .trim()} (...)`
         : normalizedExcerpt;
 ---
 
 <a href={`/blog/${slug || "#"}`} class="block group">
     <article
-        class="flex flex-col bg-white rounded-lg overflow-hidden shadow-md border border-border-light h-full"
+        class="flex flex-col bg-white rounded-sm overflow-hidden shadow-sm border border-border-light h-full"
     >
         <div class="relative w-full aspect-video overflow-hidden">
             <img
@@ -36,13 +39,6 @@ const excerptWithFallback =
                 loading="lazy"
                 decoding="async"
             />
-            {
-                category && (
-                    <span class="absolute top-2 left-2 bg-black/80 backdrop-blur-sm border border-primary/40 text-primary px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider z-10">
-                        {category}
-                    </span>
-                )
-            }
         </div>
 
         <div class="p-3 flex flex-col flex-grow">

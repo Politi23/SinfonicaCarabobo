@@ -17,7 +17,6 @@ const {
   viewAllButtonText = "Ver todos",
 } = Astro.props;
 
-// Fetch the latest blog posts
 const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
 ---
 
@@ -25,7 +24,7 @@ const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
   <div class="container mx-auto px-4">
     <div class="text-center mb-12">
       <span
-        class="text-secondary-dark text-sm font-bold tracking-[0.2em] uppercase block"
+        class="text-zinc-700 text-sm font-bold tracking-[0.1rem] uppercase block"
       >
         {subtitle}
       </span>
@@ -34,7 +33,6 @@ const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
     {
       latestPosts.length > 0 ? (
         <>
-          {/* Desktop Grid */}
           <div class="hidden lg:grid lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-6">
             {latestPosts.map((post) => (
               <SimpleBlogCard
@@ -87,5 +85,4 @@ const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
       )
     }
   </div>
-
 </section>
