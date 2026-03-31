@@ -1,5 +1,4 @@
 ---
-import logoSimpleBbg from "@assets/images/logo/logosimplebbg.webp";
 import { formatDateToDMY } from "../../utils/date";
 
 export interface Props {
@@ -26,7 +25,6 @@ const {
 } = Astro.props;
 
 const formattedDate = formatDateToDMY(dateTaken || date);
-const backgroundImage = coverImage || logoSimpleBbg.src;
 ---
 
 <article
@@ -39,7 +37,7 @@ const backgroundImage = coverImage || logoSimpleBbg.src;
 
 	<div
 		class="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-[102%]"
-		style={`background-image: url('${backgroundImage}')`}
+		style={`background-image: url('${coverImage}')`}
 	>
 	</div>
 

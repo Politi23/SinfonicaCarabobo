@@ -1,6 +1,4 @@
 ---
-import logoSimpleBbg from "@assets/images/logo/logosimplebbg.webp";
-
 import { getEventos } from "src/config/wp-eventos";
 
 import SecondaryButton from "../ui/SecondaryButton.astro";
@@ -77,7 +75,7 @@ const placeholderItems = Array.from({ length: 6 });
                       excerpt={evento.acf.event_description}
                       image={
                         evento._embedded?.["wp:featuredmedia"]?.[0]
-                          ?.source_url || logoSimpleBbg.src
+                          ?.source_url || ""
                       }
                       date={evento.acf.event_date}
                       time={evento.acf.event_time}
