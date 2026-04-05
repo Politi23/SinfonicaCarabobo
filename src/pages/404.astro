@@ -1,7 +1,6 @@
 ---
-import { Picture } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
-import logo from "@assets/images/logo/logo.webp";
+import Logo from "@assets/svg/sinfonica.svg";
 ---
 
 <Layout title="Página no encontrada" is404>
@@ -9,19 +8,8 @@ import logo from "@assets/images/logo/logo.webp";
     class="min-h-screen bg-background-dark flex items-center justify-center"
   >
     <div class="text-center">
-      <Picture
-        src={logo}
-        alt="Logo de la Orquesta Sinfónica de Carabobo"
-        class="mx-auto"
-        style="width: 26rem; height: auto;"
-        width="416"
-        height="166"
-        formats={["webp"]}
-        fallbackFormat="webp"
-        loading="eager"
-        fetchpriority="high"
-      />
-      <h1 class="text-3xl font-bold text-text-light">
+      <Logo class="mx-auto w-[26rem] h-auto" />
+      <h1 class="text-3xl font-bold text-text-light pt-2">
         ¡Ups! Parece que esta página no existe.
       </h1>
     </div>
