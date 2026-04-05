@@ -10,445 +10,437 @@ import oscTtc from "@assets/images/organizacion/OSC en TTC.webp";
 ---
 
 <Layout title="Sobre Nosotros">
-    <main class="bg-white text-gray-950 min-h-screen">
-        <MainHero
-            title="Sobre"
-            titleHighlight="Nosotros"
-            subtitle="Medio siglo construyendo el alma musical de una región."
-        />
+  <main class="bg-white text-gray-950 min-h-screen">
+    <MainHero
+      title="Sobre"
+      titleHighlight="Nosotros"
+      subtitle="Medio siglo construyendo el alma musical de una región."
+    />
 
-        <section
-            class="py-16 md:py-24 relative overflow-hidden border-b border-gray-100"
-        >
-            <div class="container mx-auto px-6 max-w-6xl relative z-10">
-                <div class="max-w-4xl mx-auto">
-                    <h2
-                        class="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-10 leading-tight"
-                    >
-                        Una institución <span class="text-secondary"
-                            >cultural integral</span
-                        >
-                    </h2>
-                    <div
-                        class="relative bg-white p-8 md:p-12 border border-gray-200 rounded overflow-hidden"
-                    >
-                        <div
-                            class="absolute inset-0 z-0 opacity-10 bg-cover bg-center"
-                            style={`background-image: url('${orchestra1.src}');`}
-                        >
-                        </div>
-                        <div class="relative z-10">
-                            <p
-                                class="text-lg md:text-2xl text-gray-700 leading-relaxed font-serif italic"
-                            >
-                                "Desde hace 50 años, hemos unido en un mismo
-                                propósito la formación académica, la producción
-                                artística de alto nivel y el compromiso social
-                                inquebrantable."
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-16 md:py-24 bg-gray-50">
-            <div class="container mx-auto px-6 max-w-6xl relative">
-                <div class="max-w-4xl mx-auto">
-                    <SectionTitle
-                        variant="red"
-                        class="text-3xl md:text-5xl font-display font-bold text-gray-900 leading-tight"
-                        wrapperClass="text-left"
-                        dividerClass="h-1 w-16 mt-2"
-                    >
-                        Historia <span class="text-secondary">y Prestigio</span>
-                    </SectionTitle>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto pt-8">
-                    <div class="bg-white p-8 rounded shadow-md">
-                        <span
-                            class="text-primary font-display text-3xl mb-4 block font-bold"
-                            >1976</span
-                        >
-                        <SectionTitle
-                            dividerClass="h-1 w-16 mb-4"
-                            wrapperClass=""
-                            variant="red"
-                        />
-                        <h3
-                            class="text-xl font-bold uppercase tracking-tight mb-3 text-gray-900"
-                        >
-                            Fundación
-                        </h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            Nacemos en octubre de 1976 para convertirnos en el
-                            eje fundamental de la cultura carabobeña, iniciando
-                            un camino de excelencia ininterrumpida.
-                        </p>
-                    </div>
-                    <div class="bg-white p-8 rounded shadow-md">
-                        <span
-                            class="text-primary font-display text-3xl mb-4 block font-bold"
-                            >1998</span
-                        >
-                        <SectionTitle
-                            dividerClass="h-1 w-16 mb-4"
-                            wrapperClass=""
-                            variant="red"
-                        />
-                        <h3
-                            class="text-xl font-bold uppercase tracking-tight mb-3 text-gray-900"
-                        >
-                            Hito Universal
-                        </h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            Acompañamos al legendario tenor Luciano Pavarotti en
-                            su única presentación en Venezuela, consolidando
-                            nuestra calidad interpretativa a nivel mundial.
-                        </p>
-                    </div>
-                    <div class="bg-white p-8 rounded shadow-md">
-                        <span
-                            class="text-primary font-display text-3xl mb-4 block font-bold"
-                            >2021</span
-                        >
-                        <SectionTitle
-                            dividerClass="h-1 w-16 mb-4"
-                            wrapperClass=""
-                            variant="red"
-                        />
-                        <h3
-                            class="text-xl font-bold uppercase tracking-tight mb-3 text-gray-900"
-                        >
-                            UNESCO
-                        </h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            Fuimos reconocidos por la UNESCO como "Embajadores
-                            de la Paz", un honor que ratifica nuestra labor
-                            social y compromiso con la humanidad.
-                        </p>
-                    </div>
-                    <div
-                        class="bg-gray-50 rounded border border-gray-200 overflow-hidden relative shadow-md"
-                    >
-                        <Picture
-                            src={oscTtc}
-                            formats={["webp"]}
-                            fallbackFormat="webp"
-                            alt="Orquesta Sinfónica de Carabobo en TTC"
-                            class="w-full h-auto object-cover"
-                            width={oscTtc.width}
-                            height={oscTtc.height}
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                        />
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-12">
-                <SecondaryButton href="/nosotros/historia">
-                    Leer historia completa
-                </SecondaryButton>
-            </div>
-        </section>
-
-        <section class="py-16 md:py-24 bg-white">
-            <div class="container mx-auto px-6 max-w-6xl">
-                <div class="max-w-4xl mx-auto mb-12">
-                    <SectionTitle
-                        variant="red"
-                        class="text-3xl md:text-5xl font-display font-bold text-gray-900 leading-tight"
-                        wrapperClass="text-left"
-                        dividerClass="h-1 w-16"
-                    >
-                        Formación y <span class="text-secondary"
-                            >Excelencia</span
-                        >
-                    </SectionTitle>
-                    <div class="mt-6 border-l-4 border-secondary pl-6">
-                        <p class="text-gray-700 leading-relaxed italic">
-                            Nuestra estructura garantiza que el talento joven se
-                            encuentre con la experiencia profesional en un ciclo
-                            de aprendizaje continuo.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                    <a
-                        href="/nosotros/academia"
-                        class="bg-white border border-gray-200 rounded p-8"
-                    >
-                        <div class="mb-6">
-                            <h3
-                                class="text-2xl font-display font-bold text-gray-900 uppercase tracking-tight"
-                            >
-                                Academia
-                            </h3>
-                            <div class="w-16 h-1 bg-primary mt-2"></div>
-                        </div>
-                        <p
-                            class="text-gray-700 font-medium mb-6 italic leading-relaxed"
-                        >
-                            Academia Internacional de Música<br />
-                            <span class="text-secondary"
-                                >"Maestro José Calabrese"</span
-                            >
-                        </p>
-                        <ul class="space-y-4">
-                            {
-                                [
-                                    {
-                                        title: "Becas Directas",
-                                        desc: "Más de 80 niños y jóvenes beneficiados",
-                                    },
-                                    {
-                                        title: "Dotación",
-                                        desc: "Asignación de instrumentos para iniciación",
-                                    },
-                                    {
-                                        title: "Inclusión",
-                                        desc: "Programas especializados para Síndrome de Down",
-                                    },
-                                    {
-                                        title: "Acreditación",
-                                        desc: "Aval internacional de la UNESCO",
-                                    },
-                                ].map((item) => (
-                                    <li class="flex items-start gap-3">
-                                        <div class="w-2 h-2 mt-1.5 bg-primary shrink-0 rounded-full" />
-                                        <div>
-                                            <p class="text-xs font-bold uppercase tracking-wider text-gray-900 mb-0.5">
-                                                {item.title}
-                                            </p>
-                                            <p class="text-sm text-gray-600">
-                                                {item.desc}
-                                            </p>
-                                        </div>
-                                    </li>
-                                ))
-                            }
-                        </ul>
-                    </a>
-
-                    <a
-                        href="/agrupaciones"
-                        class="bg-white border border-gray-200 rounded p-8"
-                    >
-                        <div class="mb-6">
-                            <h3
-                                class="text-2xl font-display font-bold text-gray-900 uppercase tracking-tight"
-                            >
-                                Producción
-                            </h3>
-                            <SectionTitle
-                                dividerClass="h-1 w-16 mt-2"
-                                wrapperClass=""
-                                variant="red"
-                            />
-                        </div>
-                        <p
-                            class="text-gray-700 font-medium mb-6 italic leading-relaxed"
-                        >
-                            Eventos de impacto <br /><span
-                                class="text-gray-900"
-                            >
-                                masivo y profesional</span
-                            >
-                        </p>
-                        <ul class="space-y-4">
-                            {
-                                [
-                                    {
-                                        title: "Historial",
-                                        desc: "Más de 2.400 músicos formados en 49 años",
-                                    },
-                                    {
-                                        title: "Afluencia",
-                                        desc: "1.500 personas por concierto en promedio",
-                                    },
-                                    {
-                                        title: "Repertorio",
-                                        desc: "Galas sinfónicas y eventos de alto nivel",
-                                    },
-                                    {
-                                        title: "Continuidad",
-                                        desc: "Múltiples eventos temáticos anuales",
-                                    },
-                                ].map((item) => (
-                                    <li class="flex items-start gap-3">
-                                        <div class="w-2 h-2 mt-1.5 bg-secondary shrink-0 rounded-full" />
-                                        <div>
-                                            <p class="text-xs font-bold uppercase tracking-wider text-gray-900 mb-0.5">
-                                                {item.title}
-                                            </p>
-                                            <p class="text-sm text-gray-600">
-                                                {item.desc}
-                                            </p>
-                                        </div>
-                                    </li>
-                                ))
-                            }
-                        </ul>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-16 md:py-24 bg-gray-50">
-            <div class="container mx-auto px-6 max-w-6xl">
-                <div class="text-center mb-12">
-                    <h2
-                        class="text-3xl md:text-5xl font-display font-bold text-gray-900 leading-tight"
-                    >
-                        Misión, <span class="text-primary">Visión</span> y Valores
-                    </h2>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                    <div class="bg-white p-8 pt-16 rounded shadow-md border-t-4 border-primary">
-                        <h3 class="text-xl font-display font-bold text-primary mb-4 uppercase tracking-wider text-center">
-                            Misión
-                        </h3>
-                        <p class="text-gray-700 text-lg leading-relaxed">
-                            Contribuir a la transformación social a través de la formación de líderes con pensamiento crítico, mediante la ejecución de la música sinfónica.
-                        </p>
-                    </div>
-
-                    <div class="bg-white p-8 pt-16 rounded shadow-md border-t-4 border-secondary">
-                        <h3 class="text-xl font-display font-bold text-secondary mb-4 uppercase tracking-wider text-center">
-                            Visión
-                        </h3>
-                        <p class="text-gray-700 text-lg leading-relaxed">
-                            Ser la institución de vanguardia en el desarrollo y enseñanza de la música sinfónica, consolidándose como máxima expresión de la cultura carabobeña para Venezuela y el mundo.
-                        </p>
-                    </div>
-
-                    <div class="bg-white p-8 pt-16 rounded shadow-md border-t-4 border-gray-900">
-                        <h3 class="text-xl font-display font-bold text-gray-900 mb-4 uppercase tracking-wider text-center">
-                            Valores
-                        </h3>
-                        <p class="text-gray-700 text-lg leading-relaxed">
-                            Sentido de pertenencia, respeto, disciplina, empatía, corresponsabilidad y tolerancia.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-16 md:py-24 bg-gray-50 relative overflow-hidden">
+    <section
+      class="py-16 md:py-24 relative overflow-hidden border-b border-gray-100"
+    >
+      <div class="container mx-auto px-6 max-w-6xl relative z-10">
+        <div class="max-w-4xl mx-auto">
+          <h2
+            class="text-3xl md:text-5xl font-display font-bold text-gray-900 mb-10 leading-tight"
+          >
+            Una institución <span class="text-secondary">cultural integral</span
+            >
+          </h2>
+          <div
+            class="relative bg-white p-8 md:p-12 border border-gray-200 rounded overflow-hidden"
+          >
             <div
-                class="absolute inset-0 opacity-5 bg-cover bg-center"
-                style={`background-image: url('${orchestra1.src}');`}
+              class="absolute inset-0 z-0 opacity-10 bg-cover bg-center"
+              style={`background-image: url('${orchestra1.src}');`}
             >
             </div>
-            <div class="container mx-auto px-6 max-w-6xl relative z-10">
-                <div class="text-center mb-12">
-                    <h2
-                        class="text-3xl md:text-5xl font-display font-bold text-gray-900 leading-tight"
-                    >
-                        Nuestras <span class="text-primary">Cifras</span>
-                    </h2>
-                </div>
-
-                <div
-                    class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto"
-                >
-                    <div class="bg-white p-6 md:p-8 rounded text-center">
-                        <div
-                            class="text-3xl md:text-5xl font-display font-bold text-primary mb-2"
-                        >
-                            49
-                        </div>
-                        <p
-                            class="text-xs font-bold tracking-[0.2em] uppercase text-gray-600"
-                        >
-                            Años de Trayectoria
-                        </p>
-                    </div>
-                    <div class="bg-white p-6 md:p-8 rounded text-center">
-                        <div
-                            class="text-3xl md:text-5xl font-display font-bold text-primary mb-2"
-                        >
-                            2.4K
-                        </div>
-                        <p
-                            class="text-xs font-bold tracking-[0.2em] uppercase text-gray-600"
-                        >
-                            Músicos Formados
-                        </p>
-                    </div>
-                    <div class="bg-white p-6 md:p-8 rounded text-center">
-                        <div
-                            class="text-3xl md:text-5xl font-display font-bold text-primary mb-2"
-                        >
-                            1.5K
-                        </div>
-                        <p
-                            class="text-xs font-bold tracking-[0.2em] uppercase text-gray-600"
-                        >
-                            Personas por Conciertos
-                        </p>
-                    </div>
-                    <div class="bg-white p-6 md:p-8 rounded text-center">
-                        <div
-                            class="text-3xl md:text-5xl font-display font-bold text-primary mb-2"
-                        >
-                            17K
-                        </div>
-                        <p
-                            class="text-xs font-bold tracking-[0.2em] uppercase text-gray-600"
-                        >
-                            Alcance Digital
-                        </p>
-                    </div>
-                </div>
+            <div class="relative z-10">
+              <p
+                class="text-lg md:text-2xl text-gray-700 leading-relaxed font-serif italic"
+              >
+                "Desde hace 50 años, hemos unido en un mismo propósito la
+                formación académica, la producción artística de alto nivel y el
+                compromiso social inquebrantable."
+              </p>
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <section class="py-16 md:py-24 bg-white">
-            <div class="container mx-auto px-6 max-w-5xl">
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div
-                        class="bg-white border border-gray-200 rounded p-8 md:p-10"
-                    >
-                        <SectionTitle
-                            title="Únete"
-                            variant="red"
-                            class="text-2xl font-display font-bold mb-4 text-gray-900 uppercase tracking-tight"
-                            wrapperClass="text-left"
-                            dividerClass="h-1 w-16 mb-6"
-                        />
-                        <p class="text-gray-700 mb-8 leading-relaxed">
-                            Ya sea como patrocinante corporativo, benefactor o
-                            estudiante, tu presencia es vital para nuestra
-                            misión. Todo apoyo es invaluable.
-                        </p>
-                        <SecondaryButton href="/contacto" fullWidth
-                            >Contactanos</SecondaryButton
-                        >
-                    </div>
-                    <div
-                        class="bg-white border border-gray-200 rounded p-8 md:p-10"
-                    >
-                        <SectionTitle
-                            title="Academia"
-                            class="text-2xl font-display font-bold mb-4 text-gray-900 uppercase tracking-tight"
-                            wrapperClass="text-left"
-                            dividerClass="h-1 w-16 mb-6"
-                        />
-                        <p class="text-gray-700 mb-8 leading-relaxed">
-                            Explora las oportunidades académicas y conviértete
-                            en parte de la nueva generación de músicos de élite
-                            de nuestro país.
-                        </p>
-                        <PrimaryButton href="/nosotros/academia" fullWidth
-                            >Programas Académicos</PrimaryButton
-                        >
-                    </div>
-                </div>
+    <section class="py-16 md:py-24 bg-gray-50">
+      <div class="container mx-auto px-6 max-w-6xl relative">
+        <div class="max-w-4xl mx-auto">
+          <SectionTitle
+            variant="red"
+            class="text-3xl md:text-5xl font-display font-bold text-gray-900 leading-tight"
+            wrapperClass="text-left"
+            dividerClass="h-1 w-16 mt-2"
+          >
+            Historia <span class="text-secondary">y Prestigio</span>
+          </SectionTitle>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto pt-8">
+          <div class="bg-white p-8 rounded shadow-md">
+            <span
+              class="text-primary font-display text-3xl mb-4 block font-bold"
+              >1976</span
+            >
+            <SectionTitle
+              dividerClass="h-1 w-16 mb-4"
+              wrapperClass=""
+              variant="red"
+            />
+            <h3
+              class="text-xl font-bold uppercase tracking-tight mb-3 text-gray-900"
+            >
+              Fundación
+            </h3>
+            <p class="text-gray-700 leading-relaxed">
+              Nacemos en octubre de 1976 para convertirnos en el eje fundamental
+              de la cultura carabobeña, iniciando un camino de excelencia
+              ininterrumpida.
+            </p>
+          </div>
+          <div class="bg-white p-8 rounded shadow-md">
+            <span
+              class="text-primary font-display text-3xl mb-4 block font-bold"
+              >1998</span
+            >
+            <SectionTitle
+              dividerClass="h-1 w-16 mb-4"
+              wrapperClass=""
+              variant="red"
+            />
+            <h3
+              class="text-xl font-bold uppercase tracking-tight mb-3 text-gray-900"
+            >
+              Hito Universal
+            </h3>
+            <p class="text-gray-700 leading-relaxed">
+              Acompañamos al legendario tenor Luciano Pavarotti en su única
+              presentación en Venezuela, consolidando nuestra calidad
+              interpretativa a nivel mundial.
+            </p>
+          </div>
+          <div class="bg-white p-8 rounded shadow-md">
+            <span
+              class="text-primary font-display text-3xl mb-4 block font-bold"
+              >2021</span
+            >
+            <SectionTitle
+              dividerClass="h-1 w-16 mb-4"
+              wrapperClass=""
+              variant="red"
+            />
+            <h3
+              class="text-xl font-bold uppercase tracking-tight mb-3 text-gray-900"
+            >
+              UNESCO
+            </h3>
+            <p class="text-gray-700 leading-relaxed">
+              Fuimos reconocidos por la UNESCO como "Embajadores de la Paz", un
+              honor que ratifica nuestra labor social y compromiso con la
+              humanidad.
+            </p>
+          </div>
+          <div
+            class="bg-gray-50 rounded border border-gray-200 overflow-hidden relative shadow-md"
+          >
+            <Picture
+              src={oscTtc}
+              formats={["webp"]}
+              fallbackFormat="webp"
+              alt="Orquesta Sinfónica de Carabobo en TTC"
+              class="w-full h-auto object-cover"
+              width={oscTtc.width}
+              height={oscTtc.height}
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <SecondaryButton href="/nosotros/historia">
+          Leer historia completa
+        </SecondaryButton>
+      </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-white">
+      <div class="container mx-auto px-6 max-w-6xl">
+        <div class="max-w-4xl mx-auto mb-12">
+          <SectionTitle
+            variant="red"
+            class="text-3xl md:text-5xl font-display font-bold text-gray-900 leading-tight"
+            wrapperClass="text-left"
+            dividerClass="h-1 w-16"
+          >
+            Formación y <span class="text-secondary">Excelencia</span>
+          </SectionTitle>
+          <div class="mt-6 border-l-4 border-secondary pl-6">
+            <p class="text-gray-700 leading-relaxed italic">
+              Nuestra estructura garantiza que el talento joven se encuentre con
+              la experiencia profesional en un ciclo de aprendizaje continuo.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <a
+            href="/nosotros/academia"
+            class="bg-white border border-gray-200 rounded p-8"
+          >
+            <div class="mb-6">
+              <h3
+                class="text-2xl font-display font-bold text-gray-900 uppercase tracking-tight"
+              >
+                Academia
+              </h3>
+              <div class="w-16 h-1 bg-primary mt-2"></div>
             </div>
-        </section>
-    </main>
+            <p class="text-gray-700 font-medium mb-6 italic leading-relaxed">
+              Academia Internacional de Música<br />
+              <span class="text-secondary">"Maestro José Calabrese"</span>
+            </p>
+            <ul class="space-y-4">
+              {
+                [
+                  {
+                    title: "Becas Directas",
+                    desc: "Más de 80 niños y jóvenes beneficiados",
+                  },
+                  {
+                    title: "Dotación",
+                    desc: "Asignación de instrumentos para iniciación",
+                  },
+                  {
+                    title: "Inclusión",
+                    desc: "Programas especializados para Síndrome de Down",
+                  },
+                  {
+                    title: "Acreditación",
+                    desc: "Aval internacional de la UNESCO",
+                  },
+                ].map((item) => (
+                  <li class="flex items-start gap-3">
+                    <div class="w-2 h-2 mt-1.5 bg-primary shrink-0 rounded-full" />
+                    <div>
+                      <p class="text-xs font-bold uppercase tracking-wider text-gray-900 mb-0.5">
+                        {item.title}
+                      </p>
+                      <p class="text-sm text-gray-600">{item.desc}</p>
+                    </div>
+                  </li>
+                ))
+              }
+            </ul>
+          </a>
+
+          <a
+            href="/agrupaciones"
+            class="bg-white border border-gray-200 rounded p-8"
+          >
+            <div class="mb-6">
+              <h3
+                class="text-2xl font-display font-bold text-gray-900 uppercase tracking-tight"
+              >
+                Producción
+              </h3>
+              <SectionTitle
+                dividerClass="h-1 w-16 mt-2"
+                wrapperClass=""
+                variant="red"
+              />
+            </div>
+            <p class="text-gray-700 font-medium mb-6 italic leading-relaxed">
+              Eventos de impacto <br /><span class="text-gray-900">
+                masivo y profesional</span
+              >
+            </p>
+            <ul class="space-y-4">
+              {
+                [
+                  {
+                    title: "Historial",
+                    desc: "Más de 2.400 músicos formados en 49 años",
+                  },
+                  {
+                    title: "Afluencia",
+                    desc: "1.500 personas por concierto en promedio",
+                  },
+                  {
+                    title: "Repertorio",
+                    desc: "Galas sinfónicas y eventos de alto nivel",
+                  },
+                  {
+                    title: "Continuidad",
+                    desc: "Múltiples eventos temáticos anuales",
+                  },
+                ].map((item) => (
+                  <li class="flex items-start gap-3">
+                    <div class="w-2 h-2 mt-1.5 bg-secondary shrink-0 rounded-full" />
+                    <div>
+                      <p class="text-xs font-bold uppercase tracking-wider text-gray-900 mb-0.5">
+                        {item.title}
+                      </p>
+                      <p class="text-sm text-gray-600">{item.desc}</p>
+                    </div>
+                  </li>
+                ))
+              }
+            </ul>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-gray-50">
+      <div class="container mx-auto px-6 max-w-6xl">
+        <div class="text-center mb-12">
+          <h2
+            class="text-3xl md:text-5xl font-display font-bold text-gray-900 leading-tight"
+          >
+            Misión, <span class="text-primary">Visión</span> y Valores
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div
+            class="bg-white p-8 pt-16 rounded shadow-md border-t-4 border-primary"
+          >
+            <h3
+              class="text-xl font-display font-bold text-primary mb-4 uppercase tracking-wider text-center"
+            >
+              Misión
+            </h3>
+            <p class="text-gray-700 text-lg leading-relaxed">
+              Contribuir a la transformación social a través de la formación de
+              líderes con pensamiento crítico, mediante la ejecución de la
+              música sinfónica.
+            </p>
+          </div>
+
+          <div
+            class="bg-white p-8 pt-16 rounded shadow-md border-t-4 border-secondary"
+          >
+            <h3
+              class="text-xl font-display font-bold text-secondary mb-4 uppercase tracking-wider text-center"
+            >
+              Visión
+            </h3>
+            <p class="text-gray-700 text-lg leading-relaxed">
+              Ser la institución de vanguardia en el desarrollo y enseñanza de
+              la música sinfónica, consolidándose como máxima expresión de la
+              cultura carabobeña para Venezuela y el mundo.
+            </p>
+          </div>
+
+          <div
+            class="bg-white p-8 pt-16 rounded shadow-md border-t-4 border-gray-900"
+          >
+            <h3
+              class="text-xl font-display font-bold text-gray-900 mb-4 uppercase tracking-wider text-center"
+            >
+              Valores
+            </h3>
+            <p class="text-gray-700 text-lg leading-relaxed">
+              Sentido de pertenencia, respeto, disciplina, empatía,
+              corresponsabilidad y tolerancia.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-gray-50 relative overflow-hidden">
+      <div
+        class="absolute inset-0 opacity-5 bg-cover bg-center"
+        style={`background-image: url('${orchestra1.src}');`}
+      >
+      </div>
+      <div class="container mx-auto px-6 max-w-6xl relative z-10">
+        <div class="text-center mb-12">
+          <h2
+            class="text-3xl md:text-5xl font-display font-bold text-gray-900 leading-tight"
+          >
+            Nuestras <span class="text-primary">Cifras</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          <div class="bg-white p-6 md:p-8 rounded text-center">
+            <div
+              class="text-3xl md:text-5xl font-display font-bold text-primary mb-2"
+            >
+              49
+            </div>
+            <p
+              class="text-xs font-bold tracking-[0.2em] uppercase text-gray-600"
+            >
+              Años de Trayectoria
+            </p>
+          </div>
+          <div class="bg-white p-6 md:p-8 rounded text-center">
+            <div
+              class="text-3xl md:text-5xl font-display font-bold text-primary mb-2"
+            >
+              2.4K
+            </div>
+            <p
+              class="text-xs font-bold tracking-[0.2em] uppercase text-gray-600"
+            >
+              Músicos Formados
+            </p>
+          </div>
+          <div class="bg-white p-6 md:p-8 rounded text-center">
+            <div
+              class="text-3xl md:text-5xl font-display font-bold text-primary mb-2"
+            >
+              1.5K
+            </div>
+            <p
+              class="text-xs font-bold tracking-[0.2em] uppercase text-gray-600"
+            >
+              Personas por Conciertos
+            </p>
+          </div>
+          <div class="bg-white p-6 md:p-8 rounded text-center">
+            <div
+              class="text-3xl md:text-5xl font-display font-bold text-primary mb-2"
+            >
+              17K
+            </div>
+            <p
+              class="text-xs font-bold tracking-[0.2em] uppercase text-gray-600"
+            >
+              Alcance Digital
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-white">
+      <div class="container mx-auto px-6 max-w-5xl">
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white border border-gray-200 rounded p-8 md:p-10">
+            <SectionTitle
+              title="Únete"
+              variant="red"
+              class="text-2xl font-display font-bold mb-4 text-gray-900 uppercase tracking-tight"
+              wrapperClass="text-left"
+              dividerClass="h-1 w-16 mb-6"
+            />
+            <p class="text-gray-700 mb-8 leading-relaxed">
+              Ya sea como patrocinante corporativo, benefactor o estudiante, tu
+              presencia es vital para nuestra misión. Todo apoyo es invaluable.
+            </p>
+            <SecondaryButton href="/contacto" fullWidth
+              >Contactanos</SecondaryButton
+            >
+          </div>
+          <div class="bg-white border border-gray-200 rounded p-8 md:p-10">
+            <SectionTitle
+              title="Academia"
+              class="text-2xl font-display font-bold mb-4 text-gray-900 uppercase tracking-tight"
+              wrapperClass="text-left"
+              dividerClass="h-1 w-16 mb-6"
+            />
+            <p class="text-gray-700 mb-8 leading-relaxed">
+              Explora las oportunidades académicas y conviértete en parte de la
+              nueva generación de músicos de élite de nuestro país.
+            </p>
+            <PrimaryButton href="/nosotros/academia" fullWidth
+              >Programas Académicos</PrimaryButton
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>
