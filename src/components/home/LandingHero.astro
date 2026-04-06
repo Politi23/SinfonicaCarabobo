@@ -59,16 +59,20 @@ const images = [slide1, slide2, slide3, slide4, slide5];
     </div>
 
     <div class="hero-content flex justify-between items-center mx-10">
-      <!-- <h1
-        class="font-titles text-left text-4xl font-semibold text-shadow-lg shadow-black ml-10 bg-blend-screen"
-      >
-        ¡Sómos el Alma Músical de Carabobo!
-      </h1> -->
-      <Logo
+      <!-- <Logo
         class="hero-logo mask-clip-border bg-blend-normal"
         width={500}
         height={500}
-      />
+      /> -->
+    </div>
+
+    <div class="slogan-container">
+      <!-- <div class="slogan-decorative-line"></div> -->
+      <p class="slogan">
+        ¡Somos el <span class="slogan-italic">Alma Musical</span><br />de
+        Carabobo!
+      </p>
+      <!-- <div class="slogan-decorative-line"></div> -->
     </div>
   </section>
 </main>
@@ -100,6 +104,46 @@ const images = [slide1, slide2, slide3, slide4, slide5];
     .hero-title {
       font-size: 2.1rem;
     }
+
+    .slogan {
+      font-size: 1rem;
+      letter-spacing: 2px;
+    }
+  }
+
+  .slogan-container {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .slogan-decorative-line {
+    width: 80px;
+    height: 5px;
+    background: var(--color-primary);
+    opacity: 0.6;
+  }
+
+  .slogan {
+    margin: 0;
+    font-family: var(--font-cinzel), serif;
+    font-size: 3rem;
+    font-weight: 400;
+    color: var(--color-primary);
+    letter-spacing: 3px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+  }
+
+  .slogan-italic {
+    font-style: italic;
+    font-weight: 700;
   }
 
   @keyframes fade-in-out {
