@@ -7,28 +7,35 @@ import allyClxSamsung from "@assets/images/allies/ally-clxsamsung.webp";
 import allyAlcaldia from "@assets/images/allies/ally-alcaldia-sandiego.webp";
 import allyScgc from "@assets/images/allies/ally-scgc.webp";
 import allyUnesco from "@assets/images/allies/ally-unesco.webp";
+import { addIssueToContext } from "astro:schema";
 
 const allies = [
   { src: allyUjap, alt: "UJAP" },
   { src: allyHesperia, alt: "HesperiaWTC" },
-  { src: allyMultimax, alt: "Multimax" },
-  { src: allyClxSamsung, alt: "CLXSamsung" },
+  {
+    src: allyMultimax,
+    alt: "Multimax",
+    class: "max-w-[11rem]",
+  },
+  { src: allyClxSamsung, alt: "CLXSamsung", class: "max-w-[11rem]" },
   { src: allyAlcaldia, alt: "Alcaldía de San Diego" },
   { src: allyUnesco, alt: "Unesco" },
   { src: allyScgc, alt: "Secretaría de Cultura Gobernación de Carabobo" },
 ];
 ---
 
-<section class="py-12 md:py-16 bg-background-light overflow-hidden">
-  <div class="container mx-auto px-6 mb-8 md:mb-10 text-center">
-    <span class="text-zinc-700 text-sm font-bold tracking-[0.2em] uppercase">
+<section class="py-12 md:py-28 bg-background-light overflow-hidden">
+  <div class="container mx-auto px-6 mb-8 md:mb-12 text-center">
+    <span
+      class="text-zinc-600 text-base font-semibold tracking-[0.15rem] uppercase"
+    >
       Confían en Nosotros
     </span>
   </div>
 
   <div class="w-full">
     <div
-      class="w-full max-w-6xl mx-auto px-4 sm:px-4 lg:px-6 flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-12"
+      class="w-full mx-auto px-4 sm:px-4 lg:px-6 flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-12"
     >
       {
         allies.map((ally) => (
@@ -36,9 +43,11 @@ const allies = [
             <Picture
               src={ally.src}
               alt={ally.alt}
-              width="112"
               height="112"
-              class="max-w-full max-h-full object-contain grayscale opacity-60 transition-all duration-300 hover:grayscale-0 hover:opacity-100"
+              class={
+                "max-w-full max-h-full grayscale opacity-60 transition-all duration-300 hover:grayscale-0 hover:opacity-100 " +
+                ally.class
+              }
               formats={["webp"]}
               fallbackFormat="webp"
               loading="lazy"
