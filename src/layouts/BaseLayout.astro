@@ -5,70 +5,70 @@ import "../styles/global.css";
 import { Font } from "astro:assets";
 
 export interface Props {
-    title?: string;
-    bodyClass?: string;
+  title?: string;
+  bodyClass?: string;
 }
 
 const { title = "Orquesta Sinfónica de Carabobo", bodyClass = "" } =
-    Astro.props;
+  Astro.props;
 ---
 
 <!doctype html>
 <html lang="es" class="scroll-smooth">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-            name="description"
-            content="Fundación Orquesta Sinfónica de Carabobo - Más de 40 años llevando la música clásica a Venezuela. Conciertos, academia, eventos culturales y más."
-        />
-        <meta
-            name="keywords"
-            content="orquesta, música clásica, Carabobo, Venezuela, conciertos, academia de música, cultura"
-        />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="generator" content={Astro.generator} />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Fundación Orquesta Sinfónica de Carabobo - Más de 40 años llevando la música clásica a Venezuela. Conciertos, academia, eventos culturales y más."
+    />
+    <meta
+      name="keywords"
+      content="orquesta, música clásica, Carabobo, Venezuela, conciertos, academia de música, cultura"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
 
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
-        />
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
-        />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+    />
 
-        <link
-            href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wdth,wght@0,18..144,87..112,300..900;1,18..144,87..112,300..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
-            rel="stylesheet"
-        />
-        <link
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
-            rel="stylesheet"
-        />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wdth,wght@0,18..144,87..112,300..900;1,18..144,87..112,300..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
 
-        <Font cssVariable="--font-cinzel" />
+    <Font cssVariable="--font-cinzel" />
 
-        <title>{title} - Orquesta Sinfónica de Carabobo</title>
-        <slot name="head" />
-    </head>
+    <title>{title} - Orquesta Sinfónica de Carabobo</title>
+    <slot name="head" />
+  </head>
 
-    <body
-        class={`bg-background-light dark:bg-background-dark text-text-dark dark:text-text-secondary font-serif transition-colors duration-300 min-h-screen antialiased flex flex-col ${bodyClass}`}
-    >
-        <Header />
+  <body
+    class={`bg-background-light text-text-dark font-serif transition-colors duration-300 min-h-screen antialiased flex flex-col ${bodyClass}`}
+  >
+    <Header />
 
-        <main class="flex-grow w-full flex flex-col">
-            <slot />
-        </main>
+    <main class="flex-grow w-full flex flex-col">
+      <slot />
+    </main>
 
-        <Footer />
-    </body>
+    <Footer />
+  </body>
 </html>

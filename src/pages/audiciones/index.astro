@@ -3,254 +3,250 @@ import MainHero from "@components/sections/MainHero.astro";
 import Layout from "@layouts/Layout.astro";
 
 type InstrumentSeed = {
-    folder: string;
-    files: string[];
+  folder: string;
+  files: string[];
 };
 
 type InstrumentFile = {
-    title: string;
-    link: string;
+  title: string;
+  link: string;
 };
 
 type InstrumentItem = {
-    name: string;
-    files: InstrumentFile[];
+  name: string;
+  files: InstrumentFile[];
 };
 
 const instrumentsSeed: InstrumentSeed[] = [
-    {
-        folder: "Clarinete",
-        files: [
-            "fila_clarinete.zip",
-            "pasante_clarinete.zip",
-            "principal_asistente_clarinete.zip",
-        ],
-    },
-    {
-        folder: "Contrabajo ",
-        files: [
-            "fila_contrabajo.zip",
-            "pasante_contrabajo.zip",
-            "principal_contrabajo.zip",
-        ],
-    },
-    { folder: "Corno", files: ["audiciones_corno.zip"] },
-    { folder: "Flauta", files: ["audiciones_flauta.zip"] },
-    {
-        folder: "Oboe",
-        files: [
-            "fila_oboe.zip",
-            "pasante_oboe.zip",
-            "principal_asistente_oboe.zip",
-        ],
-    },
-    { folder: "Percusión", files: ["tutti_percusion.zip"] },
-    { folder: "Trombón", files: ["audiciones_trombon.zip"] },
-    {
-        folder: "Trompeta ",
-        files: ["fila_trompeta.zip", "pasante_trompeta.zip"],
-    },
-    { folder: "Tuba", files: ["audiciones_tuba.zip"] },
-    {
-        folder: "Viola",
-        files: [
-            "fila_viola.zip",
-            "pasante_viola.zip",
-            "principal_asistente_viola.zip",
-        ],
-    },
-    {
-        folder: "Violín ",
-        files: [
-            "fila_a_violin.zip",
-            "fila_b_violin.zip",
-            "pasante_violin.zip",
-            "principal_asistente_violin.zip",
-        ],
-    },
-    {
-        folder: "Violoncello ",
-        files: [
-            "asistente_violoncello.zip",
-            "fila_a_violoncello.zip",
-            "fila_b_violoncello.zip",
-            "pasante_violoncello.zip",
-            "principal_violoncello.zip",
-        ],
-    },
+  {
+    folder: "Clarinete",
+    files: [
+      "fila_clarinete.zip",
+      "pasante_clarinete.zip",
+      "principal_asistente_clarinete.zip",
+    ],
+  },
+  {
+    folder: "Contrabajo ",
+    files: [
+      "fila_contrabajo.zip",
+      "pasante_contrabajo.zip",
+      "principal_contrabajo.zip",
+    ],
+  },
+  { folder: "Corno", files: ["audiciones_corno.zip"] },
+  { folder: "Flauta", files: ["audiciones_flauta.zip"] },
+  {
+    folder: "Oboe",
+    files: [
+      "fila_oboe.zip",
+      "pasante_oboe.zip",
+      "principal_asistente_oboe.zip",
+    ],
+  },
+  { folder: "Percusión", files: ["tutti_percusion.zip"] },
+  { folder: "Trombón", files: ["audiciones_trombon.zip"] },
+  {
+    folder: "Trompeta ",
+    files: ["fila_trompeta.zip", "pasante_trompeta.zip"],
+  },
+  { folder: "Tuba", files: ["audiciones_tuba.zip"] },
+  {
+    folder: "Viola",
+    files: [
+      "fila_viola.zip",
+      "pasante_viola.zip",
+      "principal_asistente_viola.zip",
+    ],
+  },
+  {
+    folder: "Violín ",
+    files: [
+      "fila_a_violin.zip",
+      "fila_b_violin.zip",
+      "pasante_violin.zip",
+      "principal_asistente_violin.zip",
+    ],
+  },
+  {
+    folder: "Violoncello ",
+    files: [
+      "asistente_violoncello.zip",
+      "fila_a_violoncello.zip",
+      "fila_b_violoncello.zip",
+      "pasante_violoncello.zip",
+      "principal_violoncello.zip",
+    ],
+  },
 ];
 
 const normalizeFileName = (fileName: string) =>
-    fileName
-        .replace(/\.[^.]+$/, "")
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[_\-\s]+/g, "");
+  fileName
+    .replace(/\.[^.]+$/, "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[_\-\s]+/g, "");
 
 const toReadableLabel = (fileName: string) =>
-    fileName
-        .replace(/\.[^.]+$/, "")
-        .replace(/[_\-]+/g, " ")
-        .trim()
-        .replace(/\s+/g, " ")
-        .replace(/\b\w/g, (char) => char.toUpperCase());
+  fileName
+    .replace(/\.[^.]+$/, "")
+    .replace(/[_\-]+/g, " ")
+    .trim()
+    .replace(/\s+/g, " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
 
 const levelMappings: Array<[string, string]> = [
-    ["principalasistente", "Nivel Principal Asistente"],
-    ["filaa", "Nivel Fila A"],
-    ["filab", "Nivel Fila B"],
-    ["filac", "Nivel Fila C"],
-    ["pasante", "Nivel Pasante"],
-    ["principal", "Nivel Principal"],
-    ["asistente", "Nivel Asistente"],
-    ["tutti", "Nivel Tutti"],
-    ["fila", "Nivel Fila"],
+  ["principalasistente", "Nivel Principal Asistente"],
+  ["filaa", "Nivel Fila A"],
+  ["filab", "Nivel Fila B"],
+  ["filac", "Nivel Fila C"],
+  ["pasante", "Nivel Pasante"],
+  ["principal", "Nivel Principal"],
+  ["asistente", "Nivel Asistente"],
+  ["tutti", "Nivel Tutti"],
+  ["fila", "Nivel Fila"],
 ];
 
 const getFileTitle = (fileName: string) => {
-    const normalizedName = normalizeFileName(fileName);
-    const match = levelMappings.find(([pattern]) =>
-        normalizedName.includes(pattern),
-    );
-    return match?.[1] ?? toReadableLabel(fileName);
+  const normalizedName = normalizeFileName(fileName);
+  const match = levelMappings.find(([pattern]) =>
+    normalizedName.includes(pattern),
+  );
+  return match?.[1] ?? toReadableLabel(fileName);
 };
 
 const groupedInstruments = new Map<string, InstrumentFile[]>();
 
 for (const instrument of instrumentsSeed) {
-    const key = instrument.folder.trim();
-    const existing = groupedInstruments.get(key) ?? [];
-    const files = instrument.files.map((fileName) => ({
-        title: getFileTitle(fileName),
-        link: encodeURI(`/audiciones/${instrument.folder}/${fileName}`),
-    }));
+  const key = instrument.folder.trim();
+  const existing = groupedInstruments.get(key) ?? [];
+  const files = instrument.files.map((fileName) => ({
+    title: getFileTitle(fileName),
+    link: encodeURI(`/audiciones/${instrument.folder}/${fileName}`),
+  }));
 
-    groupedInstruments.set(key, [...existing, ...files]);
+  groupedInstruments.set(key, [...existing, ...files]);
 }
 
 const instruments: InstrumentItem[] = [...groupedInstruments.entries()]
-    .map(([name, files]) => ({
-        name,
-        files: files.sort((a, b) => a.title.localeCompare(b.title, "es")),
-    }))
-    .sort((a, b) => a.name.localeCompare(b.name, "es"));
+  .map(([name, files]) => ({
+    name,
+    files: files.sort((a, b) => a.title.localeCompare(b.title, "es")),
+  }))
+  .sort((a, b) => a.name.localeCompare(b.name, "es"));
 
 const planillaHref = encodeURI("/audiciones/planilla de Audición OSC.pdf");
 ---
 
 <Layout title="Audiciones">
-    <MainHero title="Audiciones" />
+  <MainHero title="Audiciones" />
 
-    <main class="py-16">
-        <section class="container mx-auto max-w-3xl px-6 space-y-8">
-            <h1 class="text-3xl font-semibold tracking-tight">
-                Proceso de audición
-            </h1>
+  <main class="py-16 bg-background-dark text-text-light">
+    <section class="container mx-auto max-w-3xl px-6 space-y-8">
+      <h1 class="text-3xl font-semibold tracking-tight">Proceso de audición</h1>
 
-            <ol class="list-decimal space-y-2 pl-5">
-                <li>
-                    Revisa las obras requeridas para el instrumento y nivel de
-                    interés.
-                </li>
-                <li>Descarga y completa la planilla de audicion.</li>
-                <li>Prepara y entrega los materiales solicitados.</li>
-            </ol>
+      <ol class="list-decimal space-y-2 pl-5">
+        <li>
+          Revisa las obras requeridas para el instrumento y nivel de interés.
+        </li>
+        <li>Descarga y completa la planilla de audicion.</li>
+        <li>Prepara y entrega los materiales solicitados.</li>
+      </ol>
 
-            <p>
-                <a
-                    class="underline hover:no-underline"
-                    href={planillaHref}
-                    download
-                >
-                    Descargar planilla de audicion
-                </a>
-            </p>
+      <p>
+        <a
+          class="underline hover:no-underline text-text-light"
+          href={planillaHref}
+          download
+        >
+          Descargar planilla de audicion
+        </a>
+      </p>
 
-            <div class="space-y-4">
-                <label class="block font-medium" for="instrumento-select"
-                    >Instrumento</label
-                >
-                <div class="relative">
-                    <select
-                        id="instrumento-select"
-                        class="w-full appearance-none rounded border border-white bg-transparent px-3 py-2 pr-10 text-white focus:outline-none focus:ring-2 focus:ring-white/60"
-                    >
-                        <option value="">Selecciona un instrumento</option>
-                        {
-                            instruments.map((instrument) => (
-                                <option value={instrument.name}>
-                                    {instrument.name}
-                                </option>
-                            ))
-                        }
-                    </select>
-                    <svg
-                        class="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-white"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        aria-hidden="true"
-                    >
-                        <path
-                            fill-rule="evenodd"
-                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.173l3.71-3.944a.75.75 0 111.08 1.04l-4.25 4.518a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </div>
-            </div>
-
-            <div id="instrument-files" class="space-y-2" aria-live="polite">
-            </div>
-        </section>
-    </main>
-
-    <script is:inline define:vars={{ instruments }}>
-        const select = document.getElementById("instrumento-select");
-        const filesContainer = document.getElementById("instrument-files");
-        const filesByInstrument = new Map(
-            instruments.map((instrument) => [
-                instrument.name,
-                instrument.files,
-            ]),
-        );
-
-        const renderFiles = (instrumentName) => {
-            if (!filesContainer) return;
-
-            const files = filesByInstrument.get(instrumentName) ?? [];
-
-            if (!instrumentName) {
-                filesContainer.innerHTML = "";
-                return;
+      <div class="space-y-4">
+        <label
+          class="block font-medium text-text-light"
+          for="instrumento-select">Instrumento</label
+        >
+        <div class="relative">
+          <select
+            id="instrumento-select"
+            class="w-full appearance-none rounded border border-white bg-transparent px-3 py-2 pr-10 text-white focus:outline-none focus:ring-2 focus:ring-white/60"
+          >
+            <option value="" class="text-black"
+              >Selecciona un instrumento</option
+            >
+            {
+              instruments.map((instrument) => (
+                <option value={instrument.name} class="text-black">
+                  {instrument.name}
+                </option>
+              ))
             }
+          </select>
+          <svg
+            class="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-white"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M5.23 7.21a.75.75 0 011.06.02L10 11.173l3.71-3.944a.75.75 0 111.08 1.04l-4.25 4.518a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </div>
+      </div>
 
-            if (files.length === 0) {
-                filesContainer.innerHTML =
-                    "<p>No hay archivos disponibles para este instrumento.</p>";
-                return;
-            }
+      <div id="instrument-files" class="space-y-2" aria-live="polite"></div>
+    </section>
+  </main>
 
-            const fragment = document.createDocumentFragment();
+  <script is:inline define:vars={{ instruments }}>
+    const select = document.getElementById("instrumento-select");
+    const filesContainer = document.getElementById("instrument-files");
+    const filesByInstrument = new Map(
+      instruments.map((instrument) => [instrument.name, instrument.files]),
+    );
 
-            for (const file of files) {
-                const paragraph = document.createElement("p");
-                const link = document.createElement("a");
-                link.className = "no-underline hover:underline";
-                link.href = file.link;
-                link.download = "";
-                link.title = file.title;
-                link.textContent = file.title;
-                paragraph.append(link);
-                fragment.append(paragraph);
-            }
+    const renderFiles = (instrumentName) => {
+      if (!filesContainer) return;
 
-            filesContainer.replaceChildren(fragment);
-        };
+      const files = filesByInstrument.get(instrumentName) ?? [];
 
-        if (select) {
-            select.addEventListener("change", (event) => {
-                renderFiles(event.target.value);
-            });
-        }
-    </script>
+      if (!instrumentName) {
+        filesContainer.innerHTML = "";
+        return;
+      }
+
+      if (files.length === 0) {
+        filesContainer.innerHTML =
+          "<p>No hay archivos disponibles para este instrumento.</p>";
+        return;
+      }
+
+      const fragment = document.createDocumentFragment();
+
+      for (const file of files) {
+        const paragraph = document.createElement("p");
+        const link = document.createElement("a");
+        link.className = "no-underline hover:underline text-text-light";
+        link.href = file.link;
+        link.download = "";
+        link.title = file.title;
+        link.textContent = file.title;
+        paragraph.append(link);
+        fragment.append(paragraph);
+      }
+
+      filesContainer.replaceChildren(fragment);
+    };
+
+    if (select) {
+      select.addEventListener("change", (event) => {
+        renderFiles(event.target.value);
+      });
+    }
+  </script>
 </Layout>

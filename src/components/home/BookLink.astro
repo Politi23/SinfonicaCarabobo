@@ -5,7 +5,7 @@ import { Picture } from "astro:assets";
 ---
 
 <section
-  class="flex flex-col items-center pb-12 md:pb-14 bg-gradient-to-br from-black via-black"
+  class="flex flex-col items-center pb-12 md:pb-14 bg-gradient-to-br from-black via-black from-0% via-66% to-zinc-800"
 >
   <div class="relative overflow-hidden pt-10 md:pt-12 lg:pt-16 pb-10 md:pb-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,9 +47,9 @@ import { Picture } from "astro:assets";
             >
             </div>
             <Picture
-              alt="Portada del libro 45 Años de Historia"
-              class="rounded-r-xl shadow-2xl w-[320px] md:w-[400px] object-cover relative z-20 border-l-4 border-border-dark dark:border-gray-700"
               src={libroImage}
+              alt="Portada del libro 45 Años de Historia"
+              class="rounded-r-xl shadow-2xl w-[320px] md:w-[400px] object-cover relative z-20 border-l-4 border-border-dark"
               width="400"
               height="500"
               formats={["webp"]}
