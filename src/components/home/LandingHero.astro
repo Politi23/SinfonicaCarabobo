@@ -12,14 +12,14 @@ const images = [slide1, slide2, slide3, slide4, slide5];
 
 <main>
   <section
-    class="relative h-[90vh] flex flex-col justify-center text-center bg-white"
+    class="relative h-[90vh] flex flex-col justify-center text-center bg-black"
   >
-    <div class="absolute inset-0 opacity-100">
+    <div class="absolute inset-0">
       <div class="absolute inset-0">
         <Picture
           src={images[0]}
           alt="Orquesta Sinfónica"
-          class="c-slide w-full h-full object-cover"
+          class="first-c-slide w-full h-full object-cover"
           width="1920"
           height="1080"
           formats={["webp"]}
@@ -159,8 +159,12 @@ const images = [slide1, slide2, slide3, slide4, slide5];
       opacity: 1;
     }
 
-    35% {
+    30% {
       opacity: 0.2;
+    }
+
+    40% {
+      opacity: 0;
     }
 
     100% {
@@ -170,8 +174,23 @@ const images = [slide1, slide2, slide3, slide4, slide5];
 
   .c-slide {
     opacity: 0;
-    animation: fade-in-out 25s ease infinite;
+    animation: fade-in-out 20s ease infinite;
     /* animation-iteration-count: infinite; */
-    animation-delay: calc(var(--i) * 5s);
+    animation-delay: calc(var(--i) * 4s);
+  }
+
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .first-c-slide {
+    opacity: 1;
+    animation: fade-out 4s forwards;
   }
 </style>
