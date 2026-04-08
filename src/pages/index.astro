@@ -1,15 +1,15 @@
 ---
 import LandingHero from "@components/home/LandingHero.astro";
-import ConciertosSection from "../components/home/ConciertosSection.astro";
-import ConciertosSectionFallback from "../components/home/ConciertosSectionFallback.astro";
-import Layout from "../layouts/Layout.astro";
-import Allies from "../components/sections/Allies.astro";
-import SocialImpact from "../components/home/SocialImpact.astro";
-import BookLink from "../components/home/BookLink.astro";
-import LatestBlogPosts from "../components/global/LatestBlogPostsIndex.astro";
-import LatestBlogPostsIndexFallback from "../components/global/LatestBlogPostsIndexFallback.astro";
-import ReconocimientosCTA from "@components/nosotros/ReconocimientosCTA.astro";
-import EnsemblesSection from "../components/home/EnsemblesSection.astro";
+import ConciertosSection from "@components/home/ConciertosSection.astro";
+import ConciertosSectionFallback from "@components/home/ConciertosSectionFallback.astro";
+import Layout from "@layouts/Layout.astro";
+import Allies from "@components/sections/Allies.astro";
+import SocialImpact from "@components/home/SocialImpact.astro";
+import BookLink from "@components/home/BookLink.astro";
+import LatestBlogPosts from "@components/global/LatestBlogPostsIndex.astro";
+import LatestBlogPostsIndexFallback from "@components/global/LatestBlogPostsIndexFallback.astro";
+import ApoyanosSection from "@components/home/ApoyanosSection.astro";
+import EnsemblesSection from "@components/home/EnsemblesSection.astro";
 ---
 
 <Layout title="Inicio" showLatestPosts={false}>
@@ -33,5 +33,5 @@ import EnsemblesSection from "../components/home/EnsemblesSection.astro";
 
   <Allies />
 
-  <ReconocimientosCTA />
+  <ApoyanosSection />
 </Layout>
