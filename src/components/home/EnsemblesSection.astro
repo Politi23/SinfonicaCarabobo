@@ -1,91 +1,97 @@
 ---
 import { Picture } from "astro:assets";
 import SecondaryButton from "@components/ui/SecondaryButton.astro";
-import orquestaSinfonica from "@assets/images/orquesta/OSC en TTC.webp";
+import orquestaSinfonica from "@assets/images/agrupaciones/orquesta.webp";
 import orquestaCamara from "@assets/images/orquesta/DSC_1676.webp";
 import jazzEnsamble from "@assets/images/orquesta/DSC_5305.webp";
 import cuartetoCuerdas from "@assets/images/orquesta/DSC_5276.webp";
 
 const ensembles = [
-    {
-        nombre: "Orquesta Sinfónica de Carabobo",
-        imagen: orquestaSinfonica,
-        descripcion:
-            "Orquesta Sinfónica conformada por músicos profesionales, para repertorios y eventos que requieran este formato musical.",
-    },
-    {
-        nombre: "Orquesta de Cámara Sinfocarabobo",
-        imagen: orquestaCamara,
-        descripcion:
-            "Agrupación musical conformada entre 15 y 25 músicos, de las secciones de cuerdas, vientos, percusión, bajo eléctrico y voz.",
-    },
-    {
-        nombre: "Sinfocarabobo Jazz Ensamble",
-        imagen: jazzEnsamble,
-        descripcion:
-            "Agrupación musical, conformada por diferentes instrumentos acústicos, eléctricos, electrónicos y voz, en diferentes formatos instrumentales.",
-    },
-    {
-        nombre: "Cuarteto Sinfocarabobo",
-        imagen: cuartetoCuerdas,
-        descripcion:
-            "Cuarteto de cuerdas conformado por dos violines, viola y violonchelo, con amplia experiencia musical y artística.",
-    },
+  {
+    nombre: "Orquesta Sinfónica de Carabobo",
+    imagen: orquestaSinfonica,
+    descripcion:
+      "Orquesta Sinfónica conformada por músicos profesionales, para repertorios y eventos que requieran este formato musical.",
+  },
+  {
+    nombre: "Orquesta de Cámara Sinfocarabobo",
+    imagen: orquestaCamara,
+    descripcion:
+      "Agrupación musical conformada entre 15 y 25 músicos, de las secciones de cuerdas, vientos, percusión, bajo eléctrico y voz.",
+  },
+  {
+    nombre: "Sinfocarabobo Jazz Ensamble",
+    imagen: jazzEnsamble,
+    descripcion:
+      "Agrupación musical, conformada por diferentes instrumentos acústicos, eléctricos, electrónicos y voz, en diferentes formatos instrumentales.",
+  },
+  {
+    nombre: "Cuarteto Sinfocarabobo",
+    imagen: cuartetoCuerdas,
+    descripcion:
+      "Cuarteto de cuerdas conformado por dos violines, viola y violonchelo, con amplia experiencia musical y artística.",
+  },
 ];
 ---
 
-<section class="py-16 md:py-24 bg-white">
-    <div class="container mx-auto px-6 max-w-6xl">
-        <!-- Section Header -->
-        <div class="text-center mb-16">
-            <span
-                class="text-secondary text-sm font-bold tracking-[0.2em] uppercase mb-4 block"
-            >
-                Música a tu Medida
-            </span>
-            <h2
-                class="text-3xl md:text-5xl font-display font-bold text-gray-900"
-            >
-                Nuestras <span class="text-primary">Agrupaciones</span>
-            </h2>
-        </div>
-
-        <!-- Ensembles Grid -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {
-                ensembles.map((ensemble) => (
-                    <div class="group bg-gray-100 rounded-xl overflow-hidden border border-gray-100 hover:border-primary/50 transition-all duration-300">
-                        <div class="aspect-[4/3] overflow-hidden">
-                            <Picture
-                                src={ensemble.imagen}
-                                alt={ensemble.nombre}
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                width="400"
-                                height="300"
-                                formats={["webp"]}
-                                fallbackFormat="webp"
-                                loading="lazy"
-                                decoding="async"
-                            />
-                        </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-2">
-                                {ensemble.nombre}
-                            </h3>
-                            <p class="text-gray-600 text-sm leading-relaxed line-clamp-3">
-                                {ensemble.descripcion}
-                            </p>
-                        </div>
-                    </div>
-                ))
-            }
-        </div>
-
-        <!-- CTA Button -->
-        <div class="text-center">
-            <SecondaryButton href="/agrupaciones">
-                Ver Todas las Agrupaciones
-            </SecondaryButton>
-        </div>
+<section class="py-20 md:py-32 bg-surface-light relative overflow-hidden">
+  <div class="container mx-auto px-6 max-w-7xl relative z-10">
+    <div class="text-center mb-20">
+      <span
+        class="text-secondary text-sm font-bold tracking-[0.3em] uppercase mb-4 block"
+      >
+        ¡Somos la música para tu evento!
+      </span>
+      <h2 class="text-4xl md:text-5xl font-bold text-text-dark mb-6">
+        Nuestras <span class="text-primary">Agrupaciones</span>
+      </h2>
     </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+      {
+        ensembles.map((ensemble) => (
+          <div class="group bg-background-light flex flex-col hover:shadow-lg transition-all duration-500 border border-border-light">
+            <div class="relative overflow-hidden aspect-[4/3]">
+              <div class="absolute inset-0 bg-text-dark/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
+
+              <Picture
+                src={ensemble.imagen}
+                alt={ensemble.nombre}
+                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                width="600"
+                height="450"
+                formats={["webp"]}
+                fallbackFormat="webp"
+                loading="lazy"
+                decoding="async"
+              />
+
+              <div class="absolute inset-4 border border-white/40 z-20 pointer-events-none scale-95 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+            </div>
+
+            <div class="p-8 flex flex-col flex-grow relative bg-background-light">
+              <div class="w-8 h-[2px] bg-primary mb-5 transition-all duration-300 group-hover:w-16" />
+
+              <h3 class="text-lg font-bold text-text-dark mb-4 leading-snug uppercase tracking-wide">
+                {ensemble.nombre}
+              </h3>
+
+              <p class="text-text-dark text-sm leading-relaxed mb-6 flex-grow font-light">
+                {ensemble.descripcion}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="text-center mt-12 flex justify-center">
+      <SecondaryButton
+        href="/agrupaciones"
+        class="px-10 py-4 uppercase tracking-[0.2em] text-sm font-bold transition-all duration-300 hover:shadow-lg"
+      >
+        Ver Todas las Agrupaciones
+      </SecondaryButton>
+    </div>
+  </div>
 </section>
