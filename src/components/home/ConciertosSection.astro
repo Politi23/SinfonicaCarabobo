@@ -12,7 +12,7 @@ interface Props {
 const { perPage = 9 } = Astro.props as Props;
 const eventos = await getEventos(perPage);
 const carouselId = `conciertos-${Math.random().toString(36).slice(2, 9)}`;
-const errorLoading = eventos.length === 0;
+const errorLoading = eventos.length === 0 || !eventos;
 ---
 
 <section class="bg-white py-5 md:py-12" data-conciertos-carousel={carouselId}>
@@ -36,6 +36,37 @@ const errorLoading = eventos.length === 0;
         >
           <i class="ph ph-caret-right"></i>
         </button>
+      </div>
+    </div>
+
+    <div class="relative mt-4">
+      <div
+        data-carousel-viewport
+        class="overflow-x-auto md:overflow-hidden py-2"
+      >
+        <div
+          data-carousel-track
+          class="grid grid-flow-col auto-cols-[minmax(17rem,1fr)] md:auto-cols-[minmax(20rem,1fr)] lg:auto-cols-[minmax(22rem,1fr)] gap-4 md:gap-6 snap-x snap-mandatory md:snap-none"
+        >
+          {
+            eventos.map((evento) => (
+              <div class="snap-start h-full">
+                <EventoCard
+                  title={evento.title.rendered}
+                  excerpt={evento.acf.event_description}
+                  image={
+                    evento._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
+                    ""
+                  }
+                  date={evento.acf.event_date}
+                  time={evento.acf.event_time}
+                  venue={evento.acf.event_venue}
+                  slug={evento.slug}
+                />
+              </div>
+            ))
+          }
+        </div>
       </div>
     </div>
 
