@@ -15,11 +15,11 @@ export interface Props {
 const {
   title = "Últimas Entradas del Blog",
   numberOfPosts = 3,
-  showViewAllButton = true,
   viewAllButtonText = "Ver todos",
 } = Astro.props;
 
 const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
+const errorLoading = latestPosts.length === 0;
 ---
 
 <section class="bg-white py-5 md:py-7">
@@ -29,7 +29,7 @@ const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
     </div>
 
     {
-      latestPosts.length > 0 ? (
+      !errorLoading ? (
         <>
           <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-7">
             {latestPosts.map((post) => (
@@ -70,19 +70,15 @@ const latestPosts = await getBlogs({ perPage: numberOfPosts, page: 1 });
         </>
       ) : (
         <div class="text-center py-8">
-          <p class="text-gray-500 text-lg">
-            No hay entradas del blog disponibles por el momento.
+          <p class="flex items-center justify-center text-gray-500 text-lg min-h-[30vh]">
+            Hubo un error consiguiendo los elementos.
           </p>
         </div>
       )
     }
 
-    {
-      showViewAllButton && (
-        <div class="text-center mt-5">
-          <SecondaryButton href="/blog">{viewAllButtonText}</SecondaryButton>
-        </div>
-      )
-    }
+    <div class="text-center mt-5">
+      <SecondaryButton href="/blog">{viewAllButtonText}</SecondaryButton>
+    </div>
   </div>
 </section>
