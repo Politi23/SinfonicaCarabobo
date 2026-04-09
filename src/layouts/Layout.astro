@@ -1,14 +1,21 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import LatestBlogPosts from "../components/global/LatestBlogPosts.astro";
+import ApoyanosSection from "@components/home/ApoyanosSection.astro";
 
 export interface Props {
   title?: string;
   is404?: boolean;
   showLatestPosts?: boolean;
+  showApoyanosSection?: boolean;
 }
 
-const { title, is404 = false, showLatestPosts = true } = Astro.props;
+const {
+  title,
+  is404 = false,
+  showLatestPosts = true,
+  showApoyanosSection = false,
+} = Astro.props;
 ---
 
 <BaseLayout title={title}>
@@ -17,4 +24,5 @@ const { title, is404 = false, showLatestPosts = true } = Astro.props;
   <slot />
 
   {showLatestPosts && <LatestBlogPosts />}
+  {showApoyanosSection && <ApoyanosSection />}
 </BaseLayout>
