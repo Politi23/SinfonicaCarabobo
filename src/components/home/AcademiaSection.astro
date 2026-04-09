@@ -1,0 +1,179 @@
+---
+import { Picture } from "astro:assets";
+import SecondaryButton from "@components/ui/SecondaryButton.astro";
+import background from "@assets/images/academia/recitales_finales1.webp";
+import slide1 from "@assets/images/academia/orquesta6.webp";
+import slide2 from "@assets/images/academia/recital_agosto1.webp";
+import slide3 from "@assets/images/academia/recitales_finales9.webp";
+import slide4 from "@assets/images/academia/recitales_octubre13.webp";
+import slide5 from "@assets/images/academia/recitales_finales17.webp";
+import slide6 from "@assets/images/academia/recitales_octubre5.webp";
+
+const carouselImages = [
+    {
+        src: slide1,
+        alt: "Estudiantes de musica en recital final",
+    },
+    {
+        src: slide2,
+        alt: "Presentacion academica de estudiantes",
+    },
+    {
+        src: slide3,
+        alt: "Practica orquestal en la academia",
+    },
+    {
+        src: slide4,
+        alt: "Practica orquestal en la academia",
+    },
+    {
+        src: slide5,
+        alt: "Practica orquestal en la academia",
+    },
+    {
+        src: slide6,
+        alt: "Practica orquestal en la academia",
+    },
+];
+---
+
+<section class="bg-white overflow-hidden py-16 md:py-20 pl-10">
+    <div class="container">
+        <div
+            class="flex flex-col gap-10 md:flex-row md:items-center md:gap-2 lg:gap-4"
+        >
+            <div
+                class="w-full md:min-w-[50vw] flex flex-col items-start space-y-6 md:space-y-8 md:col-span-2 px-0 md:px-10"
+            >
+                <div class="space-y-4">
+                    <h2
+                        class="text-3xl md:text-5xl lg:text-5xl font-titles font-bold text-gray-900 leading-tight"
+                    >
+                        Conoce nuestro
+                        <span class="text-secondary">Programa Musical</span>
+                    </h2>
+                </div>
+                <p
+                    class="text-lg text-muted font-serif font-normal leading-relaxed text-justify pr-0 md:pr-10"
+                >
+                    Conoce a nuestro programa académico de la <b>
+                        Academia Internacional de Música "Maestro José
+                        Calabrese"
+                    </b> y desarrolla tu talento en un entorno de excelencia musical,
+                    disciplina y crecimiento humano.
+                </p>
+                <div
+                    class="pt-2 md:pt-4 flex flex-col sm:flex-row gap-6 sm:gap-4"
+                >
+                    <SecondaryButton href="/nosotros/academia">
+                        Conoce la Academia
+                    </SecondaryButton>
+
+                    <a
+                        href="http://www.academiajosecalabrese.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-lg ml-4 inline-flex items-center text-zinc-850 transition-colors hover:text-secondary border-b-2 border-secondary"
+                        aria-label="Ir a la página oficial de la academia (se abre en una nueva pestaña)"
+                    >
+                        Ir a la página oficial
+                        <i class="ph ph-caret-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="w-full md:col-span-3">
+                <div class="relative h-full -mx-4 sm:-mx-6 md:mx-0">
+                    <div
+                        class="carousel-shell overflow-hidden h-full border-y-2 border-zinc-400"
+                    >
+                        <div class="carousel-track h-full">
+                            <div
+                                class="carousel-group h-full"
+                                aria-hidden="false"
+                            >
+                                {
+                                    carouselImages.map((image) => (
+                                        <div class="carousel-item h-full">
+                                            <Picture
+                                                src={image.src}
+                                                alt={image.alt}
+                                                class="w-full h-full object-cover"
+                                                formats={["webp"]}
+                                                fallbackFormat="webp"
+                                                loading="lazy"
+                                                decoding="async"
+                                            />
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                            <div
+                                class="carousel-group h-full"
+                                aria-hidden="true"
+                            >
+                                {
+                                    carouselImages.map((image) => (
+                                        <div class="carousel-item h-full">
+                                            <Picture
+                                                src={image.src}
+                                                alt={image.alt}
+                                                class="w-full h-full object-cover"
+                                                formats={["webp"]}
+                                                fallbackFormat="webp"
+                                                loading="lazy"
+                                                decoding="async"
+                                            />
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                        <div
+                            class="hidden md:block pointer-events-none absolute inset-y-0 left-0 z-10 w-12 md:w-16 bg-gradient-to-r from-white via-white/50 to-transparent"
+                        >
+                        </div>
+                    </div>
+                    <div
+                        class="absolute -bottom-6 -right-6 w-32 h-32 bg-secondary-container/10 -z-10 rounded-full blur-3xl"
+                    >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .carousel-track {
+        display: flex;
+        width: max-content;
+        animation: social-impact-scroll 24s linear infinite;
+    }
+
+    .carousel-group {
+        display: flex;
+        flex-shrink: 0;
+    }
+
+    .carousel-item {
+        width: 15rem;
+        flex-shrink: 0;
+        overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+        .carousel-item {
+            width: 25rem;
+        }
+    }
+
+    @keyframes social-impact-scroll {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(-50%);
+        }
+    }
+</style>
