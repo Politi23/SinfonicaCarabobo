@@ -2,8 +2,12 @@
 import Layout from "@layouts/Layout.astro";
 import MainHero from "../../components/sections/MainHero.astro";
 import SecondaryButton from "@components/ui/SecondaryButton.astro";
-import academiaImg from "@assets/images/organizacion/academia.webp";
-import Picture from "astro/components/Picture.astro";
+
+import landscape from "@assets/images/organizacion/academia.webp";
+import picture2 from "@assets/images/academia/recitales_finales1.webp";
+import picture1 from "@assets/images/academia/coro6.webp";
+
+import { Picture } from "astro:assets";
 ---
 
 <Layout title="Academia">
@@ -14,174 +18,124 @@ import Picture from "astro/components/Picture.astro";
       subtitle="Formando Futuras Generaciones"
     />
 
+    <section class="max-w-6xl mt-16 mx-auto">
+      <Picture
+        src={landscape}
+        alt="Ensayo musical de estudiantes de la Academia Internacional de Musica Maestro Jose Calabrese"
+        class="w-full h-80 md:h-96 object-cover rounded-sm"
+        loading="lazy"
+      />
+    </section>
+
     <section class="py-20 bg-white">
       <div class="container mx-auto px-6 max-w-6xl">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <span
-              class="text-secondary text-sm font-bold tracking-[0.2em] uppercase mb-4 block"
-              >PROGRAMA EDUCATIVO</span
-            >
-            <h2
-              class="text-4xl md:text-5xl font-display font-bold text-text-dark mb-6"
-            >
-              Academia Internacional de Música Maestro José Calabrese
-            </h2>
-            <p class="text-gray-600 text-lg mb-6 leading-relaxed">
-              Desde 2019, formamos a más de 500 estudiantes, incluyendo niños
-              con Síndrome de Down, con el aval de la UNESCO. Una verdadera
-              escuela de vida.
-            </p>
-            <ul class="space-y-4 mb-8">
-              <li class="flex items-start">
-                <span class="text-secondary mr-3 mt-1">●</span>
-                <span class="text-gray-600"
-                  >Formación musical integral para niños y jóvenes</span
+        <div class="space-y-14">
+          <section class="grid lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <h2
+                class="text-3xl md:text-4xl font-display font-bold text-text-dark mb-6"
+              >
+                Academia Internacional de Musica <span class="text-secondary"
+                  >Maestro José Calabrese</span
                 >
-              </li>
-              <li class="flex items-start">
-                <span class="text-secondary mr-3 mt-1">●</span>
-                <span class="text-gray-600"
-                  >Inclusión de estudiantes con capacidades especiales</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span class="text-secondary mr-3 mt-1">●</span>
-                <span class="text-gray-600"
-                  >Certificación avalada por UNESCO</span
-                >
-              </li>
-              <li class="flex items-start">
-                <span class="text-secondary mr-3 mt-1">●</span>
-                <span class="text-gray-600"
-                  >Más de 500 estudiantes impactados</span
-                >
-              </li>
-            </ul>
-            <SecondaryButton
-              variant="solid"
-              href="http://www.academiajosecalabrese.com"
-            >
-              Visitar Sitio Oficial
-            </SecondaryButton>
-          </div>
-          <div class="relative">
+              </h2>
+
+              <p
+                class="text-zinc-800 text-justify text-lg mb-5 leading-relaxed"
+              >
+                La Academia Internacional de Musica Maestro Jose Calabrese nace
+                el 7 de octubre de 2019, impulsada por el maestro Jose Carmelo
+                Calabrese como una institucion orientada a la formacion musical
+                y artistica integral de niños, niñas y adolescentes del estado
+                Carabobo y de Venezuela.
+              </p>
+              <p class="text-zinc-800 text-justify text-lg leading-relaxed">
+                La academia se proyecta como semillero de relevo para la
+                Orquesta Sinfonica de Carabobo y sostiene su labor en la
+                experiencia pedagógica en la enseñanza y practica sinfónica.
+              </p>
+            </div>
             <Picture
-              src={academiaImg}
-              formats={["webp"]}
-              fallbackFormat="webp"
-              alt="Estudiantes de la Academia Internacional de Música Maestro José Calabrese"
-              class="w-full h-96 object-cover rounded shadow-xl"
-              width={academiaImg.width}
-              height={academiaImg.height}
-              sizes="(max-width: 1024px) 100vw, 50vw"
+              src={picture2}
+              alt="Ensayo musical de estudiantes de la Academia Internacional de Musica Maestro Jose Calabrese"
+              class="w-full h-80 md:h-96 object-cover rounded-sm"
+              loading="lazy"
             />
-          </div>
-        </div>
-      </div>
-    </section>
+          </section>
 
-    <section class="py-20 bg-background-light">
-      <div class="container mx-auto px-6 max-w-6xl">
-        <div class="text-center mb-16">
-          <span
-            class="text-secondary text-sm font-bold tracking-[0.2em] uppercase mb-4 block"
-            >IMPACTO SOCIAL</span
-          >
-          <h2
-            class="text-4xl md:text-5xl font-display font-bold text-text-dark mb-6"
-          >
-            Nuestro Alcance
-          </h2>
-          <p class="text-gray-600 max-w-3xl mx-auto">
-            Medimos nuestro éxito por el impacto positivo en la comunidad y la
-            formación de nuevas generaciones.
-          </p>
-        </div>
+          <section class="items-center">
+            <div class="order-1 lg:order-2">
+              <h3 class="text-2xl font-display font-bold text-text-dark mb-4">
+                Misión educativa
+              </h3>
+              <p
+                class="text-zinc-800 text-justify text-lg mb-5 leading-relaxed"
+              >
+                La misión es ejecutar una propuesta educativa integral en
+                formación musical con niveles inicial, medio y avanzado, en un
+                entorno de calidad y creatividad que fortalezca progresivamente
+                las aptitudes y actitudes de sus estudiantes frente a la musica
+                y la ejecucion instrumental.
+              </p>
+              <p class="text-zinc-800 text-justify text-lg leading-relaxed">
+                Tambien se plantea preparar a sus alumnos para estudios
+                profesionales o universitarios, promover la práctica
+                instrumental individual y grupal desde edades tempranas, y
+                desarrollar capacidades interpretativas en contextos de
+                formacion orquestal con enfoque de crecimiento artístico y
+                humano.
+              </p>
+            </div>
+          </section>
 
-        <div class="grid md:grid-cols-3 gap-8">
+          <section class="grid lg:grid-cols-2 gap-10 items-center">
+            <Picture
+              src={picture1}
+              alt="Ensayo musical de estudiantes de la Academia Internacional de Musica Maestro Jose Calabrese"
+              class="w-full h-80 md:h-96 object-cover rounded-sm"
+              loading="lazy"
+            />
+            <div>
+              <h3 class="text-2xl font-display font-bold text-text-dark mb-4">
+                Legado y proyeccion institucional
+              </h3>
+              <p
+                class="text-zinc-800 text-justify text-lg mb-5 leading-relaxed"
+              >
+                La institución lleva el nombre del maestro José Calabrese
+                (Giuseppe Calabrese Di Stefano), director laureado de la
+                Orquesta Sinfónica de Carabobo, y destaca su trayectoria como
+                musico, director, compositor, arreglista, gerente cultural y
+                educador.
+              </p>
+              <p
+                class="text-zinc-800 text-justify text-lg mb-5 leading-relaxed"
+              >
+                Se destaca alianzas academicas y estratégicas con organizaciones
+                de Venezuela, Estados Unidos, Colombia y Brasil, así como el
+                aval internacional de UNESCO.
+              </p>
+            </div>
+          </section>
+
           <div
-            class="bg-gray-50 p-8 rounded-lg border border-border-light text-center"
+            class="w-full pt-2 md:pt-4 flex justify-center sm:flex-row gap-6 sm:gap-4"
           >
-            <div class="text-5xl font-bold text-secondary mb-4">300+</div>
-            <h3 class="text-xl font-bold text-text-dark mb-2">Estudiantes</h3>
-            <p class="text-gray-600">&nbsp;</p>
+            <SecondaryButton href="/contacto">
+              Más Información
+            </SecondaryButton>
+
+            <a
+              href="http://www.academiajosecalabrese.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-lg ml-4 inline-flex items-center text-zinc-850 transition-colors hover:text-secondary border-b-2 border-secondary"
+              aria-label="Ir a la página oficial de la academia (se abre en una nueva pestaña)"
+            >
+              Ir a la página oficial
+              <i class="ph ph-caret-right"></i>
+            </a>
           </div>
-
-          <div
-            class="bg-gray-50 p-8 rounded-lg border border-border-light text-center"
-          >
-            <div class="text-5xl font-bold text-secondary mb-4">30+</div>
-            <h3 class="text-xl font-bold text-text-dark mb-2">Cátedras</h3>
-            <p class="text-gray-600">&nbsp;</p>
-          </div>
-
-          <div
-            class="bg-gray-50 p-8 rounded-lg border border-border-light text-center"
-          >
-            <div class="text-5xl font-bold text-secondary mb-4">49+</div>
-            <h3 class="text-xl font-bold text-text-dark mb-2">
-              Años de historia
-            </h3>
-            <p class="text-gray-600">&nbsp;</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-20 bg-white">
-      <div class="container mx-auto px-6 max-w-6xl">
-        <div class="text-center mb-16">
-          <span
-            class="text-secondary text-sm font-bold tracking-[0.2em] uppercase mb-4 block"
-            >OTROS PROGRAMAS</span
-          >
-          <h2
-            class="text-4xl md:text-5xl font-display font-bold text-text-dark mb-6"
-          >
-            Iniciativas Complementarias
-          </h2>
-          <p class="text-gray-600 max-w-3xl mx-auto">
-            Además de la Academia, desarrollamos múltiples programas para
-            fortalecer la cultura musical en la región.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="bg-gray-50 p-8 rounded-lg border border-border-light">
-            <h3 class="text-2xl font-bold text-text-dark mb-4">
-              Formación Musical
-            </h3>
-            <p class="text-gray-600 mb-4">
-              Talleres y clases especializadas para diferentes niveles de
-              experiencia musical.
-            </p>
-          </div>
-
-          <div class="bg-gray-50 p-8 rounded-lg border border-border-light">
-            <h3 class="text-2xl font-bold text-text-dark mb-4">
-              Inclusión Cultural
-            </h3>
-            <p class="text-gray-600 mb-4">
-              Programas diseñados para integrar a personas con diferentes
-              capacidades.
-            </p>
-          </div>
-
-          <div class="bg-gray-50 p-8 rounded-lg border border-border-light">
-            <h3 class="text-2xl font-bold text-text-dark mb-4">
-              Conciertos Educativos
-            </h3>
-            <p class="text-gray-600 mb-4">
-              Presentaciones dirigidas a escolares y comunidades vulnerables.
-            </p>
-          </div>
-        </div>
-
-        <div class="text-center mt-12">
-          <SecondaryButton href="http://www.academiajosecalabrese.com">
-            Más información
-          </SecondaryButton>
         </div>
       </div>
     </section>
