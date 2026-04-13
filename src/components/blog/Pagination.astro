@@ -15,7 +15,11 @@ const {
 } = Astro.props;
 
 const makePageHref = (page: number) =>
-  useQueryPagination ? `${baseUrl}?${queryParamName}=${page}` : `${baseUrl}/${page}`;
+  useQueryPagination
+    ? `${baseUrl}?${queryParamName}=${page}`
+    : page <= 1
+      ? baseUrl
+      : `${baseUrl}/page/${page}`;
 ---
 
 <div class="mt-16 flex justify-center">

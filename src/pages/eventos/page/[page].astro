@@ -1,10 +1,106 @@
 ---
 export const prerender = false;
 
-const parsedPage = Number.parseInt(Astro.params.page ?? "1", 10);
+import Layout from "../../../layouts/Layout.astro";
+import MainHero from "../../../components/sections/MainHero.astro";
+import EventoCard from "../../../components/eventos/EventoCard.astro";
+import Pagination from "../../../components/blog/Pagination.astro";
+import WpOfflineError from "../../../components/ui/WpOfflineError.astro";
+import { getEventos, getEventosPagination } from "../../../config/wp-eventos";
 
-return Astro.redirect(
-  `/eventos?page=${Number.isFinite(parsedPage) && parsedPage > 0 ? parsedPage : 1}`,
-  301,
-);
+const parsedPage = Number.parseInt(Astro.params.page ?? "1", 10);
+const safePage = Number.isFinite(parsedPage) && parsedPage > 0 ? parsedPage : 1;
+
+if (safePage === 1) {
+  return Astro.redirect("/eventos", 301);
+}
+
+const perPage = 6;
+
+const truncateExcerpt = (text: string, wordLimit: number = 25): string => {
+  if (!text) return "";
+  const words = text.split(" ");
+  if (words.length <= wordLimit) return text;
+  return words.slice(0, wordLimit).join(" ") + "...";
+};
+
+let eventos: Array<{
+  title: string;
+  excerpt: string;
+  image: string;
+  date: string;
+  time: string;
+  venue: string;
+  slug: string;
+}> = [];
+let totalPages = 1;
+let currentPage = safePage;
+
+try {
+  const pagination = await getEventosPagination(safePage, perPage);
+  currentPage = pagination.currentPage;
+  totalPages = pagination.totalPages;
+
+  const eventosToShow = await getEventos(perPage, currentPage);
+  eventos = eventosToShow.map((e) => ({
+    title: e.title.rendered,
+    excerpt: truncateExcerpt(e.acf.event_description, 25),
+    image: e._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "",
+    date: e.acf.event_date,
+    time: e.acf.event_time,
+    venue: e.acf.event_venue,
+    slug: e.slug,
+  }));
+
+  if (safePage > totalPages && totalPages > 0) {
+    return Astro.redirect(`/eventos/page/${totalPages}`, 301);
+  }
+} catch (error) {
+  console.error("Error cargando eventos:", error);
+}
 ---
+
+<Layout title={`Eventos - Página ${currentPage}`} showLatestPosts={false}>
+  <MainHero
+    title="Nuestros"
+    titleHighlight="Eventos"
+    subtitle="Explora nuestros próximos eventos, conciertos y actividades musicales"
+  />
+
+  <main class="bg-white text-gray-800 min-h-screen py-16">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+      {
+        eventos.length > 0 ? (
+          <>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+              {eventos.map((e) => (
+                <EventoCard
+                  title={e.title}
+                  excerpt={e.excerpt}
+                  image={e.image}
+                  date={e.date}
+                  time={e.time}
+                  venue={e.venue}
+                  slug={e.slug}
+                />
+              ))}
+            </div>
+
+            {totalPages > 1 && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                baseUrl="/eventos"
+              />
+            )}
+          </>
+        ) : (
+          <WpOfflineError
+            title="No hay eventos disponibles"
+            message="Lo sentimos, no hay eventos disponibles en este momento. Por favor, inténtalo más tarde."
+          />
+        )
+      }
+    </section>
+  </main>
+</Layout>

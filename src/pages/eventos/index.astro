@@ -9,12 +9,14 @@ import WpOfflineError from "@components/ui/WpOfflineError.astro";
 import { getEventos, getEventosPagination } from "@config/wp-eventos";
 import { Image } from "astro:assets";
 
-const parsedPage = Number.parseInt(
-  Astro.url.searchParams.get("page") ?? "1",
-  10,
-);
-const requestedPage =
-  Number.isFinite(parsedPage) && parsedPage > 0 ? parsedPage : 1;
+const parsedQueryPage = Number.parseInt(Astro.url.searchParams.get("page") ?? "1", 10);
+const normalizedQueryPage = Number.isFinite(parsedQueryPage) && parsedQueryPage > 0 ? parsedQueryPage : 1;
+
+if (normalizedQueryPage > 1) {
+  return Astro.redirect(`/eventos/page/${normalizedQueryPage}`, 301);
+}
+
+const requestedPage = 1;
 const perPage = 6;
 
 const truncateExcerpt = (text: string, wordLimit: number = 25): string => {
@@ -87,7 +89,6 @@ try {
                 currentPage={currentPage}
                 totalPages={totalPages}
                 baseUrl="/eventos"
-                useQueryPagination={true}
               />
             )}
           </>
