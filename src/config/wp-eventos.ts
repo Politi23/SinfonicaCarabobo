@@ -121,3 +121,22 @@ export const getEventoBySlug = async (slug: string): Promise<WPEvento | null> =>
 		return null;
 	}
 };
+
+export const getEventoBySlugState = async (
+	slug: string,
+): Promise<{ evento: WPEvento | null; offline: boolean }> => {
+	const data = await fetchAPI(`/evento?slug=${slug}&_embed=1&status=publish`);
+
+	if (!data) {
+		return { evento: null, offline: true };
+	}
+
+	if (!Array.isArray(data) || data.length === 0) {
+		return { evento: null, offline: false };
+	}
+
+	return {
+		evento: data[0] as WPEvento,
+		offline: false,
+	};
+};

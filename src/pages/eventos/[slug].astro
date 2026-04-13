@@ -1,11 +1,12 @@
 ---
 export const prerender = false;
 import Layout from "../../layouts/Layout.astro";
-import { getEventoBySlug } from "../../config/wp-eventos"; // Importamos desde el archivo modificado
+import { getEventoBySlugState } from "../../config/wp-eventos";
 import type { WPEvento } from "../../config/wp-eventos"; // Importamos desde el archivo modificado
 import { Image } from "astro:assets";
 import ArticleContentDark from "@components/blog/ArticleContentDark.astro";
 import EventDetailsCard from "@components/eventos/EventDetailsCard.astro";
+import WpOfflineError from "@components/ui/WpOfflineError.astro";
 
 const { slug } = Astro.params;
 
@@ -13,9 +14,9 @@ if (!slug) {
   return Astro.redirect("/404");
 }
 
-const evento = await getEventoBySlug(slug);
+const { evento, offline } = await getEventoBySlugState(slug);
 
-if (!evento) {
+if (!evento && !offline) {
   return Astro.redirect("/404");
 }
 
@@ -42,73 +43,89 @@ const getImageUrl = (e: WPEvento) => {
   return e._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
 };
 
-const featuredImage = getImageUrl(evento) || "";
-const eventDate = evento.acf?.event_date
+const featuredImage = evento ? getImageUrl(evento) || "" : "";
+const eventDate = evento?.acf?.event_date
   ? formatAcfDate(evento.acf.event_date)
   : "Por confirmar";
-const eventTime = evento.acf?.event_time
+const eventTime = evento?.acf?.event_time
   ? `${evento.acf.event_time.slice(0, 5)} hrs`
   : "Por confirmar";
-const eventVenue = evento.acf?.event_venue || "Por confirmar";
+const eventVenue = evento?.acf?.event_venue || "Por confirmar";
+const pageTitle = evento?.title.rendered ?? "Evento";
+const pageDescription =
+  evento?.acf?.event_description ??
+  "No pudimos cargar este evento por una falla temporal de conexión.";
+const pageCanonicalPath = evento ? `/eventos/${evento.slug}` : Astro.url.pathname;
 ---
 
 <Layout
-  title={evento.title.rendered}
-  description={evento.acf?.event_description ?? "Detalle del evento de la Orquesta Sinfónica de Carabobo."}
-  canonicalPath={`/eventos/${evento.slug}`}
-  ogTitle={evento.title.rendered}
-  ogDescription={evento.acf?.event_description ?? "Detalle del evento de la Orquesta Sinfónica de Carabobo."}
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath={pageCanonicalPath}
+  ogTitle={pageTitle}
+  ogDescription={pageDescription}
   ogImage={featuredImage}
 >
-  <div
-    class="relative w-full h-[70vh] min-h-[400px] bg-gray-900 flex items-end"
-  >
-    <div class="absolute inset-0">
-      <Image
-        src={featuredImage}
-        alt={evento.title.rendered}
-        class="w-full h-full object-cover bg-cover opacity-60"
-        transition:name={`image-${evento.slug}`}
-        width={1000}
-        height={500}
-        loading="eager"
-      />
+  {evento ? (
+    <>
       <div
-        class="absolute inset-0 bg-gradient-to-tr from-zinc-200/20 via-transparent to-transparent"
+        class="relative w-full h-[70vh] min-h-[400px] bg-gray-900 flex items-end"
       >
-      </div>
-    </div>
-
-    <div class="container mx-auto px-4 pb-12 relative z-10 outlined-text">
-      <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">
-        {evento.title.rendered}
-      </h1>
-      <p class="text-2xl font-titles font-light text-zinc-200 max-w-2xl ml-4">
-        {evento.acf?.event_description}
-      </p>
-    </div>
-  </div>
-
-  <div class="w-full bg-background-dark flex-grow">
-    <main class="container mx-auto px-4 py-16">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        <div class="lg:col-span-2">
-          <ArticleContentDark>
-            <div set:html={evento.content.rendered} />
-          </ArticleContentDark>
-        </div>
-
-        <div class="space-y-8 z-20 lg:sticky lg:top-28 lg:self-start">
-          <EventDetailsCard
-            date={eventDate}
-            time={eventTime}
-            venue={eventVenue}
-            contactHref="/contacto"
+        <div class="absolute inset-0">
+          <Image
+            src={featuredImage}
+            alt={evento.title.rendered}
+            class="w-full h-full object-cover bg-cover opacity-60"
+            transition:name={`image-${evento.slug}`}
+            width={1000}
+            height={500}
+            loading="eager"
           />
+          <div
+            class="absolute inset-0 bg-gradient-to-tr from-zinc-200/20 via-transparent to-transparent"
+          >
+          </div>
+        </div>
+
+        <div class="container mx-auto px-4 pb-12 relative z-10 outlined-text">
+          <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">
+            {evento.title.rendered}
+          </h1>
+          <p class="text-2xl font-titles font-light text-zinc-200 max-w-2xl ml-4">
+            {evento.acf?.event_description}
+          </p>
         </div>
       </div>
-    </main>
-  </div>
+
+      <div class="w-full bg-background-dark flex-grow">
+        <main class="container mx-auto px-4 py-16">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div class="lg:col-span-2">
+              <ArticleContentDark>
+                <div set:html={evento.content.rendered} />
+              </ArticleContentDark>
+            </div>
+
+            <div class="space-y-8 z-20 lg:sticky lg:top-28 lg:self-start">
+              <EventDetailsCard
+                date={eventDate}
+                time={eventTime}
+                venue={eventVenue}
+                contactHref="/contacto"
+              />
+            </div>
+          </div>
+        </main>
+      </div>
+    </>
+  ) : (
+    <WpOfflineError
+      title="Conexión temporalmente no disponible"
+      message="No pudimos cargar este evento por una falla temporal en WordPress. Intentalo de nuevo en unos minutos."
+      homeLink="/eventos"
+      homeLinkText="Volver a eventos"
+    />
+  )}
 
   <style>
     .outlined-text {

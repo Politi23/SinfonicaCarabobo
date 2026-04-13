@@ -208,3 +208,36 @@ export const getBlogBySlug = async (slug: string): Promise<WPBlog | null> => {
     content: post.content?.rendered || "",
   };
 };
+
+export const getBlogBySlugState = async (
+  slug: string,
+): Promise<{ blog: WPBlog | null; offline: boolean }> => {
+  const data = await fetchAPI(`/posts?slug=${slug}&_embed=1`);
+
+  if (!data) {
+    return { blog: null, offline: true };
+  }
+
+  if (!Array.isArray(data) || data.length === 0) {
+    return { blog: null, offline: false };
+  }
+
+  const post = data[0];
+
+  return {
+    offline: false,
+    blog: {
+      id: post.id,
+      date: post.date,
+      slug: post.slug,
+      title: cleanText(post.title?.rendered),
+      excerpt: cleanText(post.excerpt?.rendered),
+      image: post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "",
+      imageCaption:
+        post._embedded?.["wp:featuredmedia"]?.[0]?.caption?.rendered || "",
+      category: post._embedded?.["wp:term"]?.[0]?.[0]?.name || "",
+      author: post._embedded?.["author"]?.[0]?.name || "",
+      content: post.content?.rendered || "",
+    },
+  };
+};
