@@ -1,7 +1,6 @@
 ---
 import LandingHero from "@components/home/LandingHero.astro";
 import ConciertosSection from "@components/home/ConciertosSection.astro";
-import ConciertosSectionFallback from "@components/home/ConciertosSectionFallback.astro";
 import Layout from "@layouts/Layout.astro";
 import Allies from "@components/sections/Allies.astro";
 import AcademiaSection from "@components/home/AcademiaSection.astro";
@@ -15,9 +14,7 @@ import EnsemblesSection from "@components/home/EnsemblesSection.astro";
 <Layout title="Inicio" showLatestPosts={false}>
   <LandingHero />
 
-  <ConciertosSection server:defer>
-    <ConciertosSectionFallback slot="fallback" />
-  </ConciertosSection>
+  <ConciertosSection />
 
   <LatestBlogPosts server:defer>
     <LatestBlogPostsIndexFallback slot="fallback" />
