@@ -19,7 +19,14 @@ if (!blog) {
 }
 ---
 
-<Layout title={blog.title}>
+<Layout
+  title={blog.title}
+  description={blog.excerpt}
+  canonicalPath={`/blog/${blog.slug}`}
+  ogTitle={blog.title}
+  ogDescription={blog.excerpt}
+  ogImage={blog.image}
+>
   <div class="w-full h-[70vh]">
     <Image
       src={blog.image}

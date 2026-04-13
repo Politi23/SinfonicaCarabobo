@@ -5,6 +5,11 @@ import ApoyanosSection from "@components/home/ApoyanosSection.astro";
 
 export interface Props {
   title?: string;
+  description?: string;
+  canonicalPath?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
   is404?: boolean;
   showLatestPosts?: boolean;
   showApoyanosSection?: boolean;
@@ -12,13 +17,25 @@ export interface Props {
 
 const {
   title,
+  description,
+  canonicalPath,
+  ogTitle,
+  ogDescription,
+  ogImage,
   is404 = false,
   showLatestPosts = true,
   showApoyanosSection = false,
 } = Astro.props;
 ---
 
-<BaseLayout title={title}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath={canonicalPath}
+  ogTitle={ogTitle}
+  ogDescription={ogDescription}
+  ogImage={ogImage}
+>
   <slot name="head" slot="head" />
 
   <slot />

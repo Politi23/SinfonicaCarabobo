@@ -42,7 +42,7 @@ const getImageUrl = (e: WPEvento) => {
   return e._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
 };
 
-const featuredImage = getImageUrl(evento);
+const featuredImage = getImageUrl(evento) || "";
 const eventDate = evento.acf?.event_date
   ? formatAcfDate(evento.acf.event_date)
   : "Por confirmar";
@@ -52,7 +52,14 @@ const eventTime = evento.acf?.event_time
 const eventVenue = evento.acf?.event_venue || "Por confirmar";
 ---
 
-<Layout title={evento.title.rendered}>
+<Layout
+  title={evento.title.rendered}
+  description={evento.acf?.event_description ?? "Detalle del evento de la Orquesta Sinfónica de Carabobo."}
+  canonicalPath={`/eventos/${evento.slug}`}
+  ogTitle={evento.title.rendered}
+  ogDescription={evento.acf?.event_description ?? "Detalle del evento de la Orquesta Sinfónica de Carabobo."}
+  ogImage={featuredImage}
+>
   <div
     class="relative w-full h-[70vh] min-h-[400px] bg-gray-900 flex items-end"
   >

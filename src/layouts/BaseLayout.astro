@@ -6,11 +6,33 @@ import { Font } from "astro:assets";
 
 export interface Props {
   title?: string;
+  description?: string;
+  canonicalPath?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
   bodyClass?: string;
 }
 
-const { title = "Orquesta Sinfónica de Carabobo", bodyClass = "" } =
-  Astro.props;
+const defaultTitle = "Orquesta Sinfónica de Carabobo";
+const defaultDescription =
+  "Fundación Orquesta Sinfónica de Carabobo - Más de 40 años llevando la música clásica a Venezuela. Conciertos, academia, eventos culturales y más.";
+
+const {
+  title = defaultTitle,
+  description = defaultDescription,
+  canonicalPath,
+  ogTitle,
+  ogDescription,
+  ogImage,
+  bodyClass = "",
+} = Astro.props;
+
+const fullTitle =
+  title === defaultTitle ? defaultTitle : `${title} - ${defaultTitle}`;
+const canonicalUrl = new URL(canonicalPath ?? Astro.url.pathname, Astro.url).toString();
+const resolvedOgTitle = ogTitle ?? fullTitle;
+const resolvedOgDescription = ogDescription ?? description;
 ---
 
 <!doctype html>
@@ -20,7 +42,7 @@ const { title = "Orquesta Sinfónica de Carabobo", bodyClass = "" } =
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Fundación Orquesta Sinfónica de Carabobo - Más de 40 años llevando la música clásica a Venezuela. Conciertos, academia, eventos culturales y más."
+      content={description}
     />
     <meta
       name="keywords"
@@ -56,7 +78,17 @@ const { title = "Orquesta Sinfónica de Carabobo", bodyClass = "" } =
 
     <Font cssVariable="--font-cinzel" />
 
-    <title>{title} - Orquesta Sinfónica de Carabobo</title>
+    <title>{fullTitle}</title>
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={resolvedOgTitle} />
+    <meta property="og:description" content={resolvedOgDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content={ogImage ? "summary_large_image" : "summary"} />
+    <meta name="twitter:title" content={resolvedOgTitle} />
+    <meta name="twitter:description" content={resolvedOgDescription} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
     <slot name="head" />
   </head>
 

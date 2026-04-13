@@ -29,7 +29,14 @@ try {
 }
 ---
 
-<Layout title={`Blog - Página ${currentPage}`} showLatestPosts={false}>
+<Layout
+  title={currentPage > 1 ? `Blog - Página ${currentPage}` : "Blog"}
+  description="Noticias, novedades y artículos de la Orquesta Sinfónica de Carabobo."
+  canonicalPath={currentPage > 1 ? `/blog/page/${currentPage}` : "/blog"}
+  ogTitle={currentPage > 1 ? `Blog - Página ${currentPage}` : "Blog"}
+  ogDescription="Noticias, novedades y artículos de la Orquesta Sinfónica de Carabobo."
+  showLatestPosts={false}
+>
   <MainHero
     title="Noticias y"
     titleHighlight="Actualidad"

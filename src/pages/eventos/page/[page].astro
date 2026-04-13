@@ -60,7 +60,14 @@ try {
 }
 ---
 
-<Layout title={`Eventos - Página ${currentPage}`} showLatestPosts={false}>
+<Layout
+  title={`Eventos - Página ${currentPage}`}
+  description="Conciertos, recitales y actividades de la Orquesta Sinfónica de Carabobo."
+  canonicalPath={`/eventos/page/${currentPage}`}
+  ogTitle={`Eventos - Página ${currentPage}`}
+  ogDescription="Conciertos, recitales y actividades de la Orquesta Sinfónica de Carabobo."
+  showLatestPosts={false}
+>
   <MainHero
     title="Nuestros"
     titleHighlight="Eventos"
