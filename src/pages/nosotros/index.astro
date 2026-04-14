@@ -19,7 +19,7 @@ import oscTtc from "@assets/images/orquesta/OSC en TTC.webp";
     />
 
     <section
-      class="py-6 md:py-12 relative overflow-hidden max-w-4xl bg-white grid grid-cols-2 items-center gap-12 mx-auto"
+      class="py-6 md:py-12 relative overflow-hidden max-w-4xl bg-white grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-12 mx-auto px-6"
     >
       <div class="text-justify font-[350] text-lg/6">
         50 años difundiendo el arte y la música en todas sus vertientes,
@@ -30,14 +30,14 @@ import oscTtc from "@assets/images/orquesta/OSC en TTC.webp";
       </div>
 
       <div
-        class="bg-gray-50 rounded-sm border border-gray-200 overflow-hidden relative"
+        class="bg-gray-50 rounded-sm border border-gray-200 overflow-hidden relative w-full"
       >
         <Picture
           src={oscTtc}
           formats={["webp"]}
           fallbackFormat="webp"
           alt="Orquesta Sinfónica de Carabobo en TTC"
-          class="w-full h-auto object-cover"
+          class="w-full h-64 md:h-auto object-cover"
           width={oscTtc.width}
           height={oscTtc.height}
           sizes="(max-width: 768px) 100vw, 50vw"
