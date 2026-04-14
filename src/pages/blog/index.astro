@@ -4,10 +4,18 @@ import MainHero from "../../components/sections/MainHero.astro";
 import BlogCard from "../../components/blog/BlogCard.astro";
 import Pagination from "../../components/blog/Pagination.astro";
 import WpOfflineError from "../../components/ui/WpOfflineError.astro";
-import { getBlogs, getBlogsPagination, type WPBlog } from "../../config/wp-blogs";
+import {
+  getBlogs,
+  getBlogsPagination,
+  type WPBlog,
+} from "../../config/wp-blogs";
 
-const parsedQueryPage = Number.parseInt(Astro.url.searchParams.get("page") ?? "1", 10);
-const normalizedQueryPage = Number.isFinite(parsedQueryPage) && parsedQueryPage > 0 ? parsedQueryPage : 1;
+const parsedQueryPage = Number.parseInt(
+  Astro.url.searchParams.get("page") ?? "1",
+  10,
+);
+const normalizedQueryPage =
+  Number.isFinite(parsedQueryPage) && parsedQueryPage > 0 ? parsedQueryPage : 1;
 
 if (normalizedQueryPage > 1) {
   return Astro.redirect(`/blog/page/${normalizedQueryPage}`, 301);
@@ -20,7 +28,10 @@ let totalPages = 1;
 let currentPage = 1;
 
 try {
-  const pagination = await getBlogsPagination({ page: requestedPage, perPage: 6 });
+  const pagination = await getBlogsPagination({
+    page: requestedPage,
+    perPage: 6,
+  });
   currentPage = pagination.currentPage;
   totalPages = pagination.totalPages;
   blogs = await getBlogs({ page: currentPage, perPage: 6 });
@@ -35,7 +46,7 @@ try {
   canonicalPath={currentPage > 1 ? `/blog/page/${currentPage}` : "/blog"}
   ogTitle={currentPage > 1 ? `Blog - Página ${currentPage}` : "Blog"}
   ogDescription="Noticias, novedades y artículos de la Orquesta Sinfónica de Carabobo."
-  showLatestPosts={false}
+  showApoyanosSection={false}
 >
   <MainHero
     title="Noticias y"

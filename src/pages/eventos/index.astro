@@ -9,8 +9,12 @@ import WpOfflineError from "@components/ui/WpOfflineError.astro";
 import { getEventos, getEventosPagination } from "@config/wp-eventos";
 import { Image } from "astro:assets";
 
-const parsedQueryPage = Number.parseInt(Astro.url.searchParams.get("page") ?? "1", 10);
-const normalizedQueryPage = Number.isFinite(parsedQueryPage) && parsedQueryPage > 0 ? parsedQueryPage : 1;
+const parsedQueryPage = Number.parseInt(
+  Astro.url.searchParams.get("page") ?? "1",
+  10,
+);
+const normalizedQueryPage =
+  Number.isFinite(parsedQueryPage) && parsedQueryPage > 0 ? parsedQueryPage : 1;
 
 if (normalizedQueryPage > 1) {
   return Astro.redirect(`/eventos/page/${normalizedQueryPage}`, 301);
@@ -64,7 +68,7 @@ try {
   canonicalPath={currentPage > 1 ? `/eventos/page/${currentPage}` : "/eventos"}
   ogTitle={currentPage > 1 ? `Eventos - Página ${currentPage}` : "Eventos"}
   ogDescription="Conciertos, recitales y actividades de la Orquesta Sinfónica de Carabobo."
-  showLatestPosts={false}
+  showApoyanosSection={false}
 >
   <MainHero
     title="Nuestros"

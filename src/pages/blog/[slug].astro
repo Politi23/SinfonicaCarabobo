@@ -34,65 +34,58 @@ const pageOgImage = blog?.image;
   ogTitle={pageTitle}
   ogDescription={pageDescription}
   ogImage={pageOgImage}
+  showApoyanosSection={false}
+  showLatestPosts={true}
 >
-  {blog ? (
-    <>
-      <div class="w-full h-[70vh]">
-        <Image
-          src={blog.image}
-          alt={blog.excerpt}
-          width={1000}
-          height={1000}
-          loading="eager"
-          class={"w-full h-full object-cover"}
-        />
-        <div
-          class="absolute inset-0 bg-gradient-to- from-red-800 via-transparent to-transparent h-[50vh]"
-        >
+  {
+    blog ? (
+      <>
+        <div class="w-full h-[70vh]">
+          <Image
+            src={blog.image}
+            alt={blog.excerpt}
+            width={1000}
+            height={1000}
+            loading="eager"
+            class={"w-full h-full object-cover"}
+          />
+          <div class="absolute inset-0 bg-gradient-to- from-red-800 via-transparent to-transparent h-[50vh]"></div>
         </div>
-      </div>
 
-      <main class="bg-background-light min-h-screen">
-        <article
-          class="layout-content-container flex flex-col max-w-[960px] w-full flex-1 px-4 lg:px-20 py-10 lg:py-16 mx-auto"
-        >
-          <h1
-            class="text-3xl md:text-5xl lg:text-6xl font-black text-text-dark mb-8 leading-tight"
-          >
-            {blog.title}
-          </h1>
+        <main class="bg-background-light min-h-screen">
+          <article class="layout-content-container flex flex-col max-w-[960px] w-full flex-1 px-4 lg:px-20 py-10 lg:py-16 mx-auto">
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-black text-text-dark mb-8 leading-tight">
+              {blog.title}
+            </h1>
 
-          <div
-            class="flex items-center justify-between border-t border-b border-border-light py-6 mb-10"
-          >
-            <div class="flex gap-4 items-center">
-              <div class="flex flex-col justify-center">
-                <div class="flex items-center gap-2 text-text-muted text-lg">
-                  <i class="ph ph-calendar-blank"></i>
-                  <span>
-                    {
-                      new Date(blog.date).toLocaleDateString("es-VE", {
+            <div class="flex items-center justify-between border-t border-b border-border-light py-6 mb-10">
+              <div class="flex gap-4 items-center">
+                <div class="flex flex-col justify-center">
+                  <div class="flex items-center gap-2 text-text-muted text-lg">
+                    <i class="ph ph-calendar-blank" />
+                    <span>
+                      {new Date(blog.date).toLocaleDateString("es-VE", {
                         year: "numeric",
                         month: "long",
                         day: "numeric",
-                      })
-                    }
-                  </span>
+                      })}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <ArticleContent set:html={blog.content} />
-        </article>
-      </main>
-    </>
-  ) : (
-    <WpOfflineError
-      title="Conexión temporalmente no disponible"
-      message="No pudimos cargar esta entrada por una falla temporal en WordPress. Intentalo de nuevo en unos minutos."
-      homeLink="/blog"
-      homeLinkText="Volver al blog"
-    />
-  )}
+            <ArticleContent set:html={blog.content} />
+          </article>
+        </main>
+      </>
+    ) : (
+      <WpOfflineError
+        title="Conexión temporalmente no disponible"
+        message="No pudimos cargar esta entrada por una falla temporal en WordPress. Intentalo de nuevo en unos minutos."
+        homeLink="/blog"
+        homeLinkText="Volver al blog"
+      />
+    )
+  }
 </Layout>

@@ -6,10 +6,18 @@ import MainHero from "@components/sections/MainHero.astro";
 import Pagination from "@components/blog/Pagination.astro";
 import WpOfflineError from "@components/ui/WpOfflineError.astro";
 import AlbumCard from "@components/galeria/AlbumCard.astro";
-import { getAlbums, getAlbumsPagination, type WPAlbum } from "@config/wp-albums";
+import {
+	getAlbums,
+	getAlbumsPagination,
+	type WPAlbum,
+} from "@config/wp-albums";
 
-const parsedPage = Number.parseInt(Astro.url.searchParams.get("page") ?? "1", 10);
-const requestedPage = Number.isFinite(parsedPage) && parsedPage > 0 ? parsedPage : 1;
+const parsedPage = Number.parseInt(
+	Astro.url.searchParams.get("page") ?? "1",
+	10,
+);
+const requestedPage =
+	Number.isFinite(parsedPage) && parsedPage > 0 ? parsedPage : 1;
 
 let albums: WPAlbum[] = [];
 let totalPages = 1;
@@ -25,7 +33,7 @@ try {
 }
 ---
 
-<Layout title="Albums de Eventos" showLatestPosts={false}>
+<Layout title="Albums de Eventos" showApoyanosSection={false}>
 	<MainHero
 		title="Albumes de"
 		titleHighlight="Eventos"
