@@ -58,7 +58,7 @@ import pavarotti from "@assets/images/historia/pavarotti.webp";
                         <div class="flex-1 h-px bg-gray-200"></div>
                     </div>
                     <h2
-                        class="text-2xl font-display font-bold text-gray-900 mb-4"
+                        class="text-2xl font-display font-bold text-zinc-850 mb-4"
                     >
                         Los Orígenes
                     </h2>
@@ -88,43 +88,34 @@ import pavarotti from "@assets/images/historia/pavarotti.webp";
                         >, y fundando así la era dorada y profesional de la
                         institución.
                     </p>
-                    <div class="flex flex-col md:flex-row gap-4 my-6">
-                        <div class="w-full md:w-1/2 overflow-hidden">
-                            <Picture
-                                src={joseCarmelo}
-                                width={1000}
-                                height={1000}
-                                alt="Documento histórico de la fundación de la Orquesta Sinfónica de Carabobo"
-                                class="w-full h-auto rounded-sm shadow-lg"
-                                formats={["webp"]}
-                                fallbackFormat="webp"
-                            />
-                        </div>
-                        <div class="w-full md:w-1/2 overflow-hidden">
-                            <Picture
-                                src={joseCarmelo2}
-                                width={1000}
-                                height={1000}
-                                alt="Orquesta Sinfónica de Carabobo en concierto"
-                                class="w-full h-auto rounded-sm shadow-lg"
-                                formats={["webp"]}
-                                fallbackFormat="webp"
-                            />
-                        </div>
+
+                    <div
+                        class="w-full mx-auto aspect-[6/3] overflow-hidden rounded-sm shadow-sm"
+                    >
+                        <Picture
+                            src={eneroOrquesta}
+                            alt="Documento histórico de la grabación de las 9 sinfonías de Beethoven"
+                            class="w-full h-auto rounded-sm shadow-lg"
+                            width="800"
+                            height="1200"
+                            formats={["webp"]}
+                            fallbackFormat="webp"
+                            loading="lazy"
+                        />
                     </div>
                 </section>
 
                 <section class="mb-12">
-                    <div class="flex items-center gap-4 mb-6">
+                    <!-- <div class="flex items-center gap-4 mb-6">
                         <span
                             class="text-5xl font-display font-bold text-primary opacity-50"
                         >
                             Legado
                         </span>
                         <div class="flex-1 h-px bg-gray-200"></div>
-                    </div>
+                    </div> -->
                     <h2
-                        class="text-2xl font-display font-bold text-gray-900 mb-4"
+                        class="text-2xl font-display font-bold text-zinc-850 mb-4"
                     >
                         El Legado del Maestro Calabrese
                     </h2>
@@ -135,27 +126,54 @@ import pavarotti from "@assets/images/historia/pavarotti.webp";
                         país y de Latinoamérica, asumiendo siempre proyectos exigentes
                         que llevó a cabo con gran éxito y marcando una pauta en Venezuela.
                     </p>
-                    <div class="w-full mx-auto grid grid-cols-2 gap-4">
-                        <Picture
-                            src={joseCarmeloAccion3}
-                            alt="Documento histórico del legado del Maestro José Calabrese"
-                            class="h-auto rounded-sm shadow-lg"
-                            width="800"
-                            height="1200"
-                            formats={["webp"]}
-                            fallbackFormat="webp"
-                            loading="lazy"
-                        />
-                        <Picture
-                            src={joseCarmelo4}
-                            alt="Documento histórico del legado del Maestro José Calabrese"
-                            class="h-auto rounded-sm shadow-lg"
-                            width="800"
-                            height="1200"
-                            formats={["webp"]}
-                            fallbackFormat="webp"
-                            loading="lazy"
-                        />
+
+                    <div class="grid grid-cols-2 gap-4 my-6">
+                        <div class="aspect-square object-cover overflow-hidden">
+                            <Picture
+                                src={joseCarmelo}
+                                width={1000}
+                                height={1000}
+                                alt="Documento histórico de la fundación de la Orquesta Sinfónica de Carabobo"
+                                class="w-full h-auto rounded-sm shadow-lg"
+                                formats={["webp"]}
+                                fallbackFormat="webp"
+                            />
+                        </div>
+                        <div class="aspect-square object-cover overflow-hidden">
+                            <Picture
+                                src={joseCarmelo2}
+                                width={1000}
+                                height={1000}
+                                alt="Orquesta Sinfónica de Carabobo en concierto"
+                                class="w-full h-auto rounded-sm shadow-lg"
+                                formats={["webp"]}
+                                fallbackFormat="webp"
+                            />
+                        </div>
+                        <div class="aspect-square object-cover overflow-hidden">
+                            <Picture
+                                src={joseCarmeloAccion3}
+                                alt="Documento histórico del legado del Maestro José Calabrese"
+                                class="h-auto rounded-sm shadow-lg"
+                                width="800"
+                                height="1200"
+                                formats={["webp"]}
+                                fallbackFormat="webp"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="aspect-square object-cover overflow-hidden">
+                            <Picture
+                                src={joseCarmelo4}
+                                alt="Documento histórico del legado del Maestro José Calabrese"
+                                class="h-auto rounded-sm shadow-lg"
+                                width="800"
+                                height="1200"
+                                formats={["webp"]}
+                                fallbackFormat="webp"
+                                loading="lazy"
+                            />
+                        </div>
                     </div>
                 </section>
 
@@ -169,7 +187,7 @@ import pavarotti from "@assets/images/historia/pavarotti.webp";
                         <div class="flex-1 h-px bg-gray-200"></div>
                     </div>
                     <h2
-                        class="text-2xl font-display font-bold text-gray-900 mb-4"
+                        class="text-2xl font-display font-bold text-zinc-850 mb-4"
                     >
                         Una Nueva Era
                     </h2>
@@ -184,7 +202,7 @@ import pavarotti from "@assets/images/historia/pavarotti.webp";
                         agrupación por el camino de éxito que dejó su antecesor.
                     </p>
                     <div class="flex flex-col md:flex-row gap-4 my-6">
-                        <div class="w-full md:w-1/2 overflow-hidden">
+                        <div class="aspect-square object-cover overflow-hidden">
                             <Picture
                                 src={joseCarmeloHijo1}
                                 width={1000}
@@ -195,7 +213,7 @@ import pavarotti from "@assets/images/historia/pavarotti.webp";
                                 fallbackFormat="webp"
                             />
                         </div>
-                        <div class="w-full md:w-1/2 overflow-hidden">
+                        <div class="aspect-square object-cover overflow-hidden">
                             <Picture
                                 src={joseCarmeloHijo2}
                                 width={1000}
@@ -211,16 +229,16 @@ import pavarotti from "@assets/images/historia/pavarotti.webp";
 
                 <!-- Versatilidad Artística -->
                 <section class="mb-12">
-                    <div class="flex items-center gap-4 mb-6">
+                    <!-- <div class="flex items-center gap-4 mb-6">
                         <span
                             class="text-5xl font-display font-bold text-primary opacity-50"
                         >
                             Arte
                         </span>
                         <div class="flex-1 h-px bg-gray-200"></div>
-                    </div>
+                    </div> -->
                     <h2
-                        class="text-2xl font-display font-bold text-gray-900 mb-4"
+                        class="text-2xl font-display font-bold text-zinc-850 mb-4"
                     >
                         Versatilidad Artística
                     </h2>
@@ -232,7 +250,7 @@ import pavarotti from "@assets/images/historia/pavarotti.webp";
                         por la mejor música venezolana y latinoamericana de
                         todos los tiempos.
                     </p>
-                    <div class="w-full overflow-hidden">
+                    <!-- <div class="w-full overflow-hidden">
                         <Picture
                             src={documento89}
                             width={1000}
@@ -242,30 +260,25 @@ import pavarotti from "@assets/images/historia/pavarotti.webp";
                             formats={["webp"]}
                             fallbackFormat="webp"
                         />
-                    </div>
+                    </div> -->
                 </section>
 
                 <section class="mb-12">
                     <div class="flex items-center gap-4 mb-6">
                         <span
-                            class="text-5xl font-display font-bold text-primary opacity-50"
+                            class="text-5xl font-display font-bold text-primary opacity-70"
                         >
-                            Hitos
+                            Momentos Históricos
                         </span>
                         <div class="flex-1 h-px bg-gray-200"></div>
                     </div>
-                    <h2
-                        class="text-2xl font-display font-bold text-gray-900 mb-4"
-                    >
-                        Momentos Históricos
-                    </h2>
 
                     <div class="space-y-6">
                         <div
                             class="bg-gray-50 p-6 rounded-sm border-l-4 border-primary"
                         >
                             <h3
-                                class="text-lg font-bold text-gray-900 mb-2 flex items-center gap-3"
+                                class="text-lg font-bold text-zinc-850 mb-2 flex items-center gap-3"
                             >
                                 <span class="text-2xl font-display text-primary"
                                     >1998</span
@@ -280,13 +293,13 @@ import pavarotti from "@assets/images/historia/pavarotti.webp";
                                 el memorable concierto realizado en la ciudad de
                                 Valencia en el año 1998.
                             </p>
-                            <div class="w-full overflow-hidden">
+                            <div class="w-[80%] mx-auto">
                                 <Picture
                                     src={pavarotti}
                                     width={1000}
                                     height={1000}
                                     alt="Concierto con Luciano Pavarotti en Valencia, 1998"
-                                    class="w-full h-auto rounded-sm shadow-lg"
+                                    class="w-full rounded-sm shadow-lg object-cover"
                                     formats={["webp"]}
                                     fallbackFormat="webp"
                                 />
@@ -297,46 +310,27 @@ import pavarotti from "@assets/images/historia/pavarotti.webp";
                             class="bg-gray-50 p-6 rounded-sm border-l-4 border-secondary"
                         >
                             <h3
-                                class="text-lg font-bold text-gray-900 mb-2 flex items-center gap-3"
+                                class="text-lg font-bold text-zinc-850 mb-2 flex items-center gap-3"
                             >
-                                Primera Orquesta en Venezuela
+                                Primera en Venezuela
                             </h3>
                             <p class="text-gray-700 leading-relaxed mb-6">
                                 También es reconocida como la primera orquesta
                                 en Venezuela en grabar en formato de CD las 9
                                 sinfonías de L. v. Beethoven.
                             </p>
-                            <div class="w-full mx-auto overflow-hidden">
-                                <Picture
-                                    src={eneroOrquesta}
-                                    alt="Documento histórico de la grabación de las 9 sinfonías de Beethoven"
-                                    class="w-full h-auto rounded-sm shadow-lg"
-                                    width="800"
-                                    height="1200"
-                                    formats={["webp"]}
-                                    fallbackFormat="webp"
-                                    loading="lazy"
-                                />
-                            </div>
                         </div>
                     </div>
                 </section>
 
                 <!-- Cierre -->
                 <section class="mb-12">
-                    <div
-                        class="mb-12 p-8 bg-gray-50 rounded-sm border-l-4 border-secondary"
-                    >
-                        <p
-                            class="text-xl text-gray-700 leading-relaxed italic font-serif"
-                        >
-                            Cinco décadas de trabajo fructífero e
-                            ininterrumpido, le ha permitido un sólido sitial en
-                            el ámbito musical del país, distinguida con
-                            múltiples reconocimientos de los diversos sectores
-                            representativos de nuestra sociedad.
-                        </p>
-                    </div>
+                    <p class="text-xl text-zinc-850 leading-relaxed font-serif">
+                        Cinco décadas de trabajo fructífero e ininterrumpido, le
+                        ha permitido un sólido sitial en el ámbito musical del
+                        país, distinguida con múltiples reconocimientos de los
+                        diversos sectores representativos de nuestra sociedad.
+                    </p>
                 </section>
             </div>
         </article>
