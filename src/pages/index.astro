@@ -14,7 +14,9 @@ import EnsemblesSection from "@components/home/EnsemblesSection.astro";
 <Layout title="Inicio" showApoyanosSection={false}>
   <LandingHero />
 
-  <ConciertosSection />
+  <ConciertosSection server:defer>
+    <LatestBlogPostsIndexFallback slot="fallback" />
+  </ConciertosSection>
 
   <LatestBlogPosts server:defer>
     <LatestBlogPostsIndexFallback slot="fallback" />
