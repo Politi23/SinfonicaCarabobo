@@ -30,7 +30,7 @@ const benefits = [
 ];
 ---
 
-<section class="relative py-24 bg-gray-50 text-gray-900 overflow-hidden">
+<section class="relative py-16 text-zinc-850 overflow-hidden">
     <div
         class="absolute inset-0 z-0 opacity-20 bg-cover bg-fixed bg-center"
         style={`background-image: url('${imageGrid.src}');`}
@@ -44,27 +44,22 @@ const benefits = [
 
     <div class="container mx-auto px-6 max-w-6xl relative z-10">
         <div
-            class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8"
+            class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-8"
         >
             <div class="max-w-2xl">
                 <h2
-                    class="text-4xl md:text-6xl font-display font-bold leading-tight text-gray-900"
+                    class="text-4xl md:text-[3.5rem] font-display font-bold leading-tight text-gray-900"
                 >
-                    Propuesta de <span class="font-bold text-secondary"
+                    Propuesta de <br />
+                    <span class="font-bold text-secondary"
                         >valor empresarial</span
                     >
                 </h2>
             </div>
-            <p
-                class="text-gray-600 text-xl max-w-sm font-medium border-l-2 border-secondary/50 pl-6 leading-relaxed"
-            >
-                Una alianza donde el arte y la excelencia elevan el prestigio y
-                el alcance de su empresa.
-            </p>
         </div>
 
         <div
-            class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200 border border-gray-200 overflow-hidden backdrop-blur-md rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-500"
+            class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200 border border-gray-200 overflow-hidden backdrop-blur-md rounded-sm shadow"
         >
             {
                 benefits.map((item) => (
@@ -81,18 +76,6 @@ const benefits = [
                     </div>
                 ))
             }
-        </div>
-
-        <div class="mt-16 flex items-center gap-4">
-            <div
-                class="h-[1px] flex-grow bg-gradient-to-r from-secondary/50 to-transparent"
-            >
-            </div>
-            <p
-                class="text-gray-500 text-xs font-semibold tracking-[0.2em] uppercase italic"
-            >
-                * Beneficios sujetos a nivel de patrocinio
-            </p>
         </div>
     </div>
 </section>

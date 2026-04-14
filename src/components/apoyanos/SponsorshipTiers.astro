@@ -4,7 +4,6 @@ import SecondaryButton from "../ui/SecondaryButton.astro";
 const tiers = [
     {
         title: "Patrocinio Bronce",
-        price: "$500",
         id: "bronze",
         features: [
             "Publicación de un (1) flyer en el feed y una (1) historia en redes sociales (IG y FB) con mención.",
@@ -14,7 +13,6 @@ const tiers = [
     },
     {
         title: "Patrocinio Plata",
-        price: "$1.000",
         id: "silver",
         features: [
             "Publicación de dos (2) flyers en el feed y dos (2) historias en redes sociales con mención.",
@@ -25,7 +23,6 @@ const tiers = [
     },
     {
         title: "Patrocinio Oro",
-        price: "$2.000",
         id: "gold",
         isFeatured: true,
         features: [
@@ -39,7 +36,6 @@ const tiers = [
     },
     {
         title: "Patrocinio Platino",
-        price: "$3.000",
         id: "platinum",
         isPlatinum: true,
         features: [
@@ -56,10 +52,7 @@ const tiers = [
 ];
 ---
 
-<section
-    id="niveles"
-    class="py-24 bg-gray-50 text-gray-900 overflow-hidden"
->
+<section id="niveles" class="py-16 text-zinc-850 overflow-hidden">
     <div class="container mx-auto px-6 max-w-7xl relative z-10">
         <div
             class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8"
@@ -76,117 +69,139 @@ const tiers = [
             <p
                 class="text-gray-600 text-xl max-w-sm font-medium border-l-2 border-secondary/50 pl-6 leading-relaxed"
             >
-            Conozca nuestras opciones de patrocinio y elija el nivel de impacto que desea proyectar.
+                Conozca nuestras opciones de patrocinio y elija el nivel de
+                impacto que desea proyectar.
             </p>
         </div>
 
-        <div class="hidden lg:block overflow-hidden border border-gray-200 bg-white">
+        <div
+            class="hidden lg:block overflow-hidden border border-gray-200 bg-white"
+        >
             <div class="grid grid-cols-5">
                 <!-- Etiquetas de Beneficios -->
-                <div class="bg-gray-50/50 border-r border-gray-100 flex flex-col">
-                    <div class="h-48 p-10 flex flex-col justify-evenly text-center">
-                        <span class="text-xs font-bold uppercase tracking-[0.3em] text-secondary mb-2 italic">Estructura</span>
-                        <h4 class="text-base font-bold uppercase tracking-widest text-gray-900">Beneficios</h4>
+                <div
+                    class="bg-gray-50/50 border-r border-gray-100 flex flex-col"
+                >
+                    <div
+                        class="h-48 py-5 flex flex-col justify-evenly text-center"
+                    >
+                        <h4 class="text-base font-bold uppercase text-gray-900">
+                            Beneficios
+                        </h4>
                     </div>
-                    {[
-                        "Redes Sociales",
-                        "Asientos Preferenciales",
-                        "Mención de Marca",
-                        "Contenido Audiovisual",
-                        "Pases para Sorteos",
-                        "Presencia en Sala",
-                        "Beneficios Exclusivos"
-                    ].map((label) => (
-                        <div class="p-8 border-t border-gray-100 flex items-center h-[120px]">
-                            <span class="text-base font-medium text-gray-800 leading-tight">{label}</span>
-                        </div>
-                    ))}
-                    <div class="p-10 border-t border-gray-100 flex items-center h-[140px]"></div>
+                    {
+                        [
+                            "Redes Sociales",
+                            "Asientos Preferenciales",
+                            "Mención de Marca",
+                            "Contenido Audiovisual",
+                            "Pases para Sorteos",
+                            "Presencia en Sala",
+                            "Beneficios Exclusivos",
+                        ].map((label) => (
+                            <div class="p-8 border-t border-gray-100 flex items-center h-[120px]">
+                                <span class="text-base font-medium text-gray-800 leading-tight">
+                                    {label}
+                                </span>
+                            </div>
+                        ))
+                    }
+                    <div
+                        class="p-10 border-t border-gray-100 flex items-center h-[140px]"
+                    >
+                    </div>
                 </div>
 
                 <!-- Columnas de Tiers -->
-                {tiers.map((tier) => {
-                    const isPlatinum = tier.id === "platinum";
+                {
+                    tiers.map((tier) => {
+                        const isPlatinum = tier.id === "platinum";
 
-                    // Mapeo manual de beneficios para la tabla basado en los datos originales
-                    // Contenido Audiovisual moved after Mención de Marca, before Pases para Sorteos
-                    const benefitsMap = {
-                        bronze: [
-                            "1 Flyer + 1 Historia (IG/FB)",
-                            "2 asientos (2 conciertos)",
-                            "2 actividades anuales",
-                            "—",
-                            "—",
-                            "—",
-                            "—"
-                        ],
-                        silver: [
-                            "2 Flyers + 2 Historias (IG/FB)",
-                            "4 asientos (3 conciertos)",
-                            "3 actividades anuales",
-                            "1 Video Reel vinculado",
-                            "—",
-                            "—",
-                            "—"
-                        ],
-                        gold: [
-                            "2 Flyers + 2 Historias (IG/FB)",
-                            "6 asientos (3 conciertos)",
-                            "3 actividades anuales",
-                            "1 Video Reel vinculado",
-                            "2 pases preferenciales",
-                            "Stand (1 concierto)",
-                            "—"
-                        ],
-                        platinum: [
-                            "3 Flyers + 3 Historias (IG/FB)",
-                            "8 asientos (3 conciertos)",
-                            "3 actividades anuales",
-                            "1 Video Reel vinculado",
-                            "4 pases (3 conciertos)",
-                            "Stand (2 conciertos)",
-                            "Pendón + Músico en actividad"
-                        ]
-                    };
+                        // Mapeo manual de beneficios para la tabla basado en los datos originales
+                        // Contenido Audiovisual moved after Mención de Marca, before Pases para Sorteos
+                        const benefitsMap = {
+                            bronze: [
+                                "1 Flyer + 1 Historia (IG/FB)",
+                                "2 asientos (2 conciertos)",
+                                "2 actividades anuales",
+                                "—",
+                                "—",
+                                "—",
+                                "—",
+                            ],
+                            silver: [
+                                "2 Flyers + 2 Historias (IG/FB)",
+                                "4 asientos (3 conciertos)",
+                                "3 actividades anuales",
+                                "1 Video Reel vinculado",
+                                "—",
+                                "—",
+                                "—",
+                            ],
+                            gold: [
+                                "2 Flyers + 2 Historias (IG/FB)",
+                                "6 asientos (3 conciertos)",
+                                "3 actividades anuales",
+                                "1 Video Reel vinculado",
+                                "2 pases preferenciales",
+                                "Stand (1 concierto)",
+                                "—",
+                            ],
+                            platinum: [
+                                "3 Flyers + 3 Historias (IG/FB)",
+                                "8 asientos (3 conciertos)",
+                                "3 actividades anuales",
+                                "1 Video Reel vinculado",
+                                "4 pases (3 conciertos)",
+                                "Stand (2 conciertos)",
+                                "Pendón + Músico en actividad",
+                            ],
+                        };
 
-                    const currentBenefits = benefitsMap[tier.id as keyof typeof benefitsMap];
+                        const currentBenefits =
+                            benefitsMap[tier.id as keyof typeof benefitsMap];
 
-                    return (
-                        <div class={`relative border-r border-gray-100 last:border-r-0 flex flex-col bg-white`}>
-                            <!-- Header -->
-                            <div class="h-48 p-10 flex flex-col items-center text-center justify-center">
-                                <span class={`text-xs font-bold uppercase tracking-widest mb-3 text-secondary`}>
-                                    {tier.id}
-                                </span>
-                                <h3 class="text-2xl font-display font-bold uppercase mb-2 tracking-wide text-gray-900">
-                                    {tier.title.replace("Patrocinio ", "")}
-                                </h3>
-                                <div class={`text-4xl font-display italic font-bold text-secondary`}>
-                                    {tier.price}
-                                </div>
-                            </div>
-
-                            <!-- Valores -->
-                            {currentBenefits.map((benefit) => (
-                                <div class={`p-8 border-t flex items-center justify-center text-center h-[120px] ${isPlatinum ? 'border-gray-300/50' : 'border-gray-100'}`}>
-                                    <span class={`text-base font-medium leading-relaxed ${benefit === "—" ? 'text-gray-300' : 'text-gray-700'}`}>
-                                        {benefit}
+                        return (
+                            <div
+                                class={`relative border-r border-gray-100 last:border-r-0 flex flex-col bg-white`}
+                            >
+                                <div class="h-48 p-10 flex flex-col items-center text-center justify-center">
+                                    <span
+                                        class={`text-xs font-bold uppercase tracking-widest mb-3 text-secondary`}
+                                    >
+                                        {tier.id}
                                     </span>
+                                    <h3 class="text-2xl font-display font-bold uppercase mb-2 tracking-wide text-gray-900">
+                                        {tier.title.replace("Patrocinio ", "")}
+                                    </h3>
                                 </div>
-                            ))}
 
-                            <!-- CTA -->
-                            <div class={`p-10 border-t flex flex-col items-center h-[140px] ${isPlatinum ? 'border-gray-300/50' : 'border-gray-100'}`}>
-                                <SecondaryButton
-                                    href="/contacto"
-                                    class="w-full py-4 text-[10px] font-bold uppercase tracking-[0.2em] text-center transition-all active:scale-[0.98]"
+                                {currentBenefits.map((benefit) => (
+                                    <div
+                                        class={`p-8 border-t flex items-center justify-center text-center h-[120px] ${isPlatinum ? "border-gray-300/50" : "border-gray-100"}`}
+                                    >
+                                        <span
+                                            class={`text-base font-medium leading-relaxed ${benefit === "—" ? "text-gray-300" : "text-gray-700"}`}
+                                        >
+                                            {benefit}
+                                        </span>
+                                    </div>
+                                ))}
+
+                                <div
+                                    class={`p-10 border-t flex flex-col items-center h-[140px] ${isPlatinum ? "border-gray-300/50" : "border-gray-100"}`}
                                 >
-                                    Elegir
-                                </SecondaryButton>
+                                    <SecondaryButton
+                                        href="/contacto"
+                                        class="w-full py-4 text-[10px] font-bold uppercase tracking-[0.2em] text-center transition-all active:scale-[0.98]"
+                                    >
+                                        Elegir
+                                    </SecondaryButton>
+                                </div>
                             </div>
-                        </div>
-                    );
-                })}
+                        );
+                    })
+                }
             </div>
         </div>
 
@@ -195,19 +210,22 @@ const tiers = [
                 tiers.map((tier) => (
                     <div class={`relative border border-gray-300 bg-white`}>
                         <div class="p-8 text-center border-b border-gray-300">
-                            <p class={`text-xs font-bold uppercase tracking-[0.2em] mb-2 text-secondary`}>
+                            <p
+                                class={`text-xs font-bold uppercase tracking-[0.2em] mb-2 text-secondary`}
+                            >
                                 {tier.title}
-                            </p>
-                            <p class="text-5xl font-display font-bold italic mb-2 text-gray-900">
-                                {tier.price}
                             </p>
                         </div>
                         <div class="p-8 space-y-6">
                             <ul class="space-y-4">
                                 {tier.features.map((feature) => (
                                     <li class="flex items-start gap-4">
-                                        <div class={`w-2 h-2 mt-2.5 flex-shrink-0 bg-secondary`} />
-                                        <span class={`text-lg font-medium leading-relaxed text-gray-700`}>
+                                        <div
+                                            class={`w-2 h-2 mt-2.5 flex-shrink-0 bg-secondary`}
+                                        />
+                                        <span
+                                            class={`text-lg font-medium leading-relaxed text-gray-700`}
+                                        >
                                             {feature}
                                         </span>
                                     </li>
@@ -225,7 +243,7 @@ const tiers = [
             }
         </div>
 
-        <div class="mt-12 flex items-center gap-4">
+        <!-- <div class="mt-12 flex items-center gap-4">
             <div
                 class="h-[1px] flex-grow bg-gradient-to-r from-secondary/50 to-transparent"
             >
@@ -235,6 +253,6 @@ const tiers = [
             >
                 * Beneficios sujetos a nivel de patrocinio
             </p>
-        </div>
+        </div> -->
     </div>
 </section>
