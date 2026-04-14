@@ -10,26 +10,18 @@ const ensembles = [
   {
     nombre: "Orquesta Sinfónica de Carabobo",
     imagen: orquestaSinfonica,
-    descripcion:
-      "Orquesta Sinfónica conformada por músicos profesionales, para repertorios y eventos que requieran este formato musical.",
   },
   {
     nombre: "Orquesta de Cámara Sinfocarabobo",
     imagen: orquestaCamara,
-    descripcion:
-      "Agrupación musical conformada entre 15 y 25 músicos, de las secciones de cuerdas, vientos, percusión, bajo eléctrico y voz.",
   },
   {
     nombre: "Sinfocarabobo Jazz Ensamble",
     imagen: jazzEnsamble,
-    descripcion:
-      "Agrupación musical, conformada por diferentes instrumentos acústicos, eléctricos, electrónicos y voz, en diferentes formatos instrumentales.",
   },
   {
     nombre: "Cuarteto Sinfocarabobo",
     imagen: cuartetoCuerdas,
-    descripcion:
-      "Cuarteto de cuerdas conformado por dos violines, viola y violonchelo, con amplia experiencia musical y artística.",
   },
 ];
 ---
@@ -72,13 +64,9 @@ const ensembles = [
             <div class="p-8 flex flex-col flex-grow relative bg-background-light">
               <div class="w-8 h-[2px] bg-primary mb-5 transition-all duration-300 group-hover:w-16" />
 
-              <h3 class="text-lg font-bold text-text-dark mb-4 leading-snug uppercase tracking-wide min-h-20">
+              <h3 class="text-lg font-bold text-text-dark leading-snug uppercase tracking-wide min-h-20">
                 {ensemble.nombre}
               </h3>
-
-              <p class="text-text-dark text-sm leading-relaxed mb-2 flex-grow font-light line-clamp-3 text-justify">
-                {ensemble.descripcion}
-              </p>
             </div>
           </div>
         ))
