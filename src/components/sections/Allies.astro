@@ -24,31 +24,26 @@ const allies = [
 ];
 ---
 
-<section class="py-12 md:py-28 bg-background-light overflow-hidden">
-  <div class="container mx-auto px-6 mb-8 md:mb-12 text-center">
-    <span
-      class="text-zinc-600 text-base font-semibold tracking-[0.15rem] uppercase"
-    >
+<section class="py-12 md:py-24 bg-background-light overflow-hidden">
+  <div class="container mx-auto px-6 mb-12 text-center">
+    <span class="text-zinc-500 text-sm font-bold tracking-[0.2em] uppercase">
       Confían en Nosotros
     </span>
   </div>
 
-  <div class="w-full">
-    <div
-      class="w-full mx-auto px-4 sm:px-4 lg:px-6 flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-12"
-    >
+  <div class="container mx-auto px-6">
+    <div class="flex flex-wrap items-center justify-center gap-10 md:gap-16">
       {
         allies.map((ally) => (
-          <div class="flex items-center justify-center">
+          <div
+            class={`flex items-center justify-center transition-transform duration-300 hover:scale-110 ${ally.class || "w-24 md:w-32"}`}
+          >
             <Picture
               src={ally.src}
               alt={ally.alt}
-              width={"122"}
-              height="112"
-              class={
-                "max-w-full max-h-full grayscale opacity-60 transition-all duration-300 hover:grayscale-0 hover:opacity-100 " +
-                ally.class
-              }
+              width={250}
+              height={150}
+              class="w-full h-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
               formats={["webp"]}
               fallbackFormat="webp"
               loading="lazy"
