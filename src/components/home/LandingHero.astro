@@ -12,7 +12,7 @@ const images = [slide1, slide2, slide3, slide4, slide5];
 
 <main>
   <section
-    class="relative h-[90vh] flex flex-col justify-center text-center bg-black"
+    class="relative h-[95vh] flex flex-col justify-center text-center bg-black"
   >
     <div class="absolute inset-0">
       <div class="absolute inset-0">
@@ -54,22 +54,25 @@ const images = [slide1, slide2, slide3, slide4, slide5];
     </div>
 
     <div
-      class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-white/20 z-0"
+      class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-white/30 z-0"
     >
     </div>
 
     <div
-      class="absolute inset-0 bg-gradient-to-r from-transparent via-black/10 to-black z-0"
+      class="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-transparent via-black/30 to-black md:from-transparent md:via-black/10 md:to-black z-0"
     >
     </div>
 
-    <div class="hero-content flex justify-end items-center mx-10">
+    <div
+      class="w-full h-full hero-content flex items-end justify-center md:items-center md:justify-end"
+    >
       <div>
         <Picture
           src={aniversario}
           alt={"logo_aniversario"}
-          width={500}
-          height={500}
+          width={1000}
+          height={1000}
+          class="w-[300px] md:w-[500px]"
           loading={"eager"}
         />
       </div>
@@ -104,46 +107,6 @@ const images = [slide1, slide2, slide3, slide4, slide5];
     .hero-title {
       font-size: 2.1rem;
     }
-
-    .slogan {
-      font-size: 1rem;
-      letter-spacing: 2px;
-    }
-  }
-
-  .slogan-container {
-    position: absolute;
-    top: 40px;
-    left: 0;
-    right: 0;
-    z-index: 2;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  .slogan-decorative-line {
-    width: 80px;
-    height: 5px;
-    background: var(--color-primary);
-    opacity: 0.6;
-  }
-
-  .slogan {
-    margin: 0;
-    font-family: var(--font-cinzel), serif;
-    font-size: 3rem;
-    font-weight: 400;
-    color: var(--color-primary);
-    letter-spacing: 3px;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
-  }
-
-  .slogan-italic {
-    font-style: italic;
-    font-weight: 700;
   }
 
   @keyframes fade-in-out {
