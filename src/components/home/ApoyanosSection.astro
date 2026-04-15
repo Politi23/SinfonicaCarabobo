@@ -4,10 +4,12 @@ import SecondaryButton from "../ui/SecondaryButton.astro";
 import SectionTitle from "@components/ui/SectionTitle.astro";
 ---
 
-<section class="py-[9rem] md:py-[8rem] bg-black text-white relative">
+<section
+  class="py-[9rem] md:py-[8rem] bg-auto md:bg-cover bg-black text-white relative"
+>
   <div
-    class="absolute inset-0 opacity-10 bg-cover bg-top filter grayscale"
-    style={`background-image: url('${apoyanos.src}'); background-position: left`}
+    class="absolute background inset-0 opacity-10 bg-cover bg-top filter grayscale"
+    style={`background-image: url('${apoyanos.src}');`}
   >
   </div>
 
@@ -31,4 +33,12 @@ import SectionTitle from "@components/ui/SectionTitle.astro";
       <SecondaryButton href="/apoyanos/donaciones"> Apóyanos </SecondaryButton>
     </div>
   </div>
+
+  <style>
+    @media (max-width: 768px) {
+      .background {
+        background-position: left;
+      }
+    }
+  </style>
 </section>
