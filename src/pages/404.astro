@@ -3,15 +3,21 @@ import Layout from "../layouts/Layout.astro";
 import Logo from "@assets/svg/sinfonica.svg";
 ---
 
-<Layout title="Página no encontrada" is404>
+<Layout title="Página no encontrada" is404 showApoyanosSection={false}>
   <main
     class="min-h-screen bg-background-dark flex items-center justify-center"
   >
     <div class="text-center">
       <Logo class="mx-auto w-[26rem] h-auto" />
-      <h1 class="text-3xl font-bold text-text-light pt-2">
+      <h1 class="text-3xl font-bold text-text-light mt-4">
         ¡Ups! Parece que esta página no existe.
       </h1>
+      <a
+        href="/"
+        class="block text-xl text-text-light pt-2 hover:underline my-2 underline"
+      >
+        Volver al inicio
+      </a>
     </div>
   </main>
 </Layout>

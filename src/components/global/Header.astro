@@ -151,7 +151,7 @@ const submenuGroups = navLinks
                         <a
                           aria-label={subItem.label}
                           href={subItem.href}
-                          class="block px-8 py-3 text-text-secondary text-[0.95rem] transition-colors duration-300 hover:text-primary hover:bg-white/5"
+                          class="block px-8 py-3 text-text-secondary text-[0.95rem] transition-colors duration-300 hover:text-white hover:bg-white/5"
                         >
                           {subItem.label}
                         </a>
@@ -187,19 +187,29 @@ const submenuGroups = navLinks
   :global(.mobile-menu-open) {
     overflow: hidden;
   }
+
+  :global(.mobile-header-fixed) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
 </style>
 
 <script>
   const navToggle = document.getElementById("nav-toggle");
   const navList = document.getElementById("nav-list");
+  const mainHeader = document.getElementById("main-header");
 
   if (navToggle && navList) {
     navToggle.addEventListener("click", () => {
       navToggle.classList.toggle("active");
       navList.classList.toggle("active");
       const isExpanded = navToggle.getAttribute("aria-expanded") === "true";
-      navToggle.setAttribute("aria-expanded", (!isExpanded).toString());
+      const nextExpanded = !isExpanded;
+      navToggle.setAttribute("aria-expanded", nextExpanded.toString());
       document.body.classList.toggle("mobile-menu-open");
+      mainHeader?.classList.toggle("mobile-header-fixed", nextExpanded);
     });
 
     const navLinks = navList.querySelectorAll(
@@ -211,6 +221,7 @@ const submenuGroups = navLinks
         navList.classList.remove("active");
         navToggle.setAttribute("aria-expanded", "false");
         document.body.classList.remove("mobile-menu-open");
+        mainHeader?.classList.remove("mobile-header-fixed");
       });
     });
   }
@@ -354,6 +365,7 @@ const submenuGroups = navLinks
         el.classList.add("hidden");
         el.classList.remove("flex");
       });
+      mainHeader?.classList.remove("mobile-header-fixed");
     } else {
       closeGlobalSubmenu();
     }
