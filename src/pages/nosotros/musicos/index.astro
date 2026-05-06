@@ -4,7 +4,8 @@ export const prerender = false;
 import Layout from "@layouts/Layout.astro";
 import MainHero from "@components/sections/MainHero.astro";
 import WpOfflineError from "@components/ui/WpOfflineError.astro";
-import { getMusicos, type WPMusico } from "@config/wp-musicos";
+import { getMusicos, sortMusicos, type WPMusico } from "@config/wp-musicos";
+import { Image } from "astro:assets";
 
 const INSTRUMENT_ORDER = [
 	"Violines I",
@@ -12,24 +13,24 @@ const INSTRUMENT_ORDER = [
 	"Violas",
 	"Violonchelos",
 	"Contrabajos",
-	"Flauta",
-	"Oboe",
-	"Clarinete",
-	"Fagot",
-	"Corno",
-	"Trompeta",
-	"Trombón",
+	"Flautas",
+	"Oboes",
+	"Clarinetes",
+	"Fagotes",
+	"Cornos Franceses",
+	"Trompetas",
+	"Trombones",
 	"Tuba",
 	"Percusión",
-	"Arpa",
-	"Piano",
-	"Coro",
-	"Dirección",
+	"Pianos",
 	"Sin asignar",
 ] as const;
 
 const instrumentOrderMap = new Map(
-	INSTRUMENT_ORDER.map((instrument, index) => [instrument.toLowerCase(), index]),
+	INSTRUMENT_ORDER.map((instrument, index) => [
+		instrument.toLowerCase(),
+		index,
+	]),
 );
 
 const shouldShowPosition = (position: WPMusico["acf"]["position"]): boolean => {
@@ -37,16 +38,14 @@ const shouldShowPosition = (position: WPMusico["acf"]["position"]): boolean => {
 };
 
 const sortByInstrument = (a: string, b: string): number => {
-	const aIndex = instrumentOrderMap.get(a.toLowerCase()) ?? Number.MAX_SAFE_INTEGER;
-	const bIndex = instrumentOrderMap.get(b.toLowerCase()) ?? Number.MAX_SAFE_INTEGER;
+	const aIndex =
+		instrumentOrderMap.get(a.toLowerCase()) ?? Number.MAX_SAFE_INTEGER;
+	const bIndex =
+		instrumentOrderMap.get(b.toLowerCase()) ?? Number.MAX_SAFE_INTEGER;
 
 	if (aIndex !== bIndex) return aIndex - bIndex;
 
 	return a.localeCompare(b, "es", { sensitivity: "base" });
-};
-
-const sortByName = (a: WPMusico, b: WPMusico): number => {
-	return a.title.localeCompare(b.title, "es", { sensitivity: "base" });
 };
 
 let musicos: WPMusico[] = [];
@@ -68,7 +67,7 @@ const groupedEntries = Object.entries(
 	.sort(([a], [b]) => sortByInstrument(a, b))
 	.map(([instrument, group]) => ({
 		instrument,
-		musicians: [...group].sort(sortByName),
+		musicians: [...group].sort(sortMusicos),
 	}));
 ---
 
@@ -92,7 +91,10 @@ const groupedEntries = Object.entries(
 				groupedEntries.length > 0 ? (
 					<div class="space-y-12">
 						{groupedEntries.map((group) => (
-							<section class="space-y-6" aria-labelledby={`grupo-${group.instrument}`}>
+							<section
+								class="space-y-6"
+								aria-labelledby={`grupo-${group.instrument}`}
+							>
 								<h2
 									id={`grupo-${group.instrument}`}
 									class="text-2xl md:text-3xl font-display font-bold text-gray-900 border-b border-gray-200 pb-3"
@@ -108,31 +110,37 @@ const groupedEntries = Object.entries(
 												aria-label={`Ver biografía de ${musico.title}`}
 											>
 												<div class="aspect-square bg-gray-100 overflow-hidden">
-													{
-														musico.image ? (
-															<img
-																src={musico.image}
-																alt={musico.imageAlt || musico.title}
-																class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-																loading="lazy"
-																decoding="async"
-															/>
-														) : (
-															<div class="w-full h-full bg-gray-200" />
-														)
-													}
+													{musico.image ? (
+														<Image
+															src={musico.image}
+															alt={
+																musico.imageAlt ||
+																musico.title
+															}
+															width={500}
+															height={500}
+															class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+															loading="lazy"
+															decoding="async"
+														/>
+													) : (
+														<div class="w-full h-full bg-gray-200" />
+													)}
 												</div>
-												<div class="p-4">
+												<div class="p-4 min-h-20 flex flex-col justify-center">
 													<h3 class="text-lg font-serif font-semibold text-gray-900 leading-tight group-hover:text-primary transition-colors">
 														{musico.title}
 													</h3>
-													{
-														shouldShowPosition(musico.acf.position) && (
-															<p class="mt-2 text-sm uppercase tracking-wide text-primary font-semibold">
-																{musico.acf.position}
-															</p>
-														)
-													}
+													{shouldShowPosition(
+														musico.acf.position,
+													) && (
+														<p class="mt-2 text-xs uppercase tracking-wide text-zinc-500 font-semibold">
+															{
+																musico.acf
+																	.position
+															}
+														</p>
+													)}
 												</div>
 											</a>
 										</article>

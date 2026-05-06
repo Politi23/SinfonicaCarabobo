@@ -3,6 +3,8 @@ import { cleanText } from "./wp-utils";
 
 export type MusicoPosition = "Principal" | "Asistente" | "Fila";
 
+export const POSITION_ORDER = ["Principal", "Asistente", "Fila"] as const;
+
 export interface MusicoACF {
 	member_since: number | null;
 	position: MusicoPosition | null;
@@ -65,6 +67,18 @@ const mapMusico = (item: any): WPMusico => {
 		image: typeof featuredMedia?.source_url === "string" ? featuredMedia.source_url : "",
 		imageAlt: typeof featuredMedia?.alt_text === "string" ? featuredMedia.alt_text : "",
 	};
+};
+
+const getPositionOrderIndex = (position: MusicoPosition | null): number => {
+	if (position === null) return POSITION_ORDER.length;
+	return POSITION_ORDER.indexOf(position);
+};
+
+export const sortMusicos = (a: WPMusico, b: WPMusico): number => {
+	const aIndex = getPositionOrderIndex(a.acf.position);
+	const bIndex = getPositionOrderIndex(b.acf.position);
+	if (aIndex !== bIndex) return aIndex - bIndex;
+	return a.title.localeCompare(b.title, "es", { sensitivity: "base" });
 };
 
 export const getMusicos = async (): Promise<WPMusico[]> => {
