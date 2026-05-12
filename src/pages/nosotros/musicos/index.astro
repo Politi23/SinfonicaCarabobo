@@ -1,0 +1,163 @@
+---
+export const prerender = false;
+
+import Layout from "@layouts/Layout.astro";
+import MainHero from "@components/sections/MainHero.astro";
+import WpOfflineError from "@components/ui/WpOfflineError.astro";
+import { getMusicos, sortMusicos, type WPMusico } from "@config/wp-musicos";
+import { Image } from "astro:assets";
+
+const INSTRUMENT_ORDER = [
+	"Violines I",
+	"Violines II",
+	"Violas",
+	"Violonchelos",
+	"Contrabajos",
+	"Flautas",
+	"Oboes",
+	"Clarinetes",
+	"Fagotes",
+	"Cornos Franceses",
+	"Trompetas",
+	"Trombones",
+	"Tuba",
+	"Percusión",
+	"Pianos",
+	"Sin asignar",
+] as const;
+
+const instrumentOrderMap = new Map(
+	INSTRUMENT_ORDER.map((instrument, index) => [
+		instrument.toLowerCase(),
+		index,
+	]),
+);
+
+const shouldShowPosition = (position: WPMusico["acf"]["position"]): boolean => {
+	return position === "Principal" || position === "Asistente";
+};
+
+const sortByInstrument = (a: string, b: string): number => {
+	const aIndex =
+		instrumentOrderMap.get(a.toLowerCase()) ?? Number.MAX_SAFE_INTEGER;
+	const bIndex =
+		instrumentOrderMap.get(b.toLowerCase()) ?? Number.MAX_SAFE_INTEGER;
+
+	if (aIndex !== bIndex) return aIndex - bIndex;
+
+	return a.localeCompare(b, "es", { sensitivity: "base" });
+};
+
+let musicos: WPMusico[] = [];
+
+try {
+	musicos = await getMusicos();
+} catch (error) {
+	console.error("Error cargando musicos:", error);
+}
+
+const groupedEntries = Object.entries(
+	musicos.reduce<Record<string, WPMusico[]>>((groups, musico) => {
+		const instrument = musico.acf.instrument;
+		if (!groups[instrument]) groups[instrument] = [];
+		groups[instrument].push(musico);
+		return groups;
+	}, {}),
+)
+	.sort(([a], [b]) => sortByInstrument(a, b))
+	.map(([instrument, group]) => ({
+		instrument,
+		musicians: [...group].sort(sortMusicos),
+	}));
+---
+
+<Layout
+	title="Músicos"
+	description="Conoce a los músicos de la Orquesta Sinfónica de Carabobo por sección instrumental."
+	canonicalPath="/nosotros/musicos"
+	ogTitle="Músicos"
+	ogDescription="Conoce a los músicos de la Orquesta Sinfónica de Carabobo por sección instrumental."
+	showApoyanosSection={false}
+>
+	<MainHero
+		title="Nuestros"
+		titleHighlight="Músicos"
+		subtitle="El talento humano que da vida a cada temporada."
+	/>
+
+	<main class="bg-white text-gray-800 min-h-screen py-16">
+		<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			{
+				groupedEntries.length > 0 ? (
+					<div class="space-y-12">
+						{groupedEntries.map((group) => (
+							<section
+								class="space-y-6"
+								aria-labelledby={`grupo-${group.instrument}`}
+							>
+								<h2
+									id={`grupo-${group.instrument}`}
+									class="text-2xl md:text-3xl font-display font-bold text-gray-900 border-b border-gray-200 pb-3"
+								>
+									{group.instrument}
+								</h2>
+								<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
+									{group.musicians.map((musico) => (
+										<article class="group">
+											<a
+												href={`/nosotros/musicos/${musico.slug}`}
+												class="block border border-zinc-200 hover:border-primary/50 bg-white rounded shadow-sm transition-all duration-300 overflow-hidden"
+												aria-label={`Ver biografía de ${musico.title}`}
+											>
+												<div class="aspect-square bg-gray-100 overflow-hidden">
+													{musico.image ? (
+														<Image
+															src={musico.image}
+															alt={
+																musico.imageAlt ||
+																musico.title
+															}
+															width={500}
+															height={500}
+															class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+															loading="lazy"
+															decoding="async"
+														/>
+													) : (
+														<div class="w-full h-full bg-gray-200" />
+													)}
+												</div>
+												<div class="p-4 min-h-20 flex flex-col justify-center">
+													<h3 class="text-lg font-serif font-semibold text-gray-900 leading-tight group-hover:text-primary transition-colors">
+														{musico.title}
+													</h3>
+													{shouldShowPosition(
+														musico.acf.position,
+													) && (
+														<p class="mt-2 text-xs uppercase tracking-wide text-zinc-500 font-semibold">
+															{
+																musico.acf
+																	.position
+															}
+														</p>
+													)}
+												</div>
+											</a>
+										</article>
+									))}
+								</div>
+							</section>
+						))}
+					</div>
+				) : (
+					<WpOfflineError
+						title="No hay músicos disponibles"
+						message="No pudimos cargar el listado de músicos por ahora. Inténtalo de nuevo en unos minutos."
+						homeLink="/nosotros"
+						homeLinkText="Volver a Nosotros"
+					/>
+				)
+			}
+		</section>
+	</main>
+</Layout>

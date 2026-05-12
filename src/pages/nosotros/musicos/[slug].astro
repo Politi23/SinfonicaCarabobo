@@ -1,0 +1,114 @@
+---
+export const prerender = false;
+
+import Layout from "@layouts/Layout.astro";
+import WpOfflineError from "@components/ui/WpOfflineError.astro";
+import { getMusicoBySlugState } from "@config/wp-musicos";
+
+const { slug } = Astro.params;
+
+if (!slug) {
+	return Astro.redirect("/404");
+}
+
+const { musico, offline } = await getMusicoBySlugState(slug);
+
+if (!musico && !offline) {
+	return Astro.redirect("/404");
+}
+
+const pageTitle = musico?.title ?? "Músico";
+const pageDescription = musico?.excerpt || "Biografía de músico";
+const pageCanonicalPath = musico
+	? `/nosotros/musicos/${musico.slug}`
+	: Astro.url.pathname;
+---
+
+<Layout
+	title={pageTitle}
+	description={pageDescription}
+	canonicalPath={pageCanonicalPath}
+	ogTitle={pageTitle}
+	ogDescription={pageDescription}
+	ogImage={musico?.image}
+	showApoyanosSection={false}
+	showLatestPosts={false}
+>
+	{
+		musico ? (
+			<main class="bg-white text-gray-900 min-h-screen py-14 md:py-20">
+				<section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+					<a
+						href="/nosotros/musicos"
+						class="inline-flex items-center gap-2 text-sm uppercase tracking-wider font-semibold text-primary hover:text-primary/80 transition-colors"
+					>
+						<span aria-hidden="true">&#8592;</span>
+						<span>Volver a músicos</span>
+					</a>
+
+					<div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+						<div class="space-y-6">
+							<h1 class="text-3xl md:text-5xl font-display font-bold leading-tight text-gray-900">
+								{musico.title}
+							</h1>
+
+							<div class="space-y-3 text-sm uppercase tracking-wide text-gray-600">
+								{/* {
+									musico.acf.position && (
+										<p>
+											<span class="font-semibold text-gray-900">Posición:</span>
+											<span class="ml-2">{musico.acf.position}</span>
+										</p>
+									)
+								} */}
+								{musico.acf.member_since && (
+									<p>
+										<span class="font-semibold text-gray-900">
+											Desde:
+										</span>
+										<span class="ml-2">
+											{musico.acf.member_since}
+										</span>
+									</p>
+								)}
+							</div>
+
+							<div
+								class="bio prose prose-zinc max-w-none prose-headings:font-display prose-a:text-primary"
+								set:html={musico.content}
+							/>
+						</div>
+
+						<div class="bg-gray-100 border border-gray-200 rounded overflow-hidden">
+							{musico.image ? (
+								<img
+									src={musico.image}
+									alt={musico.imageAlt || musico.title}
+									class="w-full h-full object-cover aspect-square"
+									loading="eager"
+								/>
+							) : (
+								<div class="aspect-[4/5] w-full bg-gray-200" />
+							)}
+						</div>
+					</div>
+				</section>
+			</main>
+		) : (
+			<WpOfflineError
+				title="Conexión temporalmente no disponible"
+				message="No pudimos cargar esta biografía por una falla temporal en WordPress. Inténtalo de nuevo en unos minutos."
+				homeLink="/nosotros/musicos"
+				homeLinkText="Volver a músicos"
+			/>
+		)
+	}
+
+	<style is:global>
+		.bio
+			:where(h1, h2, h3, h4, h5, h6, p, li, blockquote p, cite, summary) {
+			color: var(--color-text-dark) !important;
+			margin-bottom: 20px;
+		}
+	</style>
+</Layout>
