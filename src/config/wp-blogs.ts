@@ -3,6 +3,25 @@ import { cleanText } from "./wp-utils";
 
 const MAX_BLOGS_PER_PAGE = 100;
 
+export interface BlogCategory {
+  id: number;
+  name: string;
+  slug: string;
+}
+
+export const getBlogCategories = async (): Promise<BlogCategory[]> => {
+  try {
+    const res = await fetch(
+      `${domain}/wp-json/wp/v2/categories?per_page=100&hide_empty=true`,
+    );
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.map((c: any) => ({ id: c.id, name: c.name, slug: c.slug }));
+  } catch {
+    return [];
+  }
+};
+
 const resolveCategoryId = async (category?: string): Promise<number | null> => {
   if (!category) return null;
 
@@ -91,17 +110,21 @@ export const getBlogs = async ({
   perPage = 6,
   page = 1,
   category = undefined,
+  orderby = "date",
+  order = "desc",
 }: {
   perPage?: number;
   page?: number;
   category?: string;
+  orderby?: "date" | "modified" | "comment_count" | "title";
+  order?: "asc" | "desc";
 } = {}): Promise<WPBlog[]> => {
   try {
     const safePerPage = Math.min(Math.max(1, perPage), MAX_BLOGS_PER_PAGE);
     const safePage = Math.max(1, Number.isFinite(page) ? Math.floor(page) : 1);
     const categoryId = await resolveCategoryId(category);
 
-    let endpoint = `/posts?per_page=${safePerPage}&page=${safePage}&_embed=1`;
+    let endpoint = `/posts?per_page=${safePerPage}&page=${safePage}&_embed=1&orderby=${orderby}&order=${order}`;
 
     if (categoryId) {
       endpoint += `&categories=${categoryId}`;

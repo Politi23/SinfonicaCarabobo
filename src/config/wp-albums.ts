@@ -88,11 +88,16 @@ export interface AlbumsPagination {
 	nextPage: number | null;
 }
 
-export const getAlbums = async (page = 1, perPage = 9): Promise<WPAlbum[]> => {
+export const getAlbums = async (
+	page = 1,
+	perPage = 9,
+	orderby: "date" | "title" | "modified" = "date",
+	order: "asc" | "desc" = "desc",
+): Promise<WPAlbum[]> => {
 	try {
 		const safePerPage = Math.min(Math.max(1, perPage), MAX_ALBUMS_PER_PAGE);
 		const data = await fetchAlbumsWithFallback(
-			`?_embed=1&per_page=${safePerPage}&page=${page}`,
+			`?_embed=1&per_page=${safePerPage}&page=${page}&orderby=${orderby}&order=${order}`,
 		);
 		return data.map(processAlbum);
 	} catch (error) {
@@ -108,6 +113,16 @@ export const getAllAlbums = async (): Promise<WPAlbum[]> => {
 		return data.map(processAlbum);
 	} catch (error) {
 		console.error("Error obteniendo los álbumes:", error);
+		return [];
+	}
+};
+
+export const getAlbumCategories = async (): Promise<string[]> => {
+	try {
+		const all = await getAllAlbums();
+		const cats = [...new Set(all.map((a) => a.category).filter(Boolean))];
+		return cats.sort((a, b) => a.localeCompare(b, "es"));
+	} catch {
 		return [];
 	}
 };

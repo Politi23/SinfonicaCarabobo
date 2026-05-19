@@ -1,0 +1,61 @@
+---
+interface FilterOption {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  options: FilterOption[];
+  active: string;
+  param?: string;
+  allLabel?: string;
+  label?: string;
+}
+
+const { options, active, param = "categoria", allLabel = "Todos", label = "Filtrar" } = Astro.props;
+const pathname = Astro.url.pathname;
+
+const urlFor = (val: string) => {
+  const params = new URLSearchParams(Astro.url.search);
+  if (val) {
+    params.set(param, encodeURIComponent(val));
+  } else {
+    params.delete(param);
+  }
+  const qs = params.toString();
+  return qs ? `${pathname}?${qs}` : pathname;
+};
+---
+
+<div class="mb-4">
+  <div class="flex items-center gap-3 mb-3">
+    <span class="text-xs uppercase tracking-widest text-gray-400 font-semibold whitespace-nowrap">{label}</span>
+    <div class="h-px flex-1 bg-gray-100"></div>
+  </div>
+  <nav class="flex flex-wrap gap-2" aria-label={label}>
+    <a
+      href={urlFor("")}
+      class={`px-5 py-2 text-xs font-bold uppercase tracking-[0.15rem] border transition-all duration-200 ${
+        !active
+          ? "bg-primary text-white border-primary"
+          : "border-gray-300 text-gray-500 hover:border-primary hover:text-primary bg-white"
+      }`}
+    >
+      {allLabel}
+    </a>
+    {
+      options.map((opt) => (
+        <a
+          href={urlFor(opt.value)}
+          class={`px-5 py-2 text-xs font-bold uppercase tracking-[0.15rem] border transition-all duration-200 ${
+            active === opt.value
+              ? "bg-primary text-white border-primary"
+              : "border-gray-300 text-gray-500 hover:border-primary hover:text-primary bg-white"
+          }`}
+        >
+          {opt.label}
+        </a>
+      ))
+    }
+  </nav>
+</div>
