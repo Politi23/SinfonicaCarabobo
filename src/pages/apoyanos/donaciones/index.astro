@@ -1,7 +1,6 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import MainHero from "@components/sections/MainHero.astro";
-import imagenDonaciones from "@assets/images/orchestra/cuarteto-cuerdas.webp";
 import oscTtc2 from "@assets/images/organizacion/OSC en TTC 2.webp";
 import SecondaryButton from "@components/ui/SecondaryButton.astro";
 ---
@@ -14,145 +13,177 @@ import SecondaryButton from "@components/ui/SecondaryButton.astro";
       subtitle="Juntos podemos crear un legado musical mucho más grande"
     />
 
+    <!-- Sección de impacto con imagen de fondo -->
     <section
-      class="py-24 bg-gray-900 text-white relative overflow-hidden"
-      style={`background-image: url('${oscTtc2.src}'); background-size: cover; background-position: center;`}
+      class="relative py-28 overflow-hidden"
+      style={`background-image: url('${oscTtc2.src}'); background-size: cover; background-position: center top;`}
     >
-      <div class="absolute inset-0 bg-black/90"></div>
+      <div class="absolute inset-0 bg-gradient-to-br from-black/95 via-black/85 to-black/70"></div>
 
-      <div
-        class="absolute bottom-0 left-0 w-64 h-64 bg-secondary/10 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"
-      >
-      </div>
+      <!-- Decoración de fondo -->
+      <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+      <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[100px] translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
 
-      <div
-        class="absolute top-0 right-0 w-64 h-64 bg-secondary/10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"
-      >
-      </div>
+      <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+        <!-- Eyebrow -->
+        <p class="text-primary text-xs uppercase tracking-[0.3em] font-bold mb-5">
+          Fundación Orquesta Sinfónica de Carabobo
+        </p>
 
-      <div class="container mx-auto px-6 max-w-4xl relative z-10 text-center">
-        <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-8">
-          El Poder Transformador de la Música
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-8 leading-tight">
+          El Poder Transformador<br class="hidden md:block" /> de la Música
         </h2>
 
-        <div
-          class="text-lg md:text-xl text-gray-300 mb-14 leading-relaxed max-w-3xl mx-auto space-y-6 text-left font-serif"
-        >
-          <p class="font-light">
-            La cultura es el alma de nuestra sociedad y la música, su voz más
-            poderosa. En la <strong class="font-bold text-white"
-              >Fundación Orquesta Sinfónica de Carabobo</strong
-            >, creemos firmemente que cada nota que tocamos es una semilla de
-            esperanza para nuestros jóvenes. A través del arte, no solo formamos
-            músicos de excelencia, sino ciudadanos íntegros, sensibles y
-            comprometidos con el futuro de nuestro país.
+        <p class="text-gray-300 text-lg md:text-xl font-light leading-relaxed max-w-3xl mx-auto mb-6">
+          La cultura es el alma de nuestra sociedad y la música, su voz más poderosa.
+          Creemos firmemente que cada nota que tocamos es una semilla de esperanza para nuestros jóvenes.
+        </p>
+        <p class="text-gray-300 text-lg font-light leading-relaxed max-w-3xl mx-auto">
+          A través del arte, no solo formamos músicos de excelencia, sino ciudadanos íntegros,
+          sensibles y comprometidos con el futuro de nuestro país.
+        </p>
+
+        <!-- Cita destacada -->
+        <div class="mt-12 inline-block border-t border-b border-primary/40 py-5 px-8">
+          <p class="text-2xl md:text-3xl font-serif italic text-white/90">
+            "Tu generosidad es el instrumento que nos falta."
           </p>
-          <p class="font-light">
-            Para que nuestra sinfonía siga tocando corazones y podamos seguir
-            abriendo puertas al talento venezolano, necesitamos de tu apoyo. Tu
-            aporte nos permite continuar con esta gran obra.
-          </p>
-          <p class="text-lg text-gray-300 font-light">
-            Todas las donaciones son bienvenidas, tanto en aportes económicos
-            como en apoyo logístico, financiamiento de actividades, reparación y
-            compra de instrumentos musicales.
-          </p>
-          <p
-            class="font-serif font-semibold text-white text-xl pt-2 text-center"
-          >
-            Tu generosidad es el instrumento que nos falta.
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats de impacto -->
+    <section class="bg-primary py-14">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+          <div>
+            <p class="text-4xl font-display font-bold mb-1">50+</p>
+            <p class="text-sm uppercase tracking-widest text-white/70 font-semibold">Años de historia</p>
+          </div>
+          <div>
+            <p class="text-4xl font-display font-bold mb-1">200+</p>
+            <p class="text-sm uppercase tracking-widest text-white/70 font-semibold">Músicos formados</p>
+          </div>
+          <div>
+            <p class="text-4xl font-display font-bold mb-1">100+</p>
+            <p class="text-sm uppercase tracking-widest text-white/70 font-semibold">Conciertos al año</p>
+          </div>
+          <div>
+            <p class="text-4xl font-display font-bold mb-1">1</p>
+            <p class="text-sm uppercase tracking-widest text-white/70 font-semibold">Gran orquesta regional</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cómo donar -->
+    <section class="py-20 bg-white">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center mb-14">
+          <p class="text-primary text-xs uppercase tracking-[0.3em] font-bold mb-3">Únete a nuestra causa</p>
+          <h3 class="text-3xl md:text-4xl font-display font-bold text-gray-900">
+            ¿Cómo puedes apoyarnos?
+          </h3>
+          <p class="mt-4 text-gray-500 max-w-xl mx-auto leading-relaxed">
+            Todas las donaciones son bienvenidas — económicas, logísticas, o en instrumentos.
+            Cada aporte hace la diferencia.
           </p>
         </div>
 
-        <div
-          class="flex flex-col md:flex-row items-center justify-center gap-6 mb-16"
-        >
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Card 1 -->
+          <div class="group relative bg-gray-50 border border-gray-100 rounded-sm p-8 hover:border-primary/30 hover:shadow-lg transition-all duration-300 text-center">
+            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+              <i class="ph ph-currency-dollar text-primary text-2xl group-hover:text-white transition-colors"></i>
+            </div>
+            <h4 class="text-lg font-display font-bold text-gray-900 mb-3">Aporte Económico</h4>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              Contribuye con cualquier monto. Tu donación va directo al financiamiento de conciertos,
+              becas y mantenimiento de instrumentos.
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="group relative bg-gray-50 border border-gray-100 rounded-sm p-8 hover:border-primary/30 hover:shadow-lg transition-all duration-300 text-center">
+            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+              <i class="ph ph-guitar text-primary text-2xl group-hover:text-white transition-colors"></i>
+            </div>
+            <h4 class="text-lg font-display font-bold text-gray-900 mb-3">Instrumentos</h4>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              Dona instrumentos musicales en buen estado. Cada instrumento representa una nueva
+              oportunidad para un joven músico de Carabobo.
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="group relative bg-gray-50 border border-gray-100 rounded-sm p-8 hover:border-primary/30 hover:shadow-lg transition-all duration-300 text-center">
+            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+              <i class="ph ph-handshake text-primary text-2xl group-hover:text-white transition-colors"></i>
+            </div>
+            <h4 class="text-lg font-display font-bold text-gray-900 mb-3">Apoyo Logístico</h4>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              Apoya el transporte, montaje de eventos, vestuario o cualquier necesidad operativa
+              de nuestros conciertos y actividades.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacto para donar -->
+    <section class="py-20 bg-gray-950 text-white">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <p class="text-primary text-xs uppercase tracking-[0.3em] font-bold mb-3">Contáctanos</p>
+        <h3 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+          Hablemos de tu donación
+        </h3>
+        <p class="text-gray-400 leading-relaxed mb-12 max-w-xl mx-auto">
+          Escríbenos o llámanos directamente. Con gusto te orientamos sobre el proceso y
+          cómo tu aporte llegará a quienes más lo necesitan.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
           <a
             href="mailto:gerencia@sinfocarabobo.com"
-            class="group flex items-center gap-3 bg-white/10 hover:bg-white/20 px-6 py-4 rounded transition-all duration-300 backdrop-blur-sm"
+            class="group flex items-center gap-4 w-full sm:w-auto bg-white/5 hover:bg-white/10 border border-white/10 hover:border-primary/50 px-7 py-5 rounded-sm transition-all duration-300"
           >
-            <div
-              class="w-10 h-10 rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-transform"
-            >
-              <svg
-                class="w-5 h-5 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                ><path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                ></path></svg
-              >
+            <div class="w-11 h-11 rounded-full bg-primary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+              <i class="ph ph-envelope text-white text-xl"></i>
             </div>
             <div class="text-left">
-              <div
-                class="text-xs uppercase tracking-wider text-gray-400 font-bold"
-              >
-                Escríbenos
-              </div>
-              <div class="font-bold">gerencia@sinfocarabobo.com</div>
+              <p class="text-xs uppercase tracking-widest text-gray-400 font-bold mb-0.5">Correo electrónico</p>
+              <p class="font-semibold text-white">gerencia@sinfocarabobo.com</p>
             </div>
           </a>
 
           <a
             href="tel:04143410642"
-            class="group flex items-center gap-3 bg-white/10 hover:bg-white/20 px-6 py-4 rounded transition-all duration-300 backdrop-blur-sm"
+            class="group flex items-center gap-4 w-full sm:w-auto bg-white/5 hover:bg-white/10 border border-white/10 hover:border-primary/50 px-7 py-5 rounded-sm transition-all duration-300"
           >
-            <div
-              class="w-10 h-10 rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-transform"
-            >
-              <svg
-                class="w-5 h-5 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                ><path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                ></path></svg
-              >
+            <div class="w-11 h-11 rounded-full bg-primary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+              <i class="ph ph-phone text-white text-xl"></i>
             </div>
             <div class="text-left">
-              <div
-                class="text-xs uppercase tracking-wider text-gray-400 font-bold"
-              >
-                Llámanos
-              </div>
-              <div class="font-bold">0414-3410642</div>
+              <p class="text-xs uppercase tracking-widest text-gray-400 font-bold mb-0.5">Teléfono</p>
+              <p class="font-semibold text-white">0414-3410642</p>
             </div>
           </a>
         </div>
 
-        <div
-          class="bg-white/5 border border-white/10 p-8 rounded-2xl backdrop-blur-sm mb-16 max-w-3xl mx-auto text-center"
-        >
-          <h3 class="text-2xl font-display font-bold mb-3 text-white">
-            Membresías Corporativas
-          </h3>
-          <p
-            class="text-base text-gray-300 mb-6 leading-relaxed font-serif font-light"
-          >
-            Transforme la cultura en un activo estratégico. Con nuestras
-            membresías, su empresa accederá a beneficios exclusivos como
-            asientos VIP, becas academicas y presentaciones privadas, mientras
-            impulsa el talento joven de nuestra región.
+        <!-- Membresías corporativas -->
+        <div class="bg-white/5 border border-white/10 rounded-sm p-10 max-w-2xl mx-auto">
+          <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-5">
+            <i class="ph ph-buildings text-primary text-2xl"></i>
+          </div>
+          <h4 class="text-xl font-display font-bold text-white mb-3">Membresías Corporativas</h4>
+          <p class="text-gray-400 leading-relaxed mb-7 text-sm">
+            Transforme la cultura en un activo estratégico. Con nuestras membresías, su empresa
+            accederá a beneficios exclusivos como asientos VIP, becas académicas y presentaciones
+            privadas, mientras impulsa el talento joven de nuestra región.
           </p>
           <SecondaryButton href="/apoyanos/empresarial">
             Conoce nuestro Programa de Aliados
           </SecondaryButton>
-        </div>
-
-        <div class="inline-block relative">
-          <p
-            class="text-2xl md:text-3xl font-serif italic text-white/90 relative z-10"
-          >
-            ¡Gracias por ser parte de nuestra melodía!
-          </p>
         </div>
       </div>
     </section>
