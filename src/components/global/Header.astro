@@ -5,386 +5,433 @@ import NavSubmenu from "./NavSubmenu.astro";
 const pathname = Astro.url.pathname;
 
 const navLinks = [
-  {
-    href: "#",
-    label: "Nosotros",
-    dropdown: [
-      { href: "/nosotros", label: "Sobre Nosotros" },
-      { href: "/nosotros/maestro", label: "Director Artístico Musical" },
-      { href: "/nosotros/historia", label: "Reseña Histórica" },
-      { href: "/nosotros/academia", label: "La Academia" },
-      { href: "/nosotros/musicos", label: "Músicos" },
-      { href: "/nosotros/reconocimientos", label: "Reconocimientos" },
-    ],
-  },
-  {
-    href: "/agrupaciones",
-    label: "Agrupaciones",
-  },
-  {
-    href: "#",
-    label: "Actualidad",
-    dropdown: [
-      {
-        href: "/eventos",
-        label: "Eventos",
-      },
-      {
-        href: "/blog",
-        label: "Blog",
-      },
-    ],
-  },
-  {
-    href: "#",
-    label: "Multimedia",
-    dropdown: [
-      { href: "/multimedia/albumes?page=1", label: "Álbumes de Fotos" },
-      { href: "/multimedia/videos", label: "Videos" },
-      { href: "/multimedia/discografia", label: "Discografía" },
-    ],
-  },
-  {
-    href: "#",
-    label: "Apóyanos",
-    dropdown: [
-      {
-        href: "/apoyanos/empresarial",
-        label: "Plan Empresarial",
-      },
-      {
-        href: "/apoyanos/donaciones",
-        label: "Donaciones",
-      },
-    ],
-  },
-  {
-    href: "/audiciones",
-    label: "Audiciones",
-  },
-  {
-    href: "/contacto",
-    label: "Contacto",
-  },
+	{
+		href: "#",
+		label: "Nosotros",
+		dropdown: [
+			{ href: "/nosotros", label: "Sobre Nosotros" },
+			{ href: "/nosotros/historia", label: "Reseña Histórica" },
+			{ href: "/nosotros/academia", label: "La Academia" },
+			{
+				href: "/nosotros/director",
+				label: "Director Artístico y Musical",
+			},
+			{ href: "/nosotros/musicos", label: "Nuestros Músicos" },
+			{ href: "/nosotros/reconocimientos", label: "Reconocimientos" },
+		],
+	},
+	{
+		href: "/agrupaciones",
+		label: "Agrupaciones",
+	},
+	{
+		href: "#",
+		label: "Actualidad",
+		dropdown: [
+			{
+				href: "/eventos",
+				label: "Eventos",
+			},
+			{
+				href: "/blog",
+				label: "Blog",
+			},
+		],
+	},
+	{
+		href: "#",
+		label: "Multimedia",
+		dropdown: [
+			{ href: "/multimedia/albumes?page=1", label: "Álbumes de Fotos" },
+			{ href: "/multimedia/videos", label: "Videos" },
+			{ href: "/multimedia/discografia", label: "Discografía" },
+		],
+	},
+	{
+		href: "#",
+		label: "Apóyanos",
+		dropdown: [
+			{
+				href: "/apoyanos/empresarial",
+				label: "Plan Empresarial",
+			},
+			{
+				href: "/apoyanos/donaciones",
+				label: "Donaciones",
+			},
+		],
+	},
+	{
+		href: "/audiciones",
+		label: "Audiciones",
+	},
+	{
+		href: "/contacto",
+		label: "Contacto",
+	},
 ].map((link) => ({
-  ...link,
-  active: link.href === "/" ? pathname === "/" : pathname.startsWith(link.href),
+	...link,
+	active:
+		link.href === "/" ? pathname === "/" : pathname.startsWith(link.href),
 }));
 
 const submenuGroups = navLinks
-  .filter((link) => link.dropdown)
-  .map((link) => ({
-    id: `submenu-${link.label}`,
-    items: link.dropdown!,
-  }));
+	.filter((link) => link.dropdown)
+	.map((link) => ({
+		id: `submenu-${link.label}`,
+		items: link.dropdown!,
+	}));
 ---
 
 <header
-  class="sticky top-0 left-0 right-0 max-md:h-[var(--header-height-mobile)] z-[1000] transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)]"
-  id="main-header"
+	class="sticky top-0 left-0 right-0 max-md:h-[var(--header-height-mobile)] z-[1000] transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)]"
+	id="main-header"
 >
-  <div
-    class="absolute inset-0 bg-gradient-to-b from-black via-black to-black backdrop-blur-[20px] transition-all duration-400 ease-out"
-  >
-  </div>
-  <div
-    class="relative min-h-[var(--header-height)] max-w-[1280px] mx-auto px-8 h-full flex items-center justify-between"
-  >
-    <a
-      href="/"
-      class="relative flex items-center no-underline z-10 group shrink-0"
-      aria-label="Ir al inicio"
-    >
-      <Logo width={120} height={80} aria-hidden="true" focusable="false" />
-    </a>
+	<div
+		class="absolute inset-0 bg-gradient-to-b from-black via-black to-black backdrop-blur-[20px] transition-all duration-400 ease-out"
+	>
+	</div>
+	<div
+		class="relative min-h-[var(--header-height)] max-w-[1280px] mx-auto px-8 h-full flex items-center justify-between"
+	>
+		<a
+			href="/"
+			class="relative flex items-center no-underline z-10 group shrink-0"
+			aria-label="Ir al inicio"
+		>
+			<Logo
+				width={120}
+				height={80}
+				aria-hidden="true"
+				focusable="false"
+			/>
+		</a>
 
-    <nav class="flex items-center h-full" id="main-nav">
-      <button
-        class="nav-toggle flex lg:hidden flex-col justify-center gap-[5px] w-10 h-10 bg-transparent border border-white/20 rounded-lg p-2 cursor-pointer transition-all duration-300 z-[100] hover:border-primary hover:bg-primary/10"
-        id="nav-toggle"
-        aria-label="Abrir menú de navegación"
-        aria-expanded="false"
-      >
-        <span
-          class="hamburger-line block w-full h-[2px] bg-text-light rounded-[2px] transition-all duration-300"
-        ></span>
-        <span
-          class="hamburger-line block w-full h-[2px] bg-text-light rounded-[2px] transition-all duration-300"
-        ></span>
-        <span
-          class="hamburger-line block w-full h-[2px] bg-text-light rounded-[2px] transition-all duration-300"
-        ></span>
-      </button>
+		<nav class="flex items-center h-full" id="main-nav">
+			<button
+				class="nav-toggle flex lg:hidden flex-col justify-center gap-[5px] w-10 h-10 bg-transparent border border-white/20 rounded-lg p-2 cursor-pointer transition-all duration-300 z-[100] hover:border-primary hover:bg-primary/10"
+				id="nav-toggle"
+				aria-label="Abrir menú de navegación"
+				aria-expanded="false"
+			>
+				<span
+					class="hamburger-line block w-full h-[2px] bg-text-light rounded-[2px] transition-all duration-300"
+				></span>
+				<span
+					class="hamburger-line block w-full h-[2px] bg-text-light rounded-[2px] transition-all duration-300"
+				></span>
+				<span
+					class="hamburger-line block w-full h-[2px] bg-text-light rounded-[2px] transition-all duration-300"
+				></span>
+			</button>
 
-      <ul
-        class="nav-list list-none m-0 p-0 flex items-center h-full gap-2 lg:gap-2 max-lg:fixed max-lg:top-[var(--header-height-mobile)] max-lg:left-0 max-lg:right-0 max-lg:h-[calc(100vh-var(--header-height-mobile))] max-lg:flex-col max-lg:items-center max-lg:justify-start max-lg:pt-5 max-lg:pb-8 max-lg:gap-3 max-lg:bg-black max-lg:opacity-0 max-lg:invisible max-lg:-translate-y-5 max-lg:transition-all max-lg:duration-400 max-lg:overflow-y-auto [&.active]:max-lg:opacity-100 [&.active]:max-lg:visible [&.active]:max-lg:translate-y-0"
-        id="nav-list"
-      >
-        {
-          navLinks.map((link) => (
-            <li class="nav-item relative h-full flex items-center max-lg:h-auto max-lg:w-full max-lg:flex-col">
-              {link.dropdown && link.dropdown.length > 0 ? (
-                <div
-                  class="nav-dropdown group static h-full flex items-center max-lg:relative max-lg:w-full max-lg:block max-lg:h-auto"
-                  data-dropdown
-                >
-                  <button
-                    class={`nav-link dropdown-toggle group relative flex flex-col items-center px-[18px] py-[10px] bg-transparent border-none cursor-pointer text-text-secondary font-serif text-[0.9rem] font-normal tracking-[0.02em] transition-all duration-300 overflow-hidden hover:text-text-light max-lg:text-[1.1rem] max-lg:px-6 max-lg:py-4 max-lg:w-full max-lg:text-center ${link.active ? "text-primary nav-link-active" : ""}`}
-                    aria-expanded="false"
-                    aria-haspopup="true"
-                    aria-controls={`submenu-${link.label}`}
-                    data-target={`submenu-${link.label}`}
-                  >
-                    <div class="nav-link-content flex items-center gap-1 pointer-events-none">
-                      <span class="nav-link-text relative z-10 transition-all duration-300">
-                        {link.label}
-                      </span>
-                      <span class="nav-dropdown-arrow ml-1 text-[0.7rem] transition-transform duration-300 group-aria-[expanded=true]:rotate-180">
-                        ⟩
-                      </span>
-                    </div>
-                  </button>
+			<ul
+				class="nav-list list-none m-0 p-0 flex items-center h-full gap-2 lg:gap-2 max-lg:fixed max-lg:top-[var(--header-height-mobile)] max-lg:left-0 max-lg:right-0 max-lg:h-[calc(100vh-var(--header-height-mobile))] max-lg:flex-col max-lg:items-center max-lg:justify-start max-lg:pt-5 max-lg:pb-8 max-lg:gap-3 max-lg:bg-black max-lg:opacity-0 max-lg:invisible max-lg:-translate-y-5 max-lg:transition-all max-lg:duration-400 max-lg:overflow-y-auto [&.active]:max-lg:opacity-100 [&.active]:max-lg:visible [&.active]:max-lg:translate-y-0"
+				id="nav-list"
+			>
+				{
+					navLinks.map((link) => (
+						<li class="nav-item relative h-full flex items-center max-lg:h-auto max-lg:w-full max-lg:flex-col">
+							{link.dropdown && link.dropdown.length > 0 ? (
+								<div
+									class="nav-dropdown group static h-full flex items-center max-lg:relative max-lg:w-full max-lg:block max-lg:h-auto"
+									data-dropdown
+								>
+									<button
+										class={`nav-link dropdown-toggle group relative flex flex-col items-center px-[18px] py-[10px] bg-transparent border-none cursor-pointer text-text-secondary font-serif text-[0.9rem] font-normal tracking-[0.02em] transition-all duration-300 overflow-hidden hover:text-text-light max-lg:text-[1.1rem] max-lg:px-6 max-lg:py-4 max-lg:w-full max-lg:text-center ${link.active ? "text-primary nav-link-active" : ""}`}
+										aria-expanded="false"
+										aria-haspopup="true"
+										aria-controls={`submenu-${link.label}`}
+										data-target={`submenu-${link.label}`}
+									>
+										<div class="nav-link-content flex items-center gap-1 pointer-events-none">
+											<span class="nav-link-text relative z-10 transition-all duration-300">
+												{link.label}
+											</span>
+											<span class="nav-dropdown-arrow ml-1 text-[0.7rem] transition-transform duration-300 group-aria-[expanded=true]:rotate-180">
+												⟩
+											</span>
+										</div>
+									</button>
 
-                  <ul
-                    class="mobile-dropdown hidden flex-col w-full bg-white/5 overflow-hidden transition-all duration-300 max-lg:relative"
-                    id={`mobile-submenu-${link.label}`}
-                  >
-                    {link.dropdown.map((subItem) => (
-                      <li>
-                        <a
-                          aria-label={subItem.label}
-                          href={subItem.href}
-                          class="block px-8 py-3 text-text-secondary text-[0.95rem] transition-colors duration-300 hover:text-white hover:bg-white/5"
-                        >
-                          {subItem.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : (
-                <a
-                  aria-label={link.label}
-                  href={link.href}
-                  class={`nav-link group relative flex flex-col items-center px-[18px] py-[10px] no-underline text-text-secondary font-serif text-[0.9rem] font-normal tracking-[0.02em] transition-all duration-300 overflow-hidden hover:text-text-light max-lg:text-[1.1rem] max-lg:px-6 max-lg:py-4 max-lg:w-full max-lg:text-center`}
-                >
-                  <span class="nav-link-text relative z-10 transition-all duration-300">
-                    {link.label}
-                  </span>
-                  <span
-                    class={`nav-link-underline absolute bottom-[6px] left-1/2 -translate-x-1/2 scale-x-0 w-[30px] h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent transition-transform duration-300 rounded-[2px] group-hover:scale-x-100`}
-                  />
-                </a>
-              )}
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-  </div>
+									<ul
+										class="mobile-dropdown hidden flex-col w-full bg-white/5 overflow-hidden transition-all duration-300 max-lg:relative"
+										id={`mobile-submenu-${link.label}`}
+									>
+										{link.dropdown.map((subItem) => (
+											<li>
+												<a
+													aria-label={subItem.label}
+													href={subItem.href}
+													class="block px-8 py-3 text-text-secondary text-[0.95rem] transition-colors duration-300 hover:text-white hover:bg-white/5"
+												>
+													{subItem.label}
+												</a>
+											</li>
+										))}
+									</ul>
+								</div>
+							) : (
+								<a
+									aria-label={link.label}
+									href={link.href}
+									class={`nav-link group relative flex flex-col items-center px-[18px] py-[10px] no-underline text-text-secondary font-serif text-[0.9rem] font-normal tracking-[0.02em] transition-all duration-300 overflow-hidden hover:text-text-light max-lg:text-[1.1rem] max-lg:px-6 max-lg:py-4 max-lg:w-full max-lg:text-center`}
+								>
+									<span class="nav-link-text relative z-10 transition-all duration-300">
+										{link.label}
+									</span>
+									<span
+										class={`nav-link-underline absolute bottom-[6px] left-1/2 -translate-x-1/2 scale-x-0 w-[30px] h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent transition-transform duration-300 rounded-[2px] group-hover:scale-x-100`}
+									/>
+								</a>
+							)}
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+	</div>
 
-  <NavSubmenu groups={submenuGroups} />
+	<NavSubmenu groups={submenuGroups} />
 </header>
 
 <style>
-  :global(.mobile-menu-open) {
-    overflow: hidden;
-  }
+	:global(.mobile-menu-open) {
+		overflow: hidden;
+	}
 
-  :global(.mobile-header-fixed) {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
+	:global(.mobile-header-fixed) {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+	}
 </style>
 
 <script>
-  const navToggle = document.getElementById("nav-toggle");
-  const navList = document.getElementById("nav-list");
-  const mainHeader = document.getElementById("main-header");
+	const navToggle = document.getElementById("nav-toggle");
+	const navList = document.getElementById("nav-list");
+	const mainHeader = document.getElementById("main-header");
 
-  if (navToggle && navList) {
-    navToggle.addEventListener("click", () => {
-      navToggle.classList.toggle("active");
-      navList.classList.toggle("active");
-      const isExpanded = navToggle.getAttribute("aria-expanded") === "true";
-      const nextExpanded = !isExpanded;
-      navToggle.setAttribute("aria-expanded", nextExpanded.toString());
-      document.body.classList.toggle("mobile-menu-open");
-      mainHeader?.classList.toggle("mobile-header-fixed", nextExpanded);
-    });
+	if (navToggle && navList) {
+		navToggle.addEventListener("click", () => {
+			navToggle.classList.toggle("active");
+			navList.classList.toggle("active");
+			const isExpanded =
+				navToggle.getAttribute("aria-expanded") === "true";
+			const nextExpanded = !isExpanded;
+			navToggle.setAttribute("aria-expanded", nextExpanded.toString());
+			document.body.classList.toggle("mobile-menu-open");
+			mainHeader?.classList.toggle("mobile-header-fixed", nextExpanded);
+		});
 
-    const navLinks = navList.querySelectorAll(
-      ".nav-link:not(.dropdown-toggle)",
-    );
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        navToggle.classList.remove("active");
-        navList.classList.remove("active");
-        navToggle.setAttribute("aria-expanded", "false");
-        document.body.classList.remove("mobile-menu-open");
-        mainHeader?.classList.remove("mobile-header-fixed");
-      });
-    });
-  }
+		const navLinks = navList.querySelectorAll(
+			".nav-link:not(.dropdown-toggle)",
+		);
+		navLinks.forEach((link) => {
+			link.addEventListener("click", () => {
+				navToggle.classList.remove("active");
+				navList.classList.remove("active");
+				navToggle.setAttribute("aria-expanded", "false");
+				document.body.classList.remove("mobile-menu-open");
+				mainHeader?.classList.remove("mobile-header-fixed");
+			});
+		});
+	}
 
-  const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+	const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
 
-  const globalSubmenu = document.getElementById("global-submenu");
-  const submenuContents = document.querySelectorAll(".submenu-content");
-  let activeContentId: string | null = null;
+	const globalSubmenu = document.getElementById("global-submenu");
+	const submenuContents = document.querySelectorAll(".submenu-content");
+	let activeContentId: string | null = null;
 
-  const closeGlobalSubmenu = () => {
-    if (globalSubmenu) {
-      globalSubmenu.classList.remove(
-        "visible",
-        "opacity-100",
-        "translate-y-0",
-        "open",
-      );
-      globalSubmenu.classList.add("invisible", "opacity-0", "-translate-y-5");
+	const closeGlobalSubmenu = () => {
+		if (globalSubmenu) {
+			globalSubmenu.classList.remove(
+				"visible",
+				"opacity-100",
+				"translate-y-0",
+				"open",
+			);
+			globalSubmenu.classList.add(
+				"invisible",
+				"opacity-0",
+				"-translate-y-5",
+			);
 
-      submenuContents.forEach((content) => {
-        content.classList.remove(
-          "opacity-100",
-          "pointer-events-auto",
-          "scale-100",
-        );
-        content.classList.add("opacity-0", "pointer-events-none", "scale-95");
-      });
-      activeContentId = null;
-    }
+			submenuContents.forEach((content) => {
+				content.classList.remove(
+					"opacity-100",
+					"pointer-events-auto",
+					"scale-100",
+				);
+				content.classList.add(
+					"opacity-0",
+					"pointer-events-none",
+					"scale-95",
+				);
+			});
+			activeContentId = null;
+		}
 
-    dropdownToggles.forEach((toggle) => {
-      if (window.innerWidth > 1024) {
-        toggle.setAttribute("aria-expanded", "false");
-      }
-    });
-  };
+		dropdownToggles.forEach((toggle) => {
+			if (window.innerWidth > 1024) {
+				toggle.setAttribute("aria-expanded", "false");
+			}
+		});
+	};
 
-  const openSubmenu = (content: Element, toggle: Element) => {
-    if (!globalSubmenu) return;
+	const openSubmenu = (content: Element, toggle: Element) => {
+		if (!globalSubmenu) return;
 
-    globalSubmenu.classList.add(
-      "visible",
-      "opacity-100",
-      "translate-y-0",
-      "open",
-    );
-    globalSubmenu.classList.remove("invisible", "opacity-0", "-translate-y-5");
+		globalSubmenu.classList.add(
+			"visible",
+			"opacity-100",
+			"translate-y-0",
+			"open",
+		);
+		globalSubmenu.classList.remove(
+			"invisible",
+			"opacity-0",
+			"-translate-y-5",
+		);
 
-    submenuContents.forEach((el) => {
-      el.classList.add("opacity-0", "pointer-events-none", "scale-95");
-      el.classList.remove("opacity-100", "pointer-events-auto", "scale-100");
-    });
+		submenuContents.forEach((el) => {
+			el.classList.add("opacity-0", "pointer-events-none", "scale-95");
+			el.classList.remove(
+				"opacity-100",
+				"pointer-events-auto",
+				"scale-100",
+			);
+		});
 
-    content.classList.remove("opacity-0", "pointer-events-none", "scale-95");
-    content.classList.add("opacity-100", "pointer-events-auto", "scale-100");
+		content.classList.remove(
+			"opacity-0",
+			"pointer-events-none",
+			"scale-95",
+		);
+		content.classList.add(
+			"opacity-100",
+			"pointer-events-auto",
+			"scale-100",
+		);
 
-    activeContentId = content.id;
+		activeContentId = content.id;
 
-    dropdownToggles.forEach((t) => t.setAttribute("aria-expanded", "false"));
-    toggle.setAttribute("aria-expanded", "true");
-  };
+		dropdownToggles.forEach((t) =>
+			t.setAttribute("aria-expanded", "false"),
+		);
+		toggle.setAttribute("aria-expanded", "true");
+	};
 
-  const switchSubmenu = (newContent: Element, toggle: Element) => {
-    if (!activeContentId) return;
+	const switchSubmenu = (newContent: Element, toggle: Element) => {
+		if (!activeContentId) return;
 
-    const currentContent = document.getElementById(activeContentId);
+		const currentContent = document.getElementById(activeContentId);
 
-    if (currentContent) {
-      currentContent.classList.remove(
-        "opacity-100",
-        "pointer-events-auto",
-        "scale-100",
-      );
-      currentContent.classList.add(
-        "opacity-0",
-        "pointer-events-none",
-        "scale-95",
-      );
-    }
+		if (currentContent) {
+			currentContent.classList.remove(
+				"opacity-100",
+				"pointer-events-auto",
+				"scale-100",
+			);
+			currentContent.classList.add(
+				"opacity-0",
+				"pointer-events-none",
+				"scale-95",
+			);
+		}
 
-    newContent.classList.remove("opacity-0", "pointer-events-none", "scale-95");
-    newContent.classList.add("opacity-100", "pointer-events-auto", "scale-100");
+		newContent.classList.remove(
+			"opacity-0",
+			"pointer-events-none",
+			"scale-95",
+		);
+		newContent.classList.add(
+			"opacity-100",
+			"pointer-events-auto",
+			"scale-100",
+		);
 
-    activeContentId = newContent.id;
+		activeContentId = newContent.id;
 
-    dropdownToggles.forEach((t) => t.setAttribute("aria-expanded", "false"));
-    toggle.setAttribute("aria-expanded", "true");
-  };
+		dropdownToggles.forEach((t) =>
+			t.setAttribute("aria-expanded", "false"),
+		);
+		toggle.setAttribute("aria-expanded", "true");
+	};
 
-  dropdownToggles.forEach((toggle) => {
-    const targetId = toggle.getAttribute("data-target");
-    if (!targetId) return;
+	dropdownToggles.forEach((toggle) => {
+		const targetId = toggle.getAttribute("data-target");
+		if (!targetId) return;
 
-    toggle.addEventListener("click", (e) => {
-      e.preventDefault();
+		toggle.addEventListener("click", (e) => {
+			e.preventDefault();
 
-      if (window.innerWidth <= 1024) {
-        const isExpanded = toggle.getAttribute("aria-expanded") === "true";
-        toggle.setAttribute("aria-expanded", (!isExpanded).toString());
+			if (window.innerWidth <= 1024) {
+				const isExpanded =
+					toggle.getAttribute("aria-expanded") === "true";
+				toggle.setAttribute("aria-expanded", (!isExpanded).toString());
 
-        const mobileList =
-          toggle.parentElement?.querySelector(".mobile-dropdown");
-        if (mobileList) {
-          mobileList.classList.toggle("hidden");
-          mobileList.classList.toggle("flex");
-        }
-      } else {
-        const targetContent = document.getElementById(targetId);
-        if (!targetContent) return;
+				const mobileList =
+					toggle.parentElement?.querySelector(".mobile-dropdown");
+				if (mobileList) {
+					mobileList.classList.toggle("hidden");
+					mobileList.classList.toggle("flex");
+				}
+			} else {
+				const targetContent = document.getElementById(targetId);
+				if (!targetContent) return;
 
-        const isOpen = globalSubmenu?.classList.contains("open");
+				const isOpen = globalSubmenu?.classList.contains("open");
 
-        if (isOpen) {
-          if (activeContentId === targetId) {
-            closeGlobalSubmenu();
-          } else {
-            switchSubmenu(targetContent, toggle);
-          }
-        } else {
-          openSubmenu(targetContent, toggle);
-        }
-      }
-    });
-  });
+				if (isOpen) {
+					if (activeContentId === targetId) {
+						closeGlobalSubmenu();
+					} else {
+						switchSubmenu(targetContent, toggle);
+					}
+				} else {
+					openSubmenu(targetContent, toggle);
+				}
+			}
+		});
+	});
 
-  document.addEventListener("click", (event) => {
-    const target = event.target as HTMLElement;
-    if (
-      !target.closest("[data-dropdown]") &&
-      !target.closest("[data-submenu]") &&
-      !target.closest(".submenu-container")
-    ) {
-      closeGlobalSubmenu();
-    }
-  });
+	document.addEventListener("click", (event) => {
+		const target = event.target as HTMLElement;
+		if (
+			!target.closest("[data-dropdown]") &&
+			!target.closest("[data-submenu]") &&
+			!target.closest(".submenu-container")
+		) {
+			closeGlobalSubmenu();
+		}
+	});
 
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 1024) {
-      document.querySelectorAll(".mobile-dropdown").forEach((el) => {
-        el.classList.add("hidden");
-        el.classList.remove("flex");
-      });
-      mainHeader?.classList.remove("mobile-header-fixed");
-    } else {
-      closeGlobalSubmenu();
-    }
-  });
+	window.addEventListener("resize", () => {
+		if (window.innerWidth > 1024) {
+			document.querySelectorAll(".mobile-dropdown").forEach((el) => {
+				el.classList.add("hidden");
+				el.classList.remove("flex");
+			});
+			mainHeader?.classList.remove("mobile-header-fixed");
+		} else {
+			closeGlobalSubmenu();
+		}
+	});
 </script>
 
 <style>
-  .nav-toggle.active .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
+	.nav-toggle.active .hamburger-line:nth-child(1) {
+		transform: rotate(45deg) translate(5px, 5px);
+	}
 
-  .nav-toggle.active .hamburger-line:nth-child(2) {
-    opacity: 0;
-  }
+	.nav-toggle.active .hamburger-line:nth-child(2) {
+		opacity: 0;
+	}
 
-  .nav-toggle.active .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-  }
+	.nav-toggle.active .hamburger-line:nth-child(3) {
+		transform: rotate(-45deg) translate(5px, -5px);
+	}
 </style>

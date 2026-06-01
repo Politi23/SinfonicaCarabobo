@@ -1,0 +1,134 @@
+---
+import Layout from "@layouts/Layout.astro";
+import MainHero from "@components/sections/MainHero.astro";
+import profile from "@assets/images/profile/JCC 2.jpg";
+import { Image } from "astro:assets";
+---
+
+<Layout
+	title="José Carmelo Calabrese"
+	description="Conoce al Maestro José Calabrese, Director Artístico Musical de la Orquesta Sinfónica de Carabobo."
+	canonicalPath="/nosotros/maestro"
+	ogTitle="Director Artístico Musical - José Calabrese"
+	ogDescription="Director Artístico Musical de la Orquesta Sinfónica de Carabobo."
+	showApoyanosSection={false}
+	showLatestPosts={false}
+>
+	<main class="bg-white text-gray-900 min-h-screen">
+		<MainHero
+			title="Director Artístico y Musical"
+			subtitle="José Calabrese · Orquesta Sinfónica de Carabobo"
+		/>
+
+		<!-- Perfil principal -->
+		<section class="max-w-6xl mx-auto px-6 py-16 md:py-20">
+			<div class="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
+				<!-- Foto -->
+				<div class="lg:col-span-2">
+					<div
+						class="sticky top-8 space-y-6 flex flex-col justify-center h-full"
+					>
+						<Image
+							src={profile}
+							alt="Director JCC"
+							width={1000}
+							height={1000}
+							class="w-full object-center bg-gray-200 rounded-sm flex items-center justify-center text-gray-400 text-sm"
+						/>
+					</div>
+				</div>
+
+				<!-- Bio -->
+				<div class="lg:col-span-3 space-y-8">
+					<div>
+						<h2
+							class="text-3xl md:text-4xl font-display font-bold text-text-dark mb-6"
+						>
+							José Carmelo Calabrese
+						</h2>
+					</div>
+
+					<div
+						class="space-y-5 text-zinc-800 text-lg leading-relaxed text-justify"
+					>
+						<p>
+							José Carmelo Calabrese, es considerado por la
+							crítica especializada como uno de los directores de
+							orquesta más brillantes de la actualidad. Es
+							Magíster en Dirección Orquestal, egresado con
+							mención "Sobresaliente" de la Universidad Simón
+							Bolívar (Caracas-Venezuela), bajo la tutela del
+							maestro Alfredo Rugeles, además de haber estudiado
+							de manera intensiva con su padre, el maestro José
+							Calabrese. Aunado a esto, es egresado en Composición
+							en el Conservatorio de Música "Vicente Emilio Sojo"
+							(Barquisimeto-Venezuela).
+						</p>
+						<p>
+							Durante el 2025 ha obtenido logros como el Primer
+							Premio en Dirección Orquestal en "New York Classical
+							Music Competition". Recientemente, además de asumir
+							la programación artística de la Orquesta Sinfónica
+							de Carabobo, también se presentó en dos grandes
+							conciertos en Brasil y ha atendido invitaciones para
+							dictar masterclasses de dirección en diferentes
+							ciudades de Venezuela.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="flex items-center gap-4 py-2 mt-12">
+				<div class="h-px flex-1 bg-gray-200"></div>
+				<div class="w-2 h-2 bg-primary rounded-full"></div>
+				<div class="h-px flex-1 bg-gray-200"></div>
+			</div>
+
+			<div
+				class="space-y-5 text-zinc-800 text-lg leading-relaxed text-justify mt-8"
+			>
+				<p>
+					En el 2024, ganador del Primer Premio en Dirección Orquestal
+					en "Vivaldi International Music Competition". En el año 2022
+					quedó seleccionado entre doce directores a nivel mundial,
+					para asistir al Conducting Workshop junto a la Chamber
+					Orchestra of New York (USA).
+				</p>
+				<p>
+					Igualmente desarrolla un activo trabajo educativo, donde ha
+					desempeñado responsabilidades como: profesor de práctica
+					orquestal en el Conservatorio de Música de Carabobo,
+					profesor titular de dirección y orquestación en la
+					Universidad "Arturo Michelena" (Venezuela), profesor de
+					música en la Universidad Autónoma de Manizales (Colombia).
+					Ha dictado clases magistrales de dirección orquestal en la
+					Universidad de los Andes (Venezuela), así como en diversas
+					ciudades de Venezuela y Colombia. Su actividad académica la
+					alterna con clases en modalidad online a estudiantes de
+					diversos países como México, Costa Rica, Colombia, entre
+					otros.
+				</p>
+				<p>
+					Como líder cultural, fundó el Movimiento Sinfónico
+					"Directores Modernos" en 2018, una organización dedicada a
+					la enseñanza y promoción de la dirección musical. Desde
+					2019, se desempeña como Director Artístico y Musical de la
+					Orquesta Sinfónica de Carabobo y Presidente de su Fundación,
+					donde también creó la Academia Internacional de Música
+					"Maestro José Calabrese", con el objetivo de impulsar el
+					talento de las nuevas generaciones.
+				</p>
+				<p>
+					Calabrese es autor del libro "Guía para Directores de
+					Orquestas Noveles en Venezuela"; 2016. Ha recibido
+					importantes distinciones, entre las que se destacan:
+					Embajador de la Paz (UNESCO), miembro honorario Rotary,
+					distinción Paul Harris (Rotary International), Orden del
+					Bicentenario, Orden Ciudad de Naguanagua, Carabobeño más
+					destacado del 2019, miembro del mes de enero 2023 del World
+					Trade Center Valencia, entre otras.
+				</p>
+			</div>
+		</section>
+	</main>
+</Layout>
