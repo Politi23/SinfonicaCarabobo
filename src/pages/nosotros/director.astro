@@ -3,6 +3,7 @@ import Layout from "@layouts/Layout.astro";
 import MainHero from "@components/sections/MainHero.astro";
 import profile from "@assets/images/profile/JCC 2.jpg";
 import { Image } from "astro:assets";
+import oscTtc2 from "@assets/images/organizacion/OSC en TTC 2.webp";
 ---
 
 <Layout
@@ -128,6 +129,40 @@ import { Image } from "astro:assets";
 					destacado del 2019, miembro del mes de enero 2023 del World
 					Trade Center Valencia, entre otras.
 				</p>
+			</div>
+		</section>
+
+		<!-- Apóyanos -->
+		<section
+			class="relative py-20 overflow-hidden"
+			style={`background-image: url('${oscTtc2.src}'); background-size: cover; background-position: center;`}
+		>
+			<div class="absolute inset-0 bg-black/85"></div>
+			<div class="relative z-10 max-w-3xl mx-auto px-6 text-center">
+				<p class="text-primary text-xs uppercase tracking-[0.3em] font-bold mb-4">
+					Apoya la música venezolana
+				</p>
+				<h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-5 leading-tight">
+					Tu apoyo hace posible<br class="hidden md:block" /> nuestra sinfonía
+				</h2>
+				<p class="text-gray-300 text-lg font-light leading-relaxed mb-10 max-w-xl mx-auto">
+					La obra del Maestro Calabrese y la Orquesta Sinfónica de Carabobo
+					se sostiene gracias a quienes creen en el poder transformador de la música.
+				</p>
+				<div class="flex flex-col sm:flex-row gap-4 justify-center">
+					<a
+						href="/apoyanos/donaciones"
+						class="px-8 py-3 bg-primary text-white font-bold text-sm uppercase tracking-widest hover:bg-primary/90 transition-colors"
+					>
+						Hacer una donación
+					</a>
+					<a
+						href="/apoyanos/empresarial"
+						class="px-8 py-3 border border-white/40 text-white font-bold text-sm uppercase tracking-widest hover:border-white hover:bg-white/10 transition-colors"
+					>
+						Plan empresarial
+					</a>
+				</div>
 			</div>
 		</section>
 	</main>
