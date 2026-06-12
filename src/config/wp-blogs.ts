@@ -112,12 +112,16 @@ export const getBlogs = async ({
   category = undefined,
   orderby = "date",
   order = "desc",
+  after = undefined,
+  before = undefined,
 }: {
   perPage?: number;
   page?: number;
   category?: string;
   orderby?: "date" | "modified" | "comment_count" | "title";
   order?: "asc" | "desc";
+  after?: string;
+  before?: string;
 } = {}): Promise<WPBlog[]> => {
   try {
     const safePerPage = Math.min(Math.max(1, perPage), MAX_BLOGS_PER_PAGE);
@@ -128,6 +132,12 @@ export const getBlogs = async ({
 
     if (categoryId) {
       endpoint += `&categories=${categoryId}`;
+    }
+    if (after) {
+      endpoint += `&after=${encodeURIComponent(after)}`;
+    }
+    if (before) {
+      endpoint += `&before=${encodeURIComponent(before)}`;
     }
 
     const data = await fetchAPI(endpoint);

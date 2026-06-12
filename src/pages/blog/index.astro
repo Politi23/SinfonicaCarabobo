@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import MainHero from "../../components/sections/MainHero.astro";
 import BlogCard from "../../components/blog/BlogCard.astro";
 import Pagination from "../../components/blog/Pagination.astro";
-import FilterBar from "../../components/ui/FilterBar.astro";
+import SearchBar from "../../components/ui/SearchBar.astro";
 import WpOfflineError from "../../components/ui/WpOfflineError.astro";
 import {
   getBlogs,
@@ -12,6 +12,8 @@ import {
 } from "../../config/wp-blogs";
 
 const ordenFilter = Astro.url.searchParams.get("orden") ?? "";
+const desdeFilter = Astro.url.searchParams.get("desde") ?? "";
+const hastaFilter = Astro.url.searchParams.get("hasta") ?? "";
 
 const parsedQueryPage = Number.parseInt(
   Astro.url.searchParams.get("page") ?? "1",
@@ -20,7 +22,7 @@ const parsedQueryPage = Number.parseInt(
 const normalizedQueryPage =
   Number.isFinite(parsedQueryPage) && parsedQueryPage > 0 ? parsedQueryPage : 1;
 
-if (normalizedQueryPage > 1 && !ordenFilter) {
+if (normalizedQueryPage > 1 && !ordenFilter && !desdeFilter && !hastaFilter) {
   return Astro.redirect(`/blog/page/${normalizedQueryPage}`, 301);
 }
 
@@ -28,35 +30,41 @@ type OrderBy = "date" | "modified" | "comment_count" | "title";
 type Order = "asc" | "desc";
 
 const ordenMap: Record<string, { orderby: OrderBy; order: Order }> = {
-  recientes:   { orderby: "date",          order: "desc" },
-  antiguos:    { orderby: "date",          order: "asc"  },
-  valorados:   { orderby: "comment_count", order: "desc" },
-  actualizados:{ orderby: "modified",      order: "desc" },
-  az:          { orderby: "title",         order: "asc"  },
+  recientes:    { orderby: "date",          order: "desc" },
+  antiguos:     { orderby: "date",          order: "asc"  },
+  valorados:    { orderby: "comment_count", order: "desc" },
+  actualizados: { orderby: "modified",      order: "desc" },
+  az:           { orderby: "title",         order: "asc"  },
 };
 
 const { orderby, order } = ordenMap[ordenFilter] ?? { orderby: "date", order: "desc" };
 
+// Build WP date params (ISO 8601)
+const afterParam  = desdeFilter ? new Date(desdeFilter).toISOString() : undefined;
+const beforeParam = hastaFilter
+  ? new Date(new Date(hastaFilter).getTime() + 86400000).toISOString()
+  : undefined;
+
 let blogs: WPBlog[] = [];
 let totalPages = 1;
 let currentPage = 1;
+const hasDateFilter = Boolean(desdeFilter || hastaFilter);
 
 try {
-  const pagination = await getBlogsPagination({ page: 1, perPage: 6 });
-  currentPage = pagination.currentPage;
-  totalPages = pagination.totalPages;
-  blogs = await getBlogs({ page: currentPage, perPage: 6, orderby, order });
+  if (hasDateFilter) {
+    // Fetch all and filter (WP API before/after may vary; fetch large batch)
+    const allBlogs = await getBlogs({ page: 1, perPage: 100, orderby, order, after: afterParam, before: beforeParam });
+    blogs = allBlogs;
+  } else {
+    const pagination = await getBlogsPagination({ page: 1, perPage: 6 });
+    currentPage = pagination.currentPage;
+    totalPages = pagination.totalPages;
+    blogs = await getBlogs({ page: currentPage, perPage: 6, orderby, order });
+  }
 } catch (error) {
   console.error("Error cargando blogs:", error);
 }
 
-const filterOptions = [
-  { label: "Recientes",     value: "recientes"    },
-  { label: "Más antiguos",  value: "antiguos"     },
-  { label: "Más valorados", value: "valorados"    },
-  { label: "Actualizados",  value: "actualizados" },
-  { label: "A–Z",           value: "az"           },
-];
 ---
 
 <Layout
@@ -75,31 +83,37 @@ const filterOptions = [
 
   <main class="bg-white text-gray-800 min-h-screen py-12">
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-      <FilterBar
-        options={filterOptions}
-        active={ordenFilter}
-        param="orden"
-        allLabel="Todos"
-        label="Ordenar"
+
+      <SearchBar
+        placeholder="Buscar noticias..."
+        showDates={true}
+        desdeValue={desdeFilter}
+        hastaValue={hastaFilter}
       />
+
 
       {
         blogs.length > 0 ? (
           <>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+            <div id="cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
               {blogs.map((b) => (
-                <BlogCard
-                  title={b.title}
-                  excerpt={b.excerpt}
-                  image={b.image}
-                  date={b.date}
-                  category={b.category}
-                  slug={b.slug}
-                />
+                <div
+                  data-search-card
+                  data-search-text={`${b.title} ${b.excerpt} ${b.category}`.toLowerCase()}
+                >
+                  <BlogCard
+                    title={b.title}
+                    excerpt={b.excerpt}
+                    image={b.image}
+                    date={b.date}
+                    category={b.category}
+                    slug={b.slug}
+                  />
+                </div>
               ))}
             </div>
 
-            {!ordenFilter && totalPages > 1 && (
+            {!ordenFilter && !hasDateFilter && totalPages > 1 && (
               <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}

@@ -1,0 +1,148 @@
+---
+interface Props {
+  placeholder?: string;
+  showDates?: boolean;
+  showVenue?: boolean;
+  venues?: string[];
+  desdeValue?: string;
+  hastaValue?: string;
+  venueValue?: string;
+}
+
+const {
+  placeholder = "Buscar por palabras clave...",
+  showDates = true,
+  showVenue = false,
+  venues = [],
+  desdeValue = "",
+  hastaValue = "",
+  venueValue = "",
+} = Astro.props;
+
+const pathname = Astro.url.pathname;
+const currentParams = new URLSearchParams(Astro.url.search);
+currentParams.delete("desde");
+currentParams.delete("hasta");
+currentParams.delete("ubicacion");
+currentParams.delete("page");
+const baseParams = currentParams.toString();
+---
+
+<div class="mb-6 space-y-3">
+  <!-- Keyword search (client-side live filter) -->
+  <div class="flex items-center gap-3 mb-1">
+    <span class="text-xs uppercase tracking-widest text-gray-400 font-semibold whitespace-nowrap">Buscar</span>
+    <div class="h-px flex-1 bg-gray-100"></div>
+  </div>
+  <div class="relative">
+    <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg pointer-events-none"></i>
+    <input
+      type="search"
+      id="keyword-search"
+      placeholder={placeholder}
+      autocomplete="off"
+      class="w-full pl-10 pr-4 py-2.5 border border-gray-200 bg-white text-sm text-gray-700 focus:outline-none focus:border-primary transition-colors"
+    />
+  </div>
+  <p id="search-count" class="text-xs text-gray-400 hidden mt-1"></p>
+
+  {(showDates || showVenue) && (
+    <form
+      method="get"
+      action={pathname}
+      class="flex flex-wrap gap-3 items-end"
+      id="date-filter-form"
+    >
+      {baseParams && baseParams.split("&").map((p) => {
+        const [k, v] = p.split("=");
+        return <input type="hidden" name={k} value={decodeURIComponent(v || "")} />;
+      })}
+
+      {showDates && (
+        <>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs uppercase tracking-widest text-gray-400 font-semibold">Desde</label>
+            <input
+              type="date"
+              name="desde"
+              value={desdeValue}
+              class="px-3 py-2 border border-gray-200 bg-white text-sm text-gray-700 focus:outline-none focus:border-primary transition-colors"
+            />
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs uppercase tracking-widest text-gray-400 font-semibold">Hasta</label>
+            <input
+              type="date"
+              name="hasta"
+              value={hastaValue}
+              class="px-3 py-2 border border-gray-200 bg-white text-sm text-gray-700 focus:outline-none focus:border-primary transition-colors"
+            />
+          </div>
+        </>
+      )}
+
+      {showVenue && venues.length > 0 && (
+        <div class="flex flex-col gap-1">
+          <label class="text-xs uppercase tracking-widest text-gray-400 font-semibold">Ubicación</label>
+          <select
+            name="ubicacion"
+            class="px-3 py-2 border border-gray-200 bg-white text-sm text-gray-700 focus:outline-none focus:border-primary transition-colors min-w-[180px]"
+          >
+            <option value="">Todas las ubicaciones</option>
+            {venues.map((v) => (
+              <option value={v} selected={v === venueValue}>{v}</option>
+            ))}
+          </select>
+        </div>
+      )}
+
+      <div class="flex gap-2 items-end">
+        <button
+          type="submit"
+          class="px-5 py-2 bg-primary text-white text-xs font-bold uppercase tracking-[0.15rem] border border-primary hover:bg-primary/90 transition-colors"
+        >
+          Filtrar
+        </button>
+        {(desdeValue || hastaValue || venueValue) && (
+          <a
+            href={`${pathname}${baseParams ? "?" + baseParams : ""}`}
+            class="px-5 py-2 border border-gray-300 text-gray-500 text-xs font-bold uppercase tracking-[0.15rem] hover:border-primary hover:text-primary transition-colors bg-white"
+          >
+            Limpiar
+          </a>
+        )}
+      </div>
+    </form>
+  )}
+</div>
+
+<script>
+  const input = document.getElementById("keyword-search") as HTMLInputElement | null;
+  const countEl = document.getElementById("search-count");
+
+  if (input) {
+    const getCards = () => document.querySelectorAll<HTMLElement>("[data-search-card]");
+
+    input.addEventListener("input", () => {
+      const q = input.value.trim().toLowerCase();
+      const cards = getCards();
+      let visible = 0;
+
+      cards.forEach((card) => {
+        const text = (card.dataset.searchText || "").toLowerCase();
+        const match = !q || text.includes(q);
+        card.style.display = match ? "" : "none";
+        if (match) visible++;
+      });
+
+      if (countEl) {
+        if (q) {
+          countEl.textContent = `${visible} resultado${visible !== 1 ? "s" : ""}`;
+          countEl.classList.remove("hidden");
+        } else {
+          countEl.classList.add("hidden");
+        }
+      }
+    });
+  }
+</script>

@@ -5,11 +5,13 @@ import Layout from "@layouts/Layout.astro";
 import MainHero from "@components/sections/MainHero.astro";
 import EventoCard from "@components/eventos/EventoCard.astro";
 import Pagination from "@components/blog/Pagination.astro";
-import FilterBar from "@components/ui/FilterBar.astro";
+import SearchBar from "@components/ui/SearchBar.astro";
 import WpOfflineError from "@components/ui/WpOfflineError.astro";
 import { getEventos, getEventosPagination } from "@config/wp-eventos";
 
-const tipoFilter = Astro.url.searchParams.get("tipo") ?? "";
+const desdeFilter     = Astro.url.searchParams.get("desde")     ?? "";
+const hastaFilter     = Astro.url.searchParams.get("hasta")     ?? "";
+const ubicacionFilter = Astro.url.searchParams.get("ubicacion") ?? "";
 
 const parsedQueryPage = Number.parseInt(
   Astro.url.searchParams.get("page") ?? "1",
@@ -18,17 +20,16 @@ const parsedQueryPage = Number.parseInt(
 const normalizedQueryPage =
   Number.isFinite(parsedQueryPage) && parsedQueryPage > 0 ? parsedQueryPage : 1;
 
-if (normalizedQueryPage > 1 && !tipoFilter) {
+const hasExtraFilter = Boolean(desdeFilter || hastaFilter || ubicacionFilter);
+
+if (normalizedQueryPage > 1 && !hasExtraFilter) {
   return Astro.redirect(`/eventos/page/${normalizedQueryPage}`, 301);
 }
 
 const perPage = 6;
 
-const today = new Date();
-const todayStr =
-  today.getFullYear().toString() +
-  String(today.getMonth() + 1).padStart(2, "0") +
-  String(today.getDate()).padStart(2, "0");
+const desdeACF = desdeFilter ? desdeFilter.replace(/-/g, "") : "";
+const hastaACF = hastaFilter ? hastaFilter.replace(/-/g, "") : "";
 
 const truncateExcerpt = (text: string, wordLimit: number = 25): string => {
   if (!text) return "";
@@ -48,53 +49,56 @@ let eventos: Array<{
 }> = [];
 let totalPages = 1;
 let currentPage = 1;
+let allVenues: string[] = [];
 
 try {
-  if (tipoFilter === "proximos" || tipoFilter === "pasados") {
+  if (hasExtraFilter) {
     const all = await getEventos(100, 1);
-    const filtered = all.filter((e) =>
-      tipoFilter === "proximos"
-        ? e.acf.event_date >= todayStr
-        : e.acf.event_date < todayStr,
-    );
+    allVenues = [...new Set(all.map((e) => e.acf.event_venue).filter(Boolean))].sort();
+
+    const filtered = all.filter((e) => {
+      if (desdeACF && e.acf.event_date < desdeACF) return false;
+      if (hastaACF && e.acf.event_date > hastaACF) return false;
+      if (ubicacionFilter && e.acf.event_venue !== ubicacionFilter) return false;
+      return true;
+    });
+
     eventos = filtered.map((e) => ({
-      title: e.title.rendered,
+      title:   e.title.rendered,
       excerpt: truncateExcerpt(e.acf.event_description, 25),
-      image: e._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "",
-      date: e.acf.event_date,
-      time: e.acf.event_time,
-      venue: e.acf.event_venue,
-      slug: e.slug,
+      image:   e._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "",
+      date:    e.acf.event_date,
+      time:    e.acf.event_time,
+      venue:   e.acf.event_venue,
+      slug:    e.slug,
     }));
     totalPages = 1;
     currentPage = 1;
   } else {
+    const allForVenues = await getEventos(100, 1);
+    allVenues = [...new Set(allForVenues.map((e) => e.acf.event_venue).filter(Boolean))].sort();
+
     const pagination = await getEventosPagination(1, perPage);
     currentPage = pagination.currentPage;
     totalPages = pagination.totalPages;
     const eventosToShow = await getEventos(perPage, currentPage);
     eventos = eventosToShow.map((e) => ({
-      title: e.title.rendered,
+      title:   e.title.rendered,
       excerpt: truncateExcerpt(e.acf.event_description, 25),
-      image: e._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "",
-      date: e.acf.event_date,
-      time: e.acf.event_time,
-      venue: e.acf.event_venue,
-      slug: e.slug,
+      image:   e._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "",
+      date:    e.acf.event_date,
+      time:    e.acf.event_time,
+      venue:   e.acf.event_venue,
+      slug:    e.slug,
     }));
   }
 } catch (error) {
   console.error("Error cargando eventos:", error);
 }
-
-const filterOptions = [
-  { label: "Próximos", value: "proximos" },
-  { label: "Pasados",  value: "pasados"  },
-];
 ---
 
 <Layout
-  title={tipoFilter === "proximos" ? "Próximos Eventos" : tipoFilter === "pasados" ? "Eventos Pasados" : currentPage > 1 ? `Eventos - Página ${currentPage}` : "Eventos"}
+  title={currentPage > 1 ? `Eventos - Página ${currentPage}` : "Eventos"}
   description="Conciertos, recitales y actividades de la Orquesta Sinfónica de Carabobo."
   canonicalPath={currentPage > 1 ? `/eventos/page/${currentPage}` : "/eventos"}
   ogTitle="Eventos"
@@ -109,32 +113,40 @@ const filterOptions = [
 
   <main class="bg-white text-gray-800 min-h-screen py-16">
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-      <FilterBar
-        options={filterOptions}
-        active={tipoFilter}
-        param="tipo"
-        allLabel="Todos"
-        label="Fecha"
+
+      <SearchBar
+        placeholder="Buscar eventos..."
+        showDates={true}
+        showVenue={true}
+        venues={allVenues}
+        desdeValue={desdeFilter}
+        hastaValue={hastaFilter}
+        venueValue={ubicacionFilter}
       />
 
       {
         eventos.length > 0 ? (
           <>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+            <div id="cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
               {eventos.map((e) => (
-                <EventoCard
-                  title={e.title}
-                  excerpt={e.excerpt}
-                  image={e.image}
-                  date={e.date}
-                  time={e.time}
-                  venue={e.venue}
-                  slug={e.slug}
-                />
+                <div
+                  data-search-card
+                  data-search-text={`${e.title} ${e.excerpt} ${e.venue}`.toLowerCase()}
+                >
+                  <EventoCard
+                    title={e.title}
+                    excerpt={e.excerpt}
+                    image={e.image}
+                    date={e.date}
+                    time={e.time}
+                    venue={e.venue}
+                    slug={e.slug}
+                  />
+                </div>
               ))}
             </div>
 
-            {!tipoFilter && totalPages > 1 && (
+            {!hasExtraFilter && totalPages > 1 && (
               <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}

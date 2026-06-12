@@ -5,6 +5,7 @@ import Layout from "@layouts/Layout.astro";
 import MainHero from "@components/sections/MainHero.astro";
 import Pagination from "@components/blog/Pagination.astro";
 import FilterBar from "@components/ui/FilterBar.astro";
+import SearchBar from "@components/ui/SearchBar.astro";
 import WpOfflineError from "@components/ui/WpOfflineError.astro";
 import AlbumCard from "@components/galeria/AlbumCard.astro";
 import {
@@ -15,8 +16,10 @@ import {
 	type WPAlbum,
 } from "@config/wp-albums";
 
-const ordenFilter    = Astro.url.searchParams.get("orden")     ?? "";
+const ordenFilter     = Astro.url.searchParams.get("orden")     ?? "";
 const categoriaFilter = Astro.url.searchParams.get("categoria") ?? "";
+const desdeFilter     = Astro.url.searchParams.get("desde")     ?? "";
+const hastaFilter     = Astro.url.searchParams.get("hasta")     ?? "";
 
 const parsedPage = Number.parseInt(Astro.url.searchParams.get("page") ?? "1", 10);
 const requestedPage = Number.isFinite(parsedPage) && parsedPage > 0 ? parsedPage : 1;
@@ -25,24 +28,39 @@ type OrderBy = "date" | "title" | "modified";
 type Order   = "asc"  | "desc";
 
 const ordenMap: Record<string, { orderby: OrderBy; order: Order }> = {
-	recientes: { orderby: "date",     order: "desc" },
-	antiguos:  { orderby: "date",     order: "asc"  },
-	az:        { orderby: "title",    order: "asc"  },
-	za:        { orderby: "title",    order: "desc" },
+	recientes: { orderby: "date",  order: "desc" },
+	antiguos:  { orderby: "date",  order: "asc"  },
+	az:        { orderby: "title", order: "asc"  },
+	za:        { orderby: "title", order: "desc" },
 };
 
 const { orderby, order } = ordenMap[ordenFilter] ?? { orderby: "date", order: "desc" };
+
+const hasDateFilter = Boolean(desdeFilter || hastaFilter);
 
 let albums: WPAlbum[] = [];
 let totalPages = 1;
 let currentPage = 1;
 
 try {
-	if (categoriaFilter) {
+	if (categoriaFilter || hasDateFilter) {
 		const all = await getAllAlbums();
-		albums = all.filter(
-			(a) => a.category.toLowerCase() === categoriaFilter.toLowerCase(),
-		);
+		let filtered = all;
+
+		if (categoriaFilter) {
+			filtered = filtered.filter(
+				(a) => a.category.toLowerCase() === categoriaFilter.toLowerCase(),
+			);
+		}
+
+		if (desdeFilter) {
+			filtered = filtered.filter((a) => a.date >= desdeFilter);
+		}
+		if (hastaFilter) {
+			filtered = filtered.filter((a) => a.date <= hastaFilter + "T23:59:59");
+		}
+
+		albums = filtered;
 	} else {
 		const pagination = await getAlbumsPagination(requestedPage, 9);
 		currentPage = pagination.currentPage;
@@ -54,13 +72,6 @@ try {
 }
 
 const albumCategories = await getAlbumCategories();
-
-const ordenOptions = [
-	{ label: "Recientes",    value: "recientes" },
-	{ label: "Más antiguos", value: "antiguos"  },
-	{ label: "A–Z",          value: "az"        },
-	{ label: "Z–A",          value: "za"        },
-];
 
 const categoryOptions = albumCategories.map((c) => ({ label: c, value: c }));
 ---
@@ -74,15 +85,15 @@ const categoryOptions = albumCategories.map((c) => ({ label: c, value: c }));
 	<main class="bg-white text-gray-800 min-h-screen py-12">
 		<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
 
-			<div class="mb-8 space-y-2 border-b border-gray-200 pb-6">
-				<FilterBar
-					options={ordenOptions}
-					active={ordenFilter}
-					param="orden"
-					allLabel="Todos"
-					label="Ordenar"
-				/>
-				{categoryOptions.length > 0 && (
+			<SearchBar
+				placeholder="Buscar álbumes..."
+				showDates={true}
+				desdeValue={desdeFilter}
+				hastaValue={hastaFilter}
+			/>
+
+			{categoryOptions.length > 0 && (
+				<div class="mb-8 border-b border-gray-200 pb-6">
 					<FilterBar
 						options={categoryOptions}
 						active={categoriaFilter}
@@ -90,28 +101,33 @@ const categoryOptions = albumCategories.map((c) => ({ label: c, value: c }));
 						allLabel="Todas las categorías"
 						label="Categoría"
 					/>
-				)}
-			</div>
+				</div>
+			)}
 
 			{
 				albums.length > 0 ? (
 					<>
-						<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+						<div id="cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
 							{albums.map((album) => (
-								<AlbumCard
-									title={album.title}
-									excerpt={album.excerpt}
-									coverImage={album.coverImage}
-									date={album.date}
-									dateTaken={album.dateTaken}
-									category={album.category}
-									slug={album.slug}
-									photoCount={album.photos.length}
-								/>
+								<div
+									data-search-card
+									data-search-text={`${album.title} ${album.excerpt || ""} ${album.category}`.toLowerCase()}
+								>
+									<AlbumCard
+										title={album.title}
+										excerpt={album.excerpt}
+										coverImage={album.coverImage}
+										date={album.date}
+										dateTaken={album.dateTaken}
+										category={album.category}
+										slug={album.slug}
+										photoCount={album.photos.length}
+									/>
+								</div>
 							))}
 						</div>
 
-						{!categoriaFilter && totalPages > 1 && (
+						{!categoriaFilter && !hasDateFilter && totalPages > 1 && (
 							<Pagination
 								currentPage={currentPage}
 								totalPages={totalPages}
