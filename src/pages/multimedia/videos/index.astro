@@ -1,0 +1,182 @@
+---
+export const prerender = false;
+
+import Layout from "@layouts/Layout.astro";
+import MainHero from "@components/sections/MainHero.astro";
+import FilterBar from "@components/ui/FilterBar.astro";
+import SearchBar from "@components/ui/SearchBar.astro";
+import WpOfflineError from "@components/ui/WpOfflineError.astro";
+import VideoCard from "@components/multimedia/VideoCard.astro";
+import { getVideos, getVideoCategories } from "@config/wp-videos";
+
+const categoriaFilter = Astro.url.searchParams.get("categoria") ?? "";
+const desdeFilter     = Astro.url.searchParams.get("desde")     ?? "";
+const hastaFilter     = Astro.url.searchParams.get("hasta")     ?? "";
+
+let videos: Awaited<ReturnType<typeof getVideos>> = [];
+let categories: string[] = [];
+
+try {
+  const all = await getVideos(100, 1);
+  categories = await getVideoCategories();
+
+  videos = all.filter((v) => {
+    if (categoriaFilter && v.category.toLowerCase() !== categoriaFilter.toLowerCase()) return false;
+    if (desdeFilter && v.date < desdeFilter) return false;
+    if (hastaFilter && v.date > hastaFilter + "T23:59:59") return false;
+    return true;
+  });
+} catch (error) {
+  console.error("Error cargando videos:", error);
+}
+
+const categoryOptions = categories.map((c) => ({ label: c, value: c }));
+---
+
+<Layout
+  title={categoriaFilter ? `Videos · ${categoriaFilter}` : "Videos"}
+  description="Videos y grabaciones de la Orquesta Sinfónica de Carabobo."
+  canonicalPath="/multimedia/videos"
+  showApoyanosSection={false}
+>
+  <MainHero title="Videos" titleHighlight="Musicales" subtitle="Conciertos, ensayos y momentos especiales de la Orquesta Sinfónica de Carabobo" />
+
+  <main class="bg-white text-gray-800 min-h-screen py-12">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+
+      <SearchBar
+        placeholder="Buscar videos..."
+        showDates={true}
+        desdeValue={desdeFilter}
+        hastaValue={hastaFilter}
+      />
+
+      {categoryOptions.length > 0 && (
+        <div class="mb-6 border-b border-gray-200 pb-4">
+          <FilterBar
+            options={categoryOptions}
+            active={categoriaFilter}
+            param="categoria"
+            allLabel="Todos"
+            label="Categoría"
+          />
+        </div>
+      )}
+
+      {videos.length > 0 ? (
+        <div id="cards-grid" class="flex flex-col gap-4">
+          {videos.map((v) => (
+            <div
+              data-search-card
+              data-search-text={`${v.title} ${v.excerpt} ${v.category}`.toLowerCase()}
+            >
+              <VideoCard
+                title={v.title}
+                excerpt={v.excerpt}
+                thumbnail={v.thumbnail}
+                youtubeId={v.youtubeId}
+                youtubeUrl={v.youtubeUrl}
+                category={v.category}
+                date={v.date}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <WpOfflineError
+          title="No hay videos disponibles"
+          message="Lo sentimos, no hay videos disponibles en este momento. Por favor, inténtalo más tarde."
+        />
+      )}
+    </section>
+  </main>
+</Layout>
+
+<!-- Modal YouTube -->
+<div
+  id="video-modal"
+  class="fixed inset-0 z-[2000] bg-black/90 flex items-center justify-center p-4 opacity-0 invisible transition-all duration-300"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Reproductor de video"
+>
+  <button
+    id="modal-close"
+    class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-white/70 hover:text-white transition-colors z-10"
+    aria-label="Cerrar video"
+  >
+    <i class="ph ph-x text-2xl"></i>
+  </button>
+
+  <div class="w-full max-w-4xl">
+    <!-- Iframe embed -->
+    <div class="relative aspect-video bg-black rounded-t-sm overflow-hidden shadow-2xl">
+      <iframe
+        id="video-iframe"
+        src=""
+        title="YouTube video"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        class="w-full h-full"
+      ></iframe>
+    </div>
+
+    <!-- Tarjeta blanca con título y descripción -->
+    <div
+      id="modal-info"
+      class="bg-white rounded-b-sm px-6 py-5 translate-y-4 opacity-0 transition-all duration-400 delay-100"
+    >
+      <h3 id="modal-title" class="text-gray-900 font-serif font-bold text-xl mb-2"></h3>
+      <p id="modal-excerpt" class="text-gray-500 text-sm leading-relaxed"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById("video-modal");
+  const iframe = document.getElementById("video-iframe") as HTMLIFrameElement | null;
+  const modalTitle = document.getElementById("modal-title");
+  const modalExcerpt = document.getElementById("modal-excerpt");
+  const modalInfo = document.getElementById("modal-info");
+  const closeBtn = document.getElementById("modal-close");
+
+  const openModal = (youtubeId: string, title: string, excerpt: string) => {
+    if (!modal || !iframe) return;
+    iframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`;
+    if (modalTitle) modalTitle.textContent = title;
+    if (modalExcerpt) modalExcerpt.textContent = excerpt;
+
+    modal.classList.remove("opacity-0", "invisible");
+    modal.classList.add("opacity-100", "visible");
+    document.body.style.overflow = "hidden";
+
+    // Animar la tarjeta blanca
+    requestAnimationFrame(() => {
+      modalInfo?.classList.remove("translate-y-4", "opacity-0");
+      modalInfo?.classList.add("translate-y-0", "opacity-100");
+    });
+  };
+
+  const closeModal = () => {
+    if (!modal || !iframe) return;
+    iframe.src = "";
+    modal.classList.add("opacity-0", "invisible");
+    modal.classList.remove("opacity-100", "visible");
+    modalInfo?.classList.add("translate-y-4", "opacity-0");
+    modalInfo?.classList.remove("translate-y-0", "opacity-100");
+    document.body.style.overflow = "";
+  };
+
+  document.querySelectorAll<HTMLElement>("[data-youtube-id]").forEach((card) => {
+    card.addEventListener("click", () => {
+      const id = card.dataset.youtubeId;
+      const title = card.dataset.title || "";
+      const excerpt = card.dataset.excerpt || "";
+      if (id) openModal(id, title, excerpt);
+    });
+  });
+
+  closeBtn?.addEventListener("click", closeModal);
+  modal?.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+</script>
