@@ -1,8 +1,6 @@
 ---
-import sinfonica from "@assets/images/orchestra/sinfonica.webp";
+import sinfonica from "@assets/images/orquesta/OSC.webp";
 import SectionTitle from "@components/ui/SectionTitle.astro";
-import PrimaryButton from "@components/ui/PrimaryButton.astro";
-import SecondaryButton from "@components/ui/SecondaryButton.astro";
 
 interface Props {
     basePath: string;
@@ -36,15 +34,19 @@ const { basePath } = Astro.props;
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <SecondaryButton
+            <a
                 href={`${basePath}/planilla de Audición OSC.pdf`}
                 download
+                class="px-8 py-3 border border-white/40 text-white font-bold text-sm uppercase tracking-widest hover:border-white hover:bg-white/10 transition-colors"
             >
                 Descargar Planilla
-            </SecondaryButton>
-            <PrimaryButton href="mailto:audiciones@sinfocarabobo.com">
+            </a>
+            <a
+                href="mailto:audiciones@sinfocarabobo.com"
+                class="px-8 py-3 bg-primary text-white font-bold text-sm uppercase tracking-widest hover:bg-primary/90 transition-colors"
+            >
                 Contactar por Email
-            </PrimaryButton>
+            </a>
         </div>
     </div>
 </section>

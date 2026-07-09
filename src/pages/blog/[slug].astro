@@ -41,14 +41,16 @@ const pageOgImage = blog?.image;
     blog ? (
       <>
         <div class="w-full h-[70vh]">
-          <Image
-            src={blog.image}
-            alt={blog.excerpt}
-            width={1000}
-            height={1000}
-            loading="eager"
-            class={"w-full h-full object-cover"}
-          />
+          {blog.image && (
+            <Image
+              src={blog.image}
+              alt={blog.excerpt}
+              width={1000}
+              height={1000}
+              loading="eager"
+              class={"w-full h-full object-cover"}
+            />
+          )}
           <div class="absolute inset-0 bg-gradient-to- from-red-800 via-transparent to-transparent h-[50vh]"></div>
         </div>
 

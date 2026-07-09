@@ -5,6 +5,7 @@ export interface Props {
   date?: string;
   time?: string;
   venue?: string;
+  price?: string;
   contactHref?: string;
   class?: string;
 }
@@ -13,14 +14,22 @@ const {
   date = "Por confirmar",
   time = "Por confirmar",
   venue = "Por confirmar",
+  price,
   contactHref = "/contacto",
   class: className,
 } = Astro.props as Props;
+
+const rows = [
+  { icon: "ph-calendar-blank", label: "Fecha", value: date, capitalize: true },
+  { icon: "ph-clock", label: "Hora", value: time },
+  { icon: "ph-map-pin-simple", label: "Lugar", value: venue },
+  ...(price ? [{ icon: "ph-ticket", label: "Entrada", value: price }] : []),
+];
 ---
 
 <div
   class:list={[
-    "bg-black p-6 rounded shadow-sm border border-primary",
+    "bg-surface-dark p-6 rounded shadow-sm border border-primary",
     className,
   ]}
 >
@@ -31,42 +40,28 @@ const {
   </h3>
 
   <ul class="space-y-4">
-    <li class="flex items-start">
-      <div class="bg-background-dark p-2 rounded shadow-sm mr-4 text-primary">
-        <i class="ph ph-calendar-blank text-lg" aria-hidden="true"></i>
-      </div>
-      <div>
-        <p class="text-sm text-text-secondary font-semibold">Fecha</p>
-        <p class="text-text-light capitalize">{date}</p>
-      </div>
-    </li>
-
-    <li class="flex items-start">
-      <div class="bg-background-dark p-2 rounded shadow-sm mr-4 text-primary">
-        <i class="ph ph-clock text-lg" aria-hidden="true"></i>
-      </div>
-      <div>
-        <p class="text-sm text-text-secondary font-semibold">Hora</p>
-        <p class="text-text-light">{time}</p>
-      </div>
-    </li>
-
-    <li class="flex items-start">
-      <div class="bg-background-dark p-2 rounded shadow-sm mr-4 text-primary">
-        <i class="ph ph-map-pin-simple text-lg" aria-hidden="true"></i>
-      </div>
-      <div>
-        <p class="text-sm text-text-secondary font-semibold">Lugar</p>
-        <p class="text-text-light">{venue}</p>
-      </div>
-    </li>
+    {
+      rows.map((row) => (
+        <li class="flex items-start">
+          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 ring-1 ring-primary/20 mr-4 text-primary">
+            <i class={`ph ${row.icon} text-lg`} aria-hidden="true" />
+          </div>
+          <div>
+            <p class="text-sm text-text-secondary font-semibold">
+              {row.label}
+            </p>
+            <p class:list={["text-text-light", row.capitalize && "capitalize"]}>
+              {row.value}
+            </p>
+          </div>
+        </li>
+      ))
+    }
   </ul>
 
   <div class="mt-8">
-    <a href={contactHref}>
-      <PrimaryButton class="w-full" variant="outline" href="/contacto">
-        <span>Contáctanos</span>
-      </PrimaryButton>
-    </a>
+    <PrimaryButton class="w-full" variant="outline" href={contactHref}>
+      <span>Contáctanos</span>
+    </PrimaryButton>
   </div>
 </div>
